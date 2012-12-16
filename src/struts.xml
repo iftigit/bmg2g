@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC  
+     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+     "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="serve.static.browserCache" value="false" />
+	<constant name="struts.action.excludePattern" value="/CaptchaServlet.cap"/>
+	<package name="default" extends="struts-default">
+		
+
+		
+		
+			
+		<action name="index" class="org.test.Test">
+			<result name="success">
+				/WEB-INF/jsp/index.jsp
+			</result>
+		</action>
+		
+		<action name="regHomeAction" class="org.controller.registration.RegistrationAction" method="regHomeAction">
+			<result name="REG_HOME">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
+		</action>
+		<action name="previewRegFormAction" class="org.controller.registration.PreviewRegFormAction">
+		<result name="input">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
+			<result name="success">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
+			<result name="cotaEnd">
+				/WEB-INF/jsp/registration/CotaEnd.jsp
+			</result>
+		</action>
+		<action name="editRegFormAction" class="org.controller.registration.EditRegistrationFormAction">
+			<result name="success">
+				/WEB-INF/jsp/registration/Test_RegistrationHome.jsp
+			</result>
+		</action>
+		
+		<action name="submitRegistration" class="org.controller.registration.RegistrationSubmitAction">
+			<result name="success">
+				/WEB-INF/jsp/registration/RegistrationSuccess.jsp
+			</result>
+			<result name="blankForm" type="redirectAction">
+				regHomeAction.action
+			</result>
+			<result name="error">
+				/WEB-INF/jsp/registration/Test_RegistrationHome.jsp
+			</result>
+			<result name="cotaEnd">
+				/WEB-INF/jsp/registration/CotaEnd.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
+			
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		
+		 <action name="downloadAdmitCard" class="org.controller.report.AdmitCardReportAction">
+		 		<result type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		 
+		 <result name="admitcard_home">
+				/WEB-INF/jsp/registration/AdmitCardHome.jsp
+			</result>
+
+  		 </action>
+  		 
+  		 <action name="cotaSelection"
+			class="org.controller.cota.CotaSelectionAction">
+			<result name="error">/WEB-INF/jsp/index.jsp</result>
+			<result name="success">
+				/WEB-INF/jsp/cota/CotaSelection.jsp
+			</result>
+		</action>
+		
+		
+		<action name="cotaUpdate"
+			class="org.controller.cota.CotaUpdateAction">			
+			<result name="error">/WEB-INF/jsp/index.jsp</result>
+			<result name="success" type="redirectAction">
+				cotaSelection.action
+			</result>
+		</action>
+		
+	</package>
+	
+
+<include file="org/json/JsonAjaxMap.xml" />
+
+</struts>
+
+
+
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="BMG2G"
+  id="myeclipse.1353230299359"
+  context-root="/BMG2G_WEB"
+  j2ee-spec="5.0"
+  archive="BMG2G.war">
+  <attributes>
+    <attribute name="webrootdir" value="BMG2G_WEB" />
+  </attributes>
+</project-module>
+
