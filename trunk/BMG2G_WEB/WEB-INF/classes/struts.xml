@@ -84,6 +84,26 @@
 			</result>
 		</action>
 		
+		<action name="regStatHome" class="org.controller.registration.RegistrationStatisticsAction">			
+			<result name="success">/WEB-INF/jsp/registration/RegistrationStatistics.jsp</result>
+		</action>
+		
+		<action name="divisionStat" class="org.controller.registration.RegistrationStatisticsAction" method="divisionStatistics">
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		<action name="districtStat" class="org.controller.registration.RegistrationStatisticsAction" method="districtStatistics">
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		
+		
 	</package>
 	
 
