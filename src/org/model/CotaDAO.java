@@ -43,7 +43,7 @@ public class CotaDAO {
 			   dDTO.setDistname(r.getString(1));			   
 			   dDTO.setDistid(r.getString(2));		   
 			   dDTO.setDiscota(r.getFloat(3));
-			   dDTO.setTotal(r.getLong(4));			   
+			   dDTO.setTotal(r.getInt(4));			   
 			   allCota.add(dDTO);
 
 			}
