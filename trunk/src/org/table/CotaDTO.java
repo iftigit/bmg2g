@@ -4,22 +4,13 @@ public class CotaDTO {
 	
 	private String distname="";
 	private String distid="";
+	private String thanaId;
+	private String thanaName;
 	private float discota=0;
-	private long total=0;
-	
-	public CotaDTO()
-	{
-		
-	}
+	private int total=0;
+	private int available=0;
 	
 	
-	public CotaDTO(String distname, String distid, float discota, long total) {
-		super();
-		this.distname = distname;
-		this.distid = distid;
-		this.discota = discota;
-		this.total = total;
-	}
 
 
 	public String getDistname() {
@@ -43,9 +34,28 @@ public class CotaDTO {
 	public long getTotal() {
 		return total;
 	}
-	public void setTotal(long total) {
+	public String getThanaId() {
+		return thanaId;
+	}
+	public void setThanaId(String thanaId) {
+		this.thanaId = thanaId;
+	}
+	public String getThanaName() {
+		return thanaName;
+	}
+	public void setThanaName(String thanaName) {
+		this.thanaName = thanaName;
+	}
+	public int getAvailable() {
+		return available;
+	}
+	public void setAvailable(int available) {
+		this.available = available;
+	}
+	public void setTotal(int total) {
 		this.total = total;
 	}
+	
 	
 	
 	
