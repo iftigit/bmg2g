@@ -32,7 +32,7 @@
 		<result name="cotaEnd">
 			/WEB-INF/jsp/registration/CotaEnd.jsp
 		</result>
-		<result name="input">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
+		<result name="input">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
 		<interceptor-ref name="defaultStack" />
 	</action>
 		
@@ -61,14 +61,6 @@
 	</action>
 
 
-
-
-
-
-
-
-
-<!-- 		
 		<action name="previewRegFormAction" class="org.controller.registration.PreviewRegFormAction">
 		<result name="input">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
 			<result name="success">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
@@ -81,7 +73,7 @@
 				/WEB-INF/jsp/registration/Test_RegistrationHome.jsp
 			</result>
 		</action>
- -->		
+ 		
 		
 		<action name="regStatHome" class="org.controller.registration.RegistrationStatisticsAction">			
 			<result name="success">/WEB-INF/jsp/registration/RegistrationStatistics.jsp</result>

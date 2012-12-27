@@ -14,11 +14,16 @@ import javax.imageio.ImageIO;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import org.model.CaptchaManager;
+
 public class CaptchaServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2988061537143222797L;
 	 protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		    String randomCode=request.getParameter("rc");
+		    int    formType=Integer.parseInt(request.getParameter("ft"));
+		    
 	        int width = 300;
 	        int height = 60;
 	        int fontSize = 26;
@@ -95,6 +100,8 @@ public class CaptchaServlet extends HttpServlet {
 	        OutputStream os = response.getOutputStream();
 	        ImageIO.write(bufferedImage, "png", os);
 	        os.close();
+	        
+	        CaptchaManager.saveCaptchCode(randomCode, captcha, formType);
 	    }
 /*
 	protected void processRequest(HttpServletRequest request, 

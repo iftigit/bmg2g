@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 
 import org.apache.struts2.ServletActionContext;
 import org.model.AddressDAO;
+import org.model.CaptchaManager;
 import org.model.RegistrationDAO;
 import org.singleton.RegistrationSingleton;
 import org.table.AddressDTO;
@@ -29,10 +30,12 @@ public class RegistrationSubmitAction  extends ActionSupport{
 	PersonalInfoDTO personalDTO;
 	AddressDTO      addressDTO;
 	NomineeDTO      nomineeDTO;
+	
 	AddressDAO addDAO = new AddressDAO();
 	RegistrationDAO regDAO=new RegistrationDAO();
 	LogDTO  logInfoDTO=new LogDTO();
 	boolean error=false;
+	private String rc;
 	
 	
 @SuppressWarnings("unchecked")
@@ -72,18 +75,19 @@ public String execute() throws Exception
 public void validate() 
 {
 	
-	ServletActionContext.getRequest().getSession().setAttribute("sub_NomineeAddress", nomineeDTO.getNomineeAddress().replaceAll("\n", "<br>"));
-	ServletActionContext.getRequest().getSession().setAttribute("sessionObj_NomineeInfo", nomineeDTO);	    
-	ServletActionContext.getRequest().getSession().setAttribute("sessionObj_AddressInfo", addressDTO);
-	ServletActionContext.getRequest().getSession().setAttribute("sessionObj_PersonalInfo", personalDTO);
     
-	String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
 	String submittedCode = personalDTO.getCaptchaText();
+	CaptchaManager  cm=new CaptchaManager();
+	boolean response=cm.validateCaptcha(rc, submittedCode, 2); //1 is for Registration Form
+	//String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
+	
 
 	  
-	if(!generatedCode.equals(submittedCode))
+	if(response==false)
 	{addFieldError( "Err_captchaError", " Please Write Correctly" );error=true;}
-	
+	else
+		cm.validateCaptcha(rc);
+
 	
 	checkErrorStatus();
 
@@ -130,6 +134,14 @@ public String checkErrorStatus()
 	
 	public void setNomineeDTO(NomineeDTO nomineeDTO) {
 		this.nomineeDTO = nomineeDTO;
+	}
+
+	public String getRc() {
+		return rc;
+	}
+
+	public void setRc(String rc) {
+		this.rc = rc;
 	}
 
 
