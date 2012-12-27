@@ -1,8 +1,8 @@
- function refreshCaptcha()
+ function refreshCaptcha(queryParam)
   {
   var rightnow = new Date();
 if (document.images)
- document.images.captchaImage.src = 'http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?' + rightnow.getTime();
+ document.images.captchaImage.src = 'http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?'+queryParam+"&dateTime="+ rightnow.getTime();
 
   }
 function trim(str, chars) {
