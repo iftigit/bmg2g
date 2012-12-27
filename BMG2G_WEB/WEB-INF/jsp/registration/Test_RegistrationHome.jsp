@@ -67,6 +67,7 @@
         			$("#HEIGHT_FEET")                      // The first input:    
         			.require("Height Cannot be 0 feet.");                       // Required:
         			
+        			$("#RELIGION").equalCheck("select","Select Religion.");
         			
         			$("#PERMANENT_POST").require("Post Office is required.");
         			$("#MAILING_POST").require("Post Office is required.");
@@ -145,7 +146,7 @@
 http://validity.thatscaptaintoyou.com/Demos/index.htm
  -->
 <body style="margin: 0px;">
-<form id="empRegForm" name="empRegForm" method="post" action="submitRegistration.action">
+<form id="empRegForm" name="empRegForm" method="post" action="previewRegFormAction.action">
 <div style="width: 100%;height: 100px;border-bottom: 1px solid #006219;">
 <center>
 <div style="width: 1000px;height: 100px;border-right: 1px solid #006219;border-left: 1px solid #006219;">
@@ -256,10 +257,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <input type="text"  class="textBox" id="PASSPORT_EXP_DATE" value="11-11-2012" name="personalDTO.passportExpireDate"/>
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_EXP_DATE_BTN" border="0"   />
      </td>
-     <td>Religion</td>
+     <td>Religion<font color="red">*</font></td>
      <td>
      	<select tabindex="18" name="personalDTO.religion" id="RELIGION" class="addressSelectBox">
-												<option value="Islam" selected="selected">Islam</option>
+     											<option value="select" selected="selected">--Select Religion--</option>
+												<option value="Islam">Islam</option>
 												<option value="Hinduism">Hinduism</option>
 												<option value="Christianity">Christianity</option>
 												<option value="Buddhism">Buddhism</option>
@@ -291,10 +293,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="35%">
      	
      <select tabindex="30" name="addressDTO.pDivision" id="PERMANENT_DIV" class="addressSelectBox" onchange="fetchJSONData_Dist(this.value,'PERMANENT_DIST')">
-     	  <option value="select" selected="selected">--Select Division--</option>	
+     	  <option value="select" selected="selected">--Select Division--</option>
+		  <option value="1">Dhaka</option>
+		  <!-- 	
      	<s:iterator value="%{#application.ALL_DIVISION}" id="divisionList">
      	  <option value="<s:property value="division_id" />"><s:property value="division_name" /></option>
      	</s:iterator>
+     	-->
      </select>
      </td>
      <td width="15%">Division<font color="red">*</font></td>
@@ -472,9 +477,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <p>
 
   <div>
-  <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap" alt="no image" id="captchaImage" name="captchaImage" /> 
+  <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?rc=<s:property value="rc"/>&ft=1" alt="no image" id="captchaImage" name="captchaImage" />
+  
+  <input type="hidden" name="rc" value="<s:property value="rc"/>" /> 
   <br/>
-  <input type="button" value="Refresh"  onclick="refreshCaptcha()" />
+  <input type="button" value="Refresh"  onclick="refreshCaptcha('rc=<s:property value="rc"/>&ft=1')" />
   </div>  
   <br/>
   <div>
