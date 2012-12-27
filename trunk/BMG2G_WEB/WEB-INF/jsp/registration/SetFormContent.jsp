@@ -88,10 +88,10 @@ document.getElementById("bid").style.display = "block";
 
 </script>
 
-<%String reset_Sex=((PersonalInfoDTO) (request.getSession().getAttribute("sessionObj_PersonalInfo"))).getSex(); %>
-<%String reset_MaritalStatus=((PersonalInfoDTO) (request.getSession().getAttribute("sessionObj_PersonalInfo"))).getMaritalStatus(); %>
-<%String reset_Religion=((PersonalInfoDTO) (request.getSession().getAttribute("sessionObj_PersonalInfo"))).getReligion(); %>
-<%String reset_nomineeRelation=((NomineeDTO) (request.getSession().getAttribute("sessionObj_NomineeInfo"))).getNomineeRelation(); %>
+<%String reset_Sex=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getSex(); %>
+<%String reset_MaritalStatus=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getMaritalStatus(); %>
+<%String reset_Religion=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getReligion(); %>
+<%String reset_nomineeRelation=((NomineeDTO) (request.getAttribute("nomineeDTO"))).getNomineeRelation(); %>
 
 
 <script type="text/javascript">
@@ -109,7 +109,7 @@ document.getElementById("bid").style.display = "block";
       
 
 /*!!!!!!!  Resetting Address Information of JobSeeker  !!!!!!!!!*/
- <% String sub_PDiv=((AddressDTO) (request.getSession().getAttribute("sessionObj_AddressInfo"))).getpDivision();%>
+ <% String sub_PDiv=((AddressDTO) (request.getAttribute("addressDTO"))).getpDivision();%>
  
  if("<%=sub_PDiv%>"!="select")
   {
@@ -126,7 +126,7 @@ document.getElementById("bid").style.display = "block";
   }
 							 
 function funcSetPDistrict(){
- <% String sub_PDist=((AddressDTO) (request.getSession().getAttribute("sessionObj_AddressInfo"))).getpDistrict();%>
+ <% String sub_PDist=((AddressDTO) (request.getAttribute("addressDTO"))).getpDistrict();%>
      for(var i=0;i<document.forms['empRegForm'].PERMANENT_DIST.length;i++)
 	  { 
         if(document.forms['empRegForm'].PERMANENT_DIST.options[i].value=="<%=sub_PDist%>")
@@ -140,7 +140,7 @@ function funcSetPDistrict(){
 }
 
 function funcSetPThana(){
- <% String sub_PThana=((AddressDTO) (request.getSession().getAttribute("sessionObj_AddressInfo"))).getpThana();%>
+ <% String sub_PThana=((AddressDTO) (request.getAttribute("addressDTO"))).getpThana();%>
     for(var i=0;i<document.forms['empRegForm'].PERMANENT_THANA.length;i++)
 	  { 
         if(document.forms['empRegForm'].PERMANENT_THANA.options[i].value=="<%=sub_PThana%>")
@@ -155,7 +155,7 @@ function funcSetPThana(){
 function setMailingAddress()      
       {
 <%
-    String sameAsPermanenet=((AddressDTO) (request.getSession().getAttribute("sessionObj_AddressInfo"))).getSameAsPermanenet();
+    String sameAsPermanenet=((AddressDTO) (request.getAttribute("addressDTO"))).getSameAsPermanenet();
         
 %>  
 
@@ -166,7 +166,7 @@ function setMailingAddress()
      }
      else
      {    
-<% String sub_MDiv=((AddressDTO) (request.getSession().getAttribute("sessionObj_AddressInfo"))).getmDivision();%>
+<% String sub_MDiv=((AddressDTO) (request.getAttribute("addressDTO"))).getmDivision();%>
  
  if("<%=sub_MDiv%>"!="select")
   {
@@ -187,7 +187,7 @@ function setMailingAddress()
 							 
 function funcSetMDistrict(){
 
- <% String sub_MDist=((AddressDTO) (request.getSession().getAttribute("sessionObj_AddressInfo"))).getmDistrict();%>
+ <% String sub_MDist=((AddressDTO) (request.getAttribute("addressDTO"))).getmDistrict();%>
      for(var i=0;i<document.forms['empRegForm'].MAILING_DIST.length;i++)
 	  { 
         if(document.forms['empRegForm'].MAILING_DIST.options[i].value=="<%=sub_MDist%>")
@@ -201,7 +201,7 @@ function funcSetMDistrict(){
 }
 
 function funcSetMThana(){
- <% String sub_MThana=((AddressDTO) (request.getSession().getAttribute("sessionObj_AddressInfo"))).getmThana();%>
+ <% String sub_MThana=((AddressDTO) (request.getAttribute("addressDTO"))).getmThana();%>
     for(var i=0;i<document.forms['empRegForm'].MAILING_THANA.length;i++)
 	  { 
         if(document.forms['empRegForm'].MAILING_THANA.options[i].value=="<%=sub_MThana%>")

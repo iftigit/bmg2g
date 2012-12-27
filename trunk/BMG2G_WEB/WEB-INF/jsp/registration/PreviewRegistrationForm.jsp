@@ -36,14 +36,20 @@ if (document.images)
  document.images.captchaImage.src = 'http://localhost:9090/BMG2G_WEB/CaptchaServlet.cap?' + rightnow.getTime();
 
   }
+  function submitForm(actionName)
+  {
+   document.myForm.action=actionName;
+   document.myForm.submit();
+  }
  </script>
   
 </head>
 <!-- 
 http://validity.thatscaptaintoyou.com/Demos/index.htm
  -->
+
 <body style="margin: 0px;">
-<form id="myForm" method="post" action="">
+<form id="myForm" name=myForm method="post" action="">
 <div style="width: 100%;height: 100px;border-bottom: 1px solid #006219;">
 <center>
 <div style="width: 1000px;height: 100px;border-right: 1px solid #006219;border-left: 1px solid #006219;">
@@ -69,13 +75,16 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="85%" colspan="3" style="padding-bottom: 15px;">
      
      <div style="float:left;width: 250px;color: #4D4D4D;">First Name<br/>
-     	<s:property value="#session.sessionObj_PersonalInfo.empFname" />
+     	<font color='black'/><s:property value="personalDTO.empFname" /></font>
+     	<input type="hidden" name="personalDTO.empFname" value="<s:property value="personalDTO.empFname" />" />
      </div>
      <div style="float:left;width: 250px;color: #4D4D4D">Middle Name<br/>
-     	<s:property value="#session.sessionObj_PersonalInfo.empMname" />
+     	<font color='black'/><s:property value="personalDTO.empMname" /></font>
+     	<input type="hidden" name="personalDTO.empMname" value="<s:property value="personalDTO.empMname" />" />
      </div>
      <div style="float:left;width: 250px;color: #4D4D4D">Last Name<br/>	
-     	<s:property value="#session.sessionObj_PersonalInfo.empLname" />
+     	<font color='black'/><s:property value="personalDTO.empLname" /></font>
+     	<input type="hidden" name="personalDTO.empLname" value="<s:property value="personalDTO.empLname" />" />
      </div>
      
      </td>
@@ -83,28 +92,36 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td width="15%" style="color:#7D2252;">Father's Name</td>
      <td width="35%">
-     	<s:property value="#session.sessionObj_PersonalInfo.fatherName" />
+     	<s:property value="personalDTO.fatherName" />
+     	<input type="hidden" name="personalDTO.fatherName" value="<s:property value="personalDTO.fatherName" />" />
      </td>
      <td width="15%" style="color:#7D2252;">Mother's Name</td>
      <td width="35%">
-     	<s:property value="#session.sessionObj_PersonalInfo.motherName" />
+     	<s:property value="personalDTO.motherName" />
+     	<input type="hidden" name="personalDTO.motherName" value="<s:property value="personalDTO.motherName" />" />
      </td>
     </tr>
     <tr>
      <td style="color:#7D2252;">Spouse Name</td>
-     <td><s:property value="#session.sessionObj_PersonalInfo.spousName" /></td>
+     <td><s:property value="personalDTO.spousName" />
+     	<input type="hidden" name="personalDTO.spousName" value="<s:property value="personalDTO.spousName" />" />
+     </td>
      <td style="color:#7D2252;">National ID</td>
-     <td><s:property value="#session.sessionObj_PersonalInfo.nationalId" /></td>
+     <td><s:property value="personalDTO.nationalId" />
+     	<input type="hidden" name="personalDTO.nationalId" value="<s:property value="personalDTO.nationalId" />" />
+     </td>
     </tr>
 
      <tr>
      <td style="color:#7D2252;">Birth Date</td>
      <td>
-     <s:property value="#session.sessionObj_PersonalInfo.birthDate" />
+     <s:property value="personalDTO.birthDate" />
+     <input type="hidden" name="personalDTO.birthDate" value="<s:property value="personalDTO.birthDate" />" />
      </td>
      <td style="color:#7D2252;">Age</td>
      <td>
-     	<s:property value="#session.sessionObj_PersonalInfo.age" />
+     	<s:property value="personalDTO.age" />
+     	<input type="hidden" name="personalDTO.age" value="<s:property value="personalDTO.age" />" />
      </td>
     </tr>
 
@@ -112,27 +129,40 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td style="color:#7D2252;">Marital Status</td>
      <td>
      
-     <s:property value="#session.sessionObj_PersonalInfo.maritalStatus" />
+     <s:property value="personalDTO.maritalStatus" />
+     <input type="hidden"  name="personalDTO.maritalStatus" value="<s:property value="personalDTO.maritalStatus" />" />
      </td>
      <td  style="color:#7D2252;">Gender</td>
      <td>
-      <s:property value="#session.sessionObj_PersonalInfo.sex" />
+      <s:property value="personalDTO.sex" />
+      <input type="hidden" name="personalDTO.sex" value="<s:property value="personalDTO.sex" />" />
      </td>
     </tr>
     
     <tr>
      <td style="color:#7D2252;">Weight (kg)</td>
-     <td><s:property value="#session.sessionObj_PersonalInfo.weight" /></td>
-     <td style="color:#7D2252;">Height (meter)</td>
-     <td><s:property value="#session.sessionObj_PersonalInfo.height" /></td>
+     <td><s:property value="personalDTO.weight" />
+     <input type="hidden" name="personalDTO.weight" value="<s:property value="personalDTO.weight" />" />
+     </td>
+     <td style="color:#7D2252;">Height</td>
+     <td>
+     <s:property value="personalDTO.heightFeet" />&nbsp;&nbsp;Feet&nbsp;&nbsp;&nbsp;
+     <s:property value="personalDTO.heightInches" />&nbsp;&nbsp;Inches
+     
+     <input type="hidden" name="personalDTO.heightFeet"   value="<s:property value="personalDTO.heightFeet" />" />
+     <input type="hidden" name="personalDTO.heightInches" value="<s:property value="personalDTO.heightInches" />" />
+     </td>
     </tr>
   
     <tr>
      <td style="color:#7D2252;">Passport No</td>
-     <td><s:property value="#session.sessionObj_PersonalInfo.passportNo" /></td>
+     <td><s:property value="personalDTO.passportNo" />
+     <input type="hidden" name="personalDTO.passportNo" value="<s:property value="personalDTO.passportNo" />" />
+     </td>
      <td style="color:#7D2252;">Passport Issue Date</td>
      <td>
-     	<s:property value="#session.sessionObj_PersonalInfo.passportIssueDate" />
+     	<s:property value="personalDTO.passportIssueDate" />
+     	<input type="hidden" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />" />
      </td>
     </tr>
     <tr>
@@ -141,11 +171,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td style="color:#7D2252;">Passport Exp. Date</td>
      
      <td>
-     <s:property value="#session.sessionObj_PersonalInfo.passportExpireDate" />
+     <s:property value="personalDTO.passportExpireDate" />
+     <input type="hidden" name="personalDTO.passportExpireDate" value="<s:property value="personalDTO.passportExpireDate" />" />
      </td>
      <td style="color:#7D2252;">Religion</td>
      <td>
-     <s:property value="#session.sessionObj_PersonalInfo.religion" />
+     <s:property value="personalDTO.religion" />
+     <input type="hidden" name="personalDTO.religion" value="<s:property value="personalDTO.religion" />" />
      </td>
     </tr>
    
@@ -170,99 +202,119 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td width="15%" style="color:#7D2252;">Division</td>
      <td width="35%">     	
-     	<s:property value="#session.sessionObj_AddressInfo.pDivisionName" />
+     	<s:property value="addressDTO.pDivisionName" />     	
+     	<input type="hidden" name="addressDTO.pDivision" value="<s:property value="addressDTO.pDivision" />" />
+     	
      </td>
      <td width="15%" style="color:#7D2252;">Division</td>
      <td width="35%">
-     	<s:property value="#session.sessionObj_AddressInfo.mDivisionName" />
+     	<s:property value="addressDTO.mDivisionName" />
+     	<input type="hidden" name="addressDTO.mDivision" value="<s:property value="addressDTO.mDivision" />" />
      </td>
     </tr>
     <tr>
      <td style="color:#7D2252;">District</td>
-     <td valign="top" id="PERMANENT_DIST_TD">
-     <s:property value="#session.sessionObj_AddressInfo.pDistrictName" />
+     <td valign="top">
+     <s:property value="addressDTO.pDistrictName" />
+     <input type="hidden" name="addressDTO.pDistrict" value="<s:property value="addressDTO.pDistrict" />" />
      </td>
      <td valign="top" style="color:#7D2252;">District</td>
-     <td valign="top" id="MAILING_DIST_TD">
-     <s:property value="#session.sessionObj_AddressInfo.mDistrictName" />
+     <td valign="top">
+     <s:property value="addressDTO.mDistrictName" />
+     <input type="hidden" name="addressDTO.mDistrict" value="<s:property value="addressDTO.mDistrict" />" />
 
      </td>
     </tr>
     
     <tr>
      <td style="color:#7D2252;">Thana/Upazilla</td>
-     <td valign="top" id="PERMANENT_THANA_TD">
-        <s:property value="#session.sessionObj_AddressInfo.pThanaName" />
+     <td valign="top">
+        <s:property value="addressDTO.pThanaName" />
+        <input type="hidden" name="addressDTO.pThana" value="<s:property value="addressDTO.pThana" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Thana/Upazilla</td>
-     <td valign="top" id="MAILING_THANA_TD">
-     	<s:property value="#session.sessionObj_AddressInfo.mThanaName" />
+     <td valign="top">
+     	<s:property value="addressDTO.mThanaName" />
+     	<input type="hidden" name="addressDTO.mThana" value="<s:property value="addressDTO.mThana" />" />
      </td>
     </tr>
     
     <tr>
      <td style="color:#7D2252;">Post Office</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.pPost" />
+     	<s:property value="addressDTO.mPost" />
+     	<input type="hidden" name="addressDTO.pPost" value="<s:property value="addressDTO.pPost" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Post Office</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.mPost" />
+     	<s:property value="addressDTO.mPost" />
+     	<input type="hidden" name="addressDTO.mPost" value="<s:property value="addressDTO.mPost" />" />
      </td>
     </tr>
     
      <tr>
      <td style="color:#7D2252;">Post Code</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.pPostCode" />
+     	<s:property value="addressDTO.pPostCode" />
+     	<input type="hidden" name="addressDTO.pPostCode" value="<s:property value="addressDTO.pPostCode" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Post Code</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.mPostCode" />     		
+     	<s:property value="addressDTO.mPostCode" />     
+     	<input type="hidden" name="addressDTO.mPostCode" value="<s:property value="addressDTO.mPostCode" />" />		
      </td>
     </tr>
     
     <tr>
-     <td style="color:#7D2252;">Address Line 1</td>
+     <td style="color:#7D2252;">Village/Street</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.pAddressLine1" />
+     	<s:property value="addressDTO.pAddressLine1" />
+     	<input type="hidden" name="addressDTO.pAddressLine1" value="<s:property value="addressDTO.pAddressLine1" />" />
      </td>
-     <td valign="top" style="color:#7D2252;">Address Line 1</td>
+     
+     <td valign="top" style="color:#7D2252;">Village/Street</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.mAddressLine1" />     		
-     </td>
-    </tr>
-    
-    <tr>
-     <td style="color:#7D2252;">Address Line 2</td>
-     <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.pAddressLine2" />
-     </td>
-     <td valign="top" style="color:#7D2252;">Address Line 2</td>
-     <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.mAddressLine2" />     		
+     	<s:property value="addressDTO.mAddressLine1" />     
+     	<input type="hidden" name="addressDTO.mAddressLine1" value="<s:property value="addressDTO.mAddressLine1" />" />		
      </td>
     </tr>
     
     <tr>
-     <td style="color:#7D2252;">Email(if any)</td>
+     <td style="color:#7D2252;">House No.</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.pEmail" />       
+     	<s:property value="addressDTO.pAddressLine2" />
+     	<input type="hidden" name="addressDTO.pAddressLine2" value="<s:property value="addressDTO.pAddressLine2" />" />
      </td>
-     <td valign="top" style="color:#7D2252;">Email(if any)</td>
+     <td valign="top" style="color:#7D2252;">House No.</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.mEmail" />
+     	<s:property value="addressDTO.mAddressLine2" />     
+     	<input type="hidden" name="addressDTO.mAddressLine2" value="<s:property value="addressDTO.mAddressLine2" />" />		
+     </td>
+    </tr>
+    
+    <tr>
+     <td style="color:#7D2252;">Email</td>
+     <td valign="top">
+     	<s:property value="addressDTO.pEmail" />  
+     	<input type="hidden" name="addressDTO.pEmail" value="<s:property value="addressDTO.pEmail" />" />     
+     </td>
+     <td valign="top" style="color:#7D2252;">Email</td>
+     <td valign="top">
+     	<s:property value="addressDTO.mEmail" />
+     	<input type="hidden" name="addressDTO.mEmail" value="<s:property value="addressDTO.mEmail" />" />
      </td>
     </tr>
     
     <tr>
      <td style="color:#7D2252;">Mobile/Phone</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.pMobile" />
+     	<s:property value="addressDTO.pMobile" />
+     	<input type="hidden" name="addressDTO.pMobile" value="<s:property value="addressDTO.pMobile" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Mobile/Phone</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_AddressInfo.mMobile" />
+     	<s:property value="addressDTO.mMobile" />
+     	<input type="hidden" name="addressDTO.mMobile" value="<s:property value="addressDTO.mEmail" />" />
      </td>
     </tr>
     
@@ -282,22 +334,40 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td width="15%" style="color:#7D2252;">Nominee Name</td>
      <td width="35%">
-     	<s:property value="#session.sessionObj_NomineeInfo.nomineeName" />
+     	<s:property value="nomineeDTO.nomineeName" />
+     	<input type="hidden" name="nomineeDTO.nomineeName" value="<s:property value="nomineeDTO.nomineeName" />" />
+     	
+     	
      </td>
      <td width="15%"  style="color:#7D2252;">Relation</td>
      <td width="35%">
      
-     <s:property value="#session.sessionObj_NomineeInfo.nomineeRelation" />
+     <s:property value="nomineeDTO.nomineeRelation" />
+     <input type="hidden" name="nomineeDTO.nomineeRelation" value="<s:property value="nomineeDTO.nomineeRelation" />" />
      </td>
     </tr>
     <tr>
      <td valign="top" style="color:#7D2252;">Address</td>
      <td valign="top">
-    	 <%=(String) request.getSession().getAttribute("sub_NomineeAddress")%>
+    	 <%=(String) request.getAttribute("sub_NomineeAddress")%>
+    	 <input type="hidden" value="nomineeDTO.nomineeAddress" value="<s:property value="nomineeDTO.nomineeAddress" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Mobile/Phone</td>
      <td valign="top">
-     	<s:property value="#session.sessionObj_NomineeInfo.nomineePhone" />
+        <s:property value="nomineeDTO.nomineePhone" />
+     	<input type="hidden" value="nomineeDTO.nomineePhone" value="<s:property value="nomineeDTO.nomineePhone" />" />
+   	  </td>
+    </tr>
+    <tr>
+     <td valign="top" style="color:#7D2252;">Contact Person Name</td>
+     <td valign="top">
+        <s:property value="nomineeDTO.contactName" />
+     	<input type="hidden" value="nomineeDTO.contactName" value="<s:property value="nomineeDTO.contactName" />" />
+     </td>
+     <td valign="top" style="color:#7D2252;">Contact Person Mobile</td>
+     <td valign="top">
+        <s:property value="nomineeDTO.nomineePhone" />
+     	<input type="hidden" value="nomineeDTO.nomineePhone" value="<s:property value="nomineeDTO.nomineePhone" />" />
    	  </td>
     </tr>
     </table>
@@ -305,265 +375,30 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     
     </p>
 </div>
-
-
 <p style="height: 30px"></p>
 <div class="boxPreview">
-    <h3>Educational Information(if any)</h3>
+    <h3>Security Code</h3>
     <p>
-    
-    						<table align="center" border="0" cellpadding="3" cellspacing="0"
-								width="100%" style="margin-top: -10px;">
-								<tbody>
-									<tr bgcolor="#E3DAD7">
-										<td align="center" style="font-weight: bold;">
-											Degree Name
-										</td>
-										<td align="center" style="font-weight: bold;">
-											Passing Year
-										</td>
-										<td align="center" style="font-weight: bold;">
-											Institute/School
-										</td>
-										<td align="center" style="font-weight: bold;">
-											Board
-										</td>
-										<td align="center" style="font-weight: bold;">
-											Subject
-										</td>
-										<td align="center" style="font-weight: bold;">
-											Grade/Division
-										</td>
-									</tr>
-									
-									<%int e1=0;
-									String eduColor="";
-									 %> 		
-									<s:iterator value="#session.sessionObj_EducationInfo" id="EducationDTO" > 	 
-									<%if(e1%2==0)
-									eduColor="#F0F0F0";
-									else
-									eduColor="#E5E5E5";
-									e1++;
-									%>
-									<tr bgcolor="<%=eduColor%>">
-										<td align="center" width="20%" height="24px"><s:property value="degreeName"/></td>
-										<td align="center" width="10%"><s:property value="passingYear"/></td>
-										<td align="center" width="30%"><s:property value="school"/></td>
-										<td align="center" width="10%"><s:property value="university"/></td>
-										<td align="center" width="10%"><s:property value="subject"/></td>
-										<td align="center" width="10%"><s:property value="grade"/></td>
-									</tr>
-									</s:iterator>
-								
-								</tbody>
-							</table>
-							
-							<input type="hidden" id="educationHidden" name="educationHidden" value="" />
-    
-    
-    </p>
-</div>
-<p style="height: 30px"></p>
-<div class="boxPreview">
-    <h3>Language Skill</h3>
-    <p>
-    
-   <table align="center" border="0" cellpadding="3" cellspacing="0"
-								width="100%" class="infoPreviewTable">
-								<tbody>
-									
-									<tr bgcolor="#E3DAD7">
-										<td align="center" style="font-weight: bold;" width="40%">
-											Language
-										</td>
-										<td align="center" style="font-weight: bold;" width="30%">
-											Oral Skill
-										</td>
-										<td align="center" style="font-weight: bold;" width="30%">
-											Writing Skill
-										</td>
-									</tr>
-									
-									
-									<%int l1=0;
-									String lanColor="";
-									 %> 		
-									 <s:iterator value="#session.sessionObj_LanguageInfo" id="LanguageDTO" > 	 
-									<%if(l1%2==0)
-									 lanColor="#F0F0F0";
-									 else
-									 lanColor="#E5E5E5";
-									 l1++;
-									%>
-									 <tr bgcolor="<%=lanColor%>">
-									   <td align="center" width="20%" height="24px"><s:property value="language"/></td>
-									   <td align="center" width="10%"><s:property value="oralSkill"/></td>
-									   <td align="center" width="30%"><s:property value="writingSkill"/></td>
-									 </tr>
-									</s:iterator>
 
-								</tbody>
-							</table>
-    
-    </p>
-</div>
-
-<p style="height: 30px"></p>
-<div class="boxPreview">
-    <h3>Experience Information(if any)</h3>
-    <p>
-    <table align="center" border="0" cellpadding="3" cellspacing="0"
-								width="100%">
-								<tbody>
-									
-									<tr bgcolor="#FAFCF3">
-										<td colspan="4" width="100%" id="EXP" >
-
-										</td>
-									</tr>
-									
-									<%int exp1=0;
-									String expColor1="#E5E5E5";
-									String expColor2="#F0F0F0";
-									 %> 		
-									<s:iterator value="#session.sessionObj_ExperienceInfo" id="ExperienceDTO" > 	 
-									<%if(exp1%2==0)
-									expColor1="#E5E5E5";
-									else
-									expColor2="#F0F0F0";
-									exp1++;
-									%>
-									<tr>
-									<td colspan="4" width="100%">
-									         <div width="100%" ><table width='100%' border='0' cellpadding="2px" cellspacing="2px" > 
-									          <tr bgcolor="<%=expColor1%>"> 
-									<td colspan='4' height='35px' width='100%'>
-									&nbsp;&nbsp;<b>Work Experience</b>
-									</td>
-									</tr>
-									<tr bgcolor="<%=expColor2%>">
-									<td width='15%' height="22px" >
-									<font color="#7D2252" style="font-weight: bold;">
-									 &nbsp;&nbsp;Company Name
-									 </font>
-									 </td>
-									 <td width='35%'>
-									 <s:property value="companyName"/>
-									</td>
-									<td width='15%'>
-									<font color="#7D2252" style="font-weight: bold;">
-									&nbsp;&nbsp;Post Held
-									</font>
-									</td>
-									<td width='35%'>
-									<s:property value="position"/>
-									</td>
-									</tr>
-									<tr bgcolor="<%=expColor2%>">
-									<td height="22px">
-									<font color="#7D2252" style="font-weight: bold;">
-									&nbsp;&nbsp;Serve From
-									</font>
-									</td>
-									<td>
-									<s:property value="serveFrom"/>
-									</td>
-									<td>
-									<font color="#7D2252" style="font-weight: bold;">
-									&nbsp;&nbsp;Serve Till
-									</font>
-									</td>
-									<td>
-									<s:property value="serveTill"/>
-									</td>
-									</tr>
-									<tr bgcolor="<%=expColor2%>">
-									<td height="22px">
-									<font color="#7D2252" style="font-weight: bold;">
-									&nbsp;&nbsp;Address
-									</font>
-									</td>
-									<td>
-									<s:property value="address"  />
-									 </td>
-									<td>
-									<font color="#7D2252" style="font-weight: bold;">
-									 
-									 </font>
-									 </td>
-									 <td>
-									
-									</td>
-									</tr>
-									
-									</table>
-									          
-									</div>
-									</td>
-									</tr>
-									</s:iterator>
-
-								</tbody>
-							</table>
-							<input type="hidden" id="experienceHidden" name="experienceHidden"  />
-    
-    </p>
-</div>
-<p style="height: 30px"></p>
-
-<div class="boxPreview">
-    <h3>Training Information(if any)</h3>
-    <p>
-    <table align="center" border="0" cellpadding="3" cellspacing="0"
-								width="100%" class="infoPreviewTable">
-								<tbody>
-									
-									<tr bgcolor="#E3DAD7">
-										<td align="center" width="20%"  style="font-weight: bold;">
-											Training Name
-										</td>
-										<td align="center"  width="15%"  style="font-weight: bold;">
-											Institute/Training<br/>
-											Center Name
-										</td>
-										<td align="center"  width="15%"  style="font-weight: bold;">
-											Duration
-										</td>
-									    <td align="center"  width="40%"  style="font-weight: bold;">
-											Description
-										</td>
-										
-									</tr>
-									
-									<%int tr1=0;
-									String trainColor="";
-									 %> 		
-									<s:iterator value="#session.sessionObj_TrainingInfo" id="TrainingDTO" > 	 
-									<%if(tr1%2==0)
-									trainColor="#F0F0F0";
-									else
-									trainColor="#E5E5E5";
-									tr1++;
-									%>
-									<tr bgcolor="<%=trainColor%>">
-									<td align="center" width="20%" height="24px"><s:property value="trainingName"/></td>
-									<td align="center" width="10%"><s:property value="fromWhere"/></td>
-									<td align="center" width="30%"><s:property value="duration"/></td>
-									<td align="center" width="30%"><s:property value="description"/></td>
-									</tr>
-									</s:iterator>
-
-								</tbody>
-							</table>
-    
+  <div>
+  <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?rc=<s:property value="rc"/>&ft=2" alt="no image" id="captchaImage" name="captchaImage" /> 
+  <input type="hidden" name="rc" value="<s:property value="rc"/>" /> 
+  <br/>
+  <input type="button" value="Refresh"  onclick="refreshCaptcha('rc=<s:property value="rc"/>&ft=1')" />
+  
+  </div>  
+  <br/>
+  <div>
+  <input type="text" class="captchCode" id="captchaText" name="personalDTO.captchaText"/>
+  </div>
+    <div style="color: red"><s:label name="Err_captchaError" ></s:label></div>
     </p>
 </div>
 
 <p style="height: 10px"></p>
 <div style="margin-top: 10px;">
-<input type="button" class="submitButton" name="Edit Application" value="Go Back" onclick='window.location="editRegFormAction.action"'/>
-<input type="button" class="submitButton" name="Submit Application" value="Submit Application" style="margin-left: 100px;" onclick='window.location="submitRegistration.action"'/>
+<input type="button" class="submitButton" name="Edit Application" value="Go Back" onclick="submitForm('editRegFormAction.action')"/>
+<input type="button" class="submitButton" name="Submit Application" value="Submit Application" style="margin-left: 100px;" onclick="submitForm('submitRegistration.action')"/>
 </div>
 <p style="height: 30px"></p>
 </center>
