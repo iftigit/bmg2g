@@ -162,7 +162,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 	 <img src="/BMG2G_WEB/resources/images/bagladesh_logo.gif" width="60" height="60" />
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
-	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training(BMET)</div>
+	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
 	 	<div style="font-size: 20px;margin-top: 10px;">Job Seeker's Registration Form (For Malaysia)</div>
 	</div>
 </div>
