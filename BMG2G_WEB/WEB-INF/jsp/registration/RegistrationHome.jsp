@@ -482,7 +482,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
   <div>
   <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?rc=<s:property value="rc"/>&ft=1" alt="no image" id="captchaImage" name="captchaImage" />
   
-  <input type="hidden" name="rc" value="<s:property value="rc"/>" /> 
+  <input type="hidden" name="rc" value="<s:property value='rc'/>" /> 
   <br/>
   <input type="button" value="Refresh"  onclick="refreshCaptcha('rc=<s:property value="rc"/>&ft=1')" />
   </div>
@@ -497,7 +497,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 </div>
 
 <div style="margin-top: 20px;">
-<input type="submit" class="submitButton" name="Submit Application" value="Submit Application" />
+<input type="submit" class="submitButton" name="SubmitApplication" value="Submit Application" />
 
 </div>
 <p style="height: 30px"></p>
