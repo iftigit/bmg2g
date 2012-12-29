@@ -25,7 +25,7 @@
     	<div style="color: black;margin-top: 15px;text-align: center;width: 600px;">
 		<div style="font-size: 22px;font-weight: bold;color: green;">Government of the People's Republic of Bangladesh</div>
 	 	<div style="font-size: 18px;font-weight: bold;margin-top: 15px;">Ministry of Expatriates' Welfare and Overseas Employment</div>
-	 	<div style="font-size: 20px;">Bureau of Manpower, Employment & Training(BMET)</div>
+	 	<div style="font-size: 20px;">Bureau of Manpower, Employment & Training (BMET)</div>
 	</div>
     </td>
     <td align="right" width="25%" style="padding-right: 20px;"><img src="/BMG2G_WEB/resources/images/bagladesh_logo.gif" width="90" height="90" /></td>
