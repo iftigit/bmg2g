@@ -138,6 +138,29 @@ public class RegistrationDAO {
 	 		return personalDto;
 	 }
 	 
+	 public int updateInterviewInforamtion(String registrationId,int ttcId,String interviewDate)
+	 {
+		 	Connection conn = ConnectionManager.getConnection();
+		   String sql = " Update JOBSEEKER Set TTC_ID=?,INTVIEW_DATE=to_date(?,'dd-MM-YYYY') Where JOBSEEKER_NUMBER=?";
+		   PreparedStatement stmt = null;
+		   int response=0;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, ttcId);
+				stmt.setString(2, interviewDate);
+				stmt.setString(3, registrationId);
+				response = stmt.executeUpdate();
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return response;
+	 }
+	 
+	
 	 
 
 }

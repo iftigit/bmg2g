@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.table.TtcDTO;
+
 import oracle.jdbc.driver.OracleCallableStatement;
 
 import util.connection.ConnectionManager;
@@ -101,9 +103,30 @@ public class RegistrationSingleton {
 	 		return response;	           
 	 }
     
+    public static synchronized int decreaseInterviewCount(int ttcId,String interviewDate)
+	 {
+    	Connection conn = ConnectionManager.getConnection();
+		   String sql = " Update TTC_INTERVIEW Set AVAILABLE=AVAILABLE-1 Where TTC_ID=? and INTERVIEW_DATE=to_date(?,'dd-MM-YYYY')";
+		   PreparedStatement stmt = null;
+		   int response=0;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, ttcId);
+				stmt.setString(2, interviewDate);
+				response = stmt.executeUpdate();
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return response;
+	 }
+    
     public static synchronized int avaiabilityCount(String thanaId)
 	 {
-   	   	   int  total = 0;
+  	   	   int  total = 0;
 	 	   Connection conn = ConnectionManager.getConnection();
 		   String sql = "Select available from COTA_Thana where thana_id=?";
 		   PreparedStatement stmt = null;
@@ -124,6 +147,35 @@ public class RegistrationSingleton {
 				{e.printStackTrace();}stmt = null;conn = null;}
 	 		
 	 	return total;
+	 }
+    
+    public static synchronized TtcDTO getInterviewInformation(String districtId)
+	 {
+    	   TtcDTO ttcDTO=new TtcDTO();
+	 	   Connection conn = ConnectionManager.getConnection();
+		   String sql = " Select to_char(min(interview_date),'dd-MM-YYYY') int_date,max(MST_TTC.TTC_NAME) ttc_name,max(MST_TTC.TTC_ID) ttc_id from  " +
+		   		        " TTC_INTERVIEW,MST_TTC where TTC_INTERVIEW.ttc_id=(Select TTC_ID from DISTRICT Where Dist_Id=?) " +
+		   		        " And TTC_INTERVIEW.TTC_ID=MST_TTC.TTC_ID And available>0 ";
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, districtId);
+				r = stmt.executeQuery();
+				if (r.next())
+				{
+					ttcDTO.setInterviewDate(r.getString("int_date"));
+					ttcDTO.setTtcId(r.getInt("ttc_id"));
+					ttcDTO.setTtcName(r.getString("ttc_name"));
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	return ttcDTO;
 	 }
     
     
