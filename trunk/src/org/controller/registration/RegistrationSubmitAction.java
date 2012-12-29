@@ -18,6 +18,7 @@ import org.table.LogDTO;
 import org.table.NomineeDTO;
 import org.table.PersonalInfoDTO;
 import org.table.TrainingDTO;
+import org.table.TtcDTO;
 import org.util.Utility;
 
 
@@ -66,9 +67,24 @@ public String execute() throws Exception
         registrationId=RegistrationSingleton.generateRegistrationId(addressDTO.getpDistrict(),personalDTO.getSex());
         String response=regDAO.insertEmpRegistrationInfo(registrationId,personalDTO,addressDTO,nomineeDTO,logInfoDTO);
 
-        String decResponse=RegistrationSingleton.decreaseRegistrationCount(registrationId, addressDTO.getpDistrict(),addressDTO.getpThana());
-        ServletActionContext.getRequest().getSession().setAttribute("sessionObj_regId",registrationId);
-     return "success";   
+        if(response.equalsIgnoreCase("success"))
+        {
+        	String decResponse=RegistrationSingleton.decreaseRegistrationCount(registrationId, addressDTO.getpDistrict(),addressDTO.getpThana());
+        	ServletActionContext.getRequest().getSession().setAttribute("sessionObj_regId",registrationId);
+        	TtcDTO ttcDto=RegistrationSingleton.getInterviewInformation(addressDTO.getpDistrict());
+        	int interviewUpdate=regDAO.updateInterviewInforamtion(registrationId, ttcDto.getTtcId(), ttcDto.getInterviewDate());
+        	if(interviewUpdate==1)
+        	{
+        		int interviewDecrease=RegistrationSingleton.decreaseInterviewCount(ttcDto.getTtcId(), ttcDto.getInterviewDate());
+        	}
+        	
+        	return "success";
+        }
+        else
+        {
+        	return null;
+        }
+        
         
 	} //End of Method...
 
