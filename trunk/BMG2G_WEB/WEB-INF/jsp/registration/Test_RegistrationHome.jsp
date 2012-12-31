@@ -68,6 +68,8 @@
         			.require("Height Cannot be 0 feet.");                       // Required:
         			
         			$("#RELIGION").equalCheck("select","Select Religion.");
+        			$("#CATEGORY").equalCheck("select","Select Category.");
+        			$("#SUBCATEGORY").equalCheck("select","Select Sub Category.");
         			
         			$("#PERMANENT_POST").require("Post Office is required.");
         			$("#MAILING_POST").require("Post Office is required.");
@@ -195,7 +197,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     <tr>
      <td>Spouse Name</td>
-     <td><input type="text" tabindex="6" name="personalDTO.spousName" id="SPOUSE_NAME" maxlength="40" value="spous" class="textBox"/></td>
+     <td><input type="text" tabindex="6" name="personalDTO.spousName" id="SPOUSE_NAME" maxlength="40" value="spouse" class="textBox"/></td>
      <td>National ID (If any)</td>
      <td><input type="text" tabindex="7" name="personalDTO.nationalId" id="NATIONALID" maxlength="13" value="national" onkeypress="return numericOnly(event)" class="textBox"/></td>
     </tr>
@@ -250,8 +252,6 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      </td>
     </tr>
     <tr>
-     
-   
      <td>Passport Exp. Date</td>
      <td>
      <input type="text"  class="textBox" id="PASSPORT_EXP_DATE" value="11-11-2012" name="personalDTO.passportExpireDate"/>
@@ -269,7 +269,31 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 	</select>
      </td>
     </tr>
-   
+    </table>
+    
+   <table width="100%" border="0" cellspacing="1" class="infoTable">
+    <tr>
+     <td>Desired Job</td>
+     <td>
+     Plantation
+     </td>
+     <td>
+     	<select tabindex="18" name="personalDTO.category" id="CATEGORY" class="addressSelectBox" onchange="checkSubCategory(this.value)">
+     											<option value="select" selected="selected">--Select Category--</option>
+												<option value="Agriculture">Agriculture</option>
+												<option value="Manufacturing">Manufacturing</option>
+												<option value="Construction">Construction</option>
+												<option value="Service">Service</option>
+
+		</select>
+     </td>
+     <td>
+     	<select tabindex="18" name="personalDTO.subcategory" id="SUBCATEGORY" class="addressSelectBox">
+     											<option value="select" selected="selected">--Select Sub Category--</option>
+
+		</select>
+     </td>
+    </tr>
     
     
     </table>
