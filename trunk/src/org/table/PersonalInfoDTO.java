@@ -24,6 +24,8 @@ public class PersonalInfoDTO {
 	private String passportExpireDate;
 	private String religion;
 	private String captchaText;
+	private String category;
+	private String subcategory;
 	
 	
 	private String printedOn;
@@ -179,5 +181,17 @@ public class PersonalInfoDTO {
 	}
 	public void setHeightInches(String heightInches) {
 		this.heightInches = heightInches;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getSubcategory() {
+		return subcategory;
+	}
+	public void setSubcategory(String subcategory) {
+		this.subcategory = subcategory;
 	}
 }
