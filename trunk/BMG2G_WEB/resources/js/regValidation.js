@@ -244,3 +244,55 @@ function checkTrainingInformation()
               
               return true;
 }
+
+function checkSubCategory(value)
+{
+//alert(value);
+	document.getElementById("SUBCATEGORY").options.length = 0;
+	addOption("SUBCATEGORY","--Select Sub Category--","select");
+	if(value=="Agriculture")
+	{
+		addOption("SUBCATEGORY","Agriculture labor","Agriculture labor");
+		addOption("SUBCATEGORY","Fisher man","Fisher man");
+		addOption("SUBCATEGORY","Gardener","Gardener");
+		addOption("SUBCATEGORY","Arborio culture","Arborio culture");						
+	}
+	if(value=="Manufacturing")
+	{
+		addOption("SUBCATEGORY","Factory worker","Factory worker");
+		addOption("SUBCATEGORY","Tailor","Tailor");
+		addOption("SUBCATEGORY","Garments worker","Garments worker");
+		addOption("SUBCATEGORY","Workshop labor","Workshop labor");						
+		addOption("SUBCATEGORY","Sewing  operator","Sewing  operator");		
+	}
+	if(value=="Construction")
+	{
+		addOption("SUBCATEGORY","Masson","Masson");
+		addOption("SUBCATEGORY","Rod binder","Rod binder");
+		addOption("SUBCATEGORY","Pipe fitter","Pipe fitter");
+		addOption("SUBCATEGORY","Electrician","Electrician");						
+		addOption("SUBCATEGORY","Carpenter","Carpenter");
+		addOption("SUBCATEGORY","Painter","Painter");
+		addOption("SUBCATEGORY","Still fixture","Still fixture");
+		addOption("SUBCATEGORY","Tiles fixture","Tiles fixture");
+		addOption("SUBCATEGORY","Welder","Welder");								
+	}
+	if(value=="Service")
+	{
+		addOption("SUBCATEGORY","Driver","Driver");
+		addOption("SUBCATEGORY","Hotel boy","Hotel boy");
+		addOption("SUBCATEGORY","Cleaner","Cleaner");
+		addOption("SUBCATEGORY","Cook","Cook");						
+		addOption("SUBCATEGORY","Nurse","Nurse");
+		addOption("SUBCATEGORY","Computer operator","Computer operator");
+		addOption("SUBCATEGORY","Sales man","Sales man");
+		addOption("SUBCATEGORY","Hare cutter","Hare cutter");
+		addOption("SUBCATEGORY","Security guard","Security guard");								
+	}
+}
+
+function addOption(selectID, display, value)
+{
+  var obj = document.getElementById(selectID);
+  obj.options[obj.options.length] = new Option(display, value);
+}
