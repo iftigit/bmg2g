@@ -22,13 +22,13 @@ public class Json extends ActionSupport
 	private static final long serialVersionUID = 8960849566966201064L;
 	private int divId;
 	private int distId;
-	private String thanaId;
+	private int thanaId;
 	private String wardId;
 	private String areaId;
 	private Map<String, ArrayList<String>> districtList;
 	private Map<String, ArrayList<String>> divisionList;
 	private Map<String, ArrayList<String>> thanaList;
-	private Map<String, ArrayList<String>> wordList;
+	private Map<String, ArrayList<String>> unionList;
 	private Map<String, ArrayList<String>> areaList;
 	private String districtId;
 	
@@ -97,13 +97,13 @@ public class Json extends ActionSupport
 	
 	}
 
-	public void fetchWard()
+	public void fetchUnion()
 	{
-		ArrayList<String> wlist = new ArrayList<String>();
+		ArrayList<String> ulist = new ArrayList<String>();
 		AddressDAO addDAO = new AddressDAO();
-		//wlist = addDAO.getWard(thanaId);
-		wordList = new HashMap<String, ArrayList<String>>();
-		wordList.put("wordList", wlist);
+		ulist = addDAO.getUnion(thanaId);
+		unionList = new HashMap<String, ArrayList<String>>();
+		unionList.put("unionList", ulist);
 	}
 
 	public void fetchArea()
@@ -134,9 +134,9 @@ public class Json extends ActionSupport
 		return SUCCESS;
 	}
 
-	public String getWard()
+	public String getUnion()
 	{
-		fetchWard();
+		fetchUnion();
 		return SUCCESS;
 	}
 
@@ -151,12 +151,12 @@ public class Json extends ActionSupport
 		this.distId = distId;
 	}
 
-	public String getThanaId()
+	public int getThanaId()
 	{
 		return thanaId;
 	}
 
-	public void setThanaId(String thanaId)
+	public void setThanaId(int thanaId)
 	{
 		this.thanaId = thanaId;
 	}
@@ -201,14 +201,14 @@ public class Json extends ActionSupport
 		this.thanaList = thanaList;
 	}
 
-	public Map<String, ArrayList<String>> getWordList()
+	public Map<String, ArrayList<String>> getUnionList()
 	{
-		return wordList;
+		return unionList;
 	}
 
-	public void setWordList(Map<String, ArrayList<String>> wordList)
+	public void setUnionList(Map<String, ArrayList<String>> unionList)
 	{
-		this.wordList = wordList;
+		this.unionList = unionList;
 	}
 
 	public Map<String, ArrayList<String>> getAreaList()
