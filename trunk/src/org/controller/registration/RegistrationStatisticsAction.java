@@ -24,7 +24,7 @@ public class RegistrationStatisticsAction  extends ActionSupport{
 		HttpServletResponse response = ServletActionContext.getResponse();
 
 		DashBoardDAO dbdao=new DashBoardDAO();
-		String table=dbdao.getDivisionWiseStat("3",this.refreshRate);
+		String table=dbdao.getDivisionWiseStat("1",this.refreshRate);
 		
 
 		try{

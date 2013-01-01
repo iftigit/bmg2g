@@ -36,7 +36,7 @@
 		<interceptor-ref name="defaultStack" />
 	</action>
 		
-	<action name="downloadAdmitCard" class="org.controller.report.AdmitCardReportAction">
+	<action name="downloadAdmitCard" class="org.controller.report.PreCardReportAction">
 		<result type="stream">
 			<param name="contentType">application/pdf</param>
 			<param name="inputName">inputStream</param>
