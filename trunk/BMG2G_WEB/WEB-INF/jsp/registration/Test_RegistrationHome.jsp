@@ -275,22 +275,18 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td>Desired Job<font color="red">*</font></td>
      <td>
-     Plantation
-     </td>
-     <td>
      	<select tabindex="18" name="personalDTO.category" id="CATEGORY" class="addressSelectBox" onchange="checkSubCategory(this.value)">
      											<option value="select" selected="selected">--Select Category--</option>
 												<option value="Agriculture">Agriculture</option>
 												<option value="Manufacturing">Manufacturing</option>
 												<option value="Construction">Construction</option>
 												<option value="Service">Service</option>
-
 		</select>
      </td>
+     <td>Subcategory<font color="red">*</font></td>
      <td>
      	<select tabindex="18" name="personalDTO.subcategory" id="SUBCATEGORY" class="addressSelectBox">
      											<option value="select" selected="selected">--Select Sub Category--</option>
-
 		</select>
      </td>
     </tr>

@@ -254,16 +254,17 @@ function checkSubCategory(value)
 	{
 		addOption("SUBCATEGORY","Agriculture labor","Agriculture labor");
 		addOption("SUBCATEGORY","Fisher man","Fisher man");
-		addOption("SUBCATEGORY","Gardener","Gardener");
-		addOption("SUBCATEGORY","Arborio culture","Arborio culture");						
+		addOption("SUBCATEGORY","Flower Nursery","Flower Nursery");
+		addOption("SUBCATEGORY","Vegetable gardening","Vegetable gardening");
+		addOption("SUBCATEGORY","Others","Others");						
 	}
 	if(value=="Manufacturing")
 	{
 		addOption("SUBCATEGORY","Factory worker","Factory worker");
-		addOption("SUBCATEGORY","Tailor","Tailor");
+		addOption("SUBCATEGORY","Machine Tools Operator","Machine Tools Operator");
 		addOption("SUBCATEGORY","Garments worker","Garments worker");
-		addOption("SUBCATEGORY","Workshop labor","Workshop labor");						
-		addOption("SUBCATEGORY","Sewing  operator","Sewing  operator");		
+		addOption("SUBCATEGORY","Mechanics","Mechanics");						
+		addOption("SUBCATEGORY","Others","Others");		
 	}
 	if(value=="Construction")
 	{
@@ -275,7 +276,8 @@ function checkSubCategory(value)
 		addOption("SUBCATEGORY","Painter","Painter");
 		addOption("SUBCATEGORY","Still fixture","Still fixture");
 		addOption("SUBCATEGORY","Tiles fixture","Tiles fixture");
-		addOption("SUBCATEGORY","Welder","Welder");								
+		addOption("SUBCATEGORY","Welder","Welder");
+		addOption("SUBCATEGORY","Others","Others");									
 	}
 	if(value=="Service")
 	{
@@ -283,11 +285,10 @@ function checkSubCategory(value)
 		addOption("SUBCATEGORY","Hotel boy","Hotel boy");
 		addOption("SUBCATEGORY","Cleaner","Cleaner");
 		addOption("SUBCATEGORY","Cook","Cook");						
-		addOption("SUBCATEGORY","Nurse","Nurse");
 		addOption("SUBCATEGORY","Computer operator","Computer operator");
 		addOption("SUBCATEGORY","Sales man","Sales man");
-		addOption("SUBCATEGORY","Hare cutter","Hare cutter");
-		addOption("SUBCATEGORY","Security guard","Security guard");								
+		addOption("SUBCATEGORY","Security Guard","Security Guard");
+		addOption("SUBCATEGORY","Others","Others");								
 	}
 }
 
