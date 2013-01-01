@@ -273,7 +273,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     
    <table width="100%" border="0" cellspacing="1" class="infoTable">
     <tr>
-     <td>Desired Job</td>
+     <td>Desired Job<font color="red">*</font></td>
      <td>
      Plantation
      </td>
@@ -301,7 +301,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     
     </p>
 </div>
-<p style="height: 30px"></p>
+<p style="height: 10px"></p>
 <div class="box">
     <h3>Address</h3>
     <p>
@@ -359,6 +359,19 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">Thana/Upazilla<font color="red">*</font></td>
      <td valign="top" id="MAILING_THANA_TD">
      	<select tabindex="46" name="addressDTO.mThana" id="MAILING_THANA" class="addressSelectBox" >
+        </select>
+     </td>
+    </tr>
+
+    <tr>
+     <td>Union<font color="red">*</font></td>
+     <td valign="top" id="PERMANENT_UNION_TD">
+        <select tabindex="32" name="addressDTO.pUnion" id="PERMANENT_UNION" class="addressSelectBox" >
+       </select>
+     </td>
+     <td valign="top">Union<font color="red">*</font></td>
+     <td valign="top" id="MAILING_UNION_TD">
+     	<select tabindex="46" name="addressDTO.mUNION" id="MAILING_UNION" class="addressSelectBox" >
         </select>
      </td>
     </tr>
@@ -435,7 +448,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </p>
 </div>
 
-<p style="height: 30px"></p>
+<p style="height: 10px"></p>
 <div class="box">
     <h3>Nominee Information</h3>
     <p>
@@ -495,7 +508,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </p>
 </div>
 
-<p style="height: 30px"></p>
+<p style="height: 10px"></p>
 <div class="box">
     <h3>Security Code</h3>
     <p>
@@ -519,7 +532,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 <input type="submit" class="submitButton" name="SubmitApplication" value="Submit Application" />
 
 </div>
-<p style="height: 30px"></p>
+<p style="height: 10px"></p>
 
  
 
