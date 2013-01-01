@@ -93,6 +93,12 @@
 			</result>
 		</action>
 		
+
+		<action name="firstLottery" class="org.controller.lottery.FirstLotteryAction1" method="FirstLotteryAction1">			
+			<result name="success">/WEB-INF/jsp/lottery/FirstLotteryAction1.jsp</result>
+		</action>
+
+
 		
 		
 	</package>

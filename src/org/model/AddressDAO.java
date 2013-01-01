@@ -234,5 +234,29 @@ public class AddressDAO {
 
 		return thanaList;
 	}
+	public ArrayList<String> getUnion(int thanaId)
+	{
+		ArrayList<String> thanaList=new ArrayList<String>();
+		Connection conn = ConnectionManager.getConnection();
+		
+		String sql = "select unionname,unionid from unions where thanaid="+thanaId;
 
+		Statement stmt = null;
+		ResultSet r = null;
+		try
+		{
+			stmt = conn.createStatement();
+			r = stmt.executeQuery(sql);
+			while (r.next())
+			{
+				thanaList.add(r.getString("UNIONNAME"));
+				thanaList.add(r.getString("UNIONID"));
+			}
+		} 
+		catch (Exception e){e.printStackTrace();}
+ 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+			{e.printStackTrace();}stmt = null;conn = null;}
+
+		return thanaList;
+	}
 }
