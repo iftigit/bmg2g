@@ -12,7 +12,10 @@ public class AddressDTO {
 	
 	private String thana_id;
 	private String thana_name;
-	
+
+	private String union_id;
+	private String union_name;
+
 	
 	private String pDivision="";
 	private String pDivisionName="";
@@ -21,6 +24,10 @@ public class AddressDTO {
 	private String pDistrictName="";
 	private String pThana="";
 	private String pThanaName="";
+	private String pUnion="";
+	private String pUnionName="";
+
+	
 	
 	private String pPost="";
 	private String pPostCode="";
@@ -34,6 +41,9 @@ public class AddressDTO {
 	private String mDistrictName="";
 	private String mThana="";
 	private String mThanaName="";
+	private String mUnion="";
+	private String mUnionName="";
+
 	private String mPost="";
 	private String mPostCode="";
 	private String mEmail="";
@@ -245,6 +255,42 @@ public class AddressDTO {
 	}
 	public void setmAddressLine2(String mAddressLine2) {
 		this.mAddressLine2 = mAddressLine2;
+	}
+	public String getUnion_id() {
+		return union_id;
+	}
+	public void setUnion_id(String union_id) {
+		this.union_id = union_id;
+	}
+	public String getUnion_name() {
+		return union_name;
+	}
+	public void setUnion_name(String union_name) {
+		this.union_name = union_name;
+	}
+	public String getPUnion() {
+		return pUnion;
+	}
+	public void setPUnion(String union) {
+		pUnion = union;
+	}
+	public String getPUnionName() {
+		return pUnionName;
+	}
+	public void setPUnionName(String unionName) {
+		pUnionName = unionName;
+	}
+	public String getMUnion() {
+		return mUnion;
+	}
+	public void setMUnion(String union) {
+		mUnion = union;
+	}
+	public String getMUnionName() {
+		return mUnionName;
+	}
+	public void setMUnionName(String unionName) {
+		mUnionName = unionName;
 	}
 	
 	
