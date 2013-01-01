@@ -43,10 +43,11 @@ function fetchJSONData_Dist(divId,dest){
 
  	}
    
-   function fetchJSONData_Thana(distId,dest){
-	    destiField=dest;
-       var url = 'JSONfindThana.action';
-    	var myAjax = new Ajax.Request(
+function fetchJSONData_Thana(distId,dest)
+{
+	destiField=dest;
+	var url = 'JSONfindThana.action';
+	var myAjax = new Ajax.Request(
                    url, 
                    {
                            method: 'post',
@@ -55,39 +56,72 @@ function fetchJSONData_Dist(divId,dest){
                            cache: true
                    });
         
-  }
-  function fetchThanaSuccess(originalRequest){
-      
-    	var result = originalRequest.responseText.evalJSON();
-    	var options="";
-    	var tdId=""
-    	
-    	if(destiField=="PERMANENT_THANA")
-    	  {
-    	   options="<select tabindex='32' name=\"addressDTO.pThana\" id=\"PERMANENT_THANA\" class=\"addressSelectBox\" >";
-    	   tdId="PERMANENT_THANA_TD";
-    	   document.getElementById(tdId).innerHTML="";
-    	  }
-    	else
-    	 {
-    	  options="<select tabindex='46' name=\"addressDTO.mThana\" id=\"MAILING_THANA\" class=\"addressSelectBox\" >";
-    	  tdId="MAILING_THANA_TD";
-    	  document.getElementById(tdId).innerHTML="";
-    	 }
-    	
-	 	options+="<option value='select'>--Select Thana--</option>";
-		for (var i=0;i<result.thanaList.length;i=i+2)
-		{
-       	options+="<option value='"+result.thanaList[i+1]+"'>"+result.thanaList[i]+"</option>"; 
-       }
-       
-       //options+="<option value='Others'>Others</option>";
-       options+="</select>";
-       document.getElementById(tdId).innerHTML=options;
-
-
+}
+function fetchThanaSuccess(originalRequest)
+{
+	var result = originalRequest.responseText.evalJSON();
+	var options="";
+	var tdId=""
+	if(destiField=="PERMANENT_THANA")
+    {
+    	options="<select tabindex='32' name=\"addressDTO.pThana\" id=\"PERMANENT_THANA\" class=\"addressSelectBox\" >";
+    	tdId="PERMANENT_THANA_TD";
+    	document.getElementById(tdId).innerHTML="";
+    }
+    else
+    {
+    	options="<select tabindex='46' name=\"addressDTO.mThana\" id=\"MAILING_THANA\" class=\"addressSelectBox\" >";
+    	tdId="MAILING_THANA_TD";
+    	document.getElementById(tdId).innerHTML="";
+    }
+	options+="<option value='select'>--Select Thana--</option>";
+	for (var i=0;i<result.thanaList.length;i=i+2)
+	{
+    	options+="<option value='"+result.thanaList[i+1]+"'>"+result.thanaList[i]+"</option>"; 
 	}
-  
+	options+="</select>";
+	document.getElementById(tdId).innerHTML=options;
+}
+
+function fetchJSONData_Union(thanaId,dest)
+{
+	destiField=dest;
+	var url = 'JSONfindUnion.action';
+	var myAjax = new Ajax.Request(
+                   url, 
+                   {
+                           method: 'post',
+                           parameters: {'thanaId' : thanaId},
+                           onComplete: fetchUnionSuccess,
+                           cache: true
+                   });
+        
+}
+function fetchUnionSuccess(originalRequest)
+{
+	var result = originalRequest.responseText.evalJSON();
+	var options="";
+	var tdId=""
+	if(destiField=="PERMANENT_UNION")
+    {
+    	options="<select tabindex='32' name=\"addressDTO.pUnion\" id=\"PERMANENT_UNION\" class=\"addressSelectBox\" >";
+    	tdId="PERMANENT_UNION_TD";
+    	document.getElementById(tdId).innerHTML="";
+    }
+    else
+    {
+    	options="<select tabindex='46' name=\"addressDTO.mUnion\" id=\"MAILING_UNION\" class=\"addressSelectBox\" >";
+    	tdId="MAILING_UNION_TD";
+    	document.getElementById(tdId).innerHTML="";
+    }
+	options+="<option value='select'>--Select Union--</option>";
+	for (var i=0;i<result.unionList.length;i=i+2)
+	{
+    	options+="<option value='"+result.unionList[i+1]+"'>"+result.unionList[i]+"</option>"; 
+	}
+	options+="</select>";
+	document.getElementById(tdId).innerHTML=options;
+}  
   function copyPermanentAddress(checkValue)
   {
   
