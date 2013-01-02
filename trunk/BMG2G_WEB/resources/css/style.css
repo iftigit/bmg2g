@@ -156,3 +156,7 @@ table.divisionStatTable  td.redCell {
 	border-style: solid;
 	border-color: #999999;
 }
+
+
+.errors li { list-style: none;color: red;}
+
