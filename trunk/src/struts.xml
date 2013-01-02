@@ -9,10 +9,75 @@
 	<constant name="struts.action.excludePattern" value="/CaptchaServlet.cap"/>
 	<package name="default" extends="struts-default">
 
+	<interceptors>
+
+
+			<interceptor name="authenticationInterceptor" class="org.interceptors.LoginInterceptor"/>
+		
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" >
+              			<param name="params.excludeParams">
+                 		d-\d+?-[sop]
+              			</param>
+              	</interceptor-ref>
+			</interceptor-stack>
+			<!-- This is for addFieldError -->
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="profiling" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload" />
+			</interceptor-stack>
+  </interceptors>
+
+  <default-interceptor-ref name="secureStack" />
+
+
+<global-results>
+   <result name="login" type="redirectAction">login.action</result>
+   
+</global-results>	
+
+ 	
 	<action name="index" class="org.test.Test">
 		<result name="success">
 			/WEB-INF/jsp/index.jsp
 		</result>
+	</action>
+	
+	<action name="login" class="org.controller.authentication.Login">
+		<result name="success">
+			/WEB-INF/jsp/Login.jsp
+		</result>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	
+	<action name="logout" class="org.controller.authentication.Logout" >
+		<result name="success">/WEB-INF/jsp/Login.jsp</result>
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	
+	
+	<action name="checkValidity" class="org.controller.authentication.CheckValidity">
+		<result name="input">
+			/WEB-INF/jsp/Login.jsp
+		</result>
+		<result name="regOperator">
+			/WEB-INF/jsp/RegOperatorHome.jsp
+		</result>		
+		<interceptor-ref name="secureStack"/>
+	</action>
+	
+	<action name="homePage" class="org.controller.user.UserUtility" method="homePage">
+	 <result name="regOperator">/WEB-INF/jsp/RegOperatorHome.jsp</result>
 	</action>
 	
 	<action name="regHomeAction" class="org.controller.registration.RegistrationAction" method="regHomeAction">
