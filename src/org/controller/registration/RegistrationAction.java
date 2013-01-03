@@ -10,7 +10,7 @@ public class RegistrationAction {
 	
 	public String regHomeAction()
 	{
-		this.rc= PassPhrase.getNext();
+		//this.rc= PassPhrase.getNext();
 		ServletActionContext.getRequest().getSession().setAttribute("form_error", null);
 		return "REG_HOME";
 	}

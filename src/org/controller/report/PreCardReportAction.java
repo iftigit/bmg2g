@@ -13,6 +13,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.util.ServletContextAware;
 import org.model.RegistrationDAO;
 import org.table.PersonalInfoDTO;
+import org.util.PassPhrase;
 import org.util.RandomGenerator;
 import org.util.ReportUtil;
 
@@ -70,14 +71,18 @@ public class PreCardReportAction extends ActionSupport implements ServletContext
 		String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
 		
 
-//		if(sessionRegId==null)
-//		{
-//		if(captchaCode==null || !captchaCode.equals(generatedCode))
-//			{
-//				addFieldError( "Err_captchaError", " Please Write Correctly" );
-//				return "admitcard_home";
-//			}
-//		}
+		if(sessionRegId==null)
+		{
+		if(captchaCode==null || !captchaCode.equalsIgnoreCase(generatedCode))
+			{
+				addFieldError( "Err_captchaError", " Please Write Correctly" );
+				return "admitcard_home";
+			}
+		else
+		{
+			ServletActionContext.getRequest().getSession().setAttribute("captchaText",PassPhrase.getNext());
+		}
+		}
 		
 		PersonalInfoDTO personalInfoDto= regDAO.getPersonalInformation(registrationId);
 		if(personalInfoDto==null)

@@ -122,6 +122,33 @@ public class AddressDAO {
 
 	}
 	
+	public String getUnionNameFromId(String unionId)
+	{
+	 	   Connection conn = ConnectionManager.getConnection();
+		   String sql = "Select UNIONNAME from UNIONS where UNIONID=?";
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   String unionName="";
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, unionId);
+				r = stmt.executeQuery();
+				if (r.next())
+				{
+					unionName=r.getString("UNIONNAME");
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	return unionName;
+
+	}
+	
+	
 	public static ArrayList<AddressDTO> getAllDistrict()
 	{
 		ArrayList<AddressDTO> districtList=new ArrayList<AddressDTO>();
@@ -172,6 +199,36 @@ public class AddressDAO {
 					addressDto.setThana_id(r.getString("THANAID"));
 					addressDto.setDistrict_id(Integer.parseInt(r.getString("DISTRICTID")));
 					addressDto.setThana_name(r.getString("THANA_NAME"));
+					
+					thanaList.add(addressDto);
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+
+	 		return thanaList;
+	}
+	
+	public static ArrayList<AddressDTO> getAllUnion()
+	{
+		ArrayList<AddressDTO> thanaList=new ArrayList<AddressDTO>();
+		   Connection conn = ConnectionManager.getConnection();
+		   String sql = "Select UNIONID,THANAID,UNIONNAME From UNIONS Order By UnionName";
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   AddressDTO addressDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					addressDto=new AddressDTO();
+					addressDto.setUnion_id(r.getString("UNIONID"));
+					addressDto.setThana_id(r.getString("THANAID"));
+					addressDto.setUnion_name(r.getString("UNIONNAME"));
 					
 					thanaList.add(addressDto);
 				}
@@ -239,7 +296,7 @@ public class AddressDAO {
 		ArrayList<String> thanaList=new ArrayList<String>();
 		Connection conn = ConnectionManager.getConnection();
 		
-		String sql = "select unionname,unionid from unions where thanaid="+thanaId;
+		String sql = "select unionname,unionid from UNIONS where thanaid='"+thanaId+"'";
 
 		Statement stmt = null;
 		ResultSet r = null;

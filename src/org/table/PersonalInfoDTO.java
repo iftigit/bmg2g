@@ -32,6 +32,8 @@ public class PersonalInfoDTO {
 	private String applicationDateTime;
 	private String ipAddress;
 	
+	private String cotaUnionId;
+	
 	public String getCaptchaText() {
 		return captchaText;
 	}
@@ -194,4 +196,12 @@ public class PersonalInfoDTO {
 	public void setSubcategory(String subcategory) {
 		this.subcategory = subcategory;
 	}
+	public String getCotaUnionId() {
+		return cotaUnionId;
+	}
+	public void setCotaUnionId(String cotaUnionId) {
+		this.cotaUnionId = cotaUnionId;
+	}
+	
+	
 }

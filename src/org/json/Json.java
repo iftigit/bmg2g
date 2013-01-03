@@ -99,11 +99,19 @@ public class Json extends ActionSupport
 
 	public void fetchUnion()
 	{
-		ArrayList<String> ulist = new ArrayList<String>();
-		AddressDAO addDAO = new AddressDAO();
-		ulist = addDAO.getUnion(thanaId);
 		unionList = new HashMap<String, ArrayList<String>>();
-		unionList.put("unionList", ulist);
+		ArrayList<String> ulist=(ArrayList<String>) getServletContext().getAttribute("UNION_BY_THANA_"+thanaId);
+		
+		if(ulist==null)
+		{
+			AddressDAO addDAO = new AddressDAO();
+			ulist = addDAO.getUnion(thanaId);			
+			unionList.put("unionList", ulist);
+			getServletContext().setAttribute("UNION_BY_THANA_"+thanaId,ulist);
+		}
+		else
+			unionList.put("unionList", ulist);
+	
 	}
 
 	public void fetchArea()

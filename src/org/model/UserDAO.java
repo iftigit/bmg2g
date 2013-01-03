@@ -38,6 +38,7 @@ public class UserDAO {
 					user.setLocalIp(r.getString("LOCAL_IP"));
 					user.setVia(r.getString("VIA"));
 					user.setRealIp(r.getString("REAL_IP"));
+					user.setUnionId(r.getString("UNION_ID"));
 				}
 			} 
 			catch (Exception e){e.printStackTrace();}

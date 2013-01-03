@@ -15,6 +15,7 @@ import org.table.LanguageDTO;
 import org.table.NomineeDTO;
 import org.table.PersonalInfoDTO;
 import org.table.TrainingDTO;
+import org.util.PassPhrase;
 import org.util.Utility;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -97,6 +98,23 @@ public class PreviewRegFormAction extends ActionSupport{
 			getServletContext().setAttribute("THANA_NAME_FROM_ID"+addressDTO.getpThana(),mThanaName);
 		}
 		addressDTO.setmThanaName(mThanaName);
+		
+		
+		String pUnionName=(String) getServletContext().getAttribute("UNION_NAME_FROM_ID"+addressDTO.getPUnion());
+		if(pUnionName==null)
+		{			
+			pUnionName = addDAO.getUnionNameFromId(addressDTO.getPUnion());			
+			getServletContext().setAttribute("UNION_NAME_FROM_ID"+addressDTO.getpThana(),pUnionName);
+		}
+		addressDTO.setPUnionName(pUnionName);
+		
+		String mUnionName=(String) getServletContext().getAttribute("UNION_NAME_FROM_ID"+addressDTO.getMUnion());
+		if(mUnionName==null)
+		{			
+			mUnionName = addDAO.getUnionNameFromId(addressDTO.getMUnion());			
+			getServletContext().setAttribute("UNION_NAME_FROM_ID"+addressDTO.getpThana(),mUnionName);
+		}
+		addressDTO.setMUnionName(mUnionName);
 
 		
 		
@@ -104,15 +122,18 @@ public class PreviewRegFormAction extends ActionSupport{
 		/*=================End of Address ====================*/
 		String submittedCode = personalDTO.getCaptchaText();
 		CaptchaManager  cm=new CaptchaManager();
-		boolean response=cm.validateCaptcha(rc, submittedCode, 1); //1 is for Registration Form
-		//String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
+		//boolean response=cm.validateCaptcha(rc, submittedCode, 1); //1 is for Registration Form
+		String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
 		
 
 		  
-		if(response==false)
-		{addFieldError( "Err_captchaError", " Please Write Correctly" );error=true;}
-		else
-			cm.validateCaptcha(rc);
+//		if(!submittedCode.equalsIgnoreCase(generatedCode))
+//		{addFieldError( "Err_captchaError", " Please Write Correctly" );error=true;}
+//		else
+//		{
+//			ServletActionContext.getRequest().getSession().setAttribute("captchaText",PassPhrase.getNext());
+//			
+//		}
 		
 		checkErrorStatus();
 	
@@ -171,13 +192,6 @@ public class PreviewRegFormAction extends ActionSupport{
 		return ServletActionContext.getServletContext();
 	}
 
-	public String getRc() {
-		return rc;
-	}
 
-	public void setRc(String rc) {
-		this.rc = rc;
-	}
-	
 	
 }

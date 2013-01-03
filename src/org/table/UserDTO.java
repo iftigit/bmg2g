@@ -8,6 +8,8 @@ public class UserDTO {
 	private String localIp;
 	private String via;
 	private String realIp;
+	private String unionId;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -43,6 +45,12 @@ public class UserDTO {
 	}
 	public void setRealIp(String realIp) {
 		this.realIp = realIp;
+	}
+	public String getUnionId() {
+		return unionId;
+	}
+	public void setUnionId(String unionId) {
+		this.unionId = unionId;
 	}
 	
 	
