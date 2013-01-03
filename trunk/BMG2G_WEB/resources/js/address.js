@@ -64,13 +64,13 @@ function fetchThanaSuccess(originalRequest)
 	var tdId=""
 	if(destiField=="PERMANENT_THANA")
     {
-    	options="<select tabindex='32' name=\"addressDTO.pThana\" id=\"PERMANENT_THANA\" class=\"addressSelectBox\" >";
+    	options="<select tabindex='32' name=\"addressDTO.pThana\" id=\"PERMANENT_THANA\" class=\"addressSelectBox\" onchange=\"fetchJSONData_Union(this.value,'PERMANENT_UNION')\" >";
     	tdId="PERMANENT_THANA_TD";
     	document.getElementById(tdId).innerHTML="";
     }
     else
     {
-    	options="<select tabindex='46' name=\"addressDTO.mThana\" id=\"MAILING_THANA\" class=\"addressSelectBox\" >";
+    	options="<select tabindex='46' name=\"addressDTO.mThana\" id=\"MAILING_THANA\" class=\"addressSelectBox\" onchange=\"fetchJSONData_Union(this.value,'MAILING_UNION')\" >";
     	tdId="MAILING_THANA_TD";
     	document.getElementById(tdId).innerHTML="";
     }
@@ -149,6 +149,14 @@ function fetchUnionSuccess(originalRequest)
     $1('MAILING_THANA_TD').innerHTML="<select tabindex='46' name=\"addressDTO.mThana\" id=\"MAILING_THANA\" class=\"addressSelectBox\" ><option  value='"+$1('PERMANENT_THANA').value+"'>"+tex+"</option>";
     document.getElementById('MAILING_THANA').readOnly =true;
     
+    
+    t=getDropDown('PERMANENT_UNION');
+    selectedInd=t.selectedIndex;
+    tex="";
+    if(selectedInd>=0)
+      tex=t.options[selectedInd].text;
+    $1('MAILING_UNION_TD').innerHTML="<select tabindex='46' name=\"addressDTO.mUnion\" id=\"MAILING_UNION\" class=\"addressSelectBox\" ><option  value='"+$1('PERMANENT_UNION').value+"'>"+tex+"</option>";
+    document.getElementById('MAILING_UNION').readOnly =true;
    
     
    }
@@ -161,6 +169,7 @@ function fetchUnionSuccess(originalRequest)
     //$1('MAILING_DIV').value="--Select Division--";
     $1('MAILING_DIST').innerHTML="";
     $1('MAILING_THANA').innerHTML="";
+    $1('MAILING_UNION').innerHTML="";
    }
    
   }
