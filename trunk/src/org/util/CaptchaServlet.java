@@ -21,8 +21,8 @@ public class CaptchaServlet extends HttpServlet {
 	private static final long serialVersionUID = 2988061537143222797L;
 	 protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		    String randomCode=request.getParameter("rc");
-		    int    formType=Integer.parseInt(request.getParameter("ft"));
+		    //String randomCode=request.getParameter("rc");
+		    //int    formType=Integer.parseInt(request.getParameter("ft"));
 		    
 	        int width = 300;
 	        int height = 60;
@@ -101,7 +101,7 @@ public class CaptchaServlet extends HttpServlet {
 	        ImageIO.write(bufferedImage, "png", os);
 	        os.close();
 	        
-	        CaptchaManager.saveCaptchCode(randomCode, captcha, formType);
+	        //CaptchaManager.saveCaptchCode(randomCode, captcha, formType);
 	    }
 /*
 	protected void processRequest(HttpServletRequest request, 

@@ -39,7 +39,7 @@ public class RegistrationDAO {
 					                                    "?,?,?,?,?,?,?,?,?,?, " +
 					                                    "?,?,?,?,?,?,?,?,?,?, " +
 					                                    "?,?,?,?,?,?,?,?,?,?, " +
-					                                    "?,?,?,?,?,?) }");
+					                                    "?,?,?,?,?,?,?) }");
 					 
 
 				 		stmt.setString(1,  registrationId);
@@ -88,13 +88,15 @@ public class RegistrationDAO {
 						stmt.setString(40, nomineeDTO.getNomineeAddress());
 						stmt.setString(41, nomineeDTO.getContactName());
 						stmt.setString(42, nomineeDTO.getContactMobile());
+						
+						stmt.setString(43, personalDTO.getCotaUnionId());
 
-						stmt.setString(43, logDTO.getxForward()); 
-						stmt.setString(44, logDTO.getVia());
-						stmt.setString(45, logDTO.getRemoteAddress());
-						stmt.registerOutParameter(46, java.sql.Types.VARCHAR);
+						stmt.setString(44, logDTO.getxForward()); 
+						stmt.setString(45, logDTO.getVia());
+						stmt.setString(46, logDTO.getRemoteAddress());
+						stmt.registerOutParameter(47, java.sql.Types.VARCHAR);
 						stmt.executeUpdate();
-						response = (stmt.getString(46)).trim();
+						response = (stmt.getString(47)).trim();
 						System.out.println("Response : " + response);
 						}
 					    catch (Exception e){e.printStackTrace();return response;}

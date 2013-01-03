@@ -28,6 +28,7 @@ public class StartupResources  extends HttpServlet {
 		config.getServletContext().setAttribute("ALL_DIVISION", AddressDAO.getAllDivision());
 		config.getServletContext().setAttribute("ALL_DISTRICT", AddressDAO.getAllDistrict());
 		config.getServletContext().setAttribute("ALL_THANA", AddressDAO.getAllThana());
+		config.getServletContext().setAttribute("ALL_UNION", AddressDAO.getAllUnion());
 		
 		
 	}

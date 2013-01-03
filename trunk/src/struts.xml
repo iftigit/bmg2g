@@ -84,6 +84,15 @@
 		<result name="REG_HOME">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
 	</action>
 	
+	<action name="previewRegFormAction" class="org.controller.registration.PreviewRegFormAction">
+		<result name="input">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
+			<result name="success">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
+			<result name="cotaEnd">
+				/WEB-INF/jsp/registration/CotaEnd.jsp
+			</result>
+	</action>
+	
+	
 	<action name="submitRegistration" class="org.controller.registration.RegistrationSubmitAction">
 		<result name="success">
 			/WEB-INF/jsp/registration/RegistrationSuccess.jsp
@@ -98,7 +107,6 @@
 			/WEB-INF/jsp/registration/CotaEnd.jsp
 		</result>
 		<result name="input">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
-		<interceptor-ref name="defaultStack" />
 	</action>
 		
 	<action name="downloadAdmitCard" class="org.controller.report.PreCardReportAction">
@@ -110,6 +118,13 @@
 			/WEB-INF/jsp/registration/AdmitCardHome.jsp
 		</result>
 	</action>
+	
+	<action name="adminCardDownloadHome">
+	 <result name="success">
+			/WEB-INF/jsp/registration/AdmitCardHome.jsp
+		</result>
+	</action>
+	
   		 
 	<action name="cotaSelection" class="org.controller.cota.CotaSelectionAction">
 		<result name="error">/WEB-INF/jsp/index.jsp</result>
@@ -126,13 +141,7 @@
 	</action>
 
 
-		<action name="previewRegFormAction" class="org.controller.registration.PreviewRegFormAction">
-		<result name="input">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
-			<result name="success">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
-			<result name="cotaEnd">
-				/WEB-INF/jsp/registration/CotaEnd.jsp
-			</result>
-		</action>
+		
 		<action name="editRegFormAction" class="org.controller.registration.EditRegistrationFormAction">
 			<result name="success">
 				/WEB-INF/jsp/registration/Test_RegistrationHome.jsp
