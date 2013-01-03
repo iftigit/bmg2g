@@ -33,7 +33,7 @@
   {
   var rightnow = new Date();
 if (document.images)
- document.images.captchaImage.src = 'http://localhost:9090/BMG2G_WEB/CaptchaServlet.cap?' + rightnow.getTime();
+ document.images.captchaImage.src = 'http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?' + rightnow.getTime();
 
   }
   function submitForm(actionName)
@@ -181,6 +181,20 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      </td>
     </tr>
    
+     <tr>
+     
+   
+     <td style="color:#7D2252;">Desired Job</td>     
+     <td>
+     <s:property value="personalDTO.category" />
+     <input type="hidden" name="personalDTO.category" value="<s:property value="personalDTO.category" />" />
+     </td>
+     <td style="color:#7D2252;">Job Subcategory</td>
+     <td>
+     <s:property value="personalDTO.subcategory" />
+     <input type="hidden" name="personalDTO.subcategory" value="<s:property value="personalDTO.subcategory" />" />
+     </td>
+    </tr>
     
     
     </table>
@@ -236,6 +250,19 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
      	<s:property value="addressDTO.mThanaName" />
      	<input type="hidden" name="addressDTO.mThana" value="<s:property value="addressDTO.mThana" />" />
+     </td>
+    </tr>
+    
+    <tr>
+     <td style="color:#7D2252;">Union</td>
+     <td valign="top">
+        <s:property value="addressDTO.pUnionName" />
+        <input type="hidden" name="addressDTO.pUnion" value="<s:property value="addressDTO.pUnion" />" />
+     </td>
+     <td valign="top" style="color:#7D2252;">Union</td>
+     <td valign="top">
+     	<s:property value="addressDTO.mUnionName" />
+     	<input type="hidden" name="addressDTO.mUnion" value="<s:property value="addressDTO.mUnion" />" />
      </td>
     </tr>
     

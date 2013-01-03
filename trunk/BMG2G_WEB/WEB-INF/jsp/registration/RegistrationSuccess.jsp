@@ -35,15 +35,15 @@
 
 <%=(String)ServletActionContext.getRequest().getSession().getAttribute("sessionObj_regId")%></color></div>
 <div style="font-size: 22px;font-weight: bold;margin-top: 50px;">
-	Registration has successfully been received. Click below button to download your Registration Card.
+	Registration has successfully been received. Please click below button to download your Admit Card.
 </div>
 <div style="margin-top: 100px;text-align: center;">
 <a href="downloadAdmitCard.action?registrationId=<%=(String)ServletActionContext.getRequest().getSession().getAttribute("sessionObj_regId")%>" style="text-decoration: none;">
-<input type="button" class="submitButton" name="Downalod Card" value="Click Here to Download Registration Card" style="width: 310px;"  />
+<input type="button" class="submitButton" name="Downalod Card" value="Click Here to Download Admit Card" style="width: 300px;"  />
 </a>
 </div>
 <div style=" margin-top: 100px;">
-<b>Note :</b> <font style="color:red">Please Print your Registration Card and save it carefully.</font> 
+<b>Note :</b> <font style="color:red">Please Print your Admit Card and save it carefully. You need to show this Admit Card during the time of your interview.</font> 
 </div>
 </div>
 </center>

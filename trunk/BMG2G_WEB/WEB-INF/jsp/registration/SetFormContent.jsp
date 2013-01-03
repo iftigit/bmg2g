@@ -93,6 +93,10 @@ document.getElementById("bid").style.display = "block";
 <%String reset_Religion=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getReligion(); %>
 <%String reset_nomineeRelation=((NomineeDTO) (request.getAttribute("nomineeDTO"))).getNomineeRelation(); %>
 
+<%String reset_category=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getCategory(); %>
+<%String reset_subCategory=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getSubcategory(); %>
+
+
 
 <script type="text/javascript">
    for(var i=0;i<document.forms['empRegForm'].RELIGION.length;i++)
@@ -105,9 +109,22 @@ document.getElementById("bid").style.display = "block";
         if(document.forms['empRegForm'].NOMINEE_RELATION.options[i].value=="<%=reset_nomineeRelation%>")
 		   document.forms['empRegForm'].NOMINEE_RELATION.selectedIndex=i;
       }
-      
-      
-
+     for(var i=0;i<document.forms['empRegForm'].CATEGORY.length;i++)
+	  { 
+        if(document.forms['empRegForm'].CATEGORY.options[i].value=="<%=reset_category%>")
+        {
+		   document.forms['empRegForm'].CATEGORY.selectedIndex=i;
+		   checkSubCategory("<%=reset_category%>");
+		}
+      }
+      for(var i=0;i<document.forms['empRegForm'].SUBCATEGORY.length;i++)
+	  { 
+        if(document.forms['empRegForm'].SUBCATEGORY.options[i].value=="<%=reset_subCategory%>")
+        {
+		   document.forms['empRegForm'].SUBCATEGORY.selectedIndex=i;
+		}
+      }
+       
 /*!!!!!!!  Resetting Address Information of JobSeeker  !!!!!!!!!*/
  <% String sub_PDiv=((AddressDTO) (request.getAttribute("addressDTO"))).getpDivision();%>
  
@@ -146,11 +163,25 @@ function funcSetPThana(){
         if(document.forms['empRegForm'].PERMANENT_THANA.options[i].value=="<%=sub_PThana%>")
 		   {
 		    document.forms['empRegForm'].PERMANENT_THANA.selectedIndex=i;
+		    fetchJSONData_Union("<%=sub_PThana%>","PERMANENT_UNION");
+		    funcSetPUnion();
+		   }
+      }
+ 
+}
+function funcSetPUnion(){
+ <% String sub_PUnion=((AddressDTO) (request.getAttribute("addressDTO"))).getPUnion();%>
+    for(var i=0;i<document.forms['empRegForm'].PERMANENT_UNION.length;i++)
+	  { 
+        if(document.forms['empRegForm'].PERMANENT_UNION.options[i].value=="<%=sub_PUnion%>")
+		   {
+		    document.forms['empRegForm'].PERMANENT_UNION.selectedIndex=i;
 		    setMailingAddress();
 		   }
       }
  
 }
+
 
 function setMailingAddress()      
       {
@@ -207,11 +238,24 @@ function funcSetMThana(){
         if(document.forms['empRegForm'].MAILING_THANA.options[i].value=="<%=sub_MThana%>")
 		   {
 		    document.forms['empRegForm'].MAILING_THANA.selectedIndex=i;
+		    fetchJSONData_Union("<%=sub_MThana%>","MAILING_UNION");
+		    funcSetMUnion();
 		   }
       }
  
 	}
 
+function funcSetMUnion(){
+ <% String sub_MUnion=((AddressDTO) (request.getAttribute("addressDTO"))).getMUnion();%>
+    for(var i=0;i<document.forms['empRegForm'].MAILING_UNION.length;i++)
+	  { 
+        if(document.forms['empRegForm'].MAILING_UNION.options[i].value=="<%=sub_MUnion%>")
+		   {
+		    document.forms['empRegForm'].MAILING_UNION.selectedIndex=i;
+		   }
+      }
+ 
+	}
 
 </script>
 

@@ -201,6 +201,17 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     
     <tr>
+     <td style="color:#7D2252;">Union</td>
+     <td valign="top" id="PERMANENT_THANA_TD">
+        <s:property value="#session.sessionObj_AddressInfo.pThanaName" />
+     </td>
+     <td valign="top" style="color:#7D2252;">Union</td>
+     <td valign="top" id="MAILING_THANA_TD">
+     	<s:property value="#session.sessionObj_AddressInfo.mThanaName" />
+     </td>
+    </tr>
+    
+    <tr>
      <td style="color:#7D2252;">Post Office</td>
      <td valign="top">
      	<s:property value="#session.sessionObj_AddressInfo.pPost" />
