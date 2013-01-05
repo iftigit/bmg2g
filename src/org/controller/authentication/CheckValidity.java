@@ -38,8 +38,6 @@ public class CheckValidity extends ActionSupport{
 				{
 					
 					flag=userDao.updateLoginKey(userId, password, localIp, via, realIp);
-					
-					
 				}
 				else if(submittedAuthKey.equalsIgnoreCase(savedAuthKey))
 				{
