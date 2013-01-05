@@ -73,7 +73,14 @@
     <tr>
      <td height="30px;"></td>
      <td style="padding-bottom: 10px;">
-     <input type="submit" value="Login" name="Login" />
+     	<table width="100%">
+	     	<tr>
+	     	<td align="left">
+	     		<input type="submit" value="Login" name="Login" />
+	     	</td>
+	     	<td align="right"><a href="BMG2G_WEB/np1">request password</a></td>
+	     	</tr>
+     	</table>
      </td>
     </tr>
     

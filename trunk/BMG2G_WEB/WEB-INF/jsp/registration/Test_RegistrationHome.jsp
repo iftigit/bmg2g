@@ -160,7 +160,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 <center>
 <div style="width: 1000px;height: 100px;border-right: 1px solid #006219;border-left: 1px solid #006219;">
 	<div style="float: left; margin-top: 20px;width: 100px;">
-	 <img src="/BMG2G_WEB/resources/images/bagladesh_logo.gif" width="60" height="60" />
+	 m<img src="/BMG2G_WEB/resources/images/bagladesh_logo.gif" width="60" height="60" />
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
 	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
@@ -432,7 +432,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td>Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="41" name="addressDTO.pMobile" maxlength="25" id="PERMANENT_MOBILE" class="textBox" value="pmobile" onkeypress="return numericOnly(event)" />
+     	<input type="text" tabindex="41" name="addressDTO.pMobile" maxlength="11" id="PERMANENT_MOBILE" class="textBox" value="pmobile" onkeypress="return numericOnly(event)" />
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
@@ -512,7 +512,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <p>
 
   <div>
-  <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap" alt="no image" id="captchaImage" name="captchaImage" />
+  <img src="BMG2G_WEB/CaptchaServlet.cap" alt="no image" id="captchaImage" name="captchaImage" />
   
   <input type="hidden" name="rc" value="<s:property value='rc'/>" /> 
   <br/>
