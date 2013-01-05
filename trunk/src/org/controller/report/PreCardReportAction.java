@@ -96,7 +96,7 @@ public class PreCardReportAction extends ActionSupport implements ServletContext
 		PdfReader reader =null;
 		ByteArrayOutputStream certificate = null;
 		List<PdfReader> readers = new ArrayList<PdfReader>();
-		String realPath = servlet.getRealPath("/resources/staticpdf/preapp.pdf");
+		String realPath = servlet.getRealPath("/resources/staticpdf/application.pdf");
 		Document document = new Document();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		document.setPageSize(PageSize.A4);

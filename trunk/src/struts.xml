@@ -172,6 +172,16 @@
 			<result name="success">/WEB-INF/jsp/lottery/FirstLotteryAction1.jsp</result>
 		</action>
 
+		<action name="np1" class="org.controller.authentication.np1">			
+			<result name="success">/WEB-INF/jsp/password/np1.jsp</result>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+
+
+		<action name="securityCode" class="org.controller.authentication.NewPassword" method="securityCode">			
+			<result name="success">/WEB-INF/jsp/lottery/FirstLotteryAction1.jsp</result>
+			<interceptor-ref name="defaultStack"/>
+		</action>
 
 		
 		
