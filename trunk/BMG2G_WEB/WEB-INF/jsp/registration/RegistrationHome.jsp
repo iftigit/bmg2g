@@ -506,8 +506,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td valign="top">Address<font color="red">*</font></td>
      <td valign="top">
-     <textarea tabindex="41" name="nomineeDTO.nomineeAddress" id="NOMINEE_ADDRESS" rows="5" cols="29" style="border: 1px solid grey;"
-												><s:property value="nomineeDTO.nomineeAddress" /></textarea>
+     <textarea tabindex="41" name="nomineeDTO.nomineeAddress" id="NOMINEE_ADDRESS" rows="5" cols="29" style="border: 1px solid grey;"><s:property value="nomineeDTO.nomineeAddress" /></textarea>
 												
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
@@ -519,11 +518,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td valign="top">Contact Person Name<font color="red">*</font><br/>(in case of emergency)</td>
      <td valign="top">
-		<input type="text" tabindex="43" name="nomineeDTO.contactName" id="CONTACT_NAME" maxlength="25" class="textBox"  />												
+		<input type="text" tabindex="43" name="nomineeDTO.contactName" id="CONTACT_NAME" maxlength="25" class="textBox" value="<s:property value="nomineeDTO.contactName" />"  />												
      </td>
      <td valign="top">Contact Person Mobile<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="44" name="nomineeDTO.contactMobile" id="CONTACT_MOBILE" maxlength="25" class="textBox"  onkeypress="return numericOnly(event)" />
+     	<input type="text" tabindex="44" name="nomineeDTO.contactMobile" id="CONTACT_MOBILE" maxlength="25" class="textBox"  onkeypress="return numericOnly(event)" value="<s:property value="nomineeDTO.contactMobile" />" />
    	  </td>
     </tr>    
     
