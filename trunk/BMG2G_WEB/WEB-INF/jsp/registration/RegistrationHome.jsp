@@ -214,14 +214,14 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
  	<tr>
      <td>Birth Date<font color="red">*</font></td>
      <td>
-     <input type="text"  class="textBox" id="BIRTH_DATE"  value="11-11-2012"  name="personalDTO.birthDate" readonly="readonly" onchange="calculateAge('AGE','BIRTH_DATE')"/>
+     <input type="text"  class="textBox" id="BIRTH_DATE"  value="<s:property value="personalDTO.birthDate" />"  name="personalDTO.birthDate" readonly="readonly" onchange="calculateAge('AGE','BIRTH_DATE')"/>
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="BIRTH_DATE_BTN" border="0" />
           
     
      </td>
      <td>Age</td>
      <td>
-     	<input type="text" class="textBox" id="AGE" name="personalDTO.age" value="22" readonly="readonly" />
+     	<input type="text" class="textBox" id="AGE" name="personalDTO.age" value="<s:property value="personalDTO.age" />" readonly="readonly" />
      </td>
     </tr>
 
@@ -240,12 +240,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     
     <tr>
      <td>Weight (kg)<font color="red">*</font></td>
-     <td><input type="text" tabindex="19" name="personalDTO.weight" id="WEIGHT" maxlength="4"  onkeypress="return numericWithDot(event)" value="70"/></td>
+     <td><input type="text" tabindex="19" name="personalDTO.weight" id="WEIGHT" maxlength="4"  onkeypress="return numericWithDot(event)" value="<s:property value="personalDTO.weight" />"/></td>
      <td>Height<font color="red">*</font></td>
      <td>
-     <input type="text" tabindex="20" name="personalDTO.heightFeet" id="HEIGHT_FEET" maxlength="4" onkeypress="return numericOnly(event)" value="5" class="textBox" style="width: 50px;text-align: center;"/>
+     <input type="text" tabindex="20" name="personalDTO.heightFeet" id="HEIGHT_FEET" maxlength="4" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightFeet" />" class="textBox" style="width: 50px;text-align: center;"/>
       Feet&nbsp;&nbsp;&nbsp;
-     <input type="text" tabindex="20" name="personalDTO.heightInches" id="HEIGHT_INCHES" maxlength="4" onkeypress="return numericOnly(event)" value="4" class="textBox" style="width: 50px;text-align: center;"/>
+     <input type="text" tabindex="20" name="personalDTO.heightInches" id="HEIGHT_INCHES" maxlength="4" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightInches" />" class="textBox" style="width: 50px;text-align: center;"/>
       Inches
      </td>
     </tr>
