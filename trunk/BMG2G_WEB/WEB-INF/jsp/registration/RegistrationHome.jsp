@@ -7,7 +7,8 @@
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 <title>G2G Job Seeker Registration Form</title>
- <link rel="stylesheet" href="/BMG2G_WEB/resources/css/style.css" />	
+ <link rel="stylesheet" href="/BMG2G_WEB/resources/css/style.css" />
+  <script type="text/javascript" src="/BMG2G_WEB/resources/js/lib/prototype-1.6.0.2.js"></script>	
   <script type="text/javascript" src="/BMG2G_WEB/resources/js/lib/jquery-1.6.4.min.js"></script>
   <script type="text/javascript" src="/BMG2G_WEB/resources/js/util/util.js"></script>
   <script type="text/javascript" src="/BMG2G_WEB/resources/js/util/numeric.js"></script>
@@ -37,6 +38,7 @@
 					//$.validity.end();
   }
   
+  
    $(function() { 
 
                 $("form").validity(function() {
@@ -59,11 +61,16 @@
         			.require("Weight is required.");                         // Required:
         			
         			$("#HEIGHT_FEET")                      // The first input:    
-        			.require("Height Cannot be 0 feet.");                         // Required:
+        			.require("Height Cannot be 0 feet.");                       // Required:
         			
         			$("#RELIGION").equalCheck("select","Select Religion.");
-        			$("#CATEGORY").equalCheck("select","Select Category.");
-        			$("#SUBCATEGORY").equalCheck("select","Select Sub Category.");
+        			//$("#CATEGORY").equalCheck("select","Select Category.");
+        			//$("#SUBCATEGORY").equalCheck("select","Select Sub Category.");
+        			
+        			$("#AGE").require().match("number").range(18, 45); 
+        			$("#WEIGHT").match("number").greaterThanOrEqualTo(30, "Minimum Weight Requirement is 30 KG.");
+    
+        
         			
         			$("#PERMANENT_POST").require("Post Office is required.");
         			$("#MAILING_POST").require("Post Office is required.");
@@ -94,6 +101,7 @@
 					$("#MAILING_UNION").equalCheck("select","Select Mailing Union.");
 					$("#MAILING_UNION").equalCheck("","Select Mailing Union.");
 					
+					
         			
         			$("#NOMINEE_NAME")                      // The first input:    
         			.require("Nominee Name is required.");                         // Required:
@@ -107,15 +115,8 @@
         			$("#NOMINEE_PHONE")                      // The first input:    
         			.require("Nominee Phone Number required.");                         // Required:
         			
-        			
-					$("#educationMsg").assert(function(val){return checkEducationalInformation();},"One or More Education Information is blank.");
-					$("#languageMsg").assert(function(val){return checkLanguageInformation();},"One or More Language Information is blank.");
-					$("#experienceMsg").assert(function(val){return checkExperienceInformation();},"One or More Experience Information is blank.");					
-					$("#trainingMsg").assert(function(val){return checkTrainingInformation();},"One or More Training Information is blank.");
 					$("#captchaText").require("Please provide security code.");    
 					
-
-
         			/*
         			$("#11c")
         			.assert(0,"The inputs can either have all even numbers or all odd numbers. Not mixed.");
@@ -147,6 +148,7 @@
             
             
             });
+
 
  </script>
   
@@ -181,13 +183,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="85%" colspan="3" style="padding-bottom: 15px;">
      
      <div style="float:left;width: 250px;color: #4D4D4D;">First Name<br/>
-     	<input type="text" tabindex="1" name="personalDTO.empFname" id="FIRST_NAME" maxlength="20"  value="<s:property value="#session.sessionObj_PersonalInfo.empFname" />" class="nameTextBox" />
+     	<input type="text" tabindex="1" name="personalDTO.empFname" id="FIRST_NAME" maxlength="20"  value="<s:property value="personalDTO.empFname" />" class="nameTextBox" />
      </div>
      <div style="float:left;width: 250px;color: #4D4D4D">Middle Name<br/>
-     	<input type="text" tabindex="2" name="personalDTO.empMname" id="MIDDLE_NAME"  maxlength="20" value="<s:property value="#session.sessionObj_PersonalInfo.empMname" />"  class="nameTextBox" />
+     	<input type="text" tabindex="2" name="personalDTO.empMname" id="MIDDLE_NAME"  maxlength="20" value="<s:property value="personalDTO.empMname" />"  class="nameTextBox" />
      </div>
      <div style="float:left;width: 250px;color: #4D4D4D">Last Name<br/>	
-     	<input 	type="text" tabindex="3" name="personalDTO.empLname" id="LAST_NAME" maxlength="20" value="<s:property value="#session.sessionObj_PersonalInfo.empLname" />"  class="nameTextBox" />
+     	<input 	type="text" tabindex="3" name="personalDTO.empLname" id="LAST_NAME" maxlength="20" value="<s:property value="personalDTO.empLname" />"  class="nameTextBox" />
      </div>
      
      </td>
@@ -195,18 +197,18 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td width="15%">Father's Name<font color="red">*</font></td>
      <td width="35%">
-     	<input type="text" tabindex="4" name="personalDTO.fatherName" id="FATHER_NAME" maxlength="40"  value="<s:property value="#session.sessionObj_PersonalInfo.fatherName" />"  class="textBox"/>
+     	<input type="text" tabindex="4" name="personalDTO.fatherName" id="FATHER_NAME" maxlength="40"  value="<s:property value="personalDTO.fatherName" />"  class="textBox"/>
      </td>
      <td width="15%">Mother's Name<font color="red">*</font></td>
      <td width="35%">
-     	<input type="text" tabindex="5" name="personalDTO.motherName" id="MOTHER_NAME" maxlength="40" value="<s:property value="#session.sessionObj_PersonalInfo.motherName" />" class="textBox"/>
+     	<input type="text" tabindex="5" name="personalDTO.motherName" id="MOTHER_NAME" maxlength="40" value="<s:property value="personalDTO.motherName" />" class="textBox"/>
      </td>
     </tr>
     <tr>
      <td>Spouse Name</td>
-     <td><input type="text" tabindex="6" name="personalDTO.spousName" id="SPOUSE_NAME" maxlength="40" value="<s:property value="#session.sessionObj_PersonalInfo.spousName" />" class="textBox"/></td>
+     <td><input type="text" tabindex="6" name="personalDTO.spousName" id="SPOUSE_NAME" maxlength="40" value="<s:property value="personalDTO.spousName" />" class="textBox"/></td>
      <td>National ID (If any)</td>
-     <td><input type="text" tabindex="7" name="personalDTO.nationalId" id="NATIONALID" maxlength="13" value="<s:property value="#session.sessionObj_PersonalInfo.nationalId" />" onkeypress="return numericOnly(event)" class="textBox"/></td>
+     <td><input type="text" tabindex="7" name="personalDTO.nationalId" id="NATIONALID" maxlength="13" value="<s:property value="personalDTO.nationalId" />" onkeypress="return numericOnly(event)" class="textBox"/></td>
     </tr>
 
  	<tr>
@@ -250,10 +252,10 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
   
     <tr>
      <td>MRP Passport No (If any)</td>
-     <td><input type="text" tabindex="23" name="personalDTO.passportNo" id="PASSPORT_DATE" size="20" maxlength="50" value="<s:property value="#session.sessionObj_PersonalInfo.passportNo" />" class="textBox"/></td>
+     <td><input type="text" tabindex="23" name="personalDTO.passportNo" id="PASSPORT_DATE" size="20" maxlength="50" value="<s:property value="personalDTO.passportNo" />" class="textBox"/></td>
      <td>Passport Issue Date</td>
      <td>
-     <input type="text"  class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="#session.sessionObj_PersonalInfo.passportIssueDate" />"/>
+     <input type="text"  class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />"/>
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_ISSUE_DATE_BTN" border="0" />
 
      </td>
@@ -263,7 +265,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
    
      <td>Passport Exp. Date</td>
      <td>
-     <input type="text"  class="textBox" id="PASSPORT_EXP_DATE" name="personalDTO.passportExpireDate" value="<s:property value="#session.sessionObj_PersonalInfo.passportExpireDate" />"/>
+     <input type="text"  class="textBox" id="PASSPORT_EXP_DATE" name="personalDTO.passportExpireDate" value="<s:property value="personalDTO.passportExpireDate" />"/>
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_EXP_DATE_BTN" border="0" />
      </td>
      <td>Religion<font color="red">*</font></td>
@@ -281,9 +283,26 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
    
     
     <tr>
-     <td>Desired Job<font color="red">*</font></td>
+    	<td colspan="4" align="left" style="background-color: #CCCCCC">
+    		Desired Job
+    	</td>
+    </tr>
+    <tr>
+     <td>Option 1</td>
      <td>
-     	<select tabindex="18" name="personalDTO.category" id="CATEGORY" class="addressSelectBox" onchange="checkSubCategory(this.value)">
+     	<select tabindex="18" name="personalDTO.desiredJob1" id="DESIREDJOB1" class="addressSelectBox" onchange="checkSubCategory(this.value)">
+												<option value="Plantation">Plantation</option>
+		</select>
+     </td>
+     <td></td>
+     <td>
+     	     
+     </td>
+    </tr>
+    <tr>
+     <td>Option 2</td>
+     <td>
+     	<select tabindex="18" name="personalDTO.desiredJobCat1" id="DESIREDJOBCAT1" class="addressSelectBox" onchange="checkSubCategory(this.value)">
      											<option value="select" selected="selected">--Select Category--</option>
 												<option value="Agriculture">Agriculture</option>
 												<option value="Manufacturing">Manufacturing</option>
@@ -291,9 +310,9 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 												<option value="Service">Service</option>
 		</select>
      </td>
-     <td>Job Subcategory<font color="red">*</font></td>
+     <td></td>
      <td>
-     	     	<select tabindex="18" name="personalDTO.subcategory" id="SUBCATEGORY" class="addressSelectBox">
+     	     	<select tabindex="18" name="personalDTO.desiredJobSubcategory1" id="DESIREDJOBSUBCAT1" class="addressSelectBox">
      											<option value="select" selected="selected">--Select Sub Category--</option>
 			    </select>
      </td>
@@ -320,13 +339,9 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="35%">
      	
      <select tabindex="30" name="addressDTO.pDivision" id="PERMANENT_DIV" class="addressSelectBox" onchange="fetchJSONData_Dist(this.value,'PERMANENT_DIST')">
-     	  <option value="select" selected="selected">--Select Division--</option>	
-     	   <option value="1">Dhaka</option>
-     	   <!-- 
-     	<s:iterator value="%{#application.ALL_DIVISION}" id="divisionList">
+     	<s:iterator value="%{#application.OPERATOR_DIVISION}" id="divisionList">
      	  <option value="<s:property value="division_id" />"><s:property value="division_name" /></option>
      	</s:iterator>
-     	 -->
      </select>
      </td>
      <td width="15%">Division<font color="red">*</font></td>
@@ -342,7 +357,10 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td>District<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_DIST_TD">
-     <select tabindex="31" name="addressDTO.pDistrict" id="PERMANENT_DIST" class="addressSelectBox" onchange="fetchJSONData_Thana(this.value,'PERMANENT_THANA')">
+     <select tabindex="44"  name="addressDTO.pDistrict" id="PERMANENT_DIST" class="addressSelectBox">
+     	<s:iterator value="%{#application.OPERATOR_DISTRICT}" id="districtList">
+   	  		<option value="<s:property value="district_id" />"><s:property value="district_name" /></option>
+     	</s:iterator>
      </select>
      </td>
      <td valign="top">District<font color="red">*</font></td>
@@ -354,24 +372,29 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     
     <tr>
-     <td>Thana/Upazilla<font color="red">*</font></td>
+     <td>Upazilla/Pouroshova<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_THANA_TD">
-        <select tabindex="32" name="addressDTO.pThana" id="PERMANENT_THANA" class="addressSelectBox">
+        <select tabindex="32" name="addressDTO.pThana" id="PERMANENT_THANA" class="addressSelectBox" onchange="fetchJSONData_Union(this.value,'PERMANENT_UNION')">
+        
+        <option value="select" selected="selected">--Please Select--</option>
+     	<s:iterator value="%{#application.OPERATOR_UPAZILLA}" id="upazillaList">
+     	  <option value="<s:property value="thana_id" />"><s:property value="thana_name" /></option>
+     	</s:iterator>
        </select>
      </td>
-     <td valign="top">Thana/Upazilla<font color="red">*</font></td>
+     <td valign="top">Upazilla/Pouroshova<font color="red">*</font></td>
      <td valign="top" id="MAILING_THANA_TD">
      	<select tabindex="46" name="addressDTO.mThana" id="MAILING_THANA" class="addressSelectBox">
         </select>
      </td>
     </tr>
     <tr>
-     <td>Union<font color="red">*</font></td>
+     <td>Union/Ward<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_UNION_TD">
         <select tabindex="32" name="addressDTO.pUnion" id="PERMANENT_UNION" class="addressSelectBox" >
        </select>
      </td>
-     <td valign="top">Union<font color="red">*</font></td>
+     <td valign="top">Union/Ward<font color="red">*</font></td>
      <td valign="top" id="MAILING_UNION_TD">
      	<select tabindex="46" name="addressDTO.mUnion" id="MAILING_UNION" class="addressSelectBox" >
         </select>
@@ -381,66 +404,66 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td>Post Office<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="38" name="addressDTO.pPost" maxlength="30" id="PERMANENT_POST"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.pPost"/>" />
+     	<input type="text" tabindex="38" name="addressDTO.pPost" maxlength="30" id="PERMANENT_POST"  class="textBox" value="<s:property value="addressDTO.pPost"/>" />
      </td>
      <td valign="top">Post Office<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="52" name="addressDTO.mPost" maxlength="30" id="MAILING_POST" class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.mPost"/>"  />
+     	<input type="text" tabindex="52" name="addressDTO.mPost" maxlength="30" id="MAILING_POST" class="textBox" value="<s:property value="addressDTO.mPost"/>"  />
      </td>
     </tr>
     
      <tr>
      <td>Post Code<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="38" name="addressDTO.pPostCode" maxlength="30" id="PERMANENT_POST_CODE"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.pPostCode"/>" />
+     	<input type="text" tabindex="38" name="addressDTO.pPostCode" maxlength="30" id="PERMANENT_POST_CODE"  class="textBox" value="<s:property value="addressDTO.pPostCode"/>" />
      </td>
      <td valign="top">Post Code<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="38" name="addressDTO.mPostCode" maxlength="30" id="MAILING_POST_CODE"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.mPostCode"/>" />     		
+     	<input type="text" tabindex="38" name="addressDTO.mPostCode" maxlength="30" id="MAILING_POST_CODE"  class="textBox" value="<s:property value="addressDTO.mPostCode"/>" />     		
      </td>
     </tr>
     
      <tr>
      <td>Address<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="38" name="addressDTO.pAddressLine1" maxlength="30" id="PERMANENT_ADDRESS_LINE1"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.pAddressLine1"/>" />
+     	<input type="text" tabindex="38" name="addressDTO.pAddressLine1" maxlength="30" id="PERMANENT_ADDRESS_LINE1"  class="textBox" value="<s:property value="addressDTO.pAddressLine1"/>" />
      </td>
      <td valign="top">Address<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="38" name="addressDTO.mAddressLine1" maxlength="30" id="MAILING_ADDRESS_LINE1"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.mAddressLine1"/>" />     		
+     	<input type="text" tabindex="38" name="addressDTO.mAddressLine1" maxlength="30" id="MAILING_ADDRESS_LINE1"  class="textBox" value="<s:property value="addressDTO.mAddressLine1"/>" />     		
      </td>
     </tr>
     
      <tr>
      <td></td>
      <td valign="top">
-     	<input type="text" tabindex="38" name="addressDTO.pAddressLine2" maxlength="30" id="PERMANENT_ADDRESS_LINE2"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.pAddressLine2"/>" />
+     	<input type="text" tabindex="38" name="addressDTO.pAddressLine2" maxlength="30" id="PERMANENT_ADDRESS_LINE2"  class="textBox" value="<s:property value="addressDTO.pAddressLine2"/>" />
      </td>
      <td valign="top"></td>
      <td valign="top">
-     	<input type="text" tabindex="38" name="addressDTO.mAddressLine2" maxlength="30" id="MAILING_ADDRESS_LINE2"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.mAddressLine2"/>" />     		
+     	<input type="text" tabindex="38" name="addressDTO.mAddressLine2" maxlength="30" id="MAILING_ADDRESS_LINE2"  class="textBox" value="<s:property value="addressDTO.mAddressLine2"/>" />     		
      </td>
     </tr>
 
     <tr>
      <td>Email (If any)</td>
      <td valign="top">
-     	<input type="text" tabindex="39" name="addressDTO.pEmail" maxlength="50" id="PERMANENT_EMAIL"  class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.pEmail"/>" />       
+     	<input type="text" tabindex="39" name="addressDTO.pEmail" maxlength="50" id="PERMANENT_EMAIL"  class="textBox" value="<s:property value="addressDTO.pEmail"/>" />       
      </td>
      <td valign="top">Email (If any)</td>
      <td valign="top">
-     	<input type="text" tabindex="53" name="addressDTO.mEmail" maxlength="50" id="MAILING_EMAIL" class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.mEmail"/>"  />
+     	<input type="text" tabindex="53" name="addressDTO.mEmail" maxlength="50" id="MAILING_EMAIL" class="textBox" value="<s:property value="addressDTO.mEmail"/>"  />
      </td>
     </tr>
     
     <tr>
      <td>Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="41" name="addressDTO.pMobile" maxlength="25" id="PERMANENT_MOBILE" class="textBox" value="<s:property value="#session.sessionObj_AddressInfo.pMobile"/>" onkeypress="return numericOnly(event)" />
+     	<input type="text" tabindex="41" name="addressDTO.pMobile" maxlength="25" id="PERMANENT_MOBILE" class="textBox" value="<s:property value="addressDTO.pMobile"/>" onkeypress="return numericOnly(event)" />
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="55" maxlength="25" name="addressDTO.mMobile" id="MAILING_MOBILE" class="textBox"  value="<s:property value="#session.sessionObj_AddressInfo.mMobile"/>" onkeypress="return numericOnly(event)"  />
+     	<input type="text" tabindex="55" maxlength="25" name="addressDTO.mMobile" id="MAILING_MOBILE" class="textBox"  value="<s:property value="addressDTO.mMobile"/>" onkeypress="return numericOnly(event)"  />
      </td>
     </tr>
     </table>
@@ -459,7 +482,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td width="15%">Nominee Name<font color="red">*</font></td>
      <td width="35%">
-     <input type="text" tabindex="56" name="nomineeDTO.nomineeName" id="NOMINEE_NAME" maxlength="100" class="textBox" value="<s:property value="#session.sessionObj_NomineeInfo.nomineeName" />" />
+     <input type="text" tabindex="56" name="nomineeDTO.nomineeName" id="NOMINEE_NAME" maxlength="100" class="textBox" value="<s:property value="nomineeDTO.nomineeName" />" />
      </td>
      <td width="15%">Relation<font color="red">*</font></td>
      <td width="35%">
@@ -484,12 +507,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">Address<font color="red">*</font></td>
      <td valign="top">
      <textarea tabindex="59" name="nomineeDTO.nomineeAddress" id="NOMINEE_ADDRESS" rows="5" cols="29" style="border: 1px solid grey;"
-												onkeypress="textCounter(this,150);"><s:property value="#session.sessionObj_NomineeInfo.nomineeAddress" /></textarea>
+												><s:property value="nomineeDTO.nomineeAddress" /></textarea>
 												
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="58" name="nomineeDTO.nomineePhone" id="NOMINEE_PHONE" maxlength="25" class="textBox" value="<s:property value="#session.sessionObj_NomineeInfo.nomineePhone" />" onkeypress="return numericOnly(event)" />
+     	<input type="text" tabindex="58" name="nomineeDTO.nomineePhone" id="NOMINEE_PHONE" maxlength="25" class="textBox" value="<s:property value="nomineeDTO.nomineePhone" />" onkeypress="return numericOnly(event)" />
    	  </td>
     </tr>
     
@@ -542,9 +565,9 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 
  
 </center>
-<%String form_error=(String) request.getAttribute("form_error");
+<%String form_error=(String) request.getSession().getAttribute("form_error");
  if(form_error==null)form_error="first_time";
- if(form_error.equalsIgnoreCase("form_error")){
+ if(form_error.equalsIgnoreCase("form_error") || form_error.equalsIgnoreCase("edit_form")){
   %>
    <%@ include file="SetFormContent.jsp" %>
  <%} %>

@@ -182,21 +182,36 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
    
      <tr>
+     <td colspan="4" align="left" style="background-color: #CCCCCC">
+       Desired Job
+     </td>
+     </tr>
+     <tr>
      
    
-     <td style="color:#7D2252;">Desired Job</td>     
+     <td style="color:#7D2252;">Option 1</td>     
      <td>
-     <s:property value="personalDTO.category" />
-     <input type="hidden" name="personalDTO.category" value="<s:property value="personalDTO.category" />" />
+	     Plantation
+	     <input type="hidden" name="personalDTO.desiredJob1" value="Plantation" />
      </td>
-     <td style="color:#7D2252;">Job Subcategory</td>
+     <td style="color:#7D2252;"></td>
      <td>
-     <s:property value="personalDTO.subcategory" />
-     <input type="hidden" name="personalDTO.subcategory" value="<s:property value="personalDTO.subcategory" />" />
+     
      </td>
     </tr>
-    
-    
+	
+    <tr>
+     <td style="color:#7D2252;">Option 2</td>     
+     <td>
+     <s:property value="personalDTO.desiredJobCat1" />
+     <input type="hidden" name="personalDTO.desiredJobCat1" value="<s:property value="personalDTO.desiredJobCat1" />" />
+     </td>
+     <td style="color:#7D2252;"></td>
+     <td>
+     <s:property value="personalDTO.desiredJobSubcategory1" />
+     <input type="hidden" name="personalDTO.desiredJobSubcategory1" value="<s:property value="personalDTO.desiredJobSubcategory1" />" />
+     </td>
+    </tr>    
     </table>
     
     
@@ -241,12 +256,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     
     <tr>
-     <td style="color:#7D2252;">Thana/Upazilla</td>
+     <td style="color:#7D2252;">Upazilla/Pouroshova</td>
      <td valign="top">
         <s:property value="addressDTO.pThanaName" />
         <input type="hidden" name="addressDTO.pThana" value="<s:property value="addressDTO.pThana" />" />
      </td>
-     <td valign="top" style="color:#7D2252;">Thana/Upazilla</td>
+     <td valign="top" style="color:#7D2252;">Upazilla/Pouroshova</td>
      <td valign="top">
      	<s:property value="addressDTO.mThanaName" />
      	<input type="hidden" name="addressDTO.mThana" value="<s:property value="addressDTO.mThana" />" />
@@ -254,12 +269,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     
     <tr>
-     <td style="color:#7D2252;">Union</td>
+     <td style="color:#7D2252;">Union/Ward</td>
      <td valign="top">
         <s:property value="addressDTO.pUnionName" />
         <input type="hidden" name="addressDTO.pUnion" value="<s:property value="addressDTO.pUnion" />" />
      </td>
-     <td valign="top" style="color:#7D2252;">Union</td>
+     <td valign="top" style="color:#7D2252;">Union/Ward</td>
      <td valign="top">
      	<s:property value="addressDTO.mUnionName" />
      	<input type="hidden" name="addressDTO.mUnion" value="<s:property value="addressDTO.mUnion" />" />
@@ -377,6 +392,8 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top" style="color:#7D2252;">Address</td>
      <td valign="top">
     	 <%=(String) request.getAttribute("sub_NomineeAddress")%>
+    	 
+
     	 <input type="hidden" value="nomineeDTO.nomineeAddress" value="<s:property value="nomineeDTO.nomineeAddress" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Mobile/Phone</td>

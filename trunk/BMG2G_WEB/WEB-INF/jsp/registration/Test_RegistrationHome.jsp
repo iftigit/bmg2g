@@ -68,8 +68,13 @@
         			.require("Height Cannot be 0 feet.");                       // Required:
         			
         			$("#RELIGION").equalCheck("select","Select Religion.");
-        			$("#CATEGORY").equalCheck("select","Select Category.");
-        			$("#SUBCATEGORY").equalCheck("select","Select Sub Category.");
+        			//$("#CATEGORY").equalCheck("select","Select Category.");
+        			//$("#SUBCATEGORY").equalCheck("select","Select Sub Category.");
+        			
+        			$("#AGE").require().match("number").range(18, 45); 
+        			$("#WEIGHT").match("number").greaterThanOrEqualTo(30, "Minimum Weight Requirement is 30 KG.");
+    
+        
         			
         			$("#PERMANENT_POST").require("Post Office is required.");
         			$("#MAILING_POST").require("Post Office is required.");
@@ -160,7 +165,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 <center>
 <div style="width: 1000px;height: 100px;border-right: 1px solid #006219;border-left: 1px solid #006219;">
 	<div style="float: left; margin-top: 20px;width: 100px;">
-	 m<img src="/BMG2G_WEB/resources/images/bagladesh_logo.gif" width="60" height="60" />
+	 <img src="/BMG2G_WEB/resources/images/bagladesh_logo.gif" width="60" height="60" />
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
 	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
@@ -219,7 +224,8 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      </td>
      <td>Age</td>
      <td>
-     	<input type="text" class="textBox" id="AGE" name="personalDTO.age" value="22" readonly="readonly" />
+     	<input type="text" class="textBox" id="AGE" name="personalDTO.age" value="22" readonly="readonly" style="width: 100px;" /> 
+     	Years
      </td>
     </tr>
 
@@ -276,10 +282,28 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 	</select>
      </td>
     </tr>
+    
     <tr>
-     <td>Desired Job<font color="red">*</font></td>
+    	<td colspan="4" align="left" style="background-color: #CCCCCC">
+    		Desired Job
+    	</td>
+    </tr>
+    <tr>
+     <td>Option 1</td>
      <td>
-     	<select tabindex="18" name="personalDTO.category" id="CATEGORY" class="addressSelectBox" onchange="checkSubCategory(this.value)">
+     	<select tabindex="18" name="personalDTO.desiredJob1" id="DESIREDJOB1" class="addressSelectBox" onchange="checkSubCategory(this.value)">
+												<option value="Plantation">Plantation</option>
+		</select>
+     </td>
+     <td></td>
+     <td>
+     	     
+     </td>
+    </tr>
+    <tr>
+     <td>Option 2</td>
+     <td>
+     	<select tabindex="18" name="personalDTO.desiredJobCat1" id="DESIREDJOBCAT1" class="addressSelectBox" onchange="checkSubCategory(this.value)">
      											<option value="select" selected="selected">--Select Category--</option>
 												<option value="Agriculture">Agriculture</option>
 												<option value="Manufacturing">Manufacturing</option>
@@ -287,9 +311,9 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 												<option value="Service">Service</option>
 		</select>
      </td>
-     <td>Job Subcategory<font color="red">*</font></td>
+     <td></td>
      <td>
-     	     	<select tabindex="18" name="personalDTO.subcategory" id="SUBCATEGORY" class="addressSelectBox">
+     	     	<select tabindex="18" name="personalDTO.desiredJobSubcategory1" id="DESIREDJOBSUBCAT1" class="addressSelectBox">
      											<option value="select" selected="selected">--Select Sub Category--</option>
 			    </select>
      </td>
@@ -314,15 +338,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="15%">Division<font color="red">*</font></td>
      <td width="35%">
      	
-     <select tabindex="30" name="addressDTO.pDivision" id="PERMANENT_DIV" class="addressSelectBox" onchange="fetchJSONData_Dist(this.value,'PERMANENT_DIST')">
-     	  <option value="select" selected="selected">--Select Division--</option>
-		  <option value="1">Dhaka</option>
-		  <!-- 	
-     	<s:iterator value="%{#application.ALL_DIVISION}" id="divisionList">
+     <select tabindex="44"  name="addressDTO.pDivision" id="PERMANENT_DIV" class="addressSelectBox">
+     	<s:iterator value="%{#application.OPERATOR_DIVISION}" id="divisionList">
      	  <option value="<s:property value="division_id" />"><s:property value="division_name" /></option>
      	</s:iterator>
-     	-->
      </select>
+     
      </td>
      <td width="15%">Division<font color="red">*</font></td>
      <td width="35%">
@@ -337,8 +358,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td>District<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_DIST_TD">
-     <select tabindex="31" name="addressDTO.pDistrict" id="PERMANENT_DIST" class="addressSelectBox" onchange="fetchJSONData_Thana(this.value,'PERMANENT_THANA')">
+     <select tabindex="44"  name="addressDTO.pDistrict" id="PERMANENT_DIST" class="addressSelectBox">
+     	<s:iterator value="%{#application.OPERATOR_DISTRICT}" id="districtList">
+   	  		<option value="<s:property value="district_id" />"><s:property value="district_name" /></option>
+     	</s:iterator>
      </select>
+
+     
      </td>
      <td valign="top">District<font color="red">*</font></td>
      <td valign="top" id="MAILING_DIST_TD">
@@ -349,12 +375,17 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     
     <tr>
-     <td>Thana/Upazilla<font color="red">*</font></td>
+     <td>Upazilla/Pouroshova<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_THANA_TD">
         <select tabindex="32" name="addressDTO.pThana" id="PERMANENT_THANA" class="addressSelectBox" onchange="fetchJSONData_Union(this.value,'PERMANENT_UNION')">
+        
+        <option value="select" selected="selected">--Please Select--</option>
+     	<s:iterator value="%{#application.OPERATOR_UPAZILLA}" id="upazillaList">
+     	  <option value="<s:property value="thana_id" />"><s:property value="thana_name" /></option>
+     	</s:iterator>
        </select>
      </td>
-     <td valign="top">Thana/Upazilla<font color="red">*</font></td>
+     <td valign="top">Upazilla/Pouroshova<font color="red">*</font></td>
      <td valign="top" id="MAILING_THANA_TD">
      	<select tabindex="46" name="addressDTO.mThana" id="MAILING_THANA" class="addressSelectBox"  onchange="fetchJSONData_Union(this.value,'MAILING_UNION')">
         </select>
@@ -362,12 +393,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
 
     <tr>
-     <td>Union<font color="red">*</font></td>
+     <td>Union/Ward<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_UNION_TD">
         <select tabindex="32" name="addressDTO.pUnion" id="PERMANENT_UNION" class="addressSelectBox" >
        </select>
      </td>
-     <td valign="top">Union<font color="red">*</font></td>
+     <td valign="top">Union/Ward<font color="red">*</font></td>
      <td valign="top" id="MAILING_UNION_TD">
      	<select tabindex="46" name="addressDTO.mUnion" id="MAILING_UNION" class="addressSelectBox" >
         </select>
@@ -481,7 +512,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">Address<font color="red">*</font></td>
      <td valign="top">
      <textarea tabindex="59" name="nomineeDTO.nomineeAddress" id="NOMINEE_ADDRESS" rows="5" cols="29" style="border: 1px solid grey;"
-												onkeypress="textCounter(this,150);">Address</textarea>
+												>Address</textarea>
 												
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
@@ -542,7 +573,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 </center>
 <%String form_error=(String) request.getSession().getAttribute("form_error");
  if(form_error==null)form_error="first_time";
- if(form_error.equalsIgnoreCase("form_error")){
+ if(form_error.equalsIgnoreCase("form_error") || form_error.equalsIgnoreCase("edit_form")){
   %>
    <%@ include file="SetFormContent.jsp" %>
  <%} %>
