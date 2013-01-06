@@ -39,7 +39,7 @@ public class RegistrationDAO {
 					                                    "?,?,?,?,?,?,?,?,?,?, " +
 					                                    "?,?,?,?,?,?,?,?,?,?, " +
 					                                    "?,?,?,?,?,?,?,?,?,?, " +
-					                                    "?,?,?,?,?,?,?) }");
+					                                    "?,?,?,?,?,?,?,?,?,?) }");
 					 
 
 				 		stmt.setString(1,  registrationId);
@@ -90,13 +90,16 @@ public class RegistrationDAO {
 						stmt.setString(42, nomineeDTO.getContactMobile());
 						
 						stmt.setString(43, personalDTO.getCotaUnionId());
-
-						stmt.setString(44, logDTO.getxForward()); 
-						stmt.setString(45, logDTO.getVia());
-						stmt.setString(46, logDTO.getRemoteAddress());
-						stmt.registerOutParameter(47, java.sql.Types.VARCHAR);
+						stmt.setString(44, personalDTO.getDesiredJob1()==null?"":personalDTO.getDesiredJob1());
+						stmt.setString(45, personalDTO.getDesiredJobCat1()==null?"":personalDTO.getDesiredJobCat1());
+						stmt.setString(46, personalDTO.getDesiredJobSubcategory1()==null?"":personalDTO.getDesiredJobSubcategory1());
+						
+						stmt.setString(47, logDTO.getxForward()); 
+						stmt.setString(48, logDTO.getVia());
+						stmt.setString(49, logDTO.getRemoteAddress());
+						stmt.registerOutParameter(50, java.sql.Types.VARCHAR);
 						stmt.executeUpdate();
-						response = (stmt.getString(47)).trim();
+						response = (stmt.getString(50)).trim();
 						System.out.println("Response : " + response);
 						}
 					    catch (Exception e){e.printStackTrace();return response;}

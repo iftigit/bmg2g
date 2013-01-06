@@ -8,6 +8,10 @@ public class UserDTO {
 	private String localIp;
 	private String via;
 	private String realIp;
+	
+	private String divisionId;
+	private String districtId;
+	private String upazillaId;
 	private String unionId;
 	
 	public String getUserId() {
@@ -51,6 +55,24 @@ public class UserDTO {
 	}
 	public void setUnionId(String unionId) {
 		this.unionId = unionId;
+	}
+	public String getDivisionId() {
+		return divisionId;
+	}
+	public void setDivisionId(String divisionId) {
+		this.divisionId = divisionId;
+	}
+	public String getDistrictId() {
+		return districtId;
+	}
+	public void setDistrictId(String districtId) {
+		this.districtId = districtId;
+	}
+	public String getUpazillaId() {
+		return upazillaId;
+	}
+	public void setUpazillaId(String upazillaId) {
+		this.upazillaId = upazillaId;
 	}
 	
 	

@@ -14,7 +14,8 @@ public class EditRegistrationFormAction {
 
 	
 public String execute() {
-		form_error="edit_form";
+		
+		ServletActionContext.getRequest().getSession().setAttribute("form_error", "edit_form");
 		return "success";
 	}
 
@@ -46,6 +47,16 @@ public String execute() {
 	
 	public void setNomineeDTO(NomineeDTO nomineeDTO) {
 		this.nomineeDTO = nomineeDTO;
+	}
+
+
+	public String getForm_error() {
+		return form_error;
+	}
+
+
+	public void setForm_error(String formError) {
+		form_error = formError;
 	}
 
 
