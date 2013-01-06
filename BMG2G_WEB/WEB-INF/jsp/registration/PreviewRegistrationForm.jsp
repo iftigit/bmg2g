@@ -284,7 +284,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td style="color:#7D2252;">Post Office</td>
      <td valign="top">
-     	<s:property value="addressDTO.mPost" />
+     	<s:property value="addressDTO.pPost" />
      	<input type="hidden" name="addressDTO.pPost" value="<s:property value="addressDTO.pPost" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Post Office</td>
