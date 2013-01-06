@@ -179,7 +179,10 @@
 
 
 		<action name="securityCode" class="org.controller.authentication.NewPassword" method="securityCode">			
-			<result name="success">/WEB-INF/jsp/lottery/FirstLotteryAction1.jsp</result>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+
+		<action name="np_pp" class="org.controller.authentication.NewPassword" method="np_pp">			
 			<interceptor-ref name="defaultStack"/>
 		</action>
 
