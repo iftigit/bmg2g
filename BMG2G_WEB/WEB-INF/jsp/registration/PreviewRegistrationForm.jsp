@@ -394,24 +394,24 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     	 <%=(String) request.getAttribute("sub_NomineeAddress")%>
     	 
 
-    	 <input type="hidden" value="nomineeDTO.nomineeAddress" value="<s:property value="nomineeDTO.nomineeAddress" />" />
+    	 <input type="hidden" name="nomineeDTO.nomineeAddress" value="<s:property value="nomineeDTO.nomineeAddress" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Mobile/Phone</td>
      <td valign="top">
         <s:property value="nomineeDTO.nomineePhone" />
-     	<input type="hidden" value="nomineeDTO.nomineePhone" value="<s:property value="nomineeDTO.nomineePhone" />" />
+     	<input type="hidden" name="nomineeDTO.nomineePhone" value="<s:property value="nomineeDTO.nomineePhone" />" />
    	  </td>
     </tr>
     <tr>
      <td valign="top" style="color:#7D2252;">Contact Person Name</td>
      <td valign="top">
         <s:property value="nomineeDTO.contactName" />
-     	<input type="hidden" value="nomineeDTO.contactName" value="<s:property value="nomineeDTO.contactName" />" />
+     	<input type="hidden" name="nomineeDTO.contactName" value="<s:property value="nomineeDTO.contactName" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Contact Person Mobile</td>
      <td valign="top">
-        <s:property value="nomineeDTO.nomineePhone" />
-     	<input type="hidden" value="nomineeDTO.contactMobile" value="<s:property value="nomineeDTO.contactMobile" />" />
+        <s:property value="nomineeDTO.contactMobile" />
+     	<input type="hidden" name="nomineeDTO.contactMobile" value="<s:property value="nomineeDTO.contactMobile" />" />
    	  </td>
     </tr>
     </table>
