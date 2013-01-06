@@ -93,8 +93,8 @@ document.getElementById("bid").style.display = "block";
 <%String reset_Religion=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getReligion(); %>
 <%String reset_nomineeRelation=((NomineeDTO) (request.getAttribute("nomineeDTO"))).getNomineeRelation(); %>
 
-<%String reset_category=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getCategory(); %>
-<%String reset_subCategory=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getSubcategory(); %>
+<%String reset_category=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getDesiredJobCat1(); System.out.println("11 ==>"+reset_category);%>
+<%String reset_subCategory=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getDesiredJobSubcategory1(); System.out.println("22 ==>"+reset_subCategory);%>
 
 
 
@@ -109,19 +109,19 @@ document.getElementById("bid").style.display = "block";
         if(document.forms['empRegForm'].NOMINEE_RELATION.options[i].value=="<%=reset_nomineeRelation%>")
 		   document.forms['empRegForm'].NOMINEE_RELATION.selectedIndex=i;
       }
-     for(var i=0;i<document.forms['empRegForm'].CATEGORY.length;i++)
+     for(var i=0;i<document.forms['empRegForm'].DESIREDJOBCAT1.length;i++)
 	  { 
-        if(document.forms['empRegForm'].CATEGORY.options[i].value=="<%=reset_category%>")
+        if(document.forms['empRegForm'].DESIREDJOBCAT1.options[i].value=="<%=reset_category%>")
         {
-		   document.forms['empRegForm'].CATEGORY.selectedIndex=i;
+		   document.forms['empRegForm'].DESIREDJOBCAT1.selectedIndex=i;
 		   checkSubCategory("<%=reset_category%>");
 		}
       }
-      for(var i=0;i<document.forms['empRegForm'].SUBCATEGORY.length;i++)
+      for(var i=0;i<document.forms['empRegForm'].DESIREDJOBSUBCAT1.length;i++)
 	  { 
-        if(document.forms['empRegForm'].SUBCATEGORY.options[i].value=="<%=reset_subCategory%>")
+        if(document.forms['empRegForm'].DESIREDJOBSUBCAT1.options[i].value=="<%=reset_subCategory%>")
         {
-		   document.forms['empRegForm'].SUBCATEGORY.selectedIndex=i;
+		   document.forms['empRegForm'].DESIREDJOBSUBCAT1.selectedIndex=i;
 		}
       }
        

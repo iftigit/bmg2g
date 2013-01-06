@@ -38,9 +38,15 @@
 	Registration has successfully been received. Please click below button to download your Admit Card.
 </div>
 <div style="margin-top: 100px;text-align: center;">
-<a href="downloadAdmitCard.action?registrationId=<%=(String)ServletActionContext.getRequest().getSession().getAttribute("sessionObj_regId")%>" style="text-decoration: none;">
+<a href="downloadAdmit.action?registrationId=<%=(String)ServletActionContext.getRequest().getSession().getAttribute("sessionObj_regId")%>" style="text-decoration: none;">
 <input type="button" class="submitButton" name="Downalod Card" value="Click Here to Download Admit Card" style="width: 300px;"  />
 </a>
+
+<br/><br/>
+<a href="regHomeAction.action" style="text-decoration: none;">	
+	<input type="submit" class="submitButton" name="backButton" value="Registration Home" style="width: 170px;"   />
+</a>
+
 </div>
 <div style=" margin-top: 100px;">
 <b>Note :</b> <font style="color:red">Please Print your Admit Card and save it carefully. You need to show this Admit Card during the time of your interview.</font> 

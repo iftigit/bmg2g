@@ -72,13 +72,13 @@
 
     <tr>
      <td height="30px;"></td>
-     <td style="padding-bottom: 10px;">
-     	<table width="100%">
+     <td style="padding-bottom: 10px;" align="left">
+     	<table width="100%" cellpadding="0" cellspacing="0">
 	     	<tr>
-	     	<td align="left">
+	     	<td align="left" style="padding-left: 0px;">
 	     		<input type="submit" value="Login" name="Login" />
 	     	</td>
-	     	<td align="right"><a href="BMG2G_WEB/np1">request password</a></td>
+	     	<td align="right" style="padding-right: 0px;"><a href="BMG2G_WEB/np1">Request Password</a></td>
 	     	</tr>
      	</table>
      </td>
