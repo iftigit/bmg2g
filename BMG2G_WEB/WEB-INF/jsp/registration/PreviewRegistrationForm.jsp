@@ -356,7 +356,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top" style="color:#7D2252;">Mobile/Phone</td>
      <td valign="top">
      	<s:property value="addressDTO.mMobile" />
-     	<input type="hidden" name="addressDTO.mMobile" value="<s:property value="addressDTO.mEmail" />" />
+     	<input type="hidden" name="addressDTO.mMobile" value="<s:property value="addressDTO.mMobile" />" />
      </td>
     </tr>
     
@@ -411,7 +411,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top" style="color:#7D2252;">Contact Person Mobile</td>
      <td valign="top">
         <s:property value="nomineeDTO.nomineePhone" />
-     	<input type="hidden" value="nomineeDTO.nomineePhone" value="<s:property value="nomineeDTO.nomineePhone" />" />
+     	<input type="hidden" value="nomineeDTO.contactMobile" value="<s:property value="nomineeDTO.contactMobile" />" />
    	  </td>
     </tr>
     </table>
