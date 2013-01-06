@@ -146,7 +146,7 @@
 		
 		<action name="editRegFormAction" class="org.controller.registration.EditRegistrationFormAction">
 			<result name="success">
-				/WEB-INF/jsp/registration/Test_RegistrationHome.jsp
+				/WEB-INF/jsp/registration/RegistrationHome.jsp
 			</result>
 		</action>
  		
