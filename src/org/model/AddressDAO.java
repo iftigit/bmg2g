@@ -240,6 +240,38 @@ public class AddressDAO {
 	 		return thanaList;
 	}
 	
+	
+	public ArrayList<AddressDTO> getDivision(int divId)
+	{
+
+		ArrayList<AddressDTO> divisionList=new ArrayList<AddressDTO>();
+		
+	 	   Connection conn = ConnectionManager.getConnection();
+		   String sql = "select divisionid,division_name from division where divisionid="+divId;
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   AddressDTO addressDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					addressDto=new AddressDTO();
+					addressDto.setDivision_id(r.getInt("DIVISIONID"));
+					addressDto.setDivision_name(r.getString("DIVISION_NAME"));
+					divisionList.add(addressDto);
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	return divisionList;
+	 	
+	}
+	
 	public ArrayList<String> getDistrict(int divId)
 	{
 		ArrayList<String> distList=new ArrayList<String>();
@@ -263,6 +295,39 @@ public class AddressDAO {
 			{e.printStackTrace();}stmt = null;conn = null;}
 
 		return distList;
+	}
+	
+	public ArrayList<AddressDTO> getOperatorDistrict(int districtId)
+	{
+		ArrayList<AddressDTO> districtList=new ArrayList<AddressDTO>();
+		
+	 	   Connection conn = ConnectionManager.getConnection();
+		   String sql = "SELECT * FROM DISTRICT Where DIST_ID='"+districtId+"' ORDER BY DIST_NAME";
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   AddressDTO addressDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					addressDto=new AddressDTO();
+					addressDto.setDistrict_code(r.getString("DIST_CODE"));
+					addressDto.setDistrict_name(r.getString("DIST_NAME"));
+					addressDto.setDistrict_id(r.getInt("DIST_ID"));
+					
+					districtList.add(addressDto);
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+		return districtList;
+
+		
 	}
 	
 	
@@ -291,6 +356,40 @@ public class AddressDAO {
 
 		return thanaList;
 	}
+	
+	public ArrayList<AddressDTO> getUpazilla(String updazillaId,String districtId)
+	{
+		   ArrayList<AddressDTO> thanaList=new ArrayList<AddressDTO>();
+		   Connection conn = ConnectionManager.getConnection();
+		   String sql = " Select * from Thana Where DistrictId='"+districtId+"' " +
+		     " and thanaid='"+updazillaId+"' or thanaid in (Select thanaid from thana where districtid='"+districtId+"' and is_pauro=1)";
+
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   AddressDTO addressDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					addressDto=new AddressDTO();
+					addressDto.setThana_id(r.getString("THANAID"));
+					addressDto.setThana_name(r.getString("THANA_NAME"));
+					
+					thanaList.add(addressDto);
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+
+	 		return thanaList;
+
+	}
+
+	
 	public ArrayList<String> getUnion(int thanaId)
 	{
 		ArrayList<String> thanaList=new ArrayList<String>();

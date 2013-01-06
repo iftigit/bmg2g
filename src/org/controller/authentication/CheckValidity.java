@@ -1,7 +1,14 @@
 package org.controller.authentication;
 
+import java.util.ArrayList;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+
 import org.apache.struts2.ServletActionContext;
+import org.model.AddressDAO;
 import org.model.UserDAO;
+import org.table.AddressDTO;
 import org.table.UserDTO;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,6 +29,7 @@ public class CheckValidity extends ActionSupport{
 			String via=ServletActionContext.getRequest().getHeader("Via")==null?"":ServletActionContext.getRequest().getHeader("Via");
 			String realIp=ServletActionContext.getRequest().getRemoteAddr()==null?"":ServletActionContext.getRequest().getRemoteAddr();
 			submittedAuthKey=localIp+via+realIp;
+			AddressDAO addressDao=new AddressDAO();
 			
 			this.user=userDao.validateLogin(userId, password);
 			if(user==null)
@@ -48,9 +56,21 @@ public class CheckValidity extends ActionSupport{
 				if(flag==true)
 				{
 					ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", user);
-					 if(user.getUserType().equalsIgnoreCase("UISC_REG_OPERATOR"))						 
+					 if(user.getUserType().equalsIgnoreCase("UISC_REG_OPERATOR"))	
+					 {
+						 getServletContext().setAttribute("OPERATOR_DIVISION", addressDao.getDivision(Integer.parseInt(user.getDivisionId())));
+						 getServletContext().setAttribute("OPERATOR_DISTRICT", addressDao.getOperatorDistrict(Integer.parseInt(user.getDistrictId())));
+						 getServletContext().setAttribute("OPERATOR_UPAZILLA", addressDao.getUpazilla(user.getUpazillaId(),user.getDistrictId()));
+						 
+
+						 
+						 ArrayList<AddressDTO> abc=(ArrayList<AddressDTO>) getServletContext().getAttribute("OPERATOR_DISTRICT");
+						 System.out.println("=========>>"+abc.size());
+						 
+						 
 						 return "regOperator";
-					 else
+					 }
+						 else
 						 return INPUT;
 				}
 				else
@@ -63,7 +83,10 @@ public class CheckValidity extends ActionSupport{
 			
 	}
 
-
+	public ServletContext getServletContext()
+	{
+		return ServletActionContext.getServletContext();
+	}
 	public UserDTO getUser() {
 		return user;
 	}

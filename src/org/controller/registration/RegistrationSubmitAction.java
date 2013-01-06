@@ -34,20 +34,12 @@ public class RegistrationSubmitAction  extends ActionSupport{
 public String execute() throws Exception 
 	{		               
 		
-//		PersonalInfoDTO duplicateSumissionCheck=(PersonalInfoDTO) ServletActionContext.getRequest().getSession().getAttribute("sessionObj_PersonalInfo");
-//
-//		if(duplicateSumissionCheck==null)
-//		{
-//			return "blankForm";
-//		}
+		PersonalInfoDTO duplicateSumissionCheck=(PersonalInfoDTO) ServletActionContext.getRequest().getSession().getAttribute("sessionObj_PersonalInfo");
 
-		
-		
-//		if(RegistrationSingleton.avaiabilityCount(addressDTO.getpThana())<=0)
-//		{
-//			return "cotaEnd";
-//		}
-		
+		if(duplicateSumissionCheck==null)
+		{
+			return "blankForm";
+		}
 		
 	    logInfoDTO.setxForward(ServletActionContext.getRequest().getHeader("X-Forwarded-For"));
 		logInfoDTO.setVia(ServletActionContext.getRequest().getHeader("Via"));
@@ -62,15 +54,7 @@ public String execute() throws Exception
 
         if(response.equalsIgnoreCase("success"))
         {
-        	//String decResponse=RegistrationSingleton.decreaseRegistrationCount(registrationId, addressDTO.getpDistrict(),addressDTO.getpThana());
         	ServletActionContext.getRequest().getSession().setAttribute("sessionObj_regId",registrationId);
-        	//TtcDTO ttcDto=RegistrationSingleton.getInterviewInformation(addressDTO.getpDistrict());
-        	//int interviewUpdate=regDAO.updateInterviewInforamtion(registrationId, ttcDto.getTtcId(), ttcDto.getInterviewDate());
-        	//if(interviewUpdate==1)
-        	//{
-        	//	int interviewDecrease=RegistrationSingleton.decreaseInterviewCount(ttcDto.getTtcId(), ttcDto.getInterviewDate());
-        	//}
-        	
         	return "success";
         }
         else
@@ -86,17 +70,15 @@ public void validate()
 	
     
 	String submittedCode = personalDTO.getCaptchaText();
-	//CaptchaManager  cm=new CaptchaManager();
-	//boolean response=cm.validateCaptcha(rc, submittedCode, 2); //1 is for Registration Form
 	String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
 	
-//	if(!submittedCode.equalsIgnoreCase(generatedCode))
-//	{addFieldError( "Err_captchaError", " Please Write Correctly" );error=true;}
-//	else
-//	{
-//		ServletActionContext.getRequest().getSession().setAttribute("captchaText",PassPhrase.getNext());
-//		
-//	}
+	if(!submittedCode.equalsIgnoreCase(generatedCode))
+	{addFieldError( "Err_captchaError", " Please Write Correctly" );error=true;}
+	else
+	{
+		ServletActionContext.getRequest().getSession().setAttribute("captchaText",PassPhrase.getNext());
+		
+	}
 	
 	checkErrorStatus();
 

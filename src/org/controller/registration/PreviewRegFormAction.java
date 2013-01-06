@@ -32,16 +32,12 @@ public class PreviewRegFormAction extends ActionSupport{
 
 	boolean error=false;
 	
-	public String execute() throws Exception {
+	public String execute() throws Exception 
+	{
 
 		System.out.println("In Preview Action ...");
-//		if(RegistrationSingleton.avaiabilityCount(Integer.parseInt(addressDTO.getpDistrict()))<=0)
-//		{
-//			return "cotaEnd";
-//		}
-
 	    return SUCCESS;	
-	    }
+	}
 	
 	public void validate() 
 	{
@@ -116,24 +112,21 @@ public class PreviewRegFormAction extends ActionSupport{
 		}
 		addressDTO.setMUnionName(mUnionName);
 
-		
+    	//nomineeDTO.setNomineeAddress(nomineeDTO.getNomineeAddress().replaceAll("\n", "<br>"));
+    	sub_NomineeAddress=nomineeDTO.getNomineeAddress().replaceAll("\n", "<br>");		
 		
 		
 		/*=================End of Address ====================*/
 		String submittedCode = personalDTO.getCaptchaText();
-		CaptchaManager  cm=new CaptchaManager();
-		//boolean response=cm.validateCaptcha(rc, submittedCode, 1); //1 is for Registration Form
 		String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
-		
-
 		  
-//		if(!submittedCode.equalsIgnoreCase(generatedCode))
-//		{addFieldError( "Err_captchaError", " Please Write Correctly" );error=true;}
-//		else
-//		{
-//			ServletActionContext.getRequest().getSession().setAttribute("captchaText",PassPhrase.getNext());
-//			
-//		}
+		if(!submittedCode.equalsIgnoreCase(generatedCode))
+		{addFieldError( "Err_captchaError", " Please Write Correctly" );error=true;}
+		else
+		{
+			ServletActionContext.getRequest().getSession().setAttribute("captchaText",PassPhrase.getNext());
+			
+		}
 		
 		checkErrorStatus();
 	

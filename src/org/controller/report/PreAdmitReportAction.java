@@ -54,15 +54,17 @@ public class PreAdmitReportAction extends ActionSupport implements ServletContex
 		
 		
 		String sessionRegId=(String)ServletActionContext.getRequest().getSession().getAttribute("sessionObj_regId");
-		if(sessionRegId!=null)
+		
+		if(sessionRegId==null && (registrationId==null || captchaCode==null))
 		{
-			if(!sessionRegId.equalsIgnoreCase(registrationId))
-			{
-				return "admit_home";
-			}
-			else
-				registrationId=sessionRegId;
+			return "registration_home";
 		}
+		
+		else if(registrationId==null && sessionRegId!=null)
+		{
+			registrationId=sessionRegId;
+		}
+
 		
 		ServletActionContext.getRequest().getSession().setAttribute("sessionObj_regId",null);
 		RegistrationDAO regDAO=new RegistrationDAO();
@@ -143,28 +145,28 @@ public class PreAdmitReportAction extends ActionSupport implements ServletContex
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 560);
+			over.setTextMatrix(200, 580);
 			over.showText(personalInfoDto.getRegId());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 536);
+			over.setTextMatrix(200, 556);
 			over.showText(personalInfoDto.getEmpFullName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 512);
+			over.setTextMatrix(200, 532);
 			over.showText(personalInfoDto.getFatherName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 490);
+			over.setTextMatrix(200, 508);
 			over.showText(personalInfoDto.getMotherName());
 			
 		
 			
 			over.setFontAndSize(bf, 8);
-			over.setTextMatrix(140, 450);
+			over.setTextMatrix(140, 468);
 			over.showText("Printed on : "+personalInfoDto.getPrintedOn()+"    IP Address :"+personalInfoDto.getIpAddress()+"   Submitted on :"+personalInfoDto.getApplicationDateTime());
 			
 			
@@ -205,8 +207,7 @@ public class PreAdmitReportAction extends ActionSupport implements ServletContex
 					
 		}
 		
-		
-		ServletActionContext.getRequest().getSession().setAttribute("captchaText",RandomGenerator.generateRandomWords(1)[0]);
+		ServletActionContext.getRequest().getSession().setAttribute("captchaText",PassPhrase.getNext());
 		
 		return null;	
 		

@@ -73,7 +73,6 @@
 		<result name="regOperator">
 			/WEB-INF/jsp/RegOperatorHome.jsp
 		</result>		
-		<interceptor-ref name="secureStack"/>
 	</action>
 	
 	<action name="homePage" class="org.controller.user.UserUtility" method="homePage">
@@ -81,11 +80,11 @@
 	</action>
 	
 	<action name="regHomeAction" class="org.controller.registration.RegistrationAction" method="regHomeAction">
-		<result name="REG_HOME">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
+		<result name="REG_HOME">/WEB-INF/jsp/registration/RegistrationHome.jsp</result>
 	</action>
 	
 	<action name="previewRegFormAction" class="org.controller.registration.PreviewRegFormAction">
-		<result name="input">/WEB-INF/jsp/registration/Test_RegistrationHome.jsp</result>
+		<result name="input">/WEB-INF/jsp/registration/RegistrationHome.jsp</result>
 			<result name="success">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
 			<result name="cotaEnd">
 				/WEB-INF/jsp/registration/CotaEnd.jsp
@@ -116,6 +115,9 @@
 		</result>
 		<result name="admit_home">
 			/WEB-INF/jsp/registration/AdmitCardHome.jsp
+		</result>
+		<result name="registration_home" type="redirect">
+			regHomeAction.action
 		</result>
 	</action>
 	

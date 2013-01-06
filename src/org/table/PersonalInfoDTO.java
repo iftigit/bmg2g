@@ -31,8 +31,12 @@ public class PersonalInfoDTO {
 	private String printedOn;
 	private String applicationDateTime;
 	private String ipAddress;
-	
+		
 	private String cotaUnionId;
+	
+	private String desiredJob1;
+	private String desiredJobCat1;
+	private String desiredJobSubcategory1;
 	
 	public String getCaptchaText() {
 		return captchaText;
@@ -201,6 +205,25 @@ public class PersonalInfoDTO {
 	}
 	public void setCotaUnionId(String cotaUnionId) {
 		this.cotaUnionId = cotaUnionId;
+	}
+	public String getDesiredJob1() {
+		return desiredJob1;
+	}
+	public void setDesiredJob1(String desiredJob1) {
+		this.desiredJob1 = desiredJob1;
+	}
+	
+	public String getDesiredJobCat1() {
+		return desiredJobCat1;
+	}
+	public void setDesiredJobCat1(String desiredJobCat1) {
+		this.desiredJobCat1 = desiredJobCat1;
+	}
+	public String getDesiredJobSubcategory1() {
+		return desiredJobSubcategory1;
+	}
+	public void setDesiredJobSubcategory1(String desiredJobSubcategory1) {
+		this.desiredJobSubcategory1 = desiredJobSubcategory1;
 	}
 	
 	
