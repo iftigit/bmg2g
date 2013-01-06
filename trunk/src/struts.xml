@@ -109,12 +109,12 @@
 		<result name="input">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
 	</action>
 		
-	<action name="downloadAdmitCard" class="org.controller.report.PreCardReportAction">
+	<action name="downloadAdmit" class="org.controller.report.PreAdmitReportAction">
 		<result type="stream">
 			<param name="contentType">application/pdf</param>
 			<param name="inputName">inputStream</param>
 		</result>
-		<result name="admitcard_home">
+		<result name="admit_home">
 			/WEB-INF/jsp/registration/AdmitCardHome.jsp
 		</result>
 	</action>
