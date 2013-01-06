@@ -29,7 +29,7 @@
 </center>
 </div>
 
-<form action="downloadAdmitCard.action" method="post">
+<form action="downloadAdmit.action" method="post">
 <center>
 <div id="Example_F" style="height: 580px;width: 1000px;margin-top: 10px;">
 <table width="80%" border="0" align="center" style="padding-top: 100px;">
@@ -72,7 +72,7 @@
   </td>
   <td align="left" width="60%" style="padding-left: 10px;padding-top: 60px;">
     	
-<input type="submit" class="submitButton" name="Downalod Card" value="Download Admit Card" style="width: 200px;"  />
+<input type="submit" class="submitButton" name="Downalod_Card" value="Download Admit Card" style="width: 200px;"  />
 
     	
   </td>
