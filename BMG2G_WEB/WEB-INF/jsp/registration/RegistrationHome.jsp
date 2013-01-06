@@ -557,7 +557,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 </div>
 
 <div style="margin-top: 20px;">
+<input type="button" class="submitButton" name="goHomeButton" value="Go Home" onclick="window.location='homePage.action'" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="submit" tabindex="46" class="submitButton" name="SubmitApplication" value="Submit Application" />
+
 
 </div>
 <p style="height: 30px"></p>
