@@ -272,7 +272,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td>
      	<select tabindex="15" name="personalDTO.religion" id="RELIGION" class="addressSelectBox">
      											<option value="select" selected="selected">--Select Religion--</option>
-												<option value="Islam" selected="selected">Islam</option>
+												<option value="Islam">Islam</option>
 												<option value="Hinduism">Hinduism</option>
 												<option value="Christianity">Christianity</option>
 												<option value="Buddhism">Buddhism</option>
