@@ -89,7 +89,8 @@ function ageCount(dob) {
         var y2 = date2.getFullYear(); //getting dob year
         var age = y1 - y2;           //calculating age 
         //document.write("Age : " + age);
-        return age+"    Years";
+        //return age+"    Years";
+        return age;
     } else {
         alert("Invalid date format. Please Input in (dd/mm/yyyy) format!");
         return false;

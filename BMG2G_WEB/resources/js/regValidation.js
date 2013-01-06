@@ -248,47 +248,47 @@ function checkTrainingInformation()
 function checkSubCategory(value)
 {
 //alert(value);
-	document.getElementById("SUBCATEGORY").options.length = 0;
-	addOption("SUBCATEGORY","--Select Sub Category--","select");
+	document.getElementById("DESIREDJOBSUBCAT1").options.length = 0;
+	addOption("DESIREDJOBSUBCAT1","--Select Sub Category--","select");
 	if(value=="Agriculture")
 	{
-		addOption("SUBCATEGORY","Agriculture labor","Agriculture labor");
-		addOption("SUBCATEGORY","Fisher man","Fisher man");
-		addOption("SUBCATEGORY","Flower Nursery","Flower Nursery");
-		addOption("SUBCATEGORY","Vegetable gardening","Vegetable gardening");
-		addOption("SUBCATEGORY","Others","Others");						
+		addOption("DESIREDJOBSUBCAT1","Agriculture labor","Agriculture labor");
+		addOption("DESIREDJOBSUBCAT1","Fisher man","Fisher man");
+		addOption("DESIREDJOBSUBCAT1","Flower Nursery","Flower Nursery");
+		addOption("DESIREDJOBSUBCAT1","Vegetable gardening","Vegetable gardening");
+		addOption("DESIREDJOBSUBCAT1","Others","Others");						
 	}
 	if(value=="Manufacturing")
 	{
-		addOption("SUBCATEGORY","Factory worker","Factory worker");
-		addOption("SUBCATEGORY","Machine Tools Operator","Machine Tools Operator");
-		addOption("SUBCATEGORY","Garments worker","Garments worker");
-		addOption("SUBCATEGORY","Mechanics","Mechanics");						
-		addOption("SUBCATEGORY","Others","Others");		
+		addOption("DESIREDJOBSUBCAT1","Factory worker","Factory worker");
+		addOption("DESIREDJOBSUBCAT1","Machine Tools Operator","Machine Tools Operator");
+		addOption("DESIREDJOBSUBCAT1","Garments worker","Garments worker");
+		addOption("DESIREDJOBSUBCAT1","Mechanics","Mechanics");						
+		addOption("DESIREDJOBSUBCAT1","Others","Others");		
 	}
 	if(value=="Construction")
 	{
-		addOption("SUBCATEGORY","Masson","Masson");
-		addOption("SUBCATEGORY","Rod binder","Rod binder");
-		addOption("SUBCATEGORY","Pipe fitter","Pipe fitter");
-		addOption("SUBCATEGORY","Electrician","Electrician");						
-		addOption("SUBCATEGORY","Carpenter","Carpenter");
-		addOption("SUBCATEGORY","Painter","Painter");
-		addOption("SUBCATEGORY","Still fixture","Still fixture");
-		addOption("SUBCATEGORY","Tiles fixture","Tiles fixture");
-		addOption("SUBCATEGORY","Welder","Welder");
-		addOption("SUBCATEGORY","Others","Others");									
+		addOption("DESIREDJOBSUBCAT1","Masson","Masson");
+		addOption("DESIREDJOBSUBCAT1","Rod binder","Rod binder");
+		addOption("DESIREDJOBSUBCAT1","Pipe fitter","Pipe fitter");
+		addOption("DESIREDJOBSUBCAT1","Electrician","Electrician");						
+		addOption("DESIREDJOBSUBCAT1","Carpenter","Carpenter");
+		addOption("DESIREDJOBSUBCAT1","Painter","Painter");
+		addOption("DESIREDJOBSUBCAT1","Still fixture","Still fixture");
+		addOption("DESIREDJOBSUBCAT1","Tiles fixture","Tiles fixture");
+		addOption("DESIREDJOBSUBCAT1","Welder","Welder");
+		addOption("DESIREDJOBSUBCAT1","Others","Others");									
 	}
 	if(value=="Service")
 	{
-		addOption("SUBCATEGORY","Driver","Driver");
-		addOption("SUBCATEGORY","Hotel boy","Hotel boy");
-		addOption("SUBCATEGORY","Cleaner","Cleaner");
-		addOption("SUBCATEGORY","Cook","Cook");						
-		addOption("SUBCATEGORY","Computer operator","Computer operator");
-		addOption("SUBCATEGORY","Sales man","Sales man");
-		addOption("SUBCATEGORY","Security Guard","Security Guard");
-		addOption("SUBCATEGORY","Others","Others");								
+		addOption("DESIREDJOBSUBCAT1","Driver","Driver");
+		addOption("DESIREDJOBSUBCAT1","Hotel boy","Hotel boy");
+		addOption("DESIREDJOBSUBCAT1","Cleaner","Cleaner");
+		addOption("DESIREDJOBSUBCAT1","Cook","Cook");						
+		addOption("DESIREDJOBSUBCAT1","Computer operator","Computer operator");
+		addOption("DESIREDJOBSUBCAT1","Sales man","Sales man");
+		addOption("DESIREDJOBSUBCAT1","Security Guard","Security Guard");
+		addOption("DESIREDJOBSUBCAT1","Others","Others");								
 	}
 }
 
