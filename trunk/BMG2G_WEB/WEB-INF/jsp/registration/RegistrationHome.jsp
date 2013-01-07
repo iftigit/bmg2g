@@ -540,11 +540,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <p>
 
   <div>
-  <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap" alt="no image" id="captchaImage" name="captchaImage" />
+  <img src="BMG2G_WEB/CaptchaServlet.cap" alt="no image" id="captchaImage" name="captchaImage" />
   
   <input type="hidden" name="rc" value="<s:property value='rc'/>" /> 
   <br/>
-  <input type="button" value="Refresh"  onclick="refreshCaptcha('rc=<s:property value="rc"/>&ft=1')" />
+  <input type="button" value="Refresh"  onclick="refreshCaptcha('')" />
   </div>
   <br/>
   <div>
@@ -560,7 +560,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 <input type="button" class="submitButton" name="goHomeButton" value="Go Home" onclick="window.location='homePage.action'" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="submit" tabindex="46" class="submitButton" name="SubmitApplication" value="Submit Application" />
+<input type="submit" tabindex="46" class="submitButton" name="SubmitApplication" value="Preview Application" />
 
 
 </div>
@@ -576,7 +576,9 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
  <%} %>
  
 <script type="text/javascript">
-$('input').attr('autocomplete','off');   
+$('input').attr('autocomplete','off');
+
+//refreshCaptcha('');   
 </script>
 
 </form>

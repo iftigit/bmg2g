@@ -33,7 +33,7 @@
   {
   var rightnow = new Date();
 if (document.images)
- document.images.captchaImage.src = 'http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?' + rightnow.getTime();
+ document.images.captchaImage.src = 'BMG2G_WEB/CaptchaServlet.cap?' + rightnow.getTime();
 
   }
   function submitForm(actionName)
@@ -425,7 +425,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <p>
 
   <div>
-  <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap?rc=<s:property value="rc"/>&ft=2" alt="no image" id="captchaImage" name="captchaImage" /> 
+  <img src="BMG2G_WEB/CaptchaServlet.cap?rc=<s:property value="rc"/>&ft=2" alt="no image" id="captchaImage" name="captchaImage" /> 
   <input type="hidden" name="rc" value="<s:property value="rc"/>" /> 
   <br/>
   <input type="button" value="Refresh"  onclick="refreshCaptcha('rc=<s:property value="rc"/>&ft=1')" />
@@ -448,6 +448,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 </center>
 
 </form>
+<script type="text/javascript">
+//refreshCaptcha('rc=<s:property value="rc"/>&ft=1');
+
+</script>
+
+
 </body>
 
 </html>

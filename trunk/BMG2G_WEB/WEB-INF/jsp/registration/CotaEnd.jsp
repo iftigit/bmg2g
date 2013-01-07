@@ -39,7 +39,7 @@
 <div style="font-size: 25px;font-weight: bold;padding-top: 50px;color: #800040">Sorry, Quota for the Selected District has already been filled.</div>
 <div style="margin-top: 100px;">
 <input type="submit" class="submitButton" name="Preview Application" value="Go to Main Website" />
-<a href="http://localhost:8080/BMG2G_WEB/regHomeAction.action" style="text-decoration: none;">
+<a href="/BMG2G_WEB/regHomeAction.action" style="text-decoration: none;">
 <input type="submit" class="submitButton" name="Preview Application" value="Go to Registration Form" style="margin-left: 150px;" />
 </a>
 </div>
