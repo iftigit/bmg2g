@@ -57,7 +57,7 @@
   
   </td>
   <td align="left" width="60%" style="padding-left: 10px;padding-top: 50px;">
-    <img src="http://localhost:8080/BMG2G_WEB/CaptchaServlet.cap" alt="no image" id="captchaImage" name="captchaImage" /> 
+    <img src="/BMG2G_WEB/CaptchaServlet.cap" alt="no image" id="captchaImage" name="captchaImage" /> 
   <a href="#" onclick="refreshCaptcha()">
   	<img src="/BMG2G_WEB/resources/images/refresh_icon.gif" />
   </a>
@@ -84,6 +84,9 @@
 </div>
 </center>
 </form>
+<script type="text/javascript">
+refreshCaptcha('rc=<s:property value="rc"/>&ft=1');
+</script>
 
 
 <div id="footer">

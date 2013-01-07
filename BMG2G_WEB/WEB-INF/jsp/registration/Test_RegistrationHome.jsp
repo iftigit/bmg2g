@@ -579,6 +579,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
  <%} %>
  
 <script type="text/javascript">
+//refreshCaptcha('rc=<s:property value="rc"/>&ft=1');
 $('input').attr('autocomplete','off');   
 </script>
 
