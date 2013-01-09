@@ -56,6 +56,11 @@ function getSecurityCode()
 				alert("Please type captcha text correctly");
 				document.getElementById("securitycode").disabled = false;	
 			}
+			if(xmlhttp.responseText=="Please type correct mobile no")
+			{
+				alert("Please type correct mobile no");
+				document.getElementById("securitycode").disabled = false;	
+			}
 		}
 	}
 	//alert("ho");
@@ -63,12 +68,63 @@ function getSecurityCode()
 		"&ctext="+document.getElementById("captchaText").value;
 	xmlhttp.open("GET",url,false);
 	xmlhttp.send();
+	document.getElementById("mobile1").value=document.getElementById("PERMANENT_MOBILE").value;
 	document.getElementById("PERMANENT_MOBILE").value="01";
 	document.getElementById("captchaText").value="";
 	refreshCaptcha1('');
-	document.getElementById("mobile1").value=document.getElementById("PERMANENT_MOBILE").value;
+
 	
 }
+function getPasswordCode()
+{
+	document.getElementById("passwordcode").disabled = 'disabled';
+	if(document.getElementById("mobile1").value.length<11)
+	{
+		alert("Please fillup mobile correctly");
+		return;
+	}
+	if(document.getElementById("captchaText1").value=="")
+	{
+		alert("Please fillup captcha code correctly");
+		return;	
+	}	
+	if (window.XMLHttpRequest)
+	{
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			if(xmlhttp.responseText=="Please type captcha text correctly")
+			{
+				alert("Please type captcha text correctly");
+				document.getElementById("passwordcode").disabled = false;	
+			}
+			if(xmlhttp.responseText=="Please type correct mobile no or code")
+			{
+				alert("Please type correct mobile no or code");
+				document.getElementById("passwordcode").disabled = false;	
+			}
+		}
+	}
+	//alert("ho");
+	var url="/BMG2G_WEB/passwordCode?mobile="+document.getElementById("mobile1").value+
+		"&scode="+document.getElementById("ccode").value+"&ctext="+document.getElementById("captchaText1").value;
+	xmlhttp.open("GET",url,false);
+	xmlhttp.send();
+	document.getElementById("mobile1").value="01";
+	document.getElementById("captchaText1").value="";
+}
+
+
+
 function refreshCaptcha1(queryParam)
 {
 	var rightnow = new Date();
@@ -145,13 +201,13 @@ function refreshCaptcha1(queryParam)
     <tr>
     	<td width="25%"></td>
     	<td width="75%" colspan=3>
-    		<input type="text" class="captchCode" id="captchaText" name="personalDTO.captchaText"/>
+    		<input type="text" class="captchCode" id="captchaText1" name="personalDTO.captchaText"/>
     		<div style="color: red"><s:label name="Err_captchaError" ></s:label></div>
     	</td>
     </tr>
     
     </table>
-	<input type="button" class="submitButton" name="passwordcode" value="Get Password" onclick="getSecurityCode()" />
+	<input type="button" class="submitButton" id="passwordcode" value="Get Password" onclick="getPasswordCode()" />
     
     </p>
 </div>

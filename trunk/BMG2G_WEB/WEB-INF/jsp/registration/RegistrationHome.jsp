@@ -372,7 +372,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     
     <tr>
-     <td>Upazilla/Pouroshova<font color="red">*</font></td>
+     <td>Upazilla<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_THANA_TD">
         <select tabindex="21" name="addressDTO.pThana" id="PERMANENT_THANA" class="addressSelectBox" onchange="fetchJSONData_Union(this.value,'PERMANENT_UNION')">
         
@@ -382,19 +382,19 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      	</s:iterator>
        </select>
      </td>
-     <td valign="top">Upazilla/Pouroshova<font color="red">*</font></td>
+     <td valign="top">Upazilla<font color="red">*</font></td>
      <td valign="top" id="MAILING_THANA_TD">
      	<select tabindex="31" name="addressDTO.mThana" id="MAILING_THANA" class="addressSelectBox">
         </select>
      </td>
     </tr>
     <tr>
-     <td>Union/Ward<font color="red">*</font></td>
+     <td>Union/Pouroshova<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_UNION_TD">
         <select tabindex="22" name="addressDTO.pUnion" id="PERMANENT_UNION" class="addressSelectBox" >
        </select>
      </td>
-     <td valign="top">Union/Ward<font color="red">*</font></td>
+     <td valign="top">Union/Pouroshova<font color="red">*</font></td>
      <td valign="top" id="MAILING_UNION_TD">
      	<select tabindex="32" name="addressDTO.mUnion" id="MAILING_UNION" class="addressSelectBox" >
         </select>
@@ -402,22 +402,22 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     </tr>
     
     <tr>
-     <td>Post Office<font color="red">*</font></td>
+     <td>Post Office</td>
      <td valign="top">
      	<input type="text" tabindex="23" name="addressDTO.pPost" maxlength="30" id="PERMANENT_POST"  class="textBox" value="<s:property value="addressDTO.pPost"/>" />
      </td>
-     <td valign="top">Post Office<font color="red">*</font></td>
+     <td valign="top"></td>
      <td valign="top">
      	<input type="text" tabindex="33" name="addressDTO.mPost" maxlength="30" id="MAILING_POST" class="textBox" value="<s:property value="addressDTO.mPost"/>"  />
      </td>
     </tr>
     
      <tr>
-     <td>Post Code<font color="red">*</font></td>
+     <td>Post Code</td>
      <td valign="top">
      	<input type="text" tabindex="24" name="addressDTO.pPostCode" maxlength="30" id="PERMANENT_POST_CODE"  class="textBox" value="<s:property value="addressDTO.pPostCode"/>" />
      </td>
-     <td valign="top">Post Code<font color="red">*</font></td>
+     <td valign="top"></td>
      <td valign="top">
      	<input type="text" tabindex="34" name="addressDTO.mPostCode" maxlength="30" id="MAILING_POST_CODE"  class="textBox" value="<s:property value="addressDTO.mPostCode"/>" />     		
      </td>
@@ -459,11 +459,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td>Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="28" name="addressDTO.pMobile" maxlength="25" id="PERMANENT_MOBILE" class="textBox" value="<s:property value="addressDTO.pMobile"/>" onkeypress="return numericOnly(event)" />
+     	<input type="text" tabindex="28" name="addressDTO.pMobile" maxlength="11" id="PERMANENT_MOBILE" class="textBox" value="<s:property value="addressDTO.pMobile"/>" onkeypress="return numericOnly(event)" />
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="38" maxlength="25" name="addressDTO.mMobile" id="MAILING_MOBILE" class="textBox"  value="<s:property value="addressDTO.mMobile"/>" onkeypress="return numericOnly(event)"  />
+     	<input type="text" tabindex="38" maxlength="11" name="addressDTO.mMobile" id="MAILING_MOBILE" class="textBox"  value="<s:property value="addressDTO.mMobile"/>" onkeypress="return numericOnly(event)"  />
      </td>
     </tr>
     </table>
@@ -511,7 +511,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="42" name="nomineeDTO.nomineePhone" id="NOMINEE_PHONE" maxlength="25" class="textBox" value="<s:property value="nomineeDTO.nomineePhone" />" onkeypress="return numericOnly(event)" />
+     	<input type="text" tabindex="42" name="nomineeDTO.nomineePhone" id="NOMINEE_PHONE" maxlength="11" class="textBox" value="<s:property value="nomineeDTO.nomineePhone" />" onkeypress="return numericOnly(event)" />
    	  </td>
     </tr>
     
@@ -522,7 +522,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      </td>
      <td valign="top">Contact Person Mobile<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="44" name="nomineeDTO.contactMobile" id="CONTACT_MOBILE" maxlength="25" class="textBox"  onkeypress="return numericOnly(event)" value="<s:property value="nomineeDTO.contactMobile" />" />
+     	<input type="text" tabindex="44" name="nomineeDTO.contactMobile" id="CONTACT_MOBILE" maxlength="11" class="textBox"  onkeypress="return numericOnly(event)" value="<s:property value="nomineeDTO.contactMobile" />" />
    	  </td>
     </tr>    
     
