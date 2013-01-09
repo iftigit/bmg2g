@@ -183,6 +183,9 @@
 		<action name="securityCode" class="org.controller.authentication.NewPassword" method="securityCode">			
 			<interceptor-ref name="defaultStack"/>
 		</action>
+		<action name="passwordCode" class="org.controller.authentication.NewPassword" method="getNewPassword">			
+			<interceptor-ref name="defaultStack"/>
+		</action>
 
 		<action name="np_pp" class="org.controller.authentication.NewPassword" method="np_pp">			
 			<interceptor-ref name="defaultStack"/>
