@@ -72,10 +72,13 @@
     
         
         			
+        			/*
         			$("#PERMANENT_POST").require("Post Office is required.");
         			$("#MAILING_POST").require("Post Office is required.");
         			$("#PERMANENT_POST_CODE").require("Post Code is required.");
         			$("#MAILING_POST_CODE").require("Post Code is required.");
+        			*/
+        			
         			$("#PERMANENT_MOBILE").require("Mobile Number required.");
         			$("#MAILING_MOBILE").require("Mobile Number required.");
         			
