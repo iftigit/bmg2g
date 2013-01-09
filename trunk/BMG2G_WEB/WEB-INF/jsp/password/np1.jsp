@@ -188,7 +188,7 @@ function refreshCaptcha1(queryParam)
     <tr>
      <td width="25%">Confirmation Code</td>
      <td width="75%" colspan="3" >
-	 <input type="text" tabindex="1" name="ccode" id="ccode" value="" class="nameTextBox"/>
+	 <input type="text" tabindex="1" name="ccode" maxlength="5" id="ccode" value="" class="nameTextBox"/>
      </td>
     </tr>
     <tr>
