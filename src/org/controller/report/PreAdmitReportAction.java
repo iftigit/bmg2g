@@ -118,7 +118,7 @@ public class PreAdmitReportAction extends ActionSupport implements ServletContex
 			code128.setCode(registrationId); 
 			PdfTemplate tp128= 
 			code128.createTemplateWithBarcode(over, null, null); 
-			over.addTemplate(tp128, 405, 750);
+			over.addTemplate(tp128, 405, 758);
 			
 			/*cb.concatCTM(1, 0, 0, 1, 295, 770); 
 				Barcode128 code128 = new Barcode128(); 
@@ -145,28 +145,28 @@ public class PreAdmitReportAction extends ActionSupport implements ServletContex
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 580);
+			over.setTextMatrix(200, 587);
 			over.showText(personalInfoDto.getRegId());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 556);
+			over.setTextMatrix(200, 562);
 			over.showText(personalInfoDto.getEmpFullName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 532);
+			over.setTextMatrix(200, 538);
 			over.showText(personalInfoDto.getFatherName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 508);
+			over.setTextMatrix(200, 514);
 			over.showText(personalInfoDto.getMotherName());
 			
 		
 			
 			over.setFontAndSize(bf, 8);
-			over.setTextMatrix(140, 468);
+			over.setTextMatrix(140, 476);
 			over.showText("Printed on : "+personalInfoDto.getPrintedOn()+"    IP Address :"+personalInfoDto.getIpAddress()+"   Submitted on :"+personalInfoDto.getApplicationDateTime());
 			
 			
