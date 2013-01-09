@@ -70,6 +70,12 @@
      </td>
     </tr>
  
+ 	<tr>
+     <td style="text-align: center">
+     	<a href="technicalTeam.action">Contact your Technical Person</a>
+     </td>
+    </tr>
+    
      <tr>
      <td style="text-align: center">
      	<a href="logout.action">Logout</a>

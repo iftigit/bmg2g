@@ -60,8 +60,10 @@
     <table width="100%" border="0" cellspacing="1" class="infoTable">
     
     <tr>
-     <td>Userid</td>
-     <td><input type="text" tabindex="6" name="userId" id="USERID" maxlength="15" class="textBox" value="<s:property value='userId' />" /></td>
+     <td align="left" width="20%">Userid</td>
+     <td align="left" width="80%"><input type="text" tabindex="6" name="userId" id="USERID" maxlength="15" class="textBox" value="<s:property value='userId' />" />
+     [Mobile No.] 
+     </td>
     </tr>
 
     
