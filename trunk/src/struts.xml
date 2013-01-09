@@ -190,6 +190,18 @@
 		<action name="np_pp" class="org.controller.authentication.NewPassword" method="np_pp">			
 			<interceptor-ref name="defaultStack"/>
 		</action>
+		
+		
+		<action name="technicalTeam">			
+			<result name="success">/WEB-INF/jsp/registration/TechnicalTeam.jsp</result>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		
+		<action name="regOperatorHome">			
+			<result name="success">/WEB-INF/jsp/RegOperatorHome.jsp</result>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		
 
 		
 		

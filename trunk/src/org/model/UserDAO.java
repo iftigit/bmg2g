@@ -3,7 +3,9 @@ package org.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import org.table.TechnicalTeamDTO;
 import org.table.UserDTO;
 
 import util.connection.ConnectionManager;
@@ -109,6 +111,40 @@ public class UserDAO {
 			return true;
 		else
 			return false;
+	}
+	
+	public ArrayList<TechnicalTeamDTO> getTechnicalTeam(String districtId)
+	{
+		ArrayList<TechnicalTeamDTO> teamList=new ArrayList<TechnicalTeamDTO>();
+		TechnicalTeamDTO team=null;
+		
+		 Connection conn = ConnectionManager.getConnection();
+		   String sql = " Select * from TECH_CONTACT_INFO Where dist_id=? Order by CONTACT_PERSON";
+		   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				
+			    stmt.setString(1, districtId);
+			    
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					team=new TechnicalTeamDTO();
+					team.setContactName(r.getString("CONTACT_PERSON"));
+					team.setMobileNo(r.getString("CONTACT_MOBILE"));
+					
+					teamList.add(team);
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+		
+		
+		return teamList;
 	}
 	
 
