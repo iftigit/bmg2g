@@ -45,8 +45,8 @@
                     $("#FIRST_NAME")                      // The first input:    
         			.require("First Name is required.");                         // Required:
         			
-        			$("#LAST_NAME")                      // The first input:    
-        			.require("Last Name is required.");                         // Required:
+        			//$("#LAST_NAME")                      // The first input:    
+        			//.require("Last Name is required.");                         // Required:
         			
         			$("#FATHER_NAME")                      // The first input:    
         			.require("Father's Name is required.");                         // Required:
@@ -409,7 +409,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
      	<input type="text" tabindex="23" name="addressDTO.pPost" maxlength="30" id="PERMANENT_POST"  class="textBox" value="<s:property value="addressDTO.pPost"/>" />
      </td>
-     <td valign="top"></td>
+     <td valign="top">Post Office</td>
      <td valign="top">
      	<input type="text" tabindex="33" name="addressDTO.mPost" maxlength="30" id="MAILING_POST" class="textBox" value="<s:property value="addressDTO.mPost"/>"  />
      </td>
@@ -420,7 +420,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
      	<input type="text" tabindex="24" name="addressDTO.pPostCode" maxlength="30" id="PERMANENT_POST_CODE"  class="textBox" value="<s:property value="addressDTO.pPostCode"/>" />
      </td>
-     <td valign="top"></td>
+     <td valign="top">Post Code</td>
      <td valign="top">
      	<input type="text" tabindex="34" name="addressDTO.mPostCode" maxlength="30" id="MAILING_POST_CODE"  class="textBox" value="<s:property value="addressDTO.mPostCode"/>" />     		
      </td>
