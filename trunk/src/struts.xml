@@ -186,10 +186,14 @@
 		<action name="passwordCode" class="org.controller.authentication.NewPassword" method="getNewPassword">			
 			<interceptor-ref name="defaultStack"/>
 		</action>
-
 		<action name="np_pp" class="org.controller.authentication.NewPassword" method="np_pp">			
 			<interceptor-ref name="defaultStack"/>
 		</action>
+
+		<action name="sendFirstPassword" class="org.controller.authentication.NewPassword" method="sendFirstPassword">			
+			<interceptor-ref name="defaultStack"/>
+		</action>
+
 		
 		
 		<action name="technicalTeam">			
@@ -202,6 +206,7 @@
 			<interceptor-ref name="defaultStack"/>
 		</action>
 		
+
 
 		
 		
