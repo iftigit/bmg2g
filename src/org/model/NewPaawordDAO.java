@@ -1,9 +1,14 @@
 package org.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import oracle.jdbc.driver.OracleCallableStatement;
 import util.connection.ConnectionManager;
+import java.util.ArrayList;
+
+import org.table.UserDTO;
 
 public class NewPaawordDAO {
 	
@@ -48,5 +53,47 @@ public class NewPaawordDAO {
 	    {e.printStackTrace();}stmt = null;conn = null;}
 	    return response;		
 	}
-
+	public ArrayList<UserDTO> getAllUser()
+	{
+		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
+		UserDTO user=null;
+		Connection conn = ConnectionManager.getConnection();
+		String sql = " Select * from MST_USER";
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			r = stmt.executeQuery();
+			while (r.next())
+			{
+				user=new UserDTO();
+				user.setUserId(r.getString("USERID"));
+				tmp.add(user);
+			}
+		} 
+		catch (Exception e){e.printStackTrace();}
+		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+		{e.printStackTrace();}stmt = null;conn = null;}
+		return tmp;
+	}
+	private static PreparedStatement stmtNewPassword = null;
+	private static String sqlNewPassword = "update mst_user set password=? where userid=?";
+	private static Connection connection = null;
+	public static void setNewPassword(String user,String pass)
+	{
+		String response="";
+		try
+		{
+			if(connection==null || connection.isClosed())
+                connection = ConnectionManager.getConnection();
+			if(stmtNewPassword==null)
+				stmtNewPassword = connection.prepareStatement(sqlNewPassword);
+			 stmtNewPassword.setString(1,  pass);
+			 stmtNewPassword.setString(2,  user);
+			 stmtNewPassword.execute();
+			 stmtNewPassword.clearParameters();
+		}
+	    catch (Exception e){e.printStackTrace();}
+	}	
 }

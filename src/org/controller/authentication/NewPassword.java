@@ -5,8 +5,11 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import org.model.*;
+import org.table.UserDTO;
 
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -148,39 +151,53 @@ System.out.println((String) ServletActionContext.getRequest().getParameter("ctex
 	{
 		try
 		{
-			String pcode=getPasswordCode();
 			String mobile = (String) ServletActionContext.getRequest().getParameter("mobile");
+			if(mobile==null || mobile.length()<11)
+			{
+				response.getOutputStream().write("<reply>You are not authorized user.</reply>".getBytes());
+				return null;
+			}
+			
 			mobile = mobile.trim().substring(mobile.length()-11, mobile.length());
-			response.getOutputStream().write("<reply>1</reply>".getBytes());
+			
+			
 System.out.println("SMS mobile :"+(String) ServletActionContext.getRequest().getParameter("mobile"));			
 System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getParameter("code"));
-			if(pcode.length()>5)
-				pcode = pcode.substring(0, 5);
-//			String response1 = new NewPaawordDAO().setPasswordCode(mobile, scode, pass);
+
+			String pass = getPasswordCode().substring(0, 5);
+			String response1 = new NewPaawordDAO().setPasswordCode(mobile, "no1234", pass);
 			
-			
-			
-			URL yahoo;
-			if(mobile.substring(0,3).equalsIgnoreCase("011"))
-				yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+mobile)+
-					"&txt="+URLEncoder.encode("Your password is="+pcode)+"&username="+URLEncoder.encode("bmet2")+
-					"&password="+URLEncoder.encode("bmet231"));
-			else
-				yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+mobile)+
-						"&txt="+URLEncoder.encode("Your password is="+pcode)+"&username="+URLEncoder.encode("bmet")+
-						"&password="+URLEncoder.encode("bmet231")); 		  
-				
-			URLConnection yc = yahoo.openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-			String inputLine;
-			String inputLine1="";
-			while ((inputLine = in.readLine()) != null)
+			if(response1.equalsIgnoreCase("no"))
 			{
-				System.out.println(inputLine);
-				if(inputLine!=null)
-					inputLine1+=inputLine;
+				response.getOutputStream().write("<reply>You are not authorized user.</reply>".getBytes());
+				return null;
 			}
-			in.close();
+			if(response1.equalsIgnoreCase("yes"))
+			{
+				response.getOutputStream().write(("<reply>Your Password is :"+pass+"</reply>").getBytes());
+				
+				URL yahoo;
+				if(mobile.substring(0,3).equalsIgnoreCase("011"))
+					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+mobile)+
+						"&txt="+URLEncoder.encode("Your password is="+pass)+"&username="+URLEncoder.encode("bmet2")+
+						"&password="+URLEncoder.encode("bmet231"));
+				else
+					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+mobile)+
+							"&txt="+URLEncoder.encode("Your password is="+pass)+"&username="+URLEncoder.encode("bmet")+
+							"&password="+URLEncoder.encode("bmet231")); 		  
+					
+				URLConnection yc = yahoo.openConnection();
+				BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+				String inputLine;
+				String inputLine1="";
+				while ((inputLine = in.readLine()) != null)
+				{
+					System.out.println(inputLine);
+					if(inputLine!=null)
+						inputLine1+=inputLine;
+				}
+				in.close();
+			}
 		}
 		catch(Exception e)
 		{
@@ -200,6 +217,49 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 //		}
 		return null;
 	}
+  public String sendFirstPassword()
+  {
+	  ArrayList<UserDTO> tmp = new NewPaawordDAO().getAllUser();
+	  Iterator<UserDTO> it = tmp.iterator();
+	  String pass = "";
+	  while(it.hasNext())
+	  {
+		  try
+		  {
+			  UserDTO ut = it.next();
+			  pass = getPasswordCode().substring(0, 5);
+			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
+			  
+			  URL yahoo;
+				if(ut.getUserId().substring(0,3).equalsIgnoreCase("011"))
+					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+ut.getUserId())+
+							"&txt="+URLEncoder.encode("Your password for logon :"+pass+" and url is g2g.bmet.gov.bd")+
+							"&username="+URLEncoder.encode("bmet2")+"&password="+URLEncoder.encode("bmet231")); 		  
+				else
+					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+ut.getUserId())+
+							"&txt="+URLEncoder.encode("Your password for logon :"+pass+" and url is g2g.bmet.gov.bd")+
+							"&username="+URLEncoder.encode("bmet")+"&password="+URLEncoder.encode("bmet231")); 		  
+					
+				URLConnection yc = yahoo.openConnection();
+				BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+				String inputLine;
+				String inputLine1="";
+				while ((inputLine = in.readLine()) != null)
+				{
+					System.out.println(inputLine);
+					if(inputLine!=null)
+						inputLine1+=inputLine;
+				}
+				in.close();
+		  }
+		  catch(Exception e)
+		  {
+			  e.printStackTrace();
+		  }
+	  }
+	  
+	  return null;
+  }
 	
   public String getSecurityCode() {
 	    Random rand = new Random();
