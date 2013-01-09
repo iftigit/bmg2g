@@ -251,6 +251,7 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 						inputLine1+=inputLine;
 				}
 				in.close();
+				Thread.sleep(100);
 		  }
 		  catch(Exception e)
 		  {
