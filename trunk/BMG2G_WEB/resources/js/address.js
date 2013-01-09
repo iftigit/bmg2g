@@ -159,6 +159,12 @@ function fetchUnionSuccess(originalRequest)
     document.getElementById('MAILING_UNION').readOnly =true;
    
     
+    $1('MAILING_POST').value=$1('PERMANENT_POST').value;
+    $1('MAILING_POST_CODE').value=$1('PERMANENT_POST_CODE').value;
+    $1('MAILING_ADDRESS_LINE1').value=$1('PERMANENT_ADDRESS_LINE1').value;
+    $1('MAILING_ADDRESS_LINE2').value=$1('PERMANENT_ADDRESS_LINE2').value;
+    
+    
    }
    
    else
@@ -170,6 +176,11 @@ function fetchUnionSuccess(originalRequest)
     $1('MAILING_DIST').innerHTML="";
     $1('MAILING_THANA').innerHTML="";
     $1('MAILING_UNION').innerHTML="";
+    
+    $1('MAILING_POST').value="";
+    $1('MAILING_POST_CODE').value="";
+    $1('MAILING_ADDRESS_LINE1').value="";
+    $1('MAILING_ADDRESS_LINE2').value="";
    }
    
   }
