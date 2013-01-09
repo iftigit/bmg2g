@@ -233,12 +233,14 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="35%">     	
      	<s:property value="addressDTO.pDivisionName" />     	
      	<input type="hidden" name="addressDTO.pDivision" value="<s:property value="addressDTO.pDivision" />" />
+     	<input type="hidden" name="addressDTO.pDivisionName" value="<s:property value="addressDTO.pDivisionName" />" />
      	
      </td>
      <td width="15%" style="color:#7D2252;">Division</td>
      <td width="35%">
      	<s:property value="addressDTO.mDivisionName" />
      	<input type="hidden" name="addressDTO.mDivision" value="<s:property value="addressDTO.mDivision" />" />
+     	<input type="hidden" name="addressDTO.mDivisionName" value="<s:property value="addressDTO.mDivisionName" />" />
      </td>
     </tr>
     <tr>
@@ -246,11 +248,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
      <s:property value="addressDTO.pDistrictName" />
      <input type="hidden" name="addressDTO.pDistrict" value="<s:property value="addressDTO.pDistrict" />" />
+     <input type="hidden" name="addressDTO.pDistrictName" value="<s:property value="addressDTO.pDistrictName" />" />
      </td>
      <td valign="top" style="color:#7D2252;">District</td>
      <td valign="top">
      <s:property value="addressDTO.mDistrictName" />
      <input type="hidden" name="addressDTO.mDistrict" value="<s:property value="addressDTO.mDistrict" />" />
+     <input type="hidden" name="addressDTO.mDistrictName" value="<s:property value="addressDTO.mDistrictName" />" />
 
      </td>
     </tr>
@@ -260,11 +264,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
         <s:property value="addressDTO.pThanaName" />
         <input type="hidden" name="addressDTO.pThana" value="<s:property value="addressDTO.pThana" />" />
+        <input type="hidden" name="addressDTO.pThanaName" value="<s:property value="addressDTO.pThanaName" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Upazilla/Pouroshova</td>
      <td valign="top">
      	<s:property value="addressDTO.mThanaName" />
      	<input type="hidden" name="addressDTO.mThana" value="<s:property value="addressDTO.mThana" />" />
+     	<input type="hidden" name="addressDTO.mThanaName" value="<s:property value="addressDTO.mThanaName" />" />
      </td>
     </tr>
     
@@ -273,11 +279,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
         <s:property value="addressDTO.pUnionName" />
         <input type="hidden" name="addressDTO.pUnion" value="<s:property value="addressDTO.pUnion" />" />
+        <input type="hidden" name="addressDTO.pUnionName" value="<s:property value="addressDTO.pUnionName" />" />
      </td>
      <td valign="top" style="color:#7D2252;">Union/Ward</td>
      <td valign="top">
      	<s:property value="addressDTO.mUnionName" />
      	<input type="hidden" name="addressDTO.mUnion" value="<s:property value="addressDTO.mUnion" />" />
+     	<input type="hidden" name="addressDTO.mUnionName" value="<s:property value="addressDTO.mUnionName" />" />
      </td>
     </tr>
     
@@ -286,6 +294,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
      	<s:property value="addressDTO.pPost" />
      	<input type="hidden" name="addressDTO.pPost" value="<s:property value="addressDTO.pPost" />" />
+
      </td>
      <td valign="top" style="color:#7D2252;">Post Office</td>
      <td valign="top">
