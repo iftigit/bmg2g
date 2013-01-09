@@ -361,9 +361,13 @@ public class AddressDAO {
 	{
 		   ArrayList<AddressDTO> thanaList=new ArrayList<AddressDTO>();
 		   Connection conn = ConnectionManager.getConnection();
+		   /*
 		   String sql = " Select * from Thana Where DistrictId='"+districtId+"' " +
 		     " and thanaid='"+updazillaId+"' or thanaid in (Select thanaid from thana where districtid='"+districtId+"' and is_pauro=1)";
-
+		   */
+		   String sql = " Select * from Thana Where DistrictId='"+districtId+"' " +
+		     " and thanaid='"+updazillaId+"' ";
+		   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
 		   AddressDTO addressDto  = null;

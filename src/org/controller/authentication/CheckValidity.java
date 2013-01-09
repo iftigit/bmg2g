@@ -67,7 +67,7 @@ public class CheckValidity extends ActionSupport{
 						 ArrayList<AddressDTO> abc=(ArrayList<AddressDTO>) getServletContext().getAttribute("OPERATOR_DISTRICT");
 						 System.out.println("=========>>"+abc.size());
 						 
-						 
+						 getServletContext().setAttribute("CONTACT_INFO", userDao.getTechnicalTeam(user.getDistrictId()));
 						 return "regOperator";
 					 }
 						 else
