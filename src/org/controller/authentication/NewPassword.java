@@ -229,7 +229,7 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 			  UserDTO ut = it.next();
 //			  pass = getPasswordCode().substring(0, 5);
 //			  pass="Your password for logon :"+pass+" and url is g2g.bmet.gov.bd"
-			  pass="Test SMS for UISC uddakta. Apni SMS peye thakle apner jelar sohokari programmer ke 5 ter modheye janan.Thanks";
+			  pass="Test SMS for UISC uddakta. Apni SMS peye thakle apner jelar sohokari programmer ke agamikal sakal 11 ter modheye janan.Thanks";
 			  NewPaawordDAO.setNewPassword(ut.getUserId(), "1234532");
 			  
 			  URL yahoo;
