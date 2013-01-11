@@ -106,6 +106,9 @@
 			/WEB-INF/jsp/registration/CotaEnd.jsp
 		</result>
 		<result name="input">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
+		<result name="logout" type="redirectAction">
+			logout.action
+		</result>
 	</action>
 		
 	<action name="downloadAdmit" class="org.controller.report.PreAdmitReportAction">
