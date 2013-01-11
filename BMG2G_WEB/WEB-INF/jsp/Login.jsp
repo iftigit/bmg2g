@@ -60,9 +60,9 @@
     <table width="100%" border="0" cellspacing="1" class="infoTable">
     
     <tr>
-     <td align="left" width="20%">Userid</td>
+     <td align="left" width="20%">Mobile No</td>
      <td align="left" width="80%"><input type="text" tabindex="6" name="userId" id="USERID" maxlength="15" class="textBox" value="<s:property value='userId' />" />
-     [Mobile No.] 
+      
      </td>
     </tr>
 
@@ -80,7 +80,7 @@
 	     	<td align="left" style="padding-left: 0px;">
 	     		<input type="submit" value="Login" name="Login" />
 	     	</td>
-	     	<td align="right" style="padding-right: 0px;"><a href="BMG2G_WEB/np1">Request Password</a></td>
+	     	<td align="right" style="padding-right: 0px;"><a href="np1">Request Password</a></td>
 	     	</tr>
      	</table>
      </td>
