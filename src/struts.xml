@@ -81,6 +81,13 @@
 	
 	<action name="regHomeAction" class="org.controller.registration.RegistrationAction" method="regHomeAction">
 		<result name="REG_HOME">/WEB-INF/jsp/registration/RegistrationHome.jsp</result>
+		<result name="logout" type="redirectAction">
+			logout.action
+		</result>
+		<result name="timeOver">
+			/WEB-INF/jsp/TimeOver.jsp
+		</result>
+		
 	</action>
 	
 	<action name="previewRegFormAction" class="org.controller.registration.PreviewRegFormAction">
@@ -108,6 +115,9 @@
 		<result name="input">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
 		<result name="logout" type="redirectAction">
 			logout.action
+		</result>
+		<result name="timeOver">
+			/WEB-INF/jsp/TimeOver.jsp
 		</result>
 	</action>
 		

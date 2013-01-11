@@ -16,6 +16,10 @@ public class UserDTO {
 	
 	private String authenticationKey;
 	
+	private int isActive;
+	
+	private int accessRight;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -81,6 +85,18 @@ public class UserDTO {
 	}
 	public void setAuthenticationKey(String authenticationKey) {
 		this.authenticationKey = authenticationKey;
+	}
+	public int getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+	public int getAccessRight() {
+		return accessRight;
+	}
+	public void setAccessRight(int accessRight) {
+		this.accessRight = accessRight;
 	}
 	
 	

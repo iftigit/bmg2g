@@ -3,7 +3,9 @@ package org.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.table.TechnicalTeamDTO;
 import org.table.UserDTO;
@@ -18,7 +20,8 @@ public class UserDAO {
 		UserDTO user=null;
 		
 		 Connection conn = ConnectionManager.getConnection();
-		   String sql = " Select * from MST_USER Where userid=? and password=?";
+		   String sql = " Select MST_USER.*,to_char(start_date,'DD-MM-YYYY') S_DATE,to_char(end_date,'DD-MM-YYYY') E_DATE,to_char(sysdate,'DD-MM-YYYY') TO_DAY " +
+		   		        " from MST_USER Where userid=? and password=?";
 		   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -44,6 +47,23 @@ public class UserDAO {
 					user.setDistrictId(r.getString("DISTRICT_ID"));
 					user.setUpazillaId(r.getString("UPAZILLA_ID"));
 					user.setUnionId(r.getString("UNION_ID"));
+					
+					String startDate=r.getString("S_DATE");
+					String endDate=r.getString("E_DATE");
+					String toDate=r.getString("TO_DAY");
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		        	Date sDate = sdf.parse(startDate);
+		        	Date eDate = sdf.parse(endDate);
+		        	Date tDate = sdf.parse(toDate);
+		        	
+		        	if(tDate.compareTo(sDate)<0){
+		        		user.setAccessRight(0);
+		        	}else if(tDate.compareTo(eDate)>0){
+		        		user.setAccessRight(0);
+		        	}
+		        	else
+		        		user.setAccessRight(1);
 				}
 			} 
 			catch (Exception e){e.printStackTrace();}
