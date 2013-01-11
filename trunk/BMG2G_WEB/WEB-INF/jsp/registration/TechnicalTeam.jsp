@@ -21,19 +21,6 @@
         <script type="text/javascript" src="/BMG2G_WEB/resources/js/lib/jquery.validity.1.2.0/jQuery.validity.js"></script>
  
 
- <script type="text/javascript">
-   $(function() { 
-
-                $("form").validity(function() {
-                    $("#USERID")                      // The first input:    
-        			.require("Userid required.");                         // Required:
-        			
-        			$("#PASSWORD")                      // The first input:    
-        			.require("Password required.");                         // Required:
-        			
-                });
-            });
- </script>
   
 </head>
 <body style="margin: 0px;">
@@ -56,7 +43,7 @@
 <div class="box" style="margin-top: 100px;width: 700px;text-align: center;">
     <h3>Technical Contact Information</h3>
     
-<form id="loginForm" name="loginForm" method="post" action="checkValidity.action">    
+    
     <table width="80%" border="1" cellspacing="0" cellpadding="0" class="infoTable" style="border: 1px solid grey;"  align="center" >
     
     <tr style="background-color: #CCCCCC;">
@@ -78,7 +65,7 @@
     </tr>
     </s:iterator>
     </table>
-</form>     
+
 <br/>     
 </div>
     <br/>
@@ -86,9 +73,7 @@
     <br/>
 <p style="height: 30px"></p>
 </center>
-<script type="text/javascript">
-$('input').attr('autocomplete','off');   
-</script>
+
 </body>
 
 </html>
