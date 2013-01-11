@@ -258,7 +258,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td><input type="text" tabindex="12" name="personalDTO.passportNo" id="PASSPORT_DATE" size="20" maxlength="50" value="<s:property value="personalDTO.passportNo" />" class="textBox"/></td>
      <td>Passport Issue Date</td>
      <td>
-     <input type="text" tabindex="13" class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />"/>
+     <input type="text" tabindex="13" class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />" readonly="readonly" />
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_ISSUE_DATE_BTN" border="0" />
 
      </td>
@@ -268,7 +268,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
    
      <td>Passport Exp. Date</td>
      <td>
-     <input type="text" tabindex="14"  class="textBox" id="PASSPORT_EXP_DATE" name="personalDTO.passportExpireDate" value="<s:property value="personalDTO.passportExpireDate" />"/>
+     <input type="text" tabindex="14"  class="textBox" id="PASSPORT_EXP_DATE" name="personalDTO.passportExpireDate" value="<s:property value="personalDTO.passportExpireDate" />" readonly="readonly" />
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_EXP_DATE_BTN" border="0" />
      </td>
      <td>Religion<font color="red">*</font></td>
@@ -342,7 +342,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="35%">
      	
      <select tabindex="19" name="addressDTO.pDivision" id="PERMANENT_DIV" class="addressSelectBox" onchange="fetchJSONData_Dist(this.value,'PERMANENT_DIST')">
-     	<s:iterator value="%{#application.OPERATOR_DIVISION}" id="divisionList">
+     	<s:iterator value="%{#session.OPERATOR_DIVISION}" id="divisionList">
      	  <option value="<s:property value="division_id" />"><s:property value="division_name" /></option>
      	</s:iterator>
      </select>
@@ -361,7 +361,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td>District<font color="red">*</font></td>
      <td valign="top" id="PERMANENT_DIST_TD">
      <select tabindex="20"  name="addressDTO.pDistrict" id="PERMANENT_DIST" class="addressSelectBox">
-     	<s:iterator value="%{#application.OPERATOR_DISTRICT}" id="districtList">
+     	<s:iterator value="%{#session.OPERATOR_DISTRICT}" id="districtList">
    	  		<option value="<s:property value="district_id" />"><s:property value="district_name" /></option>
      	</s:iterator>
      </select>
@@ -380,7 +380,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
         <select tabindex="21" name="addressDTO.pThana" id="PERMANENT_THANA" class="addressSelectBox" onchange="fetchJSONData_Union(this.value,'PERMANENT_UNION')">
         
         <option value="select" selected="selected">--Please Select--</option>
-     	<s:iterator value="%{#application.OPERATOR_UPAZILLA}" id="upazillaList">
+     	<s:iterator value="%{#session.OPERATOR_UPAZILLA}" id="upazillaList">
      	  <option value="<s:property value="thana_id" />"><s:property value="thana_name" /></option>
      	</s:iterator>
        </select>
