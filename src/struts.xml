@@ -7,7 +7,7 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<constant name="serve.static.browserCache" value="false" />
 	<constant name="struts.action.excludePattern" value="/CaptchaServlet.cap"/>
-	<package name="default" extends="struts-default">
+	<package name="default" extends="struts-default" namespace="/">
 
 	<interceptors>
 
@@ -198,12 +198,10 @@
 		
 		<action name="technicalTeam">			
 			<result name="success">/WEB-INF/jsp/registration/TechnicalTeam.jsp</result>
-			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 		<action name="regOperatorHome">			
 			<result name="success">/WEB-INF/jsp/RegOperatorHome.jsp</result>
-			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 
