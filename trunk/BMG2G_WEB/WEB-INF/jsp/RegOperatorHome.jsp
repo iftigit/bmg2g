@@ -66,7 +66,7 @@
     </tr>
      <tr>
      <td style="text-align: center">
-     	<a href="adminCardDownloadHome.action">Download Reg. Form</a>
+     	<a href="adminCardDownloadHome.action">Download Registration Card</a>
      </td>
     </tr>
  
