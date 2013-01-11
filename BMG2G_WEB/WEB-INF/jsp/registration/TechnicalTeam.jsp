@@ -67,7 +67,7 @@
      	Mobile Number
      </td>
     </tr>
-    <s:iterator value="%{#application.CONTACT_INFO}">
+    <s:iterator value="%{#session.CONTACT_INFO}">
     <tr>
      <td style="text-align: left;padding-left: 10px;" width="50%">
      	<s:property value="contactName"/> 
