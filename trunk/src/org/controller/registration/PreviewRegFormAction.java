@@ -43,9 +43,6 @@ public class PreviewRegFormAction extends ActionSupport{
 	{
 		ServletActionContext.getRequest().getSession().setAttribute("sessionObj_PersonalInfo", personalDTO);
 
-		
-		
-
 		/*=================Id to Name Conversion for Address ====================*/
 		String pDivisionName=(String) getServletContext().getAttribute("DIV_NAME_FROM_ID"+addressDTO.getpDivision());
 		if(pDivisionName==null)

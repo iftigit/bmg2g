@@ -14,6 +14,8 @@ public class UserDTO {
 	private String upazillaId;
 	private String unionId;
 	
+	private String authenticationKey;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -73,6 +75,12 @@ public class UserDTO {
 	}
 	public void setUpazillaId(String upazillaId) {
 		this.upazillaId = upazillaId;
+	}
+	public String getAuthenticationKey() {
+		return authenticationKey;
+	}
+	public void setAuthenticationKey(String authenticationKey) {
+		this.authenticationKey = authenticationKey;
 	}
 	
 	

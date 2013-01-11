@@ -56,11 +56,12 @@ public class CheckValidity extends ActionSupport{
 				{
 					
 					flag=userDao.updateLoginKey(userId, password, localIp, via, realIp);
+					user.setAuthenticationKey(localIp+via+realIp);
 				}
 				else if(submittedAuthKey.equalsIgnoreCase(savedAuthKey))
 				{
-				
 					flag=true;
+					user.setAuthenticationKey(savedAuthKey);
 				}
 				
 				if(flag==true)
@@ -68,16 +69,15 @@ public class CheckValidity extends ActionSupport{
 					ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", user);
 					 if(user.getUserType().equalsIgnoreCase("UISC_REG_OPERATOR"))	
 					 {
-						 getServletContext().setAttribute("OPERATOR_DIVISION", addressDao.getDivision(Integer.parseInt(user.getDivisionId())));
-						 getServletContext().setAttribute("OPERATOR_DISTRICT", addressDao.getOperatorDistrict(Integer.parseInt(user.getDistrictId())));
-						 getServletContext().setAttribute("OPERATOR_UPAZILLA", addressDao.getUpazilla(user.getUpazillaId(),user.getDistrictId()));
+						 ServletActionContext.getRequest().getSession().setAttribute("OPERATOR_DIVISION", addressDao.getDivision(Integer.parseInt(user.getDivisionId())));
+						 ServletActionContext.getRequest().getSession().setAttribute("OPERATOR_DISTRICT", addressDao.getOperatorDistrict(Integer.parseInt(user.getDistrictId())));
+						 ServletActionContext.getRequest().getSession().setAttribute("OPERATOR_UPAZILLA", addressDao.getUpazilla(user.getUpazillaId(),user.getDistrictId()));
 						 
 
 						 
 						 ArrayList<AddressDTO> abc=(ArrayList<AddressDTO>) getServletContext().getAttribute("OPERATOR_DISTRICT");
-						 System.out.println("=========>>"+abc.size());
 						 
-						 getServletContext().setAttribute("CONTACT_INFO", userDao.getTechnicalTeam(user.getDistrictId()));
+						 ServletActionContext.getRequest().getSession().setAttribute("CONTACT_INFO", userDao.getTechnicalTeam(user.getDistrictId()));
 						 return "regOperator";
 					 }
 						 else
