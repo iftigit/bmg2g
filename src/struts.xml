@@ -47,9 +47,9 @@
 </global-results>	
 
  	
-	<action name="index" class="org.test.Test">
-		<result name="success">
-			/WEB-INF/jsp/index.jsp
+	<action name="index" class="org.test.Test" >
+		<result name="success" type="redirectAction">
+			checkValidity.action
 		</result>
 	</action>
 	

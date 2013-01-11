@@ -23,7 +23,17 @@ public class CheckValidity extends ActionSupport{
 	
 	public String execute()
 	{
-			String submittedAuthKey="";
+
+		user = (UserDTO) ServletActionContext.getRequest().getSession().getAttribute("loggedInUser");
+		if(user!=null && user.getUserType().equalsIgnoreCase("UISC_REG_OPERATOR"))	
+		{
+			return "regOperator";
+		}
+		
+		
+		
+		
+		String submittedAuthKey="";
 			String savedAuthKey="";
 			String localIp=ServletActionContext.getRequest().getHeader("X-Forwarded-For")==null?"":ServletActionContext.getRequest().getHeader("X-Forwarded-For");
 			String via=ServletActionContext.getRequest().getHeader("Via")==null?"":ServletActionContext.getRequest().getHeader("Via");
