@@ -49,6 +49,10 @@ public String execute() throws Exception
 		{
 			return "logout";
 		}
+		else if(loggedInUser.getAccessRight()==0)
+		{
+			return "timeOver";	
+		}
 		
 		String submittedCode = personalDTO.getCaptchaText();
 		String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
