@@ -136,41 +136,36 @@ public class AdmitCardReportAction extends ActionSupport implements ServletConte
 			
 			over.beginText();
 			
-			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 560);
+			over.setTextMatrix(200, 587);
 			over.showText(personalInfoDto.getRegId());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 536);
+			over.setTextMatrix(200, 562);
 			over.showText(personalInfoDto.getEmpFullName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 512);
+			over.setTextMatrix(200, 538);
 			over.showText(personalInfoDto.getFatherName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(200, 490);
+			over.setTextMatrix(200, 514);
 			over.showText(personalInfoDto.getMotherName());
 			
-			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(174, 226);
-			over.showText("Address");
+			over.setTextMatrix(200, 488);
+			over.showText(personalInfoDto.getContactMobileNumber());
+
 			
-			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(182, 179);
-			over.showText("Date");
-			
+
 			over.setFontAndSize(bf, 8);
-			over.setTextMatrix(140, 20);
+			over.setTextMatrix(90, 456);
 			over.showText("Printed on : "+personalInfoDto.getPrintedOn()+"    IP Address :"+personalInfoDto.getIpAddress()+"  Union : "+personalInfoDto.getQuotaUnionName()+"  Submitted on :"+personalInfoDto.getApplicationDateTime());
 			
 			
-
 			over.endText();
 			stamp.close();
 			readers.add(new PdfReader(certificate.toByteArray()));

@@ -79,7 +79,8 @@ public class RegistrationDAO {
 						stmt.setString(33, addressDTO.getmAddressLine1());
 						stmt.setString(34, addressDTO.getmAddressLine2());						
 						stmt.setString(35, addressDTO.getmEmail());
-						stmt.setString(36, addressDTO.getmMobile());
+						//stmt.setString(36, addressDTO.getmMobile());
+						stmt.setString(36, addressDTO.getpMobile());
 
 						
 						stmt.setString(37, nomineeDTO.getNomineeName());
@@ -118,7 +119,7 @@ public class RegistrationDAO {
 		 	Connection conn = ConnectionManager.getConnection();
 		   String sql = " select jobseeker.jobseeker_number,(firstname||' '||middlename|| ' '||lastname) fullname,fathername,mothername, " +
 		   				" to_char(sysdate,'dd-mm-YYYY HH:MI:SS') printedOn,REAL_IP, " +
-		   				" to_char(APPLICATION_DATETIME,'dd-mm-YYYY HH:MI:SS') applicationDateTime,UNIONNAME from JOBSEEKER,UNIONS,ADDRESS " +
+		   				" to_char(APPLICATION_DATETIME,'dd-mm-YYYY HH:MI:SS') applicationDateTime,UNIONNAME,PER_MOBILE from JOBSEEKER,UNIONS,ADDRESS " +
 		   				" where jobseeker.jobseeker_number=? AND UNIONS.UNIONID=COTA_UNION AND JOBSEEKER.JOBSEEKER_NUMBER=ADDRESS.JOBSEEKER_NUMBER";
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -140,7 +141,7 @@ public class RegistrationDAO {
 					personalDto.setApplicationDateTime(r.getString("applicationDateTime"));
 					personalDto.setIpAddress(r.getString("REAL_IP"));
 					personalDto.setQuotaUnionName(r.getString("UNIONNAME"));
-					personalDto.setContactMobileNumber(r.getString("MAIL_MOBILE"));
+					personalDto.setContactMobileNumber(r.getString("PER_MOBILE"));
 				}
 			} 
 			catch (Exception e){e.printStackTrace();}
