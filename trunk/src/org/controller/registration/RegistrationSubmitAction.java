@@ -81,7 +81,7 @@ public String execute() throws Exception
 		
         String registrationId="";
         registrationId=RegistrationSingleton.generateRegistrationId(addressDTO.getpDistrict(),personalDTO.getSex());
-        String response=regDAO.insertEmpRegistrationInfo(registrationId,personalDTO,addressDTO,nomineeDTO,logInfoDTO);
+        String response=regDAO.insertEmpRegistrationInfo(registrationId,personalDTO,addressDTO,nomineeDTO,logInfoDTO,loggedInUser.getUserId());
 
         if(response.equalsIgnoreCase("success"))
         {

@@ -23,7 +23,7 @@ import util.connection.ConnectionManager;
 public class RegistrationDAO {
 	
 	 public String insertEmpRegistrationInfo(String registrationId,PersonalInfoDTO personalDTO,AddressDTO addressDTO,NomineeDTO nomineeDTO,
-			 										LogDTO logDTO
+			 										LogDTO logDTO,String userId
 			 										) 
 	    {	     
 			 String response="";
@@ -99,10 +99,11 @@ public class RegistrationDAO {
 						stmt.setString(49, logDTO.getRemoteAddress());
 						stmt.setString(50, addressDTO.getPUnion());
 						stmt.setString(51, addressDTO.getMUnion());
+						stmt.setString(52, userId);
 						
-						stmt.registerOutParameter(52, java.sql.Types.VARCHAR);
+						stmt.registerOutParameter(53, java.sql.Types.VARCHAR);
 						stmt.executeUpdate();
-						response = (stmt.getString(52)).trim();
+						response = (stmt.getString(53)).trim();
 						System.out.println("Response : " + response);
 						}
 					    catch (Exception e){e.printStackTrace();return response;}
