@@ -365,10 +365,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      	<s:property value="addressDTO.pMobile" />
      	<input type="hidden" name="addressDTO.pMobile" value="<s:property value="addressDTO.pMobile" />" />
      </td>
-     <td valign="top" style="color:#7D2252;">Mobile/Phone</td>
+     <td valign="top" style="color:#7D2252;">
+     <!-- Mobile/Phone -->
+     </td>
      <td valign="top">
-     	<s:property value="addressDTO.mMobile" />
+     <!-- <s:property value="addressDTO.mMobile" />
      	<input type="hidden" name="addressDTO.mMobile" value="<s:property value="addressDTO.mMobile" />" />
+     	 -->	
      </td>
     </tr>
     

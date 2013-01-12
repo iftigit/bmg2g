@@ -37,26 +37,14 @@
    $.extend($.validity.messages, {
     date:"<%= "#" %>{field} Date Value should be in DD-MM-YYYY format",
    });
-  
 
-   
+
    $(function() { 
-                
-
-    
- $.validity.setup({
-    // You may change the output mode with this property.
-    outputMode: "label",
-
-    // The this property is set to true, validity will scroll the browser viewport
-    // so that the first error is visible when validation fails.
-    scrollTo: true,
-
-    // If this setting is true, modal errors will disappear when they are clicked on.
-    modalErrorsClickable: true
-});
- 
+  
                 $("form").validity(function() {
+                
+                  
+
                     $("#FIRST_NAME")                      // The first input:    
         			.require("First Name is required.");                         // Required:
         			
@@ -98,7 +86,7 @@
         			*/
         			
         			$("#PERMANENT_MOBILE").require("Mobile Number required.");
-        			$("#MAILING_MOBILE").require("Mobile Number required.");
+        			//$("#MAILING_MOBILE").require("Mobile Number required.");
         			
         			
 					$("#PERMANENT_DIV").equalCheck("select","Select Permanent Division.");
@@ -506,9 +494,12 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td valign="top">
      	<input type="text" tabindex="28" name="addressDTO.pMobile" maxlength="11" id="PERMANENT_MOBILE" class="textBox" value="<s:property value="addressDTO.pMobile"/>" onkeypress="return numericOnly(event)" />
      </td>
-     <td valign="top">Mobile/Phone<font color="red">*</font></td>
      <td valign="top">
+     <!-- Mobile/Phone<font color="red">*</font> --></td>
+     <td valign="top">
+     <!-- 
      	<input type="text" tabindex="38" maxlength="11" name="addressDTO.mMobile" id="MAILING_MOBILE" class="textBox"  value="<s:property value="addressDTO.mMobile"/>" onkeypress="return numericOnly(event)"  />
+     	 -->
      </td>
     </tr>
     <tr>
