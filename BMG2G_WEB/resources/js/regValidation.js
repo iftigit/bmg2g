@@ -297,3 +297,18 @@ function addOption(selectID, display, value)
   var obj = document.getElementById(selectID);
   obj.options[obj.options.length] = new Option(display, value);
 }
+
+function ValidateEmail(mail)   
+{  
+     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail.value))  
+      {  
+        
+      }
+      else
+      {  
+        mail.focus();
+        alert("You have entered an invalid email address!");
+        mail.value='';  
+        
+       }  
+}  
