@@ -48,8 +48,8 @@
 </a>
 
 </div>
-<div style=" margin-top: 100px;">
-<b>Note :</b> <font style="color:red">Please Print your Admit Card and save it carefully. You need to show this Admit Card during the time of your interview.</font> 
+<div style=" margin-top: 50px;">
+<b>Note :</b> <font style="color:red">Please Print your Registration Card and save it carefully.</font> 
 </div>
 </div>
 </center>
