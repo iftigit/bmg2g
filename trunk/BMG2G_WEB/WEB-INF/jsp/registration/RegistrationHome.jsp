@@ -117,6 +117,13 @@
         			
         			$("#NOMINEE_PHONE")                      // The first input:    
         			.require("Nominee Phone Number required.");                         // Required:
+
+        			$("#CONTACT_NAME")                      // The first input:    
+        			.require("Contact Name required.");                         // Required:
+
+        			$("#CONTACT_MOBILE")                      // The first input:    
+        			.require("Contact Mobile required.");                         // Required:
+
         			
 					$("#captchaText").require("Please provide security code.");    
 					
@@ -186,13 +193,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td width="85%" colspan="3" style="padding-bottom: 15px;">
      
      <div style="float:left;width: 250px;color: #4D4D4D;">First Name<br/>
-     	<input type="text" tabindex="1" name="personalDTO.empFname" id="FIRST_NAME" maxlength="20"  value="<s:property value="personalDTO.empFname" />" class="nameTextBox" />
+     	<input type="text" tabindex="1" name="personalDTO.empFname" id="FIRST_NAME" maxlength="50"  value="<s:property value="personalDTO.empFname" />" class="nameTextBox" />
      </div>
      <div style="float:left;width: 250px;color: #4D4D4D">Middle Name<br/>
-     	<input type="text" tabindex="2" name="personalDTO.empMname" id="MIDDLE_NAME"  maxlength="20" value="<s:property value="personalDTO.empMname" />"  class="nameTextBox" />
+     	<input type="text" tabindex="2" name="personalDTO.empMname" id="MIDDLE_NAME"  maxlength="50" value="<s:property value="personalDTO.empMname" />"  class="nameTextBox" />
      </div>
      <div style="float:left;width: 250px;color: #4D4D4D">Last Name<br/>	
-     	<input 	type="text" tabindex="3" name="personalDTO.empLname" id="LAST_NAME" maxlength="20" value="<s:property value="personalDTO.empLname" />"  class="nameTextBox" />
+     	<input 	type="text" tabindex="3" name="personalDTO.empLname" id="LAST_NAME" maxlength="50" value="<s:property value="personalDTO.empLname" />"  class="nameTextBox" />
      </div>
      
      </td>
@@ -200,18 +207,18 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td width="15%">Father's Name<font color="red">*</font></td>
      <td width="35%">
-     	<input type="text" tabindex="4" name="personalDTO.fatherName" id="FATHER_NAME" maxlength="40"  value="<s:property value="personalDTO.fatherName" />"  class="textBox"/>
+     	<input type="text" tabindex="4" name="personalDTO.fatherName" id="FATHER_NAME" maxlength="100"  value="<s:property value="personalDTO.fatherName" />"  class="textBox"/>
      </td>
      <td width="15%">Mother's Name<font color="red">*</font></td>
      <td width="35%">
-     	<input type="text" tabindex="5" name="personalDTO.motherName" id="MOTHER_NAME" maxlength="40" value="<s:property value="personalDTO.motherName" />" class="textBox"/>
+     	<input type="text" tabindex="5" name="personalDTO.motherName" id="MOTHER_NAME" maxlength="100" value="<s:property value="personalDTO.motherName" />" class="textBox"/>
      </td>
     </tr>
     <tr>
      <td>Spouse Name</td>
-     <td><input type="text" tabindex="6" name="personalDTO.spousName" id="SPOUSE_NAME" maxlength="40" value="<s:property value="personalDTO.spousName" />" class="textBox"/></td>
+     <td><input type="text" tabindex="6" name="personalDTO.spousName" id="SPOUSE_NAME" maxlength="100" value="<s:property value="personalDTO.spousName" />" class="textBox"/></td>
      <td>National ID (If any)</td>
-     <td><input type="text" tabindex="7" name="personalDTO.nationalId" id="NATIONALID" maxlength="13" value="<s:property value="personalDTO.nationalId" />" onkeypress="return numericOnly(event)" class="textBox"/></td>
+     <td><input type="text" tabindex="7" name="personalDTO.nationalId" id="NATIONALID" maxlength="20" value="<s:property value="personalDTO.nationalId" />" onkeypress="return numericOnly(event)" class="textBox"/></td>
     </tr>
 
  	<tr>
@@ -243,19 +250,19 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     
     <tr>
      <td>Weight (kg)<font color="red">*</font></td>
-     <td><input type="text" tabindex="9" name="personalDTO.weight" id="WEIGHT" maxlength="4"  onkeypress="return numericWithDot(event)" value="<s:property value="personalDTO.weight" />"/></td>
+     <td><input type="text" tabindex="9" name="personalDTO.weight" id="WEIGHT" maxlength="3"  onkeypress="return numericWithDot(event)" value="<s:property value="personalDTO.weight" />"/></td>
      <td>Height<font color="red">*</font></td>
      <td>
-     <input type="text" tabindex="10" name="personalDTO.heightFeet" id="HEIGHT_FEET" maxlength="4" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightFeet" />" class="textBox" style="width: 50px;text-align: center;"/>
+     <input type="text" tabindex="10" name="personalDTO.heightFeet" id="HEIGHT_FEET" maxlength="1" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightFeet" />" class="textBox" style="width: 50px;text-align: center;"/>
       Feet&nbsp;&nbsp;&nbsp;
-     <input type="text" tabindex="11" name="personalDTO.heightInches" id="HEIGHT_INCHES" maxlength="4" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightInches" />" class="textBox" style="width: 50px;text-align: center;"/>
+     <input type="text" tabindex="11" name="personalDTO.heightInches" id="HEIGHT_INCHES" maxlength="2" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightInches" />" class="textBox" style="width: 50px;text-align: center;"/>
       Inches
      </td>
     </tr>
   
     <tr>
      <td>MRP Passport No (If any)</td>
-     <td><input type="text" tabindex="12" name="personalDTO.passportNo" id="PASSPORT_DATE" size="20" maxlength="50" value="<s:property value="personalDTO.passportNo" />" class="textBox"/></td>
+     <td><input type="text" tabindex="12" name="personalDTO.passportNo" id="PASSPORT_DATE" size="20" maxlength="10" value="<s:property value="personalDTO.passportNo" />" class="textBox"/></td>
      <td>Passport Issue Date</td>
      <td>
      <input type="text" tabindex="13" class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />" readonly="readonly" />
@@ -429,33 +436,33 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <tr>
      <td>Village/Street<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="25" name="addressDTO.pAddressLine1" maxlength="30" id="PERMANENT_ADDRESS_LINE1"  class="textBox" value="<s:property value="addressDTO.pAddressLine1"/>" />
+     	<input type="text" tabindex="25" name="addressDTO.pAddressLine1" maxlength="100" id="PERMANENT_ADDRESS_LINE1"  class="textBox" value="<s:property value="addressDTO.pAddressLine1"/>" />
      </td>
      <td valign="top">Village/Street<font color="red">*</font></td>
      <td valign="top">
-     	<input type="text" tabindex="35" name="addressDTO.mAddressLine1" maxlength="30" id="MAILING_ADDRESS_LINE1"  class="textBox" value="<s:property value="addressDTO.mAddressLine1"/>" />     		
+     	<input type="text" tabindex="35" name="addressDTO.mAddressLine1" maxlength="100" id="MAILING_ADDRESS_LINE1"  class="textBox" value="<s:property value="addressDTO.mAddressLine1"/>" />     		
      </td>
     </tr>
     
      <tr>
      <td>House No.(if any)</td>
      <td valign="top">
-     	<input type="text" tabindex="26" name="addressDTO.pAddressLine2" maxlength="30" id="PERMANENT_ADDRESS_LINE2"  class="textBox" value="<s:property value="addressDTO.pAddressLine2"/>" />
+     	<input type="text" tabindex="26" name="addressDTO.pAddressLine2" maxlength="100" id="PERMANENT_ADDRESS_LINE2"  class="textBox" value="<s:property value="addressDTO.pAddressLine2"/>" />
      </td>
      <td valign="top">House No.(if any)</td>
      <td valign="top">
-     	<input type="text" tabindex="36" name="addressDTO.mAddressLine2" maxlength="30" id="MAILING_ADDRESS_LINE2"  class="textBox" value="<s:property value="addressDTO.mAddressLine2"/>" />     		
+     	<input type="text" tabindex="36" name="addressDTO.mAddressLine2" maxlength="100" id="MAILING_ADDRESS_LINE2"  class="textBox" value="<s:property value="addressDTO.mAddressLine2"/>" />     		
      </td>
     </tr>
 
     <tr>
      <td>Email (If any)</td>
      <td valign="top">
-     	<input type="text" tabindex="27" name="addressDTO.pEmail" maxlength="50" id="PERMANENT_EMAIL"  class="textBox" value="<s:property value="addressDTO.pEmail"/>" />       
+     	<input type="text" tabindex="27" name="addressDTO.pEmail" maxlength="50" id="PERMANENT_EMAIL"  class="textBox" value="<s:property value="addressDTO.pEmail"/>"  onblur="ValidateEmail(this)"/>       
      </td>
      <td valign="top">Email (If any)</td>
      <td valign="top">
-     	<input type="text" tabindex="37" name="addressDTO.mEmail" maxlength="50" id="MAILING_EMAIL" class="textBox" value="<s:property value="addressDTO.mEmail"/>"  />
+     	<input type="text" tabindex="37" name="addressDTO.mEmail" maxlength="50" id="MAILING_EMAIL" class="textBox" value="<s:property value="addressDTO.mEmail"/>"   onblur="ValidateEmail(this)" />
      </td>
     </tr>
     
@@ -509,7 +516,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td valign="top">Address<font color="red">*</font></td>
      <td valign="top">
-     <textarea tabindex="41" name="nomineeDTO.nomineeAddress" id="NOMINEE_ADDRESS" rows="5" cols="29" style="border: 1px solid grey;"><s:property value="nomineeDTO.nomineeAddress" /></textarea>
+     <textarea tabindex="41" name="nomineeDTO.nomineeAddress"  maxlength="200" id="NOMINEE_ADDRESS" rows="5" cols="29" style="border: 1px solid grey;"><s:property value="nomineeDTO.nomineeAddress" /></textarea>
 												
      </td>
      <td valign="top">Mobile/Phone<font color="red">*</font></td>
@@ -521,7 +528,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     <tr>
      <td valign="top">Contact Person Name<font color="red">*</font><br/>(in case of emergency)</td>
      <td valign="top">
-		<input type="text" tabindex="43" name="nomineeDTO.contactName" id="CONTACT_NAME" maxlength="25" class="textBox" value="<s:property value="nomineeDTO.contactName" />"  />												
+		<input type="text" tabindex="43" name="nomineeDTO.contactName" id="CONTACT_NAME" maxlength="100" class="textBox" value="<s:property value="nomineeDTO.contactName" />"  />												
      </td>
      <td valign="top">Contact Person Mobile<font color="red">*</font></td>
      <td valign="top">
