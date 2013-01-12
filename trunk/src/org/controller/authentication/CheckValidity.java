@@ -62,18 +62,19 @@ public class CheckValidity extends ActionSupport{
 		else
 		{
 				
-			savedAuthKey=userDao.getAuthenticationKey(userId, password);
+//			savedAuthKey=userDao.getAuthenticationKey(userId, password);
 			boolean flag=false;
-			if(savedAuthKey.equalsIgnoreCase(""))
-			{
-				flag=userDao.updateLoginKey(userId, password, localIp, via, realIp);
-				user.setAuthenticationKey(localIp+via+realIp);
-			}
-			else if(submittedAuthKey.equalsIgnoreCase(savedAuthKey))
-			{
-				flag=true;
-				user.setAuthenticationKey(savedAuthKey);
-			}
+//			if(savedAuthKey.equalsIgnoreCase(""))
+//			{
+//				flag=userDao.updateLoginKey(userId, password, localIp, via, realIp);
+//				user.setAuthenticationKey(localIp+via+realIp);
+//			}
+//			else if(submittedAuthKey.equalsIgnoreCase(savedAuthKey))
+//			{
+//				flag=true;
+//				user.setAuthenticationKey(savedAuthKey);
+//			}
+			flag=true;
 			if(flag==true)
 			{
 				ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", user);
@@ -100,6 +101,11 @@ public class CheckValidity extends ActionSupport{
 				{
 					ServletActionContext.getRequest().getSession().setAttribute("DC_DISTRICT", user.getDistrictId());
 					return "dcLotteryAdmin";
+				}
+				else if(user.getUserType().equalsIgnoreCase("USER_VIEW_ADMIN"))	
+				{
+					ServletActionContext.getRequest().getSession().setAttribute("USER_VIEW", userDao.getTechnicalTeam(user.getDistrictId()));
+					return "showUser";
 				}
 				else
 					return INPUT;
