@@ -399,7 +399,7 @@ public class AddressDAO {
 		ArrayList<String> thanaList=new ArrayList<String>();
 		Connection conn = ConnectionManager.getConnection();
 		
-		String sql = "select unionname,unionid from UNIONS where thanaid='"+thanaId+"'";
+		String sql = "select unionname,unionid from UNIONS where thanaid='"+thanaId+"' order by 1";
 
 		Statement stmt = null;
 		ResultSet r = null;
