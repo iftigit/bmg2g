@@ -80,7 +80,23 @@ public class CheckValidity extends ActionSupport{
 						 ServletActionContext.getRequest().getSession().setAttribute("CONTACT_INFO", userDao.getTechnicalTeam(user.getDistrictId()));
 						 return "regOperator";
 					 }
-						 else
+					 else if(user.getUserType().equalsIgnoreCase("REG_VIEW_ADMIN"))	
+					 {
+						 ServletActionContext.getRequest().getSession().setAttribute("ALL_DIVISION", addressDao.getAllDivision());
+						 return "regViewAdmin";
+					 }
+					 else if(user.getUserType().equalsIgnoreCase("REG_LOT_VIEW_ADMIN"))	
+					 {
+						 ServletActionContext.getRequest().getSession().setAttribute("ALL_DIVISION", addressDao.getAllDivision());
+						 return "regLotViewAdmin";
+					 }
+					 else if(user.getUserType().equalsIgnoreCase("LOTTERY_DC_ADMIN"))	
+					 {
+						 ServletActionContext.getRequest().getSession().setAttribute("DC_DISTRICT", user.getDistrictId());
+						 return "dcLotteryAdmin";
+					 }
+					 
+					else
 						 return INPUT;
 				}
 				else
