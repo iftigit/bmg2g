@@ -64,6 +64,8 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 </center>
 </div>
 <center>
+
+<div style="color: red"><s:label name="Err_RegSubmit" ></s:label></div>
 <br/>
 <div class="boxPreview">
     <h3>Personal Information</h3>
