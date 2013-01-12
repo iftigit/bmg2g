@@ -265,8 +265,8 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td><input type="text" tabindex="12" name="personalDTO.passportNo" id="PASSPORT_DATE" size="20" maxlength="10" value="<s:property value="personalDTO.passportNo" />" class="textBox"/></td>
      <td>Passport Issue Date</td>
      <td>
-     <input type="text" tabindex="13" class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />" readonly="readonly" />
-     <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_ISSUE_DATE_BTN" border="0" />
+     <input type="text" tabindex="13" class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />" readonly="readonly" onchange="checkFutureDate(this)"/>
+     <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_ISSUE_DATE_BTN" border="0"/>
 
      </td>
     </tr>
