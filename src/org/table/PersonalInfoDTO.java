@@ -38,6 +38,10 @@ public class PersonalInfoDTO {
 	private String desiredJobCat1;
 	private String desiredJobSubcategory1;
 	
+	private String quotaUnionName;
+	private String contactMobileNumber;
+	
+	
 	public String getCaptchaText() {
 		return captchaText;
 	}
@@ -224,6 +228,18 @@ public class PersonalInfoDTO {
 	}
 	public void setDesiredJobSubcategory1(String desiredJobSubcategory1) {
 		this.desiredJobSubcategory1 = desiredJobSubcategory1;
+	}
+	public String getQuotaUnionName() {
+		return quotaUnionName;
+	}
+	public void setQuotaUnionName(String quotaUnionName) {
+		this.quotaUnionName = quotaUnionName;
+	}
+	public String getContactMobileNumber() {
+		return contactMobileNumber;
+	}
+	public void setContactMobileNumber(String contactMobileNumber) {
+		this.contactMobileNumber = contactMobileNumber;
 	}
 	
 	

@@ -70,14 +70,14 @@ public class AdmitCardReportAction extends ActionSupport implements ServletConte
 		String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
 		
 
-//		if(sessionRegId==null)
-//		{
-//		if(captchaCode==null || !captchaCode.equals(generatedCode))
-//			{
-//				addFieldError( "Err_captchaError", " Please Write Correctly" );
-//				return "admitcard_home";
-//			}
-//		}
+		if(sessionRegId==null)
+		{
+		if(captchaCode==null || !captchaCode.equals(generatedCode))
+			{
+				addFieldError( "Err_captchaError", " Please Write Correctly" );
+				return "admitcard_home";
+			}
+		}
 		
 		PersonalInfoDTO personalInfoDto= regDAO.getPersonalInformation(registrationId);
 		if(personalInfoDto==null)
@@ -167,7 +167,7 @@ public class AdmitCardReportAction extends ActionSupport implements ServletConte
 			
 			over.setFontAndSize(bf, 8);
 			over.setTextMatrix(140, 20);
-			over.showText("Printed on : "+personalInfoDto.getPrintedOn()+"    IP Address :"+personalInfoDto.getIpAddress()+"   Submitted on :"+personalInfoDto.getApplicationDateTime());
+			over.showText("Printed on : "+personalInfoDto.getPrintedOn()+"    IP Address :"+personalInfoDto.getIpAddress()+"  Union : "+personalInfoDto.getQuotaUnionName()+"  Submitted on :"+personalInfoDto.getApplicationDateTime());
 			
 			
 

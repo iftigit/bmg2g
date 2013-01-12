@@ -112,6 +112,10 @@
 	
 	
 	<action name="submitRegistration" class="org.controller.registration.RegistrationSubmitAction">
+	    <interceptor-ref name="token" />
+		<interceptor-ref name="secureStack"/>
+		<result name="invalid.token">/WEB-INF/jsp/DuplicateSubmission.jsp</result>
+		
 		<result name="success">
 			/WEB-INF/jsp/registration/RegistrationSuccess.jsp
 		</result>
