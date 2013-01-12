@@ -301,14 +301,29 @@ function addOption(selectID, display, value)
 function ValidateEmail(mail)   
 {  
      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail.value))  
-      {  
+     {  
         
-      }
-      else
-      {  
+     }
+     else
+     {  
         mail.focus();
         alert("You have entered an invalid email address!");
         mail.value='';  
-        
-       }  
+      }  
 }  
+
+function checkFutureDate(entrydate01)
+{
+	var dt = parseInt(entrydate01.value.substring(0, 2), 10);
+	var mn = parseInt(entrydate01.value.substring(3, 5), 10);
+	var yr = parseInt(entrydate01.value.substring(6, 10), 10);
+	var myDate = new Date(yr, mn-1, dt);
+	var today = new Date();
+	{
+    	if (myDate>today)
+    	{
+    		alert('You cannot enter a date in the future!');
+    		entrydate01.value='';
+     	}
+	}
+}
