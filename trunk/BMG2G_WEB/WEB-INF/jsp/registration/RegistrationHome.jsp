@@ -29,18 +29,33 @@
 
  <script type="text/javascript">
  
+   
+   $.extend($.validity.patterns, {
+    date:/^(0?[1-9]|[12][0-9]|3[01])[\-](0?[1-9]|1[012])[\-]\d{4}$/ 
+   });
+   
+   $.extend($.validity.messages, {
+    date:"<%= "#" %>{field} Date Value should be in DD-MM-YYYY format",
+   });
   
-  function  valme()
-  {
-  			//	    $.validity.start();
-				//	$("#11c")
-        			//.assert(0,"The inputs can either have all even numbers or all odd numbers. Not mixed.");						
-					//$.validity.end();
-  }
-  
-  
-   $(function() { 
 
+   
+   $(function() { 
+                
+
+    
+ $.validity.setup({
+    // You may change the output mode with this property.
+    outputMode: "label",
+
+    // The this property is set to true, validity will scroll the browser viewport
+    // so that the first error is visible when validation fails.
+    scrollTo: true,
+
+    // If this setting is true, modal errors will disappear when they are clicked on.
+    modalErrorsClickable: true
+});
+ 
                 $("form").validity(function() {
                     $("#FIRST_NAME")                      // The first input:    
         			.require("First Name is required.");                         // Required:
@@ -55,7 +70,8 @@
         			.require("Mother's Name is required.");                         // Required:
         			
         			$("#BIRTH_DATE")                      // The first input:    
-        			.require("Birth Date is required.");                         // Required:
+        			.require("Birth Date is required.");                   
+        			$("#BIRTH_DATE").match('date');      // Required:
         			
         			$("#WEIGHT")                      // The first input:    
         			.require("Weight is required.");                         // Required:
@@ -70,6 +86,8 @@
         			$("#AGE").require().match("number").range(18, 45); 
         			$("#WEIGHT").match("number").greaterThanOrEqualTo(30, "Minimum Weight Requirement is 30 KG.");
     
+    				$("#PASSPORT_ISSUE_DATE").match('date');
+    				$("#PASSPORT_EXP_DATE").match('date'); 
         
         			
         			/*
@@ -133,7 +151,8 @@
         			*/
         			
                 });
-                
+            
+            /*    
             Calendar.setup({
               inputField    : "BIRTH_DATE",
               button        : "BIRTH_DATE_BTN",
@@ -155,7 +174,7 @@
               align         : "Tr",
               ifFormat    : '%d-%m-%Y'    // the date format
             });
-            
+            */
             
             });
 
@@ -224,9 +243,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
  	<tr>
      <td>Birth Date<font color="red">*</font></td>
      <td>
-     <input type="text" tabindex="8"  class="textBox" id="BIRTH_DATE"  value="<s:property value="personalDTO.birthDate" />"  name="personalDTO.birthDate" readonly="readonly" onchange="calculateAge('AGE','BIRTH_DATE')"/>
+     <input type="text" tabindex="8"  class="textBox" id="BIRTH_DATE"  value="<s:property value="personalDTO.birthDate" />"  name="personalDTO.birthDate" onchange="calculateAge('AGE','BIRTH_DATE')" style="width: 145px;" maxlength="10"/>
+     <!--
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="BIRTH_DATE_BTN" border="0" />
-          
+     --> 
+     <font style='color:maroon;font-size: 13px;'>[DD-MM-YYYY]</font>
     
      </td>
      <td>Age</td>
@@ -265,9 +286,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td><input type="text" tabindex="12" name="personalDTO.passportNo" id="PASSPORT_DATE" size="20" maxlength="10" value="<s:property value="personalDTO.passportNo" />" class="textBox"/></td>
      <td>Passport Issue Date</td>
      <td>
-     <input type="text" tabindex="13" class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />" readonly="readonly" onchange="checkFutureDate(this)"/>
+     <input type="text" tabindex="13" class="textBox" id="PASSPORT_ISSUE_DATE" name="personalDTO.passportIssueDate" value="<s:property value="personalDTO.passportIssueDate" />" onchange="checkFutureDate(this)" style="width: 145px;"/>
+     <!--  
      <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_ISSUE_DATE_BTN" border="0"/>
-
+     -->
+	 <font style='color:maroon;font-size: 13px;'>[DD-MM-YYYY]</font> 	
      </td>
     </tr>
     <tr>
@@ -275,8 +298,11 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
    
      <td>Passport Exp. Date</td>
      <td>
-     <input type="text" tabindex="14"  class="textBox" id="PASSPORT_EXP_DATE" name="personalDTO.passportExpireDate" value="<s:property value="personalDTO.passportExpireDate" />" readonly="readonly" />
-     <img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_EXP_DATE_BTN" border="0" />
+     <input type="text" tabindex="14"  class="textBox" id="PASSPORT_EXP_DATE" name="personalDTO.passportExpireDate" value="<s:property value="personalDTO.passportExpireDate" />" style="width: 145px;" maxlength="10"/>
+     <font style='color:maroon;font-size: 13px;'>[DD-MM-YYYY]</font>
+     <!-- 
+     	<img src="/BMG2G_WEB/resources/images/calendar.png" id="PASSPORT_EXP_DATE_BTN" border="0" />
+      -->
      </td>
      <td>Religion<font color="red">*</font></td>
      <td>
@@ -326,6 +352,15 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      											<option value="select" selected="selected">--Select Sub Category--</option>
 			    </select>
      </td>
+    </tr>
+
+    <tr>
+    <td colspan="4" height="20px;"></td>
+    </tr>
+    <tr>
+    <td colspan="4" align="left" style="padding-left: 20px;border-top: 1px solid #006219;">
+      <b>Note :</b> <font color="red">*</font> indicates mandatory fields.
+    </td>
     </tr>
     
     </table>
@@ -476,6 +511,15 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      	<input type="text" tabindex="38" maxlength="11" name="addressDTO.mMobile" id="MAILING_MOBILE" class="textBox"  value="<s:property value="addressDTO.mMobile"/>" onkeypress="return numericOnly(event)"  />
      </td>
     </tr>
+    <tr>
+    <td colspan="4" height="20px;"></td>
+    </tr>
+    <tr>
+    <td colspan="4" align="left" style="padding-left: 20px;border-top: 1px solid #006219;">
+      <b>Note :</b> <font color="red">*</font> indicates mandatory fields.
+    </td>
+    </tr>
+    
     </table>
     
     
@@ -535,6 +579,15 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      	<input type="text" tabindex="44" name="nomineeDTO.contactMobile" id="CONTACT_MOBILE" maxlength="11" class="textBox"  onkeypress="return numericOnly(event)" value="<s:property value="nomineeDTO.contactMobile" />" />
    	  </td>
     </tr>    
+    <tr>
+    <td colspan="4" height="20px;"></td>
+    </tr>
+    <tr>
+    <td colspan="4" align="left" style="padding-left: 20px;border-top: 1px solid #006219;">
+      <b>Note :</b> <font color="red">*</font> indicates mandatory fields.
+    </td>
+    </tr>
+    
     
     
     </table>
@@ -554,7 +607,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
   
   <input type="hidden" name="rc" value="<s:property value='rc'/>" /> 
   <br/>
-  <input type="button" value="Refresh"  onclick="refreshCaptcha('')" />
+  <input type="button" value="Get New Code"  onclick="refreshCaptcha('')" />
   </div>
   <br/>
   <div>

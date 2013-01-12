@@ -72,7 +72,7 @@
   </td>
   <td align="left" width="60%" style="padding-left: 10px;padding-top: 60px;">
     	
-	<input type="submit" class="submitButton" name="Downalod_Card" value="Download Registration Card" style="width: 200px;"  />
+	<input type="submit" class="submitButton" name="Downalod_Card" value="Download Registration Card" style="width: 250px;"  />
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" class="submitButton" name="Registratoin_Home" value="Registration Home" style="width: 170px;" onclick="window.location='regHomeAction.action'"  />
 		

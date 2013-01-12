@@ -50,6 +50,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 
 <body style="margin: 0px;">
 <form id="myForm" name=myForm method="post" action="">
+<s:token name="token"></s:token>
 <div style="width: 100%;height: 100px;border-bottom: 1px solid #006219;">
 <center>
 <div style="width: 1000px;height: 100px;border-right: 1px solid #006219;border-left: 1px solid #006219;">
@@ -439,7 +440,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
   <img src="BMG2G_WEB/CaptchaServlet.cap?rc=<s:property value="rc"/>&ft=2" alt="no image" id="captchaImage" name="captchaImage" /> 
   <input type="hidden" name="rc" value="<s:property value="rc"/>" /> 
   <br/>
-  <input type="button" value="Refresh"  onclick="refreshCaptcha('rc=<s:property value="rc"/>&ft=1')" />
+  <input type="button" value="Get New Code"  onclick="refreshCaptcha('rc=<s:property value="rc"/>&ft=1')" />
   
   </div>  
   <br/>
