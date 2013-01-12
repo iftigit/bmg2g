@@ -250,7 +250,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
     
     <tr>
      <td>Weight (kg)<font color="red">*</font></td>
-     <td><input type="text" tabindex="9" name="personalDTO.weight" id="WEIGHT" maxlength="3"  onkeypress="return numericWithDot(event)" value="<s:property value="personalDTO.weight" />"/></td>
+     <td><input type="text" tabindex="9" name="personalDTO.weight" id="WEIGHT" maxlength="3"  onkeypress="return numericWithDot(event)" value="<s:property value="personalDTO.weight" />" class="textBox"/></td>
      <td>Height<font color="red">*</font></td>
      <td>
      <input type="text" tabindex="10" name="personalDTO.heightFeet" id="HEIGHT_FEET" maxlength="1" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightFeet" />" class="textBox" style="width: 50px;text-align: center;"/>

@@ -28,15 +28,33 @@
 </div>
 
 
-<table align="left" width="98%" cellpadding="2" cellspacing="2" style="margin-left: 20px;">
+<table align="center" width="96%" cellpadding="2" cellspacing="2" style="margin-left: 20px;">
+
  <tr>
-   <td align="left" width="43%" id="divisionTd" style="min-height: 700px;vertical-align: top;">
+   <td colspan="5" height="50" align="center" style="font-weight: bold;">Select Division :
+   
+   <select  name="divisionId" id="divisionId" class="addressSelectBox" onchange="updateDivisionStatResult()">
+      <option value="none" selected="selected">Select a Division</option>
+      <s:iterator value="%{#application.ALL_DIVISION}" id="divisionList">
+     	  <option value="<s:property value="division_id" />"><s:property value="division_name" /></option>
+      </s:iterator>
+   </select>
+
+   </td>
+ </tr>
+ <tr>
+   <td align="left" width="30%" id="divisionTd" style="min-height: 700px;vertical-align: top;">
    
 	   
    
    </td>
   <td width="5%"></td>
-   <td align="left" width="43%" id="districtTd" style="min-height: 700px;vertical-align: top;">
+   <td align="left" width="30%" id="districtTd" style="min-height: 700px;vertical-align: top;">
+   
+   
+   </td>
+   <td width="5%"></td>
+   <td align="left" width="30%" id="thanaTd" style="min-height: 700px;vertical-align: top;">
    
    
    </td>
@@ -46,55 +64,56 @@
 
 <script type="text/javascript">
 
-var ajax_load="/BMG2G_WEB/resources/images/loading.gif";
-var divisionTimerId = 0;
-var districtTimerId = 0;
-var divRefreshRate=30000;
-var distRefreshRate=30000;
-var selectedDistId="";
-var selectedDistName="";
+var ajax_load="<img src='/BMG2G_WEB/resources/images/loading.gif' border='0' /> " ;
 
-	function updateDivisionStatResult() 
+function updateDivisionStatResult() 
 	{
-		 var loadUrl="divisionStat.action";	
+	
+		 var loadUrl="divisionStat.action?divisionId="+$("#divisionId").val()+"&divisionName="+$("#divisionId").find('option:selected').text();	
 	     
-	     if(divRefreshRate>0)
-	     {
+	    
 	     $("#divisionTd")  
 					.html(ajax_load)  
-					.load(loadUrl, {refreshRate: divRefreshRate},function(responseText){  
+					.load(loadUrl, {},function(responseText){  
 					   
 					   $("#divisionTd").html(responseText);
-			
+					   $("#districtTd").html("");
+					   $("#thanaTd").html("");	
 			 
 					});
-		}
+		
 		
 	}
-	divisionTimerId=setInterval(updateDivisionStatResult, divRefreshRate);
-	updateDivisionStatResult();
-
  
  function loadDistrictStatistics(distId,distName) 
 	{
-	     if(distId==null || distId=="")
-	     {
-		   distId=selectedDistId;
-		   distName=selectedDistName;
-		 }
-		 else
-		 {
-		   selectedDistId=distId;
-		   selectedDistName=distName;
-		 }
+
 		 
 		 var loadUrl="districtStat.action";	
 		 
 	     $("#districtTd")  
 					.html(ajax_load)  
-					.load(loadUrl, {districtId: distId,districtName:distName,refreshRate:distRefreshRate},function(responseText){  
+					.load(loadUrl, {districtId: distId,districtName:distName},function(responseText){  
 					   
 					   $("#districtTd").html(responseText);
+					    $("#thanaTd").html("");	
+			
+			 
+					});
+		
+	}
+ 
+  function loadThanaStatistics(thanaId ,thanaName) 
+	{
+
+		 
+		 var loadUrl="thanaStat.action";	
+		 
+	     $("#thanaTd")  
+					.html(ajax_load)  
+					.load(loadUrl, {thanaId: thanaId,thanaName:thanaName},function(responseText){  
+					   
+					   $("#thanaTd").html(responseText);
 			
 			 
 					});
@@ -102,40 +121,8 @@ var selectedDistName="";
 	}
  
  
- function refreshDivisionStat(divRefRate)
- {
-  divRefreshRate=divRefRate;
-   if(divRefRate==0)
-   {
-     clearInterval(divisionTimerId);
-   }
-    
-   else
-   {
-    clearInterval(divisionTimerId);
-    divisionTimerId=setInterval(updateDivisionStatResult, divRefRate);
-   }
- }
- 
- function refreshDistrictStat(distRefRate)
- {
-  distRefreshRate=distRefRate;
-   if(distRefRate==0)
-   {
-     clearInterval(districtTimerId);
-   }
-    
-   else
-   {
-    clearInterval(districtTimerId);
-    districtTimerId=setInterval(loadDistrictStatistics, distRefRate);
-   }
- }
- 
- 
 </script>
-<div id="footer">
-&copy;BMET-2012. All right reserved.
-</div>
+<br/><br/>
+<center><a href="homePage.action" style="text-decoration: none;"><< Go Home >></a></center>
 </body>
 </html>

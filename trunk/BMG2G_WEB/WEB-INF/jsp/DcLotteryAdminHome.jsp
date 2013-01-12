@@ -44,21 +44,16 @@
     
 <form id="loginForm" name="loginForm" method="post" action="checkValidity.action">    
     <table width="100%" border="0" cellspacing="1" class="infoTable">
+
+     <tr>
+     <td style="text-align: center">
+     	<a href="lotteryHome.action">Process Lottery</a>
+     </td>
+    </tr>
     
     <tr>
      <td style="text-align: center">
-     	<a href="regHomeAction.action">G2G - Registration Form</a>
-     </td>
-    </tr>
-     <tr>
-     <td style="text-align: center">
-     	<a href="adminCardDownloadHome.action">Download Registration Card</a>
-     </td>
-    </tr>
- 
- 	<tr>
-     <td style="text-align: center">
-     	<a href="technicalTeam.action">Contact your Technical Person</a>
+     	<a href="regStatHome.action">Download Lottery Result</a>
      </td>
     </tr>
     
@@ -81,9 +76,7 @@
 </div>
 <p style="height: 30px"></p>
 </center>
-<script type="text/javascript">
-$('input').attr('autocomplete','off');   
-</script>
+
 </body>
 
 </html>

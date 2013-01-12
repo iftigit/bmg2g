@@ -44,21 +44,10 @@
     
 <form id="loginForm" name="loginForm" method="post" action="checkValidity.action">    
     <table width="100%" border="0" cellspacing="1" class="infoTable">
-    
-    <tr>
-     <td style="text-align: center">
-     	<a href="regHomeAction.action">G2G - Registration Form</a>
-     </td>
-    </tr>
+
      <tr>
      <td style="text-align: center">
-     	<a href="adminCardDownloadHome.action">Download Registration Card</a>
-     </td>
-    </tr>
- 
- 	<tr>
-     <td style="text-align: center">
-     	<a href="technicalTeam.action">Contact your Technical Person</a>
+     	<a href="regStatHome.action">Registration Dashboard</a>
      </td>
     </tr>
     
