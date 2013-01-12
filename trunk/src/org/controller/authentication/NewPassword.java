@@ -154,7 +154,7 @@ System.out.println((String) ServletActionContext.getRequest().getParameter("ctex
 			String mobile = (String) ServletActionContext.getRequest().getParameter("mobile");
 			if(mobile==null || mobile.length()<11)
 			{
-				response.getOutputStream().write("<reply>You are not authorized user.</reply>".getBytes());
+				response.getOutputStream().write("You are not authorized user.".getBytes());
 				return null;
 			}
 			
@@ -169,12 +169,12 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 			
 			if(response1.equalsIgnoreCase("no"))
 			{
-				response.getOutputStream().write("<reply>You are not authorized user.</reply>".getBytes());
+				response.getOutputStream().write("You are not authorized user.".getBytes());
 				return null;
 			}
 			if(response1.equalsIgnoreCase("yes"))
 			{
-				response.getOutputStream().write(("<reply>Your Password is :"+pass+"</reply>").getBytes());
+				response.getOutputStream().write(("Your Password is :"+pass+"").getBytes());
 				
 //				URL yahoo;
 //				if(mobile.substring(0,3).equalsIgnoreCase("011"))
@@ -229,7 +229,7 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 			  UserDTO ut = it.next();
 //			  pass = getPasswordCode().substring(0, 5);
 //			  pass="Your password for logon :"+pass+" and url is g2g.bmet.gov.bd"
-			  pass="Test SMS for UISC uddakta. Apni SMS peye thakle apner jelar sohokari programmer ke agamikal sakal 11 ter modheye janan.Thanks";
+			  pass="Hi Mukta Bhai";
 			  NewPaawordDAO.setNewPassword(ut.getUserId(), "1234532");
 			  
 			  URL yahoo;
