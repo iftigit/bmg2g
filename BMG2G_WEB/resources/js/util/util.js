@@ -83,18 +83,19 @@ function ageCount(dob) {
     var date1 = new Date();
     
     var date2=new Date(dob);
-    var pattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/; //Regex to validate date format (dd/mm/yyyy)
-    if (pattern.test(dob)) {
-        var y1 = date1.getFullYear(); //getting current year
-        var y2 = date2.getFullYear(); //getting dob year
-        var age = y1 - y2;           //calculating age 
+    //var pattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/; //Regex to validate date format (dd/mm/yyyy)
+    //if (pattern.test(dob)) {
+      //  var y1 = date1.getFullYear(); //getting current year
+      //  var y2 = date2.getFullYear(); //getting dob year
+      //  var age = y1 - y2;           //calculating age 
         //document.write("Age : " + age);
         //return age+"    Years";
-        return age;
-    } else {
-        alert("Invalid date format. Please Input in (dd/mm/yyyy) format!");
-        return false;
-    }
+        return new Number((new Date().getTime() - dob.getTime()) / 31536000000).toFixed(0);
+        //return age;
+   // } else {
+    //    alert("Invalid date format. Please Input in (dd/mm/yyyy) format!");
+    //    return false;
+   // }
 
 }
 function calculateAge(ageField,dobField)
@@ -102,6 +103,9 @@ function calculateAge(ageField,dobField)
 	
 	var dob=document.getElementById(dobField).value;
 	var dobArr=dob.split("-");
-	dob=dobArr[0]+"/"+dobArr[1]+"/"+dobArr[2];
-	 document.getElementById(ageField).value=ageCount(dob);
+
+
+	var bDate = new Date(dobArr[2], dobArr[1] - 1, dobArr[0]);
+	
+	document.getElementById(ageField).value=ageCount(bDate);
 }
