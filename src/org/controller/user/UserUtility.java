@@ -11,6 +11,10 @@ public class UserUtility {
 		user=(UserDTO)ServletActionContext.getRequest().getSession().getAttribute("loggedInUser");
 		if(user.getUserType().equalsIgnoreCase("UISC_REG_OPERATOR"))						 
 			 return "regOperator";
+		else if(user.getUserType().equalsIgnoreCase("REG_VIEW_ADMIN"))						 
+			 return "regViewAdmin";
+		else if(user.getUserType().equalsIgnoreCase("REG_LOT_VIEW_ADMIN"))						 
+			 return "regLotViewAdmin";
 		 else
 			 return null;
 		
