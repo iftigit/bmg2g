@@ -228,8 +228,7 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 		  {
 			  UserDTO ut = it.next();
 //			  pass = getPasswordCode().substring(0, 5);
-//			  pass="Your password for logon :"+pass+" and url is g2g.bmet.gov.bd"
-			  pass="Hi Mukta Bhai";
+			  pass="pls login: g2g.bmet.gov.bd ID:test Password:test231.login korte na parle call korun 09613016364.sakale password pathano hobe.";
 			  NewPaawordDAO.setNewPassword(ut.getUserId(), "1234532");
 			  
 			  URL yahoo;

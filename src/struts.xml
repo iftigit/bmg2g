@@ -82,6 +82,9 @@
 		<result name="dcLotteryAdmin">
 			/WEB-INF/jsp/DcLotteryAdminHome.jsp
 		</result>	
+		<result name="showUser">
+			/WEB-INF/jsp/ShowUser.jsp
+		</result>	
 		
 	</action>
 	
