@@ -166,8 +166,8 @@ public class PreAdmitReportAction extends ActionSupport implements ServletContex
 		
 			
 			over.setFontAndSize(bf, 8);
-			over.setTextMatrix(140, 476);
-			over.showText("Printed on : "+personalInfoDto.getPrintedOn()+"    IP Address :"+personalInfoDto.getIpAddress()+"   Submitted on :"+personalInfoDto.getApplicationDateTime());
+			over.setTextMatrix(90, 476);
+			over.showText("Printed on : "+personalInfoDto.getPrintedOn()+"    IP Address :"+personalInfoDto.getIpAddress()+"  Union : "+personalInfoDto.getQuotaUnionName()+"  Submitted on :"+personalInfoDto.getApplicationDateTime());
 			
 			
 

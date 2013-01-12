@@ -116,9 +116,10 @@ public class RegistrationDAO {
 	 public PersonalInfoDTO getPersonalInformation(String registrationId)
 	 {
 		 	Connection conn = ConnectionManager.getConnection();
-		   String sql = "select jobseeker_number,(firstname||' '||middlename|| ' '||lastname) fullname,fathername,mothername, " +
+		   String sql = " select jobseeker.jobseeker_number,(firstname||' '||middlename|| ' '||lastname) fullname,fathername,mothername, " +
 		   				" to_char(sysdate,'dd-mm-YYYY HH:MI:SS') printedOn,REAL_IP, " +
-		   				" to_char(APPLICATION_DATETIME,'dd-mm-YYYY HH:MI:SS') applicationDateTime from JOBSEEKER where jobseeker_number=? ";
+		   				" to_char(APPLICATION_DATETIME,'dd-mm-YYYY HH:MI:SS') applicationDateTime,UNIONNAME from JOBSEEKER,UNIONS,ADDRESS " +
+		   				" where jobseeker.jobseeker_number=? AND UNIONS.UNIONID=COTA_UNION AND JOBSEEKER.JOBSEEKER_NUMBER=ADDRESS.JOBSEEKER_NUMBER";
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
 		   PersonalInfoDTO personalDto  = null;
@@ -138,6 +139,8 @@ public class RegistrationDAO {
 					personalDto.setPrintedOn(r.getString("printedOn"));
 					personalDto.setApplicationDateTime(r.getString("applicationDateTime"));
 					personalDto.setIpAddress(r.getString("REAL_IP"));
+					personalDto.setQuotaUnionName(r.getString("UNIONNAME"));
+					personalDto.setContactMobileNumber(r.getString("MAIL_MOBILE"));
 				}
 			} 
 			catch (Exception e){e.printStackTrace();}

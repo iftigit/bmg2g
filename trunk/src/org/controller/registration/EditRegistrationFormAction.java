@@ -14,6 +14,14 @@ public class EditRegistrationFormAction {
 
 	
 public String execute() {
+
+	    PersonalInfoDTO duplicateSumissionCheck=(PersonalInfoDTO) ServletActionContext.getRequest().getSession().getAttribute("sessionObj_PersonalInfo");
+	
+		if(duplicateSumissionCheck==null)
+		{
+			return "blankForm";
+		}
+
 		
 		ServletActionContext.getRequest().getSession().setAttribute("form_error", "edit_form");
 		return "success";
