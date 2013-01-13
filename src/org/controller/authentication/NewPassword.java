@@ -227,18 +227,18 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 		  try
 		  {
 			  UserDTO ut = it.next();
-//			  pass = getPasswordCode().substring(0, 5);
-			  pass="pls login: g2g.bmet.gov.bd ID:test Password:test231.login korte na parle call korun 09613016364.sakale password pathano hobe.";
-			  NewPaawordDAO.setNewPassword(ut.getUserId(), "1234532");
+			  pass = getPasswordCode().substring(0, 5);
+			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+".login korte na parle call korun 09613016364.";
+			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
 			  
 			  URL yahoo;
 				if(ut.getUserId().substring(0,3).equalsIgnoreCase("011"))
 					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+ut.getUserId())+
-							"&txt="+URLEncoder.encode(pass)+
+							"&txt="+URLEncoder.encode(pass1)+
 							"&username="+URLEncoder.encode("bmet2")+"&password="+URLEncoder.encode("bmet231")); 		  
 				else
 					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+ut.getUserId())+
-							"&txt="+URLEncoder.encode(pass)+
+							"&txt="+URLEncoder.encode(pass1)+
 							"&username="+URLEncoder.encode("bmet")+"&password="+URLEncoder.encode("bmet231")); 		  
 					
 				URLConnection yc = yahoo.openConnection();
@@ -252,7 +252,7 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 						inputLine1+=inputLine;
 				}
 				in.close();
-				Thread.sleep(100);
+//				Thread.sleep(100);
 		  }
 		  catch(Exception e)
 		  {
