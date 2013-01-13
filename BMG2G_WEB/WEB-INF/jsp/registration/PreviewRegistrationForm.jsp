@@ -50,7 +50,9 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 
 <body style="margin: 0px;">
 <form id="myForm" name=myForm method="post" action="">
+<!-- 
 <s:token name="token"></s:token>
+ -->
 <div style="width: 100%;height: 100px;border-bottom: 1px solid #006219;">
 <center>
 <div style="width: 1000px;height: 100px;border-right: 1px solid #006219;border-left: 1px solid #006219;">
