@@ -20,7 +20,7 @@ public class UserDAO {
 		UserDTO user=null;
 		
 		 Connection conn = ConnectionManager.getConnection();
-		   String sql = " Select MST_USER.*,to_char(start_date,'DD-MM-YYYY') S_DATE,to_char(end_date,'DD-MM-YYYY') E_DATE,to_char(sysdate,'DD-MM-YYYY') TO_DAY " +
+		   String sql = " Select MST_USER.*,case when sysdate >= start_date then 'yes' else 'no' end S_DATE,case when sysdate <= end_date then 'yes' else 'no' end E_DATE " +
 		   		        " from MST_USER Where userid=? and password=?";
 		   
 		   PreparedStatement stmt = null;
@@ -50,20 +50,12 @@ public class UserDAO {
 					
 					String startDate=r.getString("S_DATE");
 					String endDate=r.getString("E_DATE");
-					String toDate=r.getString("TO_DAY");
-					
-					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		        	Date sDate = sdf.parse(startDate);
-		        	Date eDate = sdf.parse(endDate);
-		        	Date tDate = sdf.parse(toDate);
 		        	
-		        	if(tDate.compareTo(sDate)<0){
-		        		user.setAccessRight(0);
-		        	}else if(tDate.compareTo(eDate)>0){
-		        		user.setAccessRight(0);
+		        	if(startDate.equalsIgnoreCase("yes") && endDate.equalsIgnoreCase("yes")){
+		        		user.setAccessRight(1);
 		        	}
 		        	else
-		        		user.setAccessRight(1);
+		        		user.setAccessRight(0);
 				}
 			} 
 			catch (Exception e){e.printStackTrace();}
