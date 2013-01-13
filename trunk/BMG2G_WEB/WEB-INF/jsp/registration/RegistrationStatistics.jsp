@@ -31,14 +31,19 @@
 <table align="center" width="96%" cellpadding="2" cellspacing="2" style="margin-left: 20px;">
 
  <tr>
-   <td colspan="5" height="50" align="center" style="font-weight: bold;">Select Division :
+   <td colspan="5" height="50" align="center" style="font-weight: bold;">
    
-   <select  name="divisionId" id="divisionId" class="addressSelectBox" onchange="updateDivisionStatResult()">
-      <option value="none" selected="selected">Select a Division</option>
-      <s:iterator value="%{#application.ALL_DIVISION}" id="divisionList">
-     	  <option value="<s:property value="division_id" />"><s:property value="division_name" /></option>
-      </s:iterator>
-   </select>
+   <font style="color: maroon" >Select Division :</font>&nbsp;&nbsp;
+   
+   <a href="#" onclick="updateDivisionStatResult(1,'Dhaka')">Dhaka</a>&nbsp;&nbsp;
+   <a href="#" onclick="updateDivisionStatResult(2,'Chittagong')">Chittagong</a>&nbsp;&nbsp;
+   <a href="#" onclick="updateDivisionStatResult(3,'Khulna')">Khulna</a>&nbsp;&nbsp;
+   <a href="#" onclick="updateDivisionStatResult(4,'Rajshahi')">Rajshahi</a>&nbsp;&nbsp;
+   <a href="#" onclick="updateDivisionStatResult(5,'Barishal')">Barishal</a>&nbsp;&nbsp;
+   <a href="#" onclick="updateDivisionStatResult(6,'Sylhet')">Sylhet</a>&nbsp;&nbsp;
+   <a href="#" onclick="updateDivisionStatResult(7,'Rangpur')">Rangpur</a>&nbsp;&nbsp;
+   
+
 
    </td>
  </tr>
@@ -66,10 +71,11 @@
 
 var ajax_load="<img src='/BMG2G_WEB/resources/images/loading.gif' border='0' /> " ;
 
-function updateDivisionStatResult() 
+function updateDivisionStatResult(divisionId,divisionName) 
 	{
 	
-		 var loadUrl="divisionStat.action?divisionId="+$("#divisionId").val()+"&divisionName="+$("#divisionId").find('option:selected').text();	
+		 //var loadUrl="divisionStat.action?divisionId="+$("#divisionId").val()+"&divisionName="+$("#divisionId").find('option:selected').text();
+		 var loadUrl="divisionStat.action?divisionId="+divisionId+"&divisionName="+divisionName;	
 	     
 	    
 	     $("#divisionTd")  
