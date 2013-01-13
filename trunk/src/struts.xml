@@ -169,8 +169,8 @@
 			cotaSelection.action
 		</result>
 	</action>
+	
 
-		
 		
 		<action name="lotteryHome" class="org.controller.registration.LotteryHomeAction" method="lotteryHome">
 			<result name="success">
