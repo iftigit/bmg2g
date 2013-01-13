@@ -70,9 +70,12 @@
 <script type="text/javascript">
 
 var ajax_load="<img src='/BMG2G_WEB/resources/images/loading.gif' border='0' /> " ;
-
+var divId=0;
+var divName=0;
 function updateDivisionStatResult(divisionId,divisionName) 
 	{
+		divId=divisionId;
+		divName=divisionName;
 	
 		 //var loadUrl="divisionStat.action?divisionId="+$("#divisionId").val()+"&divisionName="+$("#divisionId").find('option:selected').text();
 		 var loadUrl="divisionStat.action?divisionId="+divisionId+"&divisionName="+divisionName;	
@@ -126,6 +129,15 @@ function updateDivisionStatResult(divisionId,divisionName)
 		
 	}
  
+  
+   
+   function refreshDivision()
+   {
+    if(divId!=0)
+   		updateDivisionStatResult(divId,divName);
+   }
+   
+    setInterval(refreshDivision, 45000); 
  
 </script>
 <br/><br/>
