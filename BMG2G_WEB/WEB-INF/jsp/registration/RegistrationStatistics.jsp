@@ -72,6 +72,7 @@
 var ajax_load="<img src='/BMG2G_WEB/resources/images/loading.gif' border='0' /> " ;
 var divId=0;
 var divName=0;
+var divisionTimerId = 0;
 function updateDivisionStatResult(divisionId,divisionName) 
 	{
 		divId=divisionId;
@@ -80,6 +81,9 @@ function updateDivisionStatResult(divisionId,divisionName)
 		 //var loadUrl="divisionStat.action?divisionId="+$("#divisionId").val()+"&divisionName="+$("#divisionId").find('option:selected').text();
 		 var loadUrl="divisionStat.action?divisionId="+divisionId+"&divisionName="+divisionName;	
 	     
+	     clearInterval(divisionTimerId);
+    	 divisionTimerId=setInterval(refreshDivision, 5000);
+    
 	    
 	     $("#divisionTd")  
 					.html(ajax_load)  
@@ -88,8 +92,13 @@ function updateDivisionStatResult(divisionId,divisionName)
 					   $("#divisionTd").html(responseText);
 					   $("#districtTd").html("");
 					   $("#thanaTd").html("");	
-			 
+
+					     clearInterval(divisionTimerId);
+				    	 divisionTimerId=setInterval(refreshDivision, 300000);
+							 
 					});
+					
+				
 		
 		
 	}
@@ -106,6 +115,10 @@ function updateDivisionStatResult(divisionId,divisionName)
 					   
 					   $("#districtTd").html(responseText);
 					    $("#thanaTd").html("");	
+					    
+					    clearInterval(divisionTimerId);
+				    	divisionTimerId=setInterval(refreshDivision, 300000);
+						
 			
 			 
 					});
@@ -123,7 +136,9 @@ function updateDivisionStatResult(divisionId,divisionName)
 					.load(loadUrl, {thanaId: thanaId,thanaName:thanaName},function(responseText){  
 					   
 					   $("#thanaTd").html(responseText);
-			
+						clearInterval(divisionTimerId);
+				    	 divisionTimerId=setInterval(refreshDivision, 300000);
+						
 			 
 					});
 		
@@ -137,7 +152,7 @@ function updateDivisionStatResult(divisionId,divisionName)
    		updateDivisionStatResult(divId,divName);
    }
    
-    setInterval(refreshDivision, 180000); 
+    divisionTimerId=setInterval(refreshDivision, 300000); 
  
 </script>
 <br/><br/>
