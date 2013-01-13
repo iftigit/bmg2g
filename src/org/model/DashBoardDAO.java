@@ -3,6 +3,7 @@ package org.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import org.table.CotaDTO;
@@ -11,6 +12,7 @@ import util.connection.ConnectionManager;
 
 public class DashBoardDAO {
 	
+	 DecimalFormat df = new DecimalFormat("#,##,##,###.##");
 	public String getDivisionWiseStat(String divisionId,String divisionName)
 	{		
 		Connection conn = ConnectionManager.getConnection();
@@ -23,8 +25,10 @@ public class DashBoardDAO {
 		System.out.println("Stat by District (sql) :" + sql);
 		PreparedStatement stmt = null;
 		ResultSet r = null;
+		double totalReg=0;
+		double totalAllRegCount=getTotalRegCount();
 		String response=" <p class='statLine1'> " +
-						" Registration Statistics for <font style='color:blue'> <b>"+divisionName+"</b> </font> Division" +
+						" Registration Statistics for <font style='color:blue'> <b>"+divisionName+"</b> </font> Division.<br/><font style='color:#006006'>[Country Total="+df.format(totalAllRegCount)+"]</font>" +
 						" </p>";
 			   response+=" <table class='divisionStatTable' width='100%'> " +
 						" 	<tr> " +
@@ -47,8 +51,10 @@ public class DashBoardDAO {
 					response+="<td width='40%' align='right' style='padding-right:10px;'>"+r.getString("total")+"</td>";
 	
 				
-				response+="</tr>";				
+				response+="</tr>";	
+				totalReg+=r.getInt("total");
 			}
+			response+="<tr><td align='right'><b>Total</b></td><td align='right' style='padding-right:10px;font-weight:bold;'>"+df.format(totalReg)+"</td></tr>";
 			response+="</table>";
 		}
 		
@@ -72,6 +78,7 @@ public class DashBoardDAO {
 		System.out.println("Stat by Upazilla (sql) :" + sql);
 		PreparedStatement stmt = null;
 		ResultSet r = null;
+		double totalReg=0;
 		String response=" <p class='statLine1'> " +
 						" Registration Statistics for <font style='color:blue'> "+districtName+" </font> District" +
 						" </p>";
@@ -94,8 +101,10 @@ public class DashBoardDAO {
 					response+="<td class='redCell' width='40%'align='right' style='padding-right:10px;'>"+r.getInt("total")+"</td>";
 				else
 					response+="<td width='40%' align='right' style='padding-right:10px;'>"+r.getString("total")+"</td>";
-				response+="</tr>";				
+				response+="</tr>";	
+				totalReg+=r.getInt("total");
 			}
+			response+="<tr><td align='right'><b>Total</b></td><td align='right' style='padding-right:10px;font-weight:bold;'>"+df.format(totalReg)+"</td></tr>";
 			response+="</table>";
 		}
 		
@@ -120,6 +129,7 @@ public class DashBoardDAO {
 		System.out.println("Stat by Union (sql) :" + sql);
 		PreparedStatement stmt = null;
 		ResultSet r = null;
+		double totalReg=0;
 		String response=" <p class='statLine1'> " +
 						" Registration Statistics for <font style='color:blue'> "+thanaName+" </font> Upazilla" +
 						" </p>";
@@ -142,8 +152,10 @@ public class DashBoardDAO {
 					response+="<td class='redCell' width='40%'align='right' style='padding-right:10px;'>"+r.getInt("total")+"</td>";
 				else
 					response+="<td width='40%' align='right' style='padding-right:10px;'>"+r.getString("total")+"</td>";
-				response+="</tr>";				
+				response+="</tr>";	
+				totalReg+=r.getInt("total");
 			}
+			response+="<tr><td align='right'><b>Total</b></td><td align='right' style='padding-right:10px;font-weight:bold;'>"+df.format(totalReg)+"</td></tr>";
 			response+="</table>";
 		}
 		
@@ -175,6 +187,34 @@ public class DashBoardDAO {
 						 " </select>";
 		
 		return selectBox;
+	}
+	
+	public double getTotalRegCount()
+	{		
+		Connection conn = ConnectionManager.getConnection();
+		String sql = " Select count(*) total from JOBSEEKER ";
+
+		System.out.println("Stat by Total (sql) :" + sql);
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		double totalRegCount=0;
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			r = stmt.executeQuery();
+			if (r.next())
+			{
+
+				totalRegCount=r.getDouble("total");
+			}
+			
+		}
+		
+		catch (Exception e){e.printStackTrace();}
+		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+		{e.printStackTrace();}stmt = null;conn = null;}
+
+		return totalRegCount;
 	}
 	
 }

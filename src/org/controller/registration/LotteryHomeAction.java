@@ -18,11 +18,12 @@ public class LotteryHomeAction extends ActionSupport{
 		String submittedAuthKey=localIp+via+realIp;
 		
 		UserDTO loggedInUser=(UserDTO) ServletActionContext.getRequest().getSession().getAttribute("loggedInUser");
+		
 		if(!loggedInUser.getAuthenticationKey().equalsIgnoreCase(submittedAuthKey))
 		{
 			return "logout";
 		}
-		else if(!loggedInUser.getUserType().equalsIgnoreCase("REG_VIEW_ADMIN") && !loggedInUser.getUserType().equalsIgnoreCase("REG_LOT_VIEW_ADMIN"))
+		else if(!loggedInUser.getUserType().equalsIgnoreCase("LOTTERY_DC_ADMIN"))
 		{
 			return "logout";
 		}
