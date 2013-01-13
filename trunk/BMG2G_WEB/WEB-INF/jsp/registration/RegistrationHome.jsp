@@ -240,7 +240,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      </td>
      <td>Age</td>
      <td>
-     	<input type="text" class="textBox" id="AGE" name="personalDTO.age" value="<s:property value="personalDTO.age" />" readonly="readonly" />
+     	<input type="text" class="textBox" id="AGE" name="personalDTO.age" value="<s:property value="personalDTO.age" />" />
      </td>
     </tr>
 
