@@ -539,6 +539,8 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
       <option value="Wife">Wife</option>
       <option value="Mother">Mother</option>
       <option value="Father">Father</option>
+      <option value="Brother">Brother</option>
+      <option value="Sister">Sister</option>
       <option value="Uncle">Uncle</option>
       <option value="Son/Daughter">Son/Daughter</option>
       <option value="Cousin">Cousin</option>
