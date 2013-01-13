@@ -9,6 +9,7 @@ import oracle.jdbc.driver.OracleCallableStatement;
 import oracle.sql.ARRAY;
 import oracle.sql.ArrayDescriptor;
 
+import org.controller.registration.JobseekerDTO;
 import org.table.AddressDTO;
 import org.table.EducationDTO;
 import org.table.ExperienceDTO;
@@ -171,6 +172,50 @@ public class RegistrationDAO {
 				{e.printStackTrace();}stmt = null;conn = null;}
 	 		
 	 		return response;
+	 }
+	 
+	 public ArrayList<JobseekerDTO> getAllRegisteredJobseeker(String operatorId)
+	 {
+		 Connection conn = ConnectionManager.getConnection();
+		 ArrayList<JobseekerDTO> jobSeekerList=new ArrayList<JobseekerDTO>();
+		   String sql = " Select JOBSEEKER.JOBSEEKER_NUMBER,FIRSTNAME,MIDDLENAME,LASTNAME,FATHERNAME,MOTHERNAME,DIVISION.DIVISION_NAME, " +
+		   		" DISTRICT.DIST_NAME,THANA.THANA_NAME,UNIONS.UNIONNAME from jobseeker,ADDRESS,DIVISION,DISTRICT,THANA,UNIONS Where " +
+		   		"  OP_USERID=? " +
+		   		" And JOBSEEKER.JOBSEEKER_NUMBER=ADDRESS.JOBSEEKER_NUMBER " +
+		   		" And ADDRESS.PER_DIV=DIVISION.DIVISIONID " +
+		   		"  And ADDRESS.PER_DIS=DISTRICT.DIST_ID " +
+		   		"  And ADDRESS.PER_THANA=THANA.THANAID " +
+		   		"  And ADDRESS.PER_UNION=UNIONS.UNIONID";
+		   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   JobseekerDTO jobseeker  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, operatorId);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					jobseeker=new JobseekerDTO();
+					jobseeker.setRegId(r.getString("JOBSEEKER_NUMBER"));
+					jobseeker.setName(r.getString("FIRSTNAME")+" "+r.getString("MIDDLENAME")+" "+r.getString("LASTNAME"));
+					jobseeker.setFatherName(r.getString("FATHERNAME"));
+					jobseeker.setMotherName(r.getString("MOTHERNAME"));
+					jobseeker.setpDivisionName(r.getString("DIVISION_NAME"));
+					jobseeker.setpDistrictName(r.getString("DIST_NAME"));
+					jobseeker.setpThanaName(r.getString("THANA_NAME"));
+					jobseeker.setpUnionName(r.getString("UNIONNAME"));
+					jobSeekerList.add(jobseeker);
+					
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return jobSeekerList;
 	 }
 	 
 	
