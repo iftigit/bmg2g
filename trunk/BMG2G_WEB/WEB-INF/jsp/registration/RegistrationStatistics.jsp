@@ -137,7 +137,7 @@ function updateDivisionStatResult(divisionId,divisionName)
    		updateDivisionStatResult(divId,divName);
    }
    
-    setInterval(refreshDivision, 120000); 
+    setInterval(refreshDivision, 180000); 
  
 </script>
 <br/><br/>
