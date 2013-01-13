@@ -44,68 +44,68 @@ public class PreviewRegFormAction extends ActionSupport{
 		ServletActionContext.getRequest().getSession().setAttribute("sessionObj_PersonalInfo", personalDTO);
 
 		/*=================Id to Name Conversion for Address ====================*/
-		String pDivisionName=(String) getServletContext().getAttribute("DIV_NAME_FROM_ID"+addressDTO.getpDivision());
+		String pDivisionName=(String) getServletContext().getAttribute("DIV_NAME_FROM_ID_P_"+addressDTO.getpDivision());
 		if(pDivisionName==null)
 		{			
 			pDivisionName = addDAO.getDivisionNameFromId(Integer.valueOf(addressDTO.getpDivision()));			
-			getServletContext().setAttribute("DIV_NAME_FROM_ID"+addressDTO.getpDivision(),pDivisionName);
+			getServletContext().setAttribute("DIV_NAME_FROM_ID_P_"+addressDTO.getpDivision(),pDivisionName);
 		}
 		addressDTO.setpDivisionName(pDivisionName);
 
-		String mDivisionName=(String) getServletContext().getAttribute("DIV_NAME_FROM_ID"+addressDTO.getmDivision());
+		String mDivisionName=(String) getServletContext().getAttribute("DIV_NAME_FROM_ID_M_"+addressDTO.getmDivision());
 		if(mDivisionName==null)
 		{			
 			mDivisionName = addDAO.getDivisionNameFromId(Integer.valueOf(addressDTO.getmDivision()));			
-			getServletContext().setAttribute("DIV_NAME_FROM_ID"+addressDTO.getmDivision(),mDivisionName);
+			getServletContext().setAttribute("DIV_NAME_FROM_ID_M_"+addressDTO.getmDivision(),mDivisionName);
 		}
 		addressDTO.setmDivisionName(mDivisionName);
 		
-		String pDistrictName=(String) getServletContext().getAttribute("DIS_NAME_FROM_ID"+addressDTO.getpDistrict());
+		String pDistrictName=(String) getServletContext().getAttribute("DIS_NAME_FROM_ID_P_"+addressDTO.getpDistrict());
 		if(pDistrictName==null)
 		{			
 			pDistrictName = addDAO.getDistrictNameFromId(Integer.valueOf(addressDTO.getpDistrict()));			
-			getServletContext().setAttribute("DIV_NAME_FROM_ID"+addressDTO.getpDistrict(),pDistrictName);
+			getServletContext().setAttribute("DIS_NAME_FROM_ID_P_"+addressDTO.getpDistrict(),pDistrictName);
 		}
 		addressDTO.setpDistrictName(pDistrictName);
 
-		String mDistrictName=(String) getServletContext().getAttribute("DIS_NAME_FROM_ID"+addressDTO.getmDistrict());
+		String mDistrictName=(String) getServletContext().getAttribute("DIS_NAME_FROM_ID_M_"+addressDTO.getmDistrict());
 		if(mDistrictName==null)
 		{			
 			mDistrictName = addDAO.getDistrictNameFromId(Integer.valueOf(addressDTO.getmDistrict()));			
-			getServletContext().setAttribute("DIV_NAME_FROM_ID"+addressDTO.getmDistrict(),mDistrictName);
+			getServletContext().setAttribute("DIS_NAME_FROM_ID_M_"+addressDTO.getmDistrict(),mDistrictName);
 		}
 		addressDTO.setmDistrictName(mDistrictName);
 		
-		String pThanaName=(String) getServletContext().getAttribute("THANA_NAME_FROM_ID"+addressDTO.getpThana());
+		String pThanaName=(String) getServletContext().getAttribute("THANA_NAME_FROM_ID_P_"+addressDTO.getpThana());
 		if(pThanaName==null)
 		{			
 			pThanaName = addDAO.getThanaNameFromId(addressDTO.getpThana());			
-			getServletContext().setAttribute("THANA_NAME_FROM_ID"+addressDTO.getpThana(),pThanaName);
+			getServletContext().setAttribute("THANA_NAME_FROM_ID_P_"+addressDTO.getpThana(),pThanaName);
 		}
 		addressDTO.setpThanaName(pThanaName);
 		
-		String mThanaName=(String) getServletContext().getAttribute("THANA_NAME_FROM_ID"+addressDTO.getmThana());
+		String mThanaName=(String) getServletContext().getAttribute("THANA_NAME_FROM_ID_M_"+addressDTO.getmThana());
 		if(mThanaName==null)
 		{			
 			mThanaName = addDAO.getThanaNameFromId(addressDTO.getmThana());			
-			getServletContext().setAttribute("THANA_NAME_FROM_ID"+addressDTO.getpThana(),mThanaName);
+			getServletContext().setAttribute("THANA_NAME_FROM_ID_M_"+addressDTO.getpThana(),mThanaName);
 		}
 		addressDTO.setmThanaName(mThanaName);
 		
 		
-		String pUnionName=(String) getServletContext().getAttribute("UNION_NAME_FROM_ID"+addressDTO.getPUnion());
+		String pUnionName=(String) getServletContext().getAttribute("UNION_NAME_FROM_ID_P_"+addressDTO.getPUnion());
 		if(pUnionName==null)
 		{			
 			pUnionName = addDAO.getUnionNameFromId(addressDTO.getPUnion());			
-			getServletContext().setAttribute("UNION_NAME_FROM_ID"+addressDTO.getpThana(),pUnionName);
+			getServletContext().setAttribute("UNION_NAME_FROM_ID_P_"+addressDTO.getpThana(),pUnionName);
 		}
 		addressDTO.setPUnionName(pUnionName);
 		
-		String mUnionName=(String) getServletContext().getAttribute("UNION_NAME_FROM_ID"+addressDTO.getMUnion());
+		String mUnionName=(String) getServletContext().getAttribute("UNION_NAME_FROM_ID_M_"+addressDTO.getMUnion());
 		if(mUnionName==null)
 		{			
 			mUnionName = addDAO.getUnionNameFromId(addressDTO.getMUnion());			
-			getServletContext().setAttribute("UNION_NAME_FROM_ID"+addressDTO.getpThana(),mUnionName);
+			getServletContext().setAttribute("UNION_NAME_FROM_ID_M_"+addressDTO.getpThana(),mUnionName);
 		}
 		addressDTO.setMUnionName(mUnionName);
 
