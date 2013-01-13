@@ -21,6 +21,7 @@
         <script type="text/javascript" src="/BMG2G_WEB/resources/js/lib/jquery.validity.1.2.0/jQuery.validity.js"></script>
  
 
+  
 </head>
 <body style="margin: 0px;">
 
@@ -32,64 +33,62 @@
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
 	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
-	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project Home</div>
+	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project </div>
 	</div>
 </div>
 </center>
 </div>
 <center>
 <br/>
-<div class="box" style="margin-top: 100px;width: 500px;text-align: center;">
-    <h3>Activities</h3>
+<div class="box" style="margin-top: 100px;width: 1000px;text-align: center;">
+    <h3>List of all Registered Jobseeker</h3>
     
-<form id="loginForm" name="loginForm" method="post" action="checkValidity.action">    
-    <table width="100%" border="0" cellspacing="1" class="infoTable">
     
+    <table width="98%" border="1" cellspacing="0" cellpadding="0" class="infoTable" style="border: 1px solid grey;"  align="center" >
+    
+    <tr style="background-color: #CCCCCC;">
+     <td style="text-align: left;padding-left: 10px;font-weight: bold;" width="20%">
+     	Reg. Number
+     </td>
+     <td style="text-align: left;padding-left: 10px;font-weight: bold;" width="20%">
+     	Jobseeker Name
+     </td>
+     <td style="text-align: left;padding-left: 10px;font-weight: bold;" width="15%">
+     	Father Name
+     </td>
+    
+     <td style="text-align: left;padding-left: 10px;font-weight: bold;" width="20%">
+     	Div,Dist,Upazilla
+     </td>
+     <td style="text-align: left;padding-left: 10px;font-weight: bold;" width="25%">Union</td>
+    </tr>
+    <s:iterator value="jobseekerList">
     <tr>
-     <td style="text-align: center">
-     	<a href="regHomeAction.action">G2G - Registration Form</a>
+     <td style="text-align: left;padding-left: 10px;">
+     	<s:property value="regId"/> 
      </td>
-    </tr>
-     <tr>
-     <td style="text-align: center">
-     	<a href="adminCardDownloadHome.action">Download Registration Card</a>
+     <td style="text-align: left;padding-left: 10px;">
+     	<s:property value="name"/> 
      </td>
-    </tr>
     
-    <tr>
-     <td style="text-align: center">
-     	<a href="getRegisteredJobseekerList.action">Registered Jobseeker List</a>
-     </td>
-    </tr>
- 
- 	<tr>
-     <td style="text-align: center">
-     	<a href="technicalTeam.action">Contact your Technical Person</a>
-     </td>
-    </tr>
+     <td><s:property value="fatherName"/> </td>
     
-     <tr>
-     <td style="text-align: center">
-     	<a href="logout.action">Logout</a>
+     <td>
+        <s:property value="pDivisionName"/>, <s:property value="pDistrictName"/>, <s:property value="pThanaName"/>
      </td>
+     <td><s:property value="pUnionName"/></td>
     </tr>
-    
-     <tr>
-     <td style="text-align: center" height="20px;">
-     
-     </td>
-    </tr>
-
+    </s:iterator>
     </table>
-</form>    
-    
-  
+
+<br/>     
 </div>
+    <br/>
+    <a href="regOperatorHome.action">Reg. Operator Home</a>
+    <br/>
 <p style="height: 30px"></p>
 </center>
-<script type="text/javascript">
-$('input').attr('autocomplete','off');   
-</script>
+
 </body>
 
 </html>

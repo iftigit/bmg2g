@@ -33,7 +33,7 @@
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
 	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
-	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project Registration System Login Page</div>
+	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project</div>
 	</div>
 </div>
 </center>
