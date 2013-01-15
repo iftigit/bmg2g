@@ -132,6 +132,7 @@
 			/WEB-INF/jsp/registration/CotaEnd.jsp
 		</result>
 		<result name="input">/WEB-INF/jsp/registration/PreviewRegistrationForm.jsp</result>
+		<result name="registrationHome">/WEB-INF/jsp/registration/RegistrationHome.jsp</result>
 		<result name="logout" type="redirectAction">
 			logout.action
 		</result>
@@ -264,7 +265,14 @@
 			<result name="success">/WEB-INF/jsp/RegOperatorHome.jsp</result>
 		</action>
 		
-
+		
+	<action name="dcLotteryResultDownload" class="org.controller.registration.DcLotteryResult">
+		<result type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+			</result>
+	</action>
+		
 
 		
 		

@@ -11,7 +11,6 @@ import org.table.AddressDTO;
 import org.table.LogDTO;
 import org.table.NomineeDTO;
 import org.table.PersonalInfoDTO;
-import org.table.TtcDTO;
 import org.table.UserDTO;
 import org.util.PassPhrase;
 
@@ -66,11 +65,88 @@ public String execute() throws Exception
 	    	ServletActionContext.getRequest().getSession().setAttribute("form_error", "form_error");
 	    	return "input";
 	    }
-
-	
-	
+		
+		String messages="";
 		
 		
+		if(personalDTO.getEmpFname()==null || personalDTO.getEmpFname().equalsIgnoreCase("") )
+		{
+			messages+="* Jobseeker's First Name cannot be blank.";			
+		}
+		if(personalDTO.getFatherName()==null||personalDTO.getFatherName().equalsIgnoreCase(""))
+		{
+			messages+="* Father Name cannot be blank.";			
+		}
+		if(personalDTO.getMotherName()==null || personalDTO.getMotherName().equalsIgnoreCase("") )
+		{
+			messages+="* Mother Name cannot be blank.";			
+		}
+		if(personalDTO.getBirthDate()==null || personalDTO.getBirthDate().equalsIgnoreCase(""))
+		{
+			messages+="* Birth Date cannot be blank.";			
+		}
+		if(personalDTO.getWeight()==null || personalDTO.getWeight().equalsIgnoreCase(""))
+		{
+			messages+="* Weight cannot be blank.";			
+		}
+		if(personalDTO.getHeightFeet()==null || personalDTO.getHeightFeet().equalsIgnoreCase(""))
+		{
+			messages+="* Height Feet cannot be blank.";			
+		}
+		if(personalDTO.getReligion()==null || personalDTO.getReligion().equalsIgnoreCase("select"))
+		{
+			messages+="* Please select your religion.";			
+		}
+		if(addressDTO.getpThana()==null || addressDTO.getpThana().equalsIgnoreCase("select"))
+		{
+			messages+="* Please select Permanent Address Upazilla Correctly.";			
+		}
+		if(addressDTO.getmThana()==null || addressDTO.getmThana().equalsIgnoreCase("select"))
+		{
+			messages+="* Please select Mailing Address Upazilla Correctly.";			
+		}
+		if(addressDTO.getPUnion()==null || addressDTO.getPUnion().equalsIgnoreCase("select"))
+		{
+			messages+="* Please select Permanent Address Union Correctly.";			
+		}
+		if(addressDTO.getMUnion()==null || addressDTO.getMUnion().equalsIgnoreCase("select"))
+		{
+			messages+="* Please select Mailing Address Union Correctly.";			
+		}
+		
+		if( nomineeDTO.getNomineeName()==null || nomineeDTO.getNomineeName().equalsIgnoreCase(""))
+		{
+			messages+="* Nominee Name cannot be blank.";			
+		}
+		if(nomineeDTO.getNomineeRelation()==null || nomineeDTO.getNomineeRelation().equalsIgnoreCase("none"))
+		{
+			messages+="* Please select Nominee Religion.";			
+		}
+		if(nomineeDTO.getNomineeAddress()==null || nomineeDTO.getNomineeAddress().equalsIgnoreCase(""))
+		{
+			messages+="* Please provide nominee's address.";			
+		}
+		if(nomineeDTO.getNomineePhone()==null || nomineeDTO.getNomineePhone().equalsIgnoreCase(""))
+		{
+			messages+="* Please provide nominee's phone number.";			
+		}
+		if(nomineeDTO.getContactName()==null || nomineeDTO.getContactName().equalsIgnoreCase(""))
+		{
+			messages+="* Please provide contact person name.";			
+		}
+		if(nomineeDTO.getContactMobile()==null || nomineeDTO.getContactMobile().equalsIgnoreCase(""))
+		{
+			messages+="* Please provide contact person mobile number.";			
+		}
+		
+		if(!messages.equalsIgnoreCase(""))
+		{addFieldError( "Common_Messages", " Please Correct the following errors. \n"+messages );error=true;}
+		
+		if(error)
+	    {		
+	    	ServletActionContext.getRequest().getSession().setAttribute("form_error", "form_error");
+	    	return "registrationHome";
+	    }
 		
 	    logInfoDTO.setxForward(ServletActionContext.getRequest().getHeader("X-Forwarded-For"));
 		logInfoDTO.setVia(ServletActionContext.getRequest().getHeader("Via"));
@@ -100,6 +176,7 @@ public String execute() throws Exception
         
         
 	} //End of Method...
+
 
 
 
