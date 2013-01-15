@@ -40,17 +40,25 @@
 <center>
 <br/>
 <div class="box" style="margin-top: 20px;width: 1000px;text-align: center;">
-    <h3>Lottery</h3>
+    <h3>Lottery Home for <s:property value="districtName" /> District</h3>
+    
     
 <form id="loginForm" name="loginForm" method="post" action="checkValidity.action">    
     <table width="100%" border="0" cellspacing="1" class="infoTable">
     
     <tr>
-     <td style="text-align: center" width="50%">
+    	<td width="50%" style="text-align: center;font-size: 18px;"><b>Total Jobseeker :</b> <s:property value="totalRegJobseeker" /></td>
+    	<td width="50%" style="text-align: center;font-size: 18px;"><b>Total Quota :</b><s:property value="totalCotaNumber" /></td>
+    </tr>
+    <tr><td colspan="2"></td></tr>
+    <tr>
+     <td style="text-align: center" >
      	<input type="button" name="Lottery" value="Process Lottery" style="width: 150px; height: 40px;font-weight: bold;" />
      </td>
-     <td style="text-align: center" width="50%">
+     <td style="text-align: center" >
+      <a href="dcLotteryResultDownload.action">
      	<input type="button" name="LotteryResult" value="Download Lottery Result" style="width: 250px; height: 40px;font-weight: bold;"/>
+      </a>
      </td>
     </tr>
     <tr>
