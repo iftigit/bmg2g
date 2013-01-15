@@ -190,6 +190,8 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
 </div>
 <center>
 <br/>
+<font style="color:red"><s:label name="Common_Messages"></s:label></font>
+<br/>
 <div class="box">
     <h3>Personal Information</h3>
     <p>
