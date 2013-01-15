@@ -16,6 +16,7 @@ public class JobseekerDTO {
 	private String pUnionId;
 	private String pUnionName;
 	private String pMobileNumber;
+	
 	public String getRegId() {
 		return regId;
 	}
