@@ -113,9 +113,6 @@
 			</result>
 	</action>
 	
-	<action name="getRegisteredJobseekerList" class="org.controller.registration.RegisteredJobseeker" method="getRegisteredJobseekerList">
-	<result name="success">/WEB-INF/jsp/registration/RegisteredJobSeeker.jsp</result>
-	</action>
 	
 	
 	<action name="submitRegistration" class="org.controller.registration.RegistrationSubmitAction">
