@@ -62,18 +62,21 @@ public class CheckValidity extends ActionSupport{
 		else
 		{
 				
-			savedAuthKey=userDao.getAuthenticationKey(userId, password);
+			
 			boolean flag=false;
-			if(savedAuthKey.equalsIgnoreCase(""))
-			{
+//			savedAuthKey=userDao.getAuthenticationKey(userId, password);
+//			if(savedAuthKey.equalsIgnoreCase(""))
+//			{
 				flag=userDao.updateLoginKey(userId, password, localIp, via, realIp);
 				user.setAuthenticationKey(localIp+via+realIp);
-			}
-			else if(submittedAuthKey.equalsIgnoreCase(savedAuthKey))
-			{
+//			}
+//			else if(submittedAuthKey.equalsIgnoreCase(savedAuthKey))
+//			{
+//				flag=true;
+//				user.setAuthenticationKey(savedAuthKey);
+//			}
 				flag=true;
-				user.setAuthenticationKey(savedAuthKey);
-			}
+				
 			if(flag==true)
 			{
 				ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", user);
