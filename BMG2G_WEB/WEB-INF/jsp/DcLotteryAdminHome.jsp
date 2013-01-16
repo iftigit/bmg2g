@@ -51,11 +51,14 @@
      </td>
     </tr>
     
+    <s:if test="lotteryStatus!='NOTCOMPLETED'">
     <tr>
      <td style="text-align: center">
      	<a href="regStatHome.action">Download Lottery Result</a>
      </td>
     </tr>
+
+    </s:if>
     
      <tr>
      <td style="text-align: center">
