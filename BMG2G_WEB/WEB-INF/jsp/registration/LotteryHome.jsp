@@ -22,6 +22,64 @@
  
 
 </head>
+
+<script type="text/javascript">
+var ajax_load="<br/><br/><br/><center><img src='/BMG2G_WEB/resources/images/ajax-loader.gif' border='0' /></center>";
+function processLottery()
+{
+
+ var loadUrl="processLottery.action";
+			jQuery("#resultDiv")  
+				.html(ajax_load)  
+				.load(loadUrl, {},function(responseText){  
+					jQuery("#resultDiv").html("");
+					
+					if(responseText!="error" && responseText!="duplicate")
+						showResult(responseText);
+					else
+					   {
+					    document.getElementById("lotteryProcessButton").disabled=false;
+					    jQuery("#resultDiv").html("");
+					   }				   
+				}); 
+				
+}
+
+function showResult(responseText)
+{
+ var table=document.getElementById("resultTable");
+ var allJobseeker=responseText.split("NEWJOBSEEKERG2G");
+ var jobSeeker;
+ 
+ for(var i=0;i<allJobseeker.length;i++)
+ {
+
+   
+   jobSeeker=allJobseeker[i];
+   var jobSeekerArr=jobSeeker.split("IICTG2GIFTI");
+   var row=table.insertRow(0);
+   var cell1=row.insertCell(0);
+   var cell2=row.insertCell(1);
+   var cell3=row.insertCell(2);
+   var cell4=row.insertCell(3);
+   var cell5=row.insertCell(4);
+   var cell6=row.insertCell(5);
+   
+   cell1.innerHTML=(i+1);
+   cell2.innerHTML=jobSeekerArr[0];
+   cell3.innerHTML=jobSeekerArr[1];
+   cell4.innerHTML=jobSeekerArr[2];
+   cell5.innerHTML=jobSeekerArr[3];
+   cell6.innerHTML=jobSeekerArr[4];
+   //cell6.innerHTML="";
+   
+ }
+ 
+ document.getElementById("lotteryButtonTd").innerHTML="";
+ 
+}
+
+</script>
 <body style="margin: 0px;">
 
 <div style="width: 100%;height: 100px;border-bottom: 1px solid #006219;">
@@ -52,8 +110,11 @@
     </tr>
     <tr><td colspan="2"></td></tr>
     <tr>
-     <td style="text-align: center" >
-     	<input type="button" name="Lottery" value="Process Lottery" style="width: 150px; height: 40px;font-weight: bold;" />
+     <td style="text-align: center" id="lotteryButtonTd">
+       <s:if test="lotteryList.size==0">
+        <input type="button" name="lotteryProcessButton" id="lotteryProcessButton" value="Process Lottery" style="width: 150px; height: 40px;font-weight: bold;" onclick="processLottery()"/>
+       </s:if>
+     	
      </td>
      <td style="text-align: center" >
       <a href="dcLotteryResultDownload.action">
@@ -64,142 +125,41 @@
     <tr>
     <td colspan="2"></td>
     </tr>
-    <tr>
-    
-    <td colspan="2" style="padding: 0px;">
-    	<table width="100%" border="0" cellpadding="0" cellspacing="0" >
-    	<tr>
-    	    <td width="10%" align="center" style="background-color: #A2C1A2">SL</td>
-    		<td width="20%" align="center" style="background-color: #8EBBB8">Reg. Number</td>
+    </table>
+    <div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" id="resultTable">    	   
+		 <tr>
+    	    <td width="5%" align="center" style="background-color: #A2C1A2">SL</td>
+    		<td width="25%" align="center" style="background-color: #8EBBB8">Reg. Number</td>
     		<td width="20%" align="center" style="background-color: #A2C1A2">Jobseeker Name</td>
     		<td width="20%" align="center" style="background-color: #8EBBB8">Father Name</td>
     		<td width="20%" align="center" style="background-color: #A2C1A2">Mother Name</td>    		
     		<td width="10%" align="center" style="background-color: #8EBBB8">Union</td>
-    	</tr>
-    	</table>
-    	
-    	<div style="height: 500px;overflow: auto;">
-    		<table width="100%" border="0" cellpadding="0" cellspacing="0" >    	   
-		    	<tr style="background-color: #FFFFFF">
-		    		<td align="center">1</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #E1E1E1">
-		    		<td align="center">2</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #FFFFFF">
-		    		<td align="center">3</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #E1E1E1">
-		    		<td align="center">4</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #FFFFFF">
-		    		<td align="center">5</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #E1E1E1">
-		    		<td align="center">6</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #FFFFFF">
-		    		<td align="center">7</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #E1E1E1">
-		    		<td align="center">8</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #FFFFFF">
-		    		<td align="center">9</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #E1E1E1">
-		    		<td align="center">10</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #FFFFFF">
-		    		<td align="center">11</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #E1E1E1">
-		    		<td align="center">12</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #FFFFFF">
-		    		<td align="center">13</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-		    	<tr style="background-color: #E1E1E1">
-		    		<td align="center">14</td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    		<td align="center"></td>
-		    	</tr>
-    		</table>
-    	</div>
-    	
-    </td>
-    </tr>
-    
-
+    	</tr>   	
     </table>
+    </div>
+    <div style="height: 500px;overflow: auto;clear: both;" id="resultDiv">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" id="resultTable">  
+         <s:iterator value="lotteryList" status="idx">
+            <tr >
+    	    <td><s:property value="#idx.count" /></td>
+    		<td align="left" style="padding-left: 3px;"><s:property value="jobseekerNumber" /></td>
+    		<td align="left" style="padding-left: 5px;"><s:property value="jobseekerName" /></td>
+    		<td align="left" style="padding-left: 3px;"><s:property value="fatherName" /></td>
+    		<td align="left" style="padding-left: 3px;"><s:property value="motherName" /></td>    		
+    		<td align="left" style="padding-left: 3px;"><s:property value="unionName" /></td>
+    	</tr>
+         </s:iterator>  	   
+		 <tr>
+    	    <td width="10%"></td>
+    		<td width="20%"></td>
+    		<td width="20%"></td>
+    		<td width="20%"></td>
+    		<td width="20%"></td>    		
+    		<td width="10%"></td>
+    	</tr>   	
+    </table>
+    </div>
 </form>    
     
   
