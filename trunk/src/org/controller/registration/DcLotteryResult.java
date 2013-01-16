@@ -20,6 +20,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.util.ServletContextAware;
 import org.model.AddressDAO;
 import org.model.LotteryDAO;
+import org.table.LotteryDTO;
 import org.table.UserDTO;
 
 import com.lowagie.text.Cell;
@@ -62,7 +63,7 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ServletOutputStream out = response.getOutputStream();		
 		Document document = new Document(PageSize.A4.rotate());
-		
+		LotteryDAO lotteryDAO=new LotteryDAO();
 		
 		String fileName="Lottery_G2G_"+districtName+".pdf";
 		
@@ -71,9 +72,8 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 		
 		document.addHeader("G2G Lottery", "");
 		
-		String realpath = servlet.getRealPath("");
 		
-
+		ArrayList<LotteryDTO> selectedList=lotteryDAO.getLotteryArrayListForReport(loggedInUser.getDistrictId());
 
 		PdfPTable ptable = null;
 		PdfPCell pcell=null;
@@ -81,57 +81,78 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 		try{
 			
 			DCLotteryReportEvent eEvent = new DCLotteryReportEvent(servlet);
-			PdfWriter.getInstance(document, baos).setPageEvent(eEvent);
-			document.open();
 			
 			Font font1 = new Font(Font.COURIER, 8, Font.BOLD); 
 			font1.setColor(new Color(0x92, 0x90, 0x83));
-			Font fontT = FontFactory.getFont("Helvetica", 9, Font.NORMAL,Color.BLACK);
-			Font fontL = FontFactory.getFont("Helvetica", 9, Font.BOLD,Color.BLACK);
-			Font fontTL = FontFactory.getFont("Helvetica", 7, Font.NORMAL,Color.BLACK);
-			Font fontTLL = FontFactory.getFont("Times New Roman", 6, Font.NORMAL,Color.BLACK);
-			
+			Font fontT = FontFactory.getFont("Helvetica", 9, Font.NORMAL,Color.BLACK);			
 			Font fontb = FontFactory.getFont("Helvetica", 10, Font.BOLD,Color.BLACK);
-			Font font2 = FontFactory.getFont("Courier", 9, Font.NORMAL,Color.BLACK);
-			Font font3 = FontFactory.getFont("Helvetica", 15, Font.BOLD,Color.BLACK);
-			Font font4 = FontFactory.getFont("Helvetica", 14, Font.NORMAL,Color.BLACK);
-			Font font5 = FontFactory.getFont("Times New Roman", 11, Font.BOLD,Color.BLACK);
-			Font font6 = FontFactory.getFont("Helvetica", 14, Font.BOLD,Color.BLACK);
-			Font font7 = FontFactory.getFont("Helvetica", 11, Font.NORMAL,Color.BLACK);
-			Font font8 = FontFactory.getFont("Helvetica", 17, Font.BOLD,Color.BLACK);	
 			
+			ptable = new PdfPTable(5);
+			ptable.setHeaderRows(1);
+			ptable.setWidthPercentage(100);
+			ptable.setWidths(new float[]{8,17,25,25,25});
 			
-			
-			LotteryDAO lotteryDAO = new LotteryDAO();
-			
-			List<JobseekerDTO> selectedList = null;
-			PdfPTable headerTable=null;
-			/* Test Data */
-				selectedList=new ArrayList<JobseekerDTO>();
-				for(int i=0;i<10;i++)
-				{
-					JobseekerDTO jobseeker=new JobseekerDTO();
-					jobseeker.setRegId("BBM12090353G2G");
-					jobseeker.setName("Ifta Khirul");
-					jobseeker.setFatherName("Md. Nurnabi Sarkar");
-					jobseeker.setMotherName("Fatema Khatun");
-					jobseeker.setpMobileNumber("01190547558");
-					
-					selectedList.add(jobseeker);
-				}
-			/*===========*/
 
+			pcell=new PdfPCell(new Paragraph("Sl. No.",fontb));
+			pcell.setMinimumHeight(25f);
+			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			ptable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph("Jobseeker Id",fontb));
+			pcell.setMinimumHeight(25f);
+			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			ptable.addCell(pcell);
 			
 			
-			String preUnionId="";
+			pcell=new PdfPCell(new Paragraph("Jobseeker Name",fontb));
+			pcell.setMinimumHeight(25f);
+			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			ptable.addCell(pcell);
 			
+			
+			
+			pcell=new PdfPCell(new Paragraph("Father Name",fontb));
+			pcell.setMinimumHeight(25f);
+			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			ptable.addCell(pcell);
+						
+			pcell=new PdfPCell(new Paragraph("Mother Name",fontb));
+			pcell.setMinimumHeight(25f);
+			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			ptable.addCell(pcell);
+			
+						
+			String preUnion="";
+			String preUnionName="";
+			int counter=0;
 			for(int i=0;i<selectedList.size();i++)
 			{
-				if(!preUnionId.equalsIgnoreCase(selectedList.get(i).getpUnionId()))				
+				
+				if(i==0)
 				{
-					ptable = new PdfPTable(8);
+					eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());
+					PdfWriter.getInstance(document, baos).setPageEvent(eEvent);
+					document.open();
+				}
+				
+				if(!preUnion.equalsIgnoreCase(selectedList.get(i).getUnionId()) && i!=0)
+				{
+					document.add(ptable);
+					
+					eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());					
+					document.newPage();
+					
+					
+					
+					ptable = new PdfPTable(5);
+					ptable.setHeaderRows(1);
 					ptable.setWidthPercentage(100);
-					ptable.setWidths(new float[]{5,14,18,18,18,10,8,7});
+					ptable.setWidths(new float[]{8,17,25,25,25});
 
 					pcell=new PdfPCell(new Paragraph("Sl. No.",fontb));
 					pcell.setMinimumHeight(25f);
@@ -165,66 +186,43 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
 					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					ptable.addCell(pcell);
-					
-					
-					pcell=new PdfPCell(new Paragraph("Birth Date",fontb));
-					pcell.setMinimumHeight(25f);
-					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					ptable.addCell(pcell);
-					
-					
-					pcell=new PdfPCell(new Paragraph("Mobile Number",fontb));
-					pcell.setMinimumHeight(25f);
-					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					ptable.addCell(pcell);
-					
-					
-					pcell=new PdfPCell(new Paragraph("Comments",fontb));
-					pcell.setMinimumHeight(25f);
-					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					ptable.addCell(pcell);
-					ptable.setHeaderRows(1);
-					
-					if(i!=0)
-					{
-						document.add(ptable);
-						document.newPage();
-					}
-
-				}
-//				ptable = new PdfPTable(8);
-//				ptable.setWidthPercentage(100);
-//				ptable.setWidths(new float[]{5,14,18,18,18,10,8,7});
-//
+					counter=0;
 				
-				JobseekerDTO seekerDTO =selectedList.get(i);
+				}
+		
+				counter++;
+				ptable.setWidthPercentage(100);
+				ptable.setWidths(new float[]{8,17,25,25,25});
+
+				
+				LotteryDTO seekerDTO =(LotteryDTO)selectedList.get(i);
 				
 								
-				pcell = new PdfPCell(new Paragraph(String.valueOf(i+1),fontT));
+				pcell = new PdfPCell(new Paragraph(String.valueOf(counter),fontT));
+				pcell.setMinimumHeight(20f);
+				pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				
+				ptable.addCell(pcell);
+				
+				pcell = new PdfPCell(new Paragraph(seekerDTO.getJobseekerNumber(),fontT));
 				pcell.setMinimumHeight(20f);
 				pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				ptable.addCell(pcell);
 				
-				pcell = new PdfPCell(new Paragraph(seekerDTO.getRegId(),fontT));
-				pcell.setMinimumHeight(20f);
-				pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				ptable.addCell(pcell);
-				
-				pcell = new PdfPCell(new Paragraph(seekerDTO.getName(),fontT));
+				pcell = new PdfPCell(new Paragraph(seekerDTO.getJobseekerName(),fontT));
 				pcell.setMinimumHeight(20f);
 				pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				pcell.setPaddingLeft(5f);
 				ptable.addCell(pcell);
 				
 				pcell = new PdfPCell(new Paragraph(seekerDTO.getFatherName(),fontT));
 				pcell.setMinimumHeight(20f);
 				pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				pcell.setPaddingLeft(5f);
 				ptable.addCell(pcell);
 				
 				
@@ -232,31 +230,20 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 				pcell.setMinimumHeight(20f);
 				pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				pcell.setPaddingLeft(5f);
 				ptable.addCell(pcell);
 				
-				pcell = new PdfPCell(new Paragraph(seekerDTO.getName(),fontT));
-				pcell.setMinimumHeight(20f);
-				pcell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				ptable.addCell(pcell);
+//				eEvent.setDisplayValue(selectedList.get(i).getUnionName());	
+				eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());
 				
 				
-				pcell = new PdfPCell(new Paragraph(seekerDTO.getpMobileNumber(),fontT));
-				pcell.setMinimumHeight(20f);
-				pcell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				ptable.addCell(pcell);
+				preUnion=selectedList.get(i).getUnionId();
+				preUnionName=selectedList.get(i).getUnionName();
 				
-				pcell = new PdfPCell(new Paragraph(seekerDTO.getName(),fontT));
-				pcell.setMinimumHeight(20f);
-				pcell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				ptable.addCell(pcell);
+		//		document.add(ptable);
+//				document.newPage();
 				
-				
-				
-				
-				//eEvent.setDisplayValue(String.valueOf(i));				
+							
 				
 			}
 			
@@ -446,7 +433,7 @@ class DCLotteryReportEvent extends PdfPageEventHelper
 			
 			
 			PdfPTable ptable = new PdfPTable(2);
-			ptable.setWidthPercentage(60);
+			ptable.setWidthPercentage(90);
 			ptable.setWidths(new float[] {15f,80f });
 			ptable.setHorizontalAlignment(Element.ALIGN_CENTER);
 			
@@ -461,9 +448,11 @@ class DCLotteryReportEvent extends PdfPageEventHelper
 			pcell.setFixedHeight(50f);
 			ptable.addCell(pcell);
 			
+			String dValue=getDisplayValue();
+			String[] valArr=dValue.split("#seperator#");
 			
 			
-			String header1="G2G Project Lottery Result "+getDisplayValue();
+			String header1="G2G Project Lottery Result for Upazilla : "+valArr[0]+", Union :"+valArr[1]+"[Total Quota= "+valArr[2]+"]";
 			pcell = new PdfPCell();
 			pg = new Paragraph(header1,new Font(Font.TIMES_ROMAN,13,Font.BOLD));
 			pg.setAlignment(Element.ALIGN_LEFT);
@@ -480,8 +469,26 @@ class DCLotteryReportEvent extends PdfPageEventHelper
 			
 			
 			/*
+			
+			String header1="G2G Project Lottery Result for Upazilla : "+valArr[0]+", Union :"+valArr[1]+"[Total Quota= "+valArr[2]+"]";
 			pcell = new PdfPCell();
-			String header2="Central Store, Dhaka.";
+			pg = new Paragraph(header1,new Font(Font.TIMES_ROMAN,13,Font.BOLD));
+			pg.setAlignment(Element.ALIGN_LEFT);
+			pcell.setColspan(4);
+			pcell.addElement(pg);
+			pcell.setPaddingBottom(5f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);		
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);		
+			ptable.addCell(pcell);
+			
+			ptable.setSpacingBefore(40f);
+			ptable.setSpacingAfter(10f);
+			
+			
+			
+			pcell = new PdfPCell();
+			String header2="Upazilla : "+valArr[1];
 			
 			pg = new Paragraph(header2,new Font(Font.TIMES_ROMAN,9,Font.NORMAL));
 			pg.setAlignment(Element.ALIGN_CENTER);
@@ -493,7 +500,7 @@ class DCLotteryReportEvent extends PdfPageEventHelper
 			ptable.addCell(pcell);
 			
 			pcell = new PdfPCell();
-			String header3="Store Statement for the month of";;
+			String header3="Total Quota : "+valArr[2];
 			
 			pg = new Paragraph(header3,new Font(Font.TIMES_ROMAN,9,Font.NORMAL));
 			pg.setAlignment(Element.ALIGN_CENTER);
@@ -505,19 +512,6 @@ class DCLotteryReportEvent extends PdfPageEventHelper
 			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			ptable.addCell(pcell);
 			
-			
-			pcell = new PdfPCell();
-			String header4="Project Name";
-			
-			pg = new Paragraph(header4,new Font(Font.TIMES_ROMAN,10,Font.BOLD));
-			pg.setAlignment(Element.ALIGN_CENTER);
-			//pg.font().setStyle(Font.UNDERLINE);			
-			pcell.setColspan(5);
-			pcell.addElement(pg);
-			pcell.setPaddingBottom(8f);
-			pcell.setBorderColor(Color.WHITE);
-			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			ptable.addCell(pcell);
 			*/
 			
 			document.add(ptable);
