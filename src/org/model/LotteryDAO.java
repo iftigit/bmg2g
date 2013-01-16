@@ -194,7 +194,58 @@ public class LotteryDAO {
 	 	return lotteryList;
 
 	}
-	
+	public ArrayList<LotteryDTO> getLotteryArrayListForReport(String districtId)
+	{
+		   	
+			ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
+	 	   Connection conn = ConnectionManager.getConnection();
+	 	   /*
+		   String sql = "SELECT   firstlottery.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
+		   		        " fathername, mothername,unions.UNIONNAME,unions.unionid" +
+		   		        " FROM firstlottery,address,unions WHERE dist = ? " +
+		   		        " And firstlottery.UNIONS=address.PER_UNION " +
+		   		        " And firstlottery.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
+		   		        " And firstlottery.UNIONS=unions.UNIONID ORDER BY unions, gserial";
+		   */
+	 	   
+	 	   String sql=" SELECT   firstlottery.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername,  " +
+	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,thana.THANA_NAME,unions.cota_t " +
+	 	   		      " FROM firstlottery,address,unions,thana WHERE dist = ? " +
+	 	   		      " And firstlottery.UNIONS=address.PER_UNION " +
+	 	   		      " And firstlottery.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
+	 	   		      " And firstlottery.UNIONS=unions.UNIONID and thana.THANAID=firstlottery.THANA ORDER BY unions, gserial";
+	 	   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   LotteryDTO lottery=new LotteryDTO();
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, districtId);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					lottery=new LotteryDTO();
+					lottery.setJobseekerName(r.getString("JOBSEEKERNAME"));
+					lottery.setFatherName(r.getString("FATHERNAME"));
+					lottery.setMotherName(r.getString("MOTHERNAME"));
+					lottery.setJobseekerNumber(r.getString("JOBSEEKER_NUMBER"));
+					lottery.setUnionName(r.getString("UNIONNAME"));
+					lottery.setUnionId(r.getString("unionid"));
+					lottery.setUpazillaName(r.getString("THANA_NAME"));
+					lottery.setTotalQuota(r.getString("cota_t"));
+					
+					lotteryList.add(lottery);
+				}
+			
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	return lotteryList;
+
+	}
 	public String getLotteryStatus(String userId,String districtId)
 	{
 		
