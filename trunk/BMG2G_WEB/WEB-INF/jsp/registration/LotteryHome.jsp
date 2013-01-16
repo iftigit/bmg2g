@@ -25,6 +25,11 @@
 
 <script type="text/javascript">
 var ajax_load="<br/><br/><br/><center><img src='/BMG2G_WEB/resources/images/ajax-loader.gif' border='0' /></center>";
+ var table=document.getElementById("resultTable");
+ var allJobseeker;
+ var jobSeeker;
+var globalIndex=0;
+
 function processLottery()
 {
 
@@ -47,15 +52,28 @@ function processLottery()
 
 function showResult(responseText)
 {
- var table=document.getElementById("resultTable");
- var allJobseeker=responseText.split("NEWJOBSEEKERG2G");
- var jobSeeker;
+ table=document.getElementById("resultTable");
+ allJobseeker=responseText.split("NEWJOBSEEKERG2G");
  
- for(var i=0;i<allJobseeker.length;i++)
- {
+ setInterval(arrangeResult, 50);
+ //setTimeout( arrangeResult, 2000 );
+ 
+ document.getElementById("lotteryButtonTd").innerHTML="";
+ 
+}
 
-   
-   jobSeeker=allJobseeker[i];
+function arrangeResult()
+{
+ //for(var i=0;i<allJobseeker.length;i++)
+  
+  if(globalIndex==allJobseeker.length)
+  {
+   document.getElementById("LotteryResult").disabled=false;
+  }
+  
+  if(globalIndex!=allJobseeker.length)
+   {
+   jobSeeker=allJobseeker[globalIndex];
    var jobSeekerArr=jobSeeker.split("IICTG2GIFTI");
    var row=table.insertRow(0);
    var cell1=row.insertCell(0);
@@ -65,17 +83,16 @@ function showResult(responseText)
    var cell5=row.insertCell(4);
    var cell6=row.insertCell(5);
    
-   cell1.innerHTML=(i+1);
+   cell1.innerHTML=(globalIndex+1);
    cell2.innerHTML=jobSeekerArr[0];
    cell3.innerHTML=jobSeekerArr[1];
    cell4.innerHTML=jobSeekerArr[2];
    cell5.innerHTML=jobSeekerArr[3];
    cell6.innerHTML=jobSeekerArr[4];
    //cell6.innerHTML="";
+   globalIndex++;
    
- }
- 
- document.getElementById("lotteryButtonTd").innerHTML="";
+  }
  
 }
 
@@ -117,9 +134,15 @@ function showResult(responseText)
      	
      </td>
      <td style="text-align: center" >
-      <a href="dcLotteryResultDownload.action">
-     	<input type="button" name="LotteryResult" value="Download Lottery Result" style="width: 250px; height: 40px;font-weight: bold;"/>
-      </a>
+      
+       <s:if test="lotteryList.size==0">
+     	  <input type="button" name="LotteryResult" id="LotteryResult" value="Download Lottery Result" style="width: 250px; height: 40px;font-weight: bold;" disabled="disabled" onclick="window.location='dcLotteryResultDownload.action'"/>
+       </s:if>
+       
+      <s:if test="lotteryList.size!=0">
+     	<input type="button" name="LotteryResult" id="LotteryResult" value="Download Lottery Result" style="width: 250px; height: 40px;font-weight: bold;" onclick="window.location='dcLotteryResultDownload.action'"/>
+      </s:if>
+      
      </td>
     </tr>
     <tr>
@@ -127,7 +150,7 @@ function showResult(responseText)
     </tr>
     </table>
     <div>
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" id="resultTable">    	   
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">    	   
 		 <tr>
     	    <td width="5%" align="center" style="background-color: #A2C1A2">SL</td>
     		<td width="25%" align="center" style="background-color: #8EBBB8">Reg. Number</td>
@@ -137,6 +160,8 @@ function showResult(responseText)
     		<td width="10%" align="center" style="background-color: #8EBBB8">Union</td>
     	</tr>   	
     </table>
+    </div>
+    <div id="resultDiv">
     </div>
     <div style="height: 500px;overflow: auto;clear: both;" id="resultDiv">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" id="resultTable">  
@@ -159,7 +184,7 @@ function showResult(responseText)
     		<td width="10%"></td>
     	</tr>   	
     </table>
-    </div>
+   </div>
 </form>    
     
   
