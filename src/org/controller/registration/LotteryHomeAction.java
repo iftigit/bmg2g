@@ -12,8 +12,9 @@ public class LotteryHomeAction extends ActionSupport{
 	private static final long serialVersionUID = 6485791838606873787L;
 	
 	private String districtName;
-	private String totalRegJobseeker;
-	private String totalCotaNumber;
+	private int totalRegJobseeker;
+	private int totalCotaNumber;
+	private int totalSelected;
 	AddressDAO addressDAO=new AddressDAO();
 	LotteryDAO lotter=new LotteryDAO();
 	
@@ -42,6 +43,7 @@ public class LotteryHomeAction extends ActionSupport{
 		districtName=addressDAO.getDistrictNameFromId(Integer.parseInt(loggedInUser.getDistrictId()));
 		totalRegJobseeker=lotter.getTotalRegisteredJobseeker(loggedInUser.getDistrictId());
 		totalCotaNumber=lotter.getTotalCotaNumber(loggedInUser.getDistrictId());
+		totalSelected=lotter.getTotalSelected(loggedInUser.getDistrictId());
 		
 		return "success";
 	}
@@ -54,20 +56,28 @@ public class LotteryHomeAction extends ActionSupport{
 		this.districtName = districtName;
 	}
 
-	public String getTotalRegJobseeker() {
+	public int getTotalRegJobseeker() {
 		return totalRegJobseeker;
 	}
 
-	public void setTotalRegJobseeker(String totalRegJobseeker) {
+	public void setTotalRegJobseeker(int totalRegJobseeker) {
 		this.totalRegJobseeker = totalRegJobseeker;
 	}
 
-	public String getTotalCotaNumber() {
+	public int getTotalCotaNumber() {
 		return totalCotaNumber;
 	}
 
-	public void setTotalCotaNumber(String totalCotaNumber) {
+	public void setTotalCotaNumber(int totalCotaNumber) {
 		this.totalCotaNumber = totalCotaNumber;
+	}
+
+	public int getTotalSelected() {
+		return totalSelected;
+	}
+
+	public void setTotalSelected(int totalSelected) {
+		this.totalSelected = totalSelected;
 	}
 	
 	
