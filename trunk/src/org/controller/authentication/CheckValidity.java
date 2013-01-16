@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 
 import org.apache.struts2.ServletActionContext;
 import org.model.AddressDAO;
+import org.model.LotteryDAO;
 import org.model.UserDAO;
 import org.table.AddressDTO;
 import org.table.UserDTO;
@@ -20,7 +21,7 @@ public class CheckValidity extends ActionSupport{
 	UserDAO userDao=new UserDAO();
 	private String userId;
 	private String password;
-	
+	private String lotteryStatus;
 	public String execute()
 	{
 
@@ -101,7 +102,10 @@ public class CheckValidity extends ActionSupport{
 				}
 				else if(user.getUserType().equalsIgnoreCase("LOTTERY_DC_ADMIN"))	
 				{
+					LotteryDAO lottery=new LotteryDAO();
 					ServletActionContext.getRequest().getSession().setAttribute("DC_DISTRICT", user.getDistrictId());
+					lotteryStatus=lottery.getLotteryStatus(user.getUserId(), user.getDistrictId());
+					
 					return "dcLotteryAdmin";
 				}
 				else if(user.getUserType().equalsIgnoreCase("USER_VIEW_ADMIN"))	
@@ -149,6 +153,14 @@ public class CheckValidity extends ActionSupport{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getLotteryStatus() {
+		return lotteryStatus;
+	}
+
+	public void setLotteryStatus(String lotteryStatus) {
+		this.lotteryStatus = lotteryStatus;
 	}
 	
 }
