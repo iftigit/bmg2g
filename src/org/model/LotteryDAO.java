@@ -129,7 +129,7 @@ public class LotteryDAO {
 		        " FROM firstlottery,address,unions WHERE dist = ? " +
 		        " And firstlottery.UNIONS=address.PER_UNION " +
 		        " And firstlottery.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
-		        " And firstlottery.UNIONS=unions.UNIONID ORDER BY unions, gserial";
+		        " And firstlottery.UNIONS=unions.UNIONID ORDER BY unionname";
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
 		   String selectedList="";
@@ -166,7 +166,7 @@ public class LotteryDAO {
 		   		        " FROM firstlottery,address,unions WHERE dist = ? " +
 		   		        " And firstlottery.UNIONS=address.PER_UNION " +
 		   		        " And firstlottery.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
-		   		        " And firstlottery.UNIONS=unions.UNIONID ORDER BY unions, gserial";
+		   		        " And firstlottery.UNIONS=unions.UNIONID ORDER BY unionname";
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
 		   LotteryDTO lottery=new LotteryDTO();
