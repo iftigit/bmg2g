@@ -463,7 +463,7 @@ class DCLotteryReportEvent extends PdfPageEventHelper
 			String[] valArr=dValue.split("#seperator#");
 			
 			
-			String header1="G2G Project Lottery Result for Upazilla : "+valArr[0]+", Union :"+valArr[1]+"[Total Quota= "+valArr[2]+"]";
+			String header1="G2G Project Lottery Result for Upazilla : "+valArr[1]+", Union :"+valArr[0]+"[Total Quota= "+valArr[2]+"]";
 			pcell = new PdfPCell();
 			pg = new Paragraph(header1,new Font(Font.TIMES_ROMAN,13,Font.BOLD));
 			pg.setAlignment(Element.ALIGN_LEFT);
