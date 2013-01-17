@@ -65,6 +65,17 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 		Document document = new Document(PageSize.A4.rotate());
 		LotteryDAO lotteryDAO=new LotteryDAO();
 		
+
+		if(!loggedInUser.getUserType().equalsIgnoreCase("LOTTERY_DC_ADMIN"))
+		{
+			return "logout";
+		}
+		else if(loggedInUser.getAccessRight()==0)
+		{
+			return "timeOver";	
+		}
+		
+		
 		String fileName="Lottery_G2G_"+districtName+".pdf";
 		
 		document.setMargins(40, 40, 20, 20);
