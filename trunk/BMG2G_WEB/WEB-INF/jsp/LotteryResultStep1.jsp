@@ -21,17 +21,29 @@
         <script type="text/javascript" src="/BMG2G_WEB/resources/js/lib/jquery.validity.1.2.0/jQuery.validity.js"></script>
  
  <script type="text/javascript">
-   $(function() { 
+  
+  var ajax_load="<br/><br/><br/><center><img src='/BMG2G_WEB/resources/images/ajax-loader.gif' border='0' /></center>";
 
-                $("form").validity(function() {
-                    $("#USERID")                      // The first input:    
-        			.require("Userid required.");                         // Required:
-        			
-        			$("#PASSWORD")                      // The first input:    
-        			.require("Password required.");                         // Required:
-        			
-                });
-            });
+
+function showFirstLotteryResult()
+{
+
+ var loadUrl="processLottery.action";
+			jQuery("#resultDiv")  
+				.html(ajax_load)  
+				.load(loadUrl, {},function(responseText){  
+					jQuery("#resultDiv").html("");
+					
+					if(responseText!="error" && responseText!="duplicate")
+						showResult(responseText);
+					else
+					   {
+					    document.getElementById("lotteryProcessButton").disabled=false;
+					    jQuery("#resultDiv").html("");
+					   }				   
+				}); 
+				
+}
  </script>
   
 </head>
@@ -45,7 +57,7 @@
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
 	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
-	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project Registration System Login Page</div>
+	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project First Lottery Result</div>
 	</div>
 </div>
 </center>
@@ -54,23 +66,18 @@
 <br/>
 				
 <div class="box" style="margin-top: 120px;width: 500px;">
-    <h3>Login</h3>
+    <h3>Search First Lottery Result</h3>
     
-<form id="loginForm" name="loginForm" method="post" action="checkValidity.action">    
+
     <table width="100%" border="0" cellspacing="1" class="infoTable">
     
     <tr>
-     <td align="left" width="20%">Mobile No</td>
-     <td align="left" width="80%"><input type="text" tabindex="6" name="userId" id="USERID" maxlength="15" class="textBox" value="<s:property value='userId' />" />
+     <td align="left" width="20%">Jobseeker Number</td>
+     <td align="left" width="80%"><input type="text"  tabindex="1" name="jobseekerNumber" id="jobseekerNumber" maxlength="14" class="textBox" value="" />
       
      </td>
     </tr>
 
-    
-    <tr>
-     <td>Password</td>
-     <td><input type="password" tabindex="6" name="password" id="PASSWORD" maxlength="15" class="textBox" value="<s:property value='password' />" /></td>
-    </tr>
 
     <tr>
      <td height="30px;"></td>
@@ -78,10 +85,9 @@
      	<table width="100%" cellpadding="0" cellspacing="0">
 	     	<tr>
 	     	<td align="left" style="padding-left: 0px;">
-	     		<input type="submit" value="Login" name="Login" />
+	     		<input type="button" value="Search" name="Search" onclick="showFirstLotteryResult()" />
 	     	</td>
-	     	<td align="right" style="padding-right: 0px;"><a href="np1">Request Password</a>&nbsp;&nbsp;
-	     	|&nbsp;&nbsp;<a href="lotteryResultStep1.action">First Lottery Result</a>
+	     	<td align="right" style="padding-right: 0px;">
 	     	</td>
 	     	</tr>
      	</table>
@@ -89,7 +95,7 @@
     </tr>
     
     </table>
-</form>      
+
 </div>
 <p style="height: 10px"></p>
 <s:if test="hasActionMessages()">
