@@ -25,6 +25,7 @@ public class LotteryHomeAction extends ActionSupport{
 	AddressDAO addressDAO=new AddressDAO();
 	LotteryDAO lottery=new LotteryDAO();
 	ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
+	private String jobseekerNumber;
 	
 	public String lotteryHome()
 	{
@@ -107,6 +108,20 @@ public class LotteryHomeAction extends ActionSupport{
 		
 
 	}
+	
+	public String searchFirstLotteryResult()
+	{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+        	response.setContentType("text/xml");
+        	response.setHeader("Cache-Control", "no-cache");
+        	response.getWriter().write(res);
+        	response.flushBuffer();
+          }
+        catch(Exception e) {e.printStackTrace();}
+        
+		return null;
+	}
 
 	public String getDistrictName() {
 		return districtName;
@@ -154,6 +169,14 @@ public class LotteryHomeAction extends ActionSupport{
 
 	public void setLotteryList(ArrayList<LotteryDTO> lotteryList) {
 		this.lotteryList = lotteryList;
+	}
+
+	public String getJobseekerNumber() {
+		return jobseekerNumber;
+	}
+
+	public void setJobseekerNumber(String jobseekerNumber) {
+		this.jobseekerNumber = jobseekerNumber;
 	}
 	
 	
