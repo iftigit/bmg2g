@@ -112,10 +112,11 @@ public class LotteryHomeAction extends ActionSupport{
 	public String searchFirstLotteryResult()
 	{
 		HttpServletResponse response = ServletActionContext.getResponse();
+		String result="";
 		try{
         	response.setContentType("text/xml");
         	response.setHeader("Cache-Control", "no-cache");
-        	response.getWriter().write(res);
+        	response.getWriter().write(result);
         	response.flushBuffer();
           }
         catch(Exception e) {e.printStackTrace();}
