@@ -58,7 +58,8 @@ public class NewPaawordDAO {
 		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
-		String sql = " Select * from MST_USER_DC where password is null";
+		String sql = " Select password,userid from MST_USER where password is null";
+//		String sql = "select fl.jobseeker_number,per_mobile from FIRSTLOTTERY fl,address a where fl.jobseeker_number=A.JOBSEEKER_NUMBER";
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		try
@@ -68,7 +69,8 @@ public class NewPaawordDAO {
 			while (r.next())
 			{
 				user=new UserDTO();
-				user.setUserId(r.getString("USERID"));
+				user.setPassword(r.getString(1));
+				user.setUserId(r.getString(2));
 				tmp.add(user);
 			}
 		} 
@@ -77,8 +79,31 @@ public class NewPaawordDAO {
 		{e.printStackTrace();}stmt = null;conn = null;}
 		return tmp;
 	}
+	public String getLottery1(String regid)
+	{
+		Connection conn = ConnectionManager.getConnection();
+		String sql = " Select count(*) from firstlottery where JOBSEEKER_NUMBER=?";
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		String tmp = "no";
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, regid);
+			r = stmt.executeQuery();
+			r.next();
+			if (r.getInt(1)>0)
+			{
+				tmp="yes";
+			}
+		} 
+		catch (Exception e){e.printStackTrace();}
+		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+		{e.printStackTrace();}stmt = null;conn = null;}
+		return tmp;
+	}
 	private static PreparedStatement stmtNewPassword = null;
-	private static String sqlNewPassword = "update mst_user set password=? where userid=?";
+	private static String sqlNewPassword = "update MST_USER set password=? where userid=?";
 	private static Connection connection = null;
 	public static void setNewPassword(String user,String pass)
 	{

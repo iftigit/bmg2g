@@ -256,6 +256,10 @@
 			<interceptor-ref name="defaultStack"/>
 		</action>
 
+		<action name="getLottery1" class="org.controller.authentication.NewPassword" method="getLottery1">			
+			<interceptor-ref name="defaultStack"/>
+		</action>
+
 		
 		
 		<action name="technicalTeam">			
