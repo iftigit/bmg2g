@@ -228,8 +228,15 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 		  {
 			  UserDTO ut = it.next();
 			  pass = getPasswordCode().substring(0, 5);
-			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+".login korte na parle call korun 09613016364.";
 			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
+			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+" .login korte na parle call korun 09613016364.";
+//			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
+			  
+			  
+//			  pass = ut.getPassword();
+//			  String pass1="Ovinondon "+pass+" . Malaysia jabar lottery te apni bijoyi hoyechhen. Bistarito pore janano hobe.";
+
+
 			  
 			  URL yahoo;
 				if(ut.getUserId().substring(0,3).equalsIgnoreCase("011"))
@@ -300,4 +307,34 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 	    return result;
 	  }	
 
+  public String getLottery1()
+  {
+	  
+		String submittedCode = (String) ServletActionContext.getRequest().getParameter("ctext");
+		String generatedCode = (String) ServletActionContext.getRequest().getSession().getAttribute("captchaText");
+		try
+		{
+			if(!submittedCode.equalsIgnoreCase(generatedCode))
+			{
+				response.getOutputStream().write("Please type captcha text correctly".getBytes());
+				return null;
+			}
+//			response.getOutputStream().write(getSecurityCode().getBytes());
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		try
+		{
+			String regid = (String) ServletActionContext.getRequest().getParameter("regid");
+			response.getOutputStream().write(new NewPaawordDAO().getLottery1(regid).getBytes());
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;	  
+  }
+  
 }
