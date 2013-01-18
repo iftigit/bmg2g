@@ -32,7 +32,7 @@ var globalIndex=0;
 
 function processLottery()
 {
-
+ document.getElementById("lotteryProcessButton").disabled=true;
  var loadUrl="processLottery.action";
 			jQuery("#resultDiv")  
 				.html(ajax_load)  
@@ -40,7 +40,10 @@ function processLottery()
 					jQuery("#resultDiv").html("");
 					
 					if(responseText!="error" && responseText!="duplicate")
+					{
+					    document.getElementById("lotteryButtonTd").innerHTML="";
 						showResult(responseText);
+					}
 					else
 					   {
 					    document.getElementById("lotteryProcessButton").disabled=false;
