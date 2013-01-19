@@ -89,7 +89,7 @@ public class LotteryHomeAction extends ActionSupport{
 			return "timeOver";	
 		}
 		
-		String res=lottery.processLottery(loggedInUser.getUserId());
+		String res=LotteryDAO.processLottery(loggedInUser.getUserId());
 
 		if(res.equalsIgnoreCase("success"))
 		{

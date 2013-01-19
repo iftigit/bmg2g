@@ -171,14 +171,14 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 					ptable.addCell(pcell);
 					
-					pcell=new PdfPCell(new Paragraph("Registration Id",fontb));
+					pcell=new PdfPCell(new Paragraph("Jobseeker Id",fontb));
 					pcell.setMinimumHeight(25f);
 					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
 					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					ptable.addCell(pcell);
 					
 					
-					pcell=new PdfPCell(new Paragraph("Name of the Employee",fontb));
+					pcell=new PdfPCell(new Paragraph("Jobseeker Name",fontb));
 					pcell.setMinimumHeight(25f);
 					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
 					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);

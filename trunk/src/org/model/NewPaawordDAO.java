@@ -58,7 +58,7 @@ public class NewPaawordDAO {
 		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
-		String sql = " Select password,userid from MST_USER where password is null";
+		String sql = " select * from (Select password,userid from MST_USER where password is null) where rownum<201";
 //		String sql = "select fl.jobseeker_number,per_mobile from FIRSTLOTTERY fl,address a where fl.jobseeker_number=A.JOBSEEKER_NUMBER";
 		PreparedStatement stmt = null;
 		ResultSet r = null;
