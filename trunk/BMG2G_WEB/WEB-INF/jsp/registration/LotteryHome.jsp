@@ -47,7 +47,7 @@ function processLottery()
 					else
 					   {
 					    document.getElementById("lotteryProcessButton").disabled=false;
-					    jQuery("#resultDiv").html("");
+					    jQuery("#resultDiv").html('<font style="color:red;font-size:18px"><br/><br/><br/>Server is busy now.Try again.</font>');
 					   }				   
 				}); 
 				
