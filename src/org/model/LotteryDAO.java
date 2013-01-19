@@ -92,7 +92,7 @@ public class LotteryDAO {
 		
 	}
 	
-	public String processLottery(String userId)
+	public static synchronized String processLottery(String userId)
 	{
 		 String response="error";
 		 Connection conn = ConnectionManager.getConnection();
@@ -112,7 +112,7 @@ public class LotteryDAO {
 					response = (stmt.getString(2)).trim();
 					System.out.println("Response : " + response);
 					}
-				    catch (Exception e){e.printStackTrace();return response;}
+				    catch (Exception e){e.printStackTrace();}
 			 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
 						{e.printStackTrace();}stmt = null;conn = null;}
 		 	
@@ -132,7 +132,7 @@ public class LotteryDAO {
 		        " And firstlottery.UNIONS=unions.UNIONID ORDER BY unionname";
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
-		   String selectedList="";
+		   String selectedList="error";
 		   
 			try
 			{
@@ -141,13 +141,13 @@ public class LotteryDAO {
 				r = stmt.executeQuery();
 				while (r.next())
 				{
-					selectedList+=r.getString("JOBSEEKER_NUMBER")+"IICTG2GIFTI"+r.getString("JOBSEEKERNAME")+"IICTG2GIFTI"+r.getString("FATHERNAME")+"IICTG2GIFTI"+r.getString("MOTHERNAME")+"IICTG2GIFTI"+r.getString("UNIONNAME")+"NEWJOBSEEKERG2G";
+					selectedList+=r.getString("JOBSEEKER_NUMBER")+"IICTG2GIFTI"+r.getString("JOBSEEKERNAME").replaceAll("'", "").replaceAll("\"", "")+"IICTG2GIFTI"+r.getString("FATHERNAME").replaceAll("'", "").replaceAll("\"", "")+"IICTG2GIFTI"+r.getString("MOTHERNAME").replaceAll("'", "").replaceAll("\"", "")+"IICTG2GIFTI"+r.getString("UNIONNAME").replaceAll("'", "").replaceAll("\"", "")+"NEWJOBSEEKERG2G";
 				}
 				
 				if(selectedList.length()>0)
 					selectedList=selectedList.substring(0, selectedList.length()-15);
 			} 
-			catch (Exception e){e.printStackTrace();}
+			catch (Exception e){e.printStackTrace();selectedList="error";}
 	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
 				{e.printStackTrace();}stmt = null;conn = null;}
 	 		
