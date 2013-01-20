@@ -81,12 +81,17 @@
 		</result>	
 		<result name="dcLotteryAdmin">
 			/WEB-INF/jsp/DcLotteryAdminHome.jsp
-		</result>	
+		</result>
+		<result name="ministryLotteryAdmin">
+			/WEB-INF/jsp/MinistryLotteryAdminHome.jsp
+		</result>		
+		
 		<result name="showUser">
 			/WEB-INF/jsp/ShowUser.jsp
 		</result>	
 		
 	</action>
+	
 	
 	<action name="homePage" class="org.controller.user.UserUtility" method="homePage">
 	 <result name="regOperator">/WEB-INF/jsp/RegOperatorHome.jsp</result>
@@ -177,10 +182,22 @@
 	</action>
 	
 
-		
 		<action name="lotteryHome" class="org.controller.registration.LotteryHomeAction" method="lotteryHome">
 			<result name="success">
 				/WEB-INF/jsp/registration/LotteryHome.jsp
+			</result>
+			<result name="logout" type="redirectAction">
+			logout.action
+			</result>
+			<result name="timeOver">
+				/WEB-INF/jsp/TimeOver.jsp
+			</result>
+		</action>
+
+		
+		<action name="ministryLotteryHome" class="org.controller.registration.LotteryHomeAction" method="ministryLotteryHome">
+			<result name="success">
+				/WEB-INF/jsp/registration/MinistryLotteryProcessHome.jsp
 			</result>
 			<result name="logout" type="redirectAction">
 			logout.action
@@ -283,8 +300,37 @@
 				/WEB-INF/jsp/TimeOver.jsp
 			</result>
 	</action>
+	
+	<action name="ministryLotteryResultDownload" class="org.controller.registration.MinistryLotteryResult">
+			<result type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="logout" type="redirectAction">
+			logout.action
+			</result>
+			<result name="timeOver">
+				/WEB-INF/jsp/TimeOver.jsp
+			</result>
+	</action>
+	
 		
 	<action name="processLottery" class="org.controller.registration.LotteryHomeAction" method="processLottery">
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+	</action>
+	
+	<action name="processDivisionLottery" class="org.controller.registration.LotteryHomeAction" method="processDivisionLottery">
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+	</action>
+	
+	
+	<action name="getDivisionWiseLotterySummary" class="org.controller.registration.LotteryHomeAction" method="getDivisionWiseLotterySummary">
 			<result type="stream">
 				<param name="contentType">text/xml</param>
 				<param name="inputName">inputStream</param>

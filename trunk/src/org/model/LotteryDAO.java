@@ -3,6 +3,7 @@ package org.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import org.table.LotteryDTO;
 
@@ -119,6 +120,33 @@ public class LotteryDAO {
 			 		return response;
 	}
 	
+	public static synchronized String processDivisionLottery(String divisionId)
+	{
+		 String response="error";
+		 Connection conn = ConnectionManager.getConnection();
+		 OracleCallableStatement stmt=null;
+		 
+		    try
+			  {
+			
+				System.out.println("Procedure SECONDLOTTERY_P1 Begins");
+				 stmt = (OracleCallableStatement) conn.prepareCall(
+						 	  "{ call SECONDLOTTERY_P1(?,?) }");
+				 
+
+			 		stmt.setString(1, divisionId);					
+					stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
+					stmt.executeUpdate();
+					response = (stmt.getString(2)).trim();
+					System.out.println("Response : " + response);
+					}
+				    catch (Exception e){e.printStackTrace();}
+			 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+						{e.printStackTrace();}stmt = null;conn = null;}
+		 	
+			 		return response;
+	}
+	
 	public String getLotteryResult(String districtId)
 	{
 		   	
@@ -155,6 +183,42 @@ public class LotteryDAO {
 
 	}
 	
+	public String getDivisionLotteryResult(String divisionId)
+	{
+		   	
+		   
+	 	   Connection conn = ConnectionManager.getConnection();
+	 	   String sql = " SELECT   SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
+	 	  		       " fathername, mothername,unions.UNIONNAME " +
+	 	  		       " FROM SECONDLOTTERY_T1,address,unions WHERE div=? " +
+	 	  		       " And SECONDLOTTERY_T1.UNIONS=address.PER_UNION " +
+	 	  		       " And SECONDLOTTERY_T1.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
+	 	  		       " And SECONDLOTTERY_T1.UNIONS=unions.UNIONID ORDER BY unionname ";
+	 	  
+	 	   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   String selectedList="error";
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, divisionId);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					selectedList+=r.getString("JOBSEEKER_NUMBER")+"IICTG2GIFTI"+r.getString("JOBSEEKERNAME").replaceAll("'", "").replaceAll("\"", "")+"IICTG2GIFTI"+r.getString("FATHERNAME").replaceAll("'", "").replaceAll("\"", "")+"IICTG2GIFTI"+r.getString("MOTHERNAME").replaceAll("'", "").replaceAll("\"", "")+"IICTG2GIFTI"+r.getString("UNIONNAME").replaceAll("'", "").replaceAll("\"", "")+"NEWJOBSEEKERG2G";
+				}
+				
+				if(selectedList.length()>0)
+					selectedList=selectedList.substring(0, selectedList.length()-15);
+			} 
+			catch (Exception e){e.printStackTrace();selectedList="error";}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	return selectedList;
+
+	}
 	
 	public ArrayList<LotteryDTO> getLotteryArrayList(String districtId)
 	{
@@ -197,23 +261,18 @@ public class LotteryDAO {
 	public ArrayList<LotteryDTO> getLotteryArrayListForReport(String districtId)
 	{
 		   	
-			ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
+		   ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
 	 	   Connection conn = ConnectionManager.getConnection();
-	 	   /*
-		   String sql = "SELECT   firstlottery.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
-		   		        " fathername, mothername,unions.UNIONNAME,unions.unionid" +
-		   		        " FROM firstlottery,address,unions WHERE dist = ? " +
-		   		        " And firstlottery.UNIONS=address.PER_UNION " +
-		   		        " And firstlottery.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
-		   		        " And firstlottery.UNIONS=unions.UNIONID ORDER BY unions, gserial";
-		   */
+	 	  
 	 	   
-	 	   String sql=" SELECT   firstlottery.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername,  " +
-	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,thana.THANA_NAME,unions.cota_t " +
-	 	   		      " FROM firstlottery,address,unions,thana WHERE dist = ? " +
-	 	   		      " And firstlottery.UNIONS=address.PER_UNION " +
-	 	   		      " And firstlottery.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
-	 	   		      " And firstlottery.UNIONS=unions.UNIONID and thana.THANAID=firstlottery.THANA ORDER BY unions, gserial";
+	 	   String sql=" SELECT   SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
+	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,DIVISION.DIVISION_NAME,DISTRICT.DIST_NAME,thana.THANA_NAME,UNIONS.UNIONNAME,unions.cota_f " +
+	 	   		      " FROM SECONDLOTTERY_T1,unions,thana,district,division WHERE SECONDLOTTERY_T1.DIV = ? " +
+	 	   		      " And SECONDLOTTERY_T1.DIV=division.DIVISIONID " +
+	 	   		      " And SECONDLOTTERY_T1.DIST=district.DIST_ID " +
+	 	   		      " And SECONDLOTTERY_T1.THANA=thana.THANAID " +
+	 	   		      " AND SECONDLOTTERY_T1.UNIONS=UNIONS.UNIONID " +
+	 	   		      " Order by division_name,dist_name,thana_name,unions.unionname";
 	 	   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -222,6 +281,53 @@ public class LotteryDAO {
 			{
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, districtId);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					lottery=new LotteryDTO();
+					lottery.setJobseekerName(r.getString("JOBSEEKERNAME"));
+					lottery.setFatherName(r.getString("FATHERNAME"));
+					lottery.setMotherName(r.getString("MOTHERNAME"));
+					lottery.setJobseekerNumber(r.getString("JOBSEEKER_NUMBER"));
+					lottery.setUnionName(r.getString("UNIONNAME"));
+					lottery.setUnionId(r.getString("unionid"));
+					lottery.setUpazillaName(r.getString("THANA_NAME"));
+					lottery.setTotalQuota(r.getString("cota_t"));
+					
+					lotteryList.add(lottery);
+				}
+			
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	return lotteryList;
+
+	}
+	
+	
+	public ArrayList<LotteryDTO> getP1LotteryArrayListForReport(String divisionId)
+	{
+		   	
+			ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
+	 	   Connection conn = ConnectionManager.getConnection();
+	 	   
+	 	   String sql=" SELECT   SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername,  " +
+	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,thana.THANA_NAME,unions.cota_t " +
+	 	   		      " FROM SECONDLOTTERY_T1,address,unions,thana,district WHERE DIV = ? " +
+	 	   		      " And SECONDLOTTERY_T1.UNIONS=address.PER_UNION " +
+	 	   		      " And SECONDLOTTERY_T1.DIV=address.PER_DIV " +	
+	 	   		      " And SECONDLOTTERY_T1.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
+	 	   		      " And SECONDLOTTERY_T1.UNIONS=unions.UNIONID and thana.THANAID=SECONDLOTTERY_T1.THANA ORDER BY unions, gserial";
+	 	   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   LotteryDTO lottery=new LotteryDTO();
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, divisionId);
 				r = stmt.executeQuery();
 				while (r.next())
 				{
@@ -271,6 +377,67 @@ public class LotteryDAO {
 				{e.printStackTrace();}stmt = null;conn = null;}
 	 		
 	 	return status;
+		
+	}
+	
+	public String getLotteryShortSummaryResult(String divisionId)
+	{
+		
+		DecimalFormat df = new DecimalFormat("#,##,##,###.##");
+		Connection conn = ConnectionManager.getConnection();
+		   String sql = " Select firstLotTbl.totalSelection,totalRegTbl.totalRegistration,totalCotaTbl.totalQuota from  " +
+		   		        " (Select count(*) totalSelection from FirstLottery Where Div=?)firstLotTbl, " +
+		   		        " (Select count(*) totalRegistration from Address Where per_div=?)totalRegTbl, " +
+		   		        " (select sum(cota_f) totalQuota from unions Where thanaid in " +
+		   		        " ( " +
+		   		        " select thanaid from thana Where districtid in " +
+		   		        " ( " +
+		   		        " Select dist_id from district  where divisionid=? " +
+		   		        " ) " +
+		   		        " ))totalCotaTbl";
+		   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+
+		   double totalReg=0;
+		   double totalPriliSelected=0;
+		   double totalQuota=0;
+
+		   try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, divisionId);
+				stmt.setString(2, divisionId);
+				stmt.setString(3, divisionId);
+				r = stmt.executeQuery();
+				if (r.next())
+				{
+
+					totalReg=r.getDouble("totalRegistration");
+					totalPriliSelected=r.getDouble("totalSelection");
+					totalQuota=r.getDouble("totalQuota");
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		String response=" <table width='98%' border='0' align='center' style='border:1px solid grey;'> " +
+				   " <tr> " +
+				   " <td width='70%' bgcolor='#DBB7FF' height='30' style='padding-left:20px;'>Total Registered Jobseeker </td> " +
+				   " <td width='30%' bgcolor='#C58AFF' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalReg)+"</td> " +
+				   " </tr> " +
+				   " <tr> " +
+				   " <td height='30' bgcolor='#FFFFBB' style='padding-left:20px;'>Total Selected Jobseeker(Priliminary) </td> " +
+				   " <td bgcolor='#FFFF6C' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalPriliSelected)+"</td> " +
+				   " </tr> " +
+				   " <tr> " +
+				   " <td bgcolor='#C4D7D7' height='30' style='padding-left:20px;'>Quota Amount: </td> " +
+				   " <td bgcolor='#9DBDBD' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalQuota)+"</td> " +
+				   " </tr> " +
+				   " </table>";
+	 		
+	 	return response;
 		
 	}
 
