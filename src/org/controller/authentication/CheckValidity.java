@@ -42,6 +42,10 @@ public class CheckValidity extends ActionSupport{
 		{
 			return "dcLotteryAdmin";
 		}
+		else if(user!=null && user.getUserType().equalsIgnoreCase("LOTTERY_MINISTRY_ADMIN"))
+		{
+			return "ministryLotteryAdmin";
+		}
 		
 		
 		
@@ -113,6 +117,11 @@ public class CheckValidity extends ActionSupport{
 					ServletActionContext.getRequest().getSession().setAttribute("USER_VIEW", userDao.getTechnicalTeam(user.getDistrictId()));
 					return "showUser";
 				}
+				else if( user.getUserType().equalsIgnoreCase("LOTTERY_MINISTRY_ADMIN"))
+				{
+					return "ministryLotteryAdmin";
+				}
+
 				else
 					return INPUT;
 			}
