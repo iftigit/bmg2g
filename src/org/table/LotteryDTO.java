@@ -21,6 +21,13 @@ public class LotteryDTO {
 	
 	private String totalQuota;
 	
+	private String divQuota;
+	private String divSelected;
+	private String distQuota;
+	private String distSelected;
+	private String upazillaQuota;
+	private String upazillaSelected;
+	
 	public String getJobseekerNumber() {
 		return jobseekerNumber;
 	}
@@ -111,6 +118,43 @@ public class LotteryDTO {
 	public void setTotalQuota(String totalQuota) {
 		this.totalQuota = totalQuota;
 	}
+	public String getDivQuota() {
+		return divQuota;
+	}
+	public void setDivQuota(String divQuota) {
+		this.divQuota = divQuota;
+	}
+	public String getDivSelected() {
+		return divSelected;
+	}
+	public void setDivSelected(String divSelected) {
+		this.divSelected = divSelected;
+	}
+	public String getDistQuota() {
+		return distQuota;
+	}
+	public void setDistQuota(String distQuota) {
+		this.distQuota = distQuota;
+	}
+	public String getDistSelected() {
+		return distSelected;
+	}
+	public void setDistSelected(String distSelected) {
+		this.distSelected = distSelected;
+	}
+	public String getUpazillaQuota() {
+		return upazillaQuota;
+	}
+	public void setUpazillaQuota(String upazillaQuota) {
+		this.upazillaQuota = upazillaQuota;
+	}
+	public String getUpazillaSelected() {
+		return upazillaSelected;
+	}
+	public void setUpazillaSelected(String upazillaSelected) {
+		this.upazillaSelected = upazillaSelected;
+	}
+
 	
 	
 }

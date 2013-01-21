@@ -266,14 +266,13 @@ public class LotteryDAO {
 	 	   Connection conn = ConnectionManager.getConnection();
 	 	  
 	 	   
-	 	   String sql=" SELECT   SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
-	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,DIVISION.DIVISION_NAME,DISTRICT.DIST_NAME,thana.THANA_NAME,UNIONS.UNIONNAME,unions.cota_f " +
-	 	   		      " FROM SECONDLOTTERY_T1,unions,thana,district,division WHERE SECONDLOTTERY_T1.DIV = ? " +
-	 	   		      " And SECONDLOTTERY_T1.DIV=division.DIVISIONID " +
-	 	   		      " And SECONDLOTTERY_T1.DIST=district.DIST_ID " +
-	 	   		      " And SECONDLOTTERY_T1.THANA=thana.THANAID " +
-	 	   		      " AND SECONDLOTTERY_T1.UNIONS=UNIONS.UNIONID " +
-	 	   		      " Order by division_name,dist_name,thana_name,unions.unionname";
+	 	  String sql=" SELECT   firstlottery.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername,  " +
+		      " fathername, mothername,unions.UNIONNAME,unions.unionid,thana.THANA_NAME,unions.cota_t " +
+		      " FROM firstlottery,address,unions,thana WHERE dist = ? " +
+		      " And firstlottery.UNIONS=address.PER_UNION " +
+		      " And firstlottery.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
+		      " And firstlottery.UNIONS=unions.UNIONID and thana.THANAID=firstlottery.THANA ORDER BY unions, gserial";
+	 	  
 	 	   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -314,6 +313,7 @@ public class LotteryDAO {
 			ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
 	 	   Connection conn = ConnectionManager.getConnection();
 	 	   
+	 	   /*
 	 	   String sql=" SELECT SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername," +
 	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,DIVISION.DIVISION_NAME,DISTRICT.DIST_NAME,thana.THANA_NAME,UNIONS.UNIONNAME,unions.cota_f " +
 	 	   		      " FROM SECONDLOTTERY_T1,unions,thana,district,division WHERE SECONDLOTTERY_T1.DIV = ? " +
@@ -322,6 +322,52 @@ public class LotteryDAO {
 	 	   		      " And SECONDLOTTERY_T1.THANA=thana.THANAID " +
 	 	   		      " AND SECONDLOTTERY_T1.UNIONS=UNIONS.UNIONID " +
 	 	   		      " Order by division_name,dist_name,thana_name,unions.unionname";
+	 	   */
+	 String sql="SELECT * FROM  " +
+	 	 "(SELECT SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
+	 	 "fathername, mothername,unions.unionid, " +
+	 	 "DIVISION.DIVISION_NAME,DISTRICT.DIST_NAME,thana.THANA_NAME, " +
+	 	 "DIVISION.DIVISIONID,DISTRICT.DIST_ID,thana.THANAID, " +
+	 	 "UNIONS.UNIONNAME,unions.cota_f  " +
+	 	 "FROM SECONDLOTTERY_T1,unions,thana,district,division WHERE SECONDLOTTERY_T1.DIV = ? " +
+	 	 "And SECONDLOTTERY_T1.DIV=division.DIVISIONID " +
+	 	 "And SECONDLOTTERY_T1.DIST=district.DIST_ID  " +
+	 	 "And SECONDLOTTERY_T1.THANA=thana.THANAID  " +
+	 	 "AND SECONDLOTTERY_T1.UNIONS=UNIONS.UNIONID  " +
+	 	 "Order by division_name,dist_name,thana_name,unions.unionname " +
+	 	 ")MAIN_TBL " +
+	 	 "left outer join  " +
+	 	 "(select divisionid,sum(cota_f) div_cota from  " +
+	 	 "( " +
+	 	 "select * from district left outer join  " +
+	 	 "( " +
+	 	 "Select thana.DISTRICTID,cota_f  from thana left outer join " +
+	 	 "(SELECT   thanaid, SUM (cota_f) cota_f FROM unions GROUP BY thanaid)tmp1 " +
+	 	 "on thana.thanaid=tmp1.thanaid " +
+	 	 ")tmp2 " +
+	 	 "on district.DIST_ID=tmp2.districtid " +
+	 	 ")tmp3 group by divisionid) div_cota_tbl " +
+	 	 "on MAIN_TBL.DIVISIONID=div_cota_tbl.divisionid " +
+	 	 "LEFT OUTER JOIN (Select districtid,sum(cota_f) dist_cota from  " +
+	 	 "( " +
+	 	 "Select thana.DISTRICTID,cota_f  from thana left outer join " +
+	 	 "(SELECT   thanaid, SUM (cota_f) cota_f FROM unions GROUP BY thanaid)tmp1 " +
+	 	 "on thana.thanaid=tmp1.thanaid " +
+	 	 ")tmp2 group by districtid) dist_cota_tbl " +
+	 	 "on MAIN_TBL.DIST_ID=dist_cota_tbl.districtid " +
+	 	 "LEFT OUTER JOIN  " +
+	 	 "(SELECT   thanaid, SUM (cota_f) thana_cota FROM unions GROUP BY thanaid) thana_cota_tbl " +
+	 	 "on MAIN_TBL.thanaid=thana_cota_tbl.thanaid " +
+	 	 "Left OUTER JOIN " +
+	 	 "(select div,count(*) selected_div from secondlottery_t1 group by div) div_selected_tbl " +
+	 	 "on MAIN_TBL.DIVISIONID= div_selected_tbl.div " +
+	 	 "LEFT OUTER JOIN " +
+	 	 "(select dist,count(*) selected_dist from secondlottery_t1 group by dist) dist_selected_tbl " +
+	 	 "on MAIN_TBL.dist_id= dist_selected_tbl.dist " +
+	 	 "LEFT OUTER JOIN " +
+	 	 "(select thana,count(*) selected_thana from secondlottery_t1 group by thana) thana_selected_tbl " +
+	 	 "on MAIN_TBL.thanaid= thana_selected_tbl.thana order by div,dist,thana,unionid";
+
 	 	   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -338,10 +384,29 @@ public class LotteryDAO {
 					lottery.setFatherName(r.getString("FATHERNAME"));
 					lottery.setMotherName(r.getString("MOTHERNAME"));
 					lottery.setJobseekerNumber(r.getString("JOBSEEKER_NUMBER"));
-					lottery.setUnionName(r.getString("UNIONNAME"));
-					lottery.setUnionId(r.getString("unionid"));
+					
+					lottery.setDivisionId(r.getString("DIVISIONID"));
+					lottery.setDivisionName(r.getString("DIVISION_NAME"));
+					
+					lottery.setDistrictId(r.getString("DISTRICTID"));
+					lottery.setDistrictName(r.getString("DIST_NAME"));
+					
+					lottery.setUpazillaId(r.getString("THANA"));
 					lottery.setUpazillaName(r.getString("THANA_NAME"));
+					
+					lottery.setUnionName(r.getString("UNIONNAME"));
+					
+					
+					lottery.setUpazillaId(r.getString("THANAID"));
+					lottery.setUnionId(r.getString("unionid"));					
 					lottery.setTotalQuota(r.getString("cota_f"));
+					
+					lottery.setDivQuota(r.getString("DIV_COTA"));
+					lottery.setDivSelected(r.getString("SELECTED_DIV"));
+					lottery.setDistQuota(r.getString("DIST_COTA"));
+					lottery.setDistSelected(r.getString("SELECTED_DIST"));
+					lottery.setUpazillaQuota(r.getString("THANA_COTA"));
+					lottery.setUpazillaSelected(r.getString("SELECTED_THANA"));
 					
 					lotteryList.add(lottery);
 				}

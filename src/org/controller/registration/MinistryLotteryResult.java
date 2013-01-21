@@ -87,10 +87,10 @@ public class MinistryLotteryResult  extends ActionSupport implements ServletCont
 			Font fontT = FontFactory.getFont("Helvetica", 9, Font.NORMAL,Color.BLACK);			
 			Font fontb = FontFactory.getFont("Helvetica", 10, Font.BOLD,Color.BLACK);
 			
-			ptable = new PdfPTable(5);
+			ptable = new PdfPTable(6);
 			ptable.setHeaderRows(1);
 			ptable.setWidthPercentage(100);
-			ptable.setWidths(new float[]{8,17,25,25,25});
+			ptable.setWidths(new float[]{8,13,19,20,20,20});
 			
 
 			pcell=new PdfPCell(new Paragraph("Sl. No.",fontb));
@@ -126,33 +126,44 @@ public class MinistryLotteryResult  extends ActionSupport implements ServletCont
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			ptable.addCell(pcell);
 			
+			pcell=new PdfPCell(new Paragraph("Union",fontb));
+			pcell.setMinimumHeight(25f);
+			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			ptable.addCell(pcell);
+			
+			/**
+			 * DivisionId#DivisionName#DIVISION_QUOTA#DIVISION_SELECTED#
+			   DIST_ID#DIST_NAME#DIST_QUOTA#DIST_SELECTED#
+			   THANA_ID#THANA_NAME#THANA_SELECTED
+			 */
 						
 			String preUnion="";
-			String preUnionName="";
+			String preUpazilla="";
 			int counter=0;
 			for(int i=0;i<selectedList.size();i++)
 			{
 				
 				if(i==0)
 				{
-					eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());
+					eEvent.setDisplayValue(selectedList.get(i).getDivisionId()+"#seperator#"+selectedList.get(i).getDivisionName()+"#seperator#"+selectedList.get(i).getDivQuota()+"#seperator#"+selectedList.get(i).getDivSelected()+"#seperator#"+selectedList.get(i).getDistrictId()+"#seperator#"+selectedList.get(i).getDistrictName()+"#seperator#"+selectedList.get(i).getDistQuota()+"#seperator#"+selectedList.get(i).getDistSelected()+"#seperator#"+selectedList.get(i).getUpazillaId()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getUpazillaQuota()+"#seperator#"+selectedList.get(i).getUpazillaSelected());
 					PdfWriter.getInstance(document, baos).setPageEvent(eEvent);
 					document.open();
 				}
 				
-				if(!preUnion.equalsIgnoreCase(selectedList.get(i).getUnionId()) && i!=0)
+				if(!preUpazilla.equalsIgnoreCase(selectedList.get(i).getUpazillaId()) && i!=0)
 				{
 					document.add(ptable);
 					
-					eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());					
+					eEvent.setDisplayValue(selectedList.get(i).getDivisionId()+"#seperator#"+selectedList.get(i).getDivisionName()+"#seperator#"+selectedList.get(i).getDivQuota()+"#seperator#"+selectedList.get(i).getDivSelected()+"#seperator#"+selectedList.get(i).getDistrictId()+"#seperator#"+selectedList.get(i).getDistrictName()+"#seperator#"+selectedList.get(i).getDistQuota()+"#seperator#"+selectedList.get(i).getDistSelected()+"#seperator#"+selectedList.get(i).getUpazillaId()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getUpazillaQuota()+"#seperator#"+selectedList.get(i).getUpazillaSelected());					
 					document.newPage();
 					
 					
 					
-					ptable = new PdfPTable(5);
+					ptable = new PdfPTable(6);
 					ptable.setHeaderRows(1);
 					ptable.setWidthPercentage(100);
-					ptable.setWidths(new float[]{8,17,25,25,25});
+					ptable.setWidths(new float[]{8,13,19,20,20,20});
 
 					pcell=new PdfPCell(new Paragraph("Sl. No.",fontb));
 					pcell.setMinimumHeight(25f);
@@ -186,13 +197,20 @@ public class MinistryLotteryResult  extends ActionSupport implements ServletCont
 					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
 					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					ptable.addCell(pcell);
+					
+					pcell=new PdfPCell(new Paragraph("Union",fontb));
+					pcell.setMinimumHeight(25f);
+					pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+					pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					ptable.addCell(pcell);
+					
 					counter=0;
 				
 				}
 		
 				counter++;
 				ptable.setWidthPercentage(100);
-				ptable.setWidths(new float[]{8,17,25,25,25});
+				ptable.setWidths(new float[]{8,13,19,20,20,20});
 
 				
 				LotteryDTO seekerDTO =(LotteryDTO)selectedList.get(i);
@@ -233,17 +251,17 @@ public class MinistryLotteryResult  extends ActionSupport implements ServletCont
 				pcell.setPaddingLeft(5f);
 				ptable.addCell(pcell);
 				
-//				eEvent.setDisplayValue(selectedList.get(i).getUnionName());	
-				eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());
+				pcell = new PdfPCell(new Paragraph(seekerDTO.getUnionName(),fontT));
+				pcell.setMinimumHeight(20f);
+				pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+				pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				pcell.setPaddingLeft(5f);
+				ptable.addCell(pcell);
+				
+				eEvent.setDisplayValue(selectedList.get(i).getDivisionId()+"#seperator#"+selectedList.get(i).getDivisionName()+"#seperator#"+selectedList.get(i).getDivQuota()+"#seperator#"+selectedList.get(i).getDivSelected()+"#seperator#"+selectedList.get(i).getDistrictId()+"#seperator#"+selectedList.get(i).getDistrictName()+"#seperator#"+selectedList.get(i).getDistQuota()+"#seperator#"+selectedList.get(i).getDistSelected()+"#seperator#"+selectedList.get(i).getUpazillaId()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getUpazillaQuota()+"#seperator#"+selectedList.get(i).getUpazillaSelected());
 				
 				
-				preUnion=selectedList.get(i).getUnionId();
-				preUnionName=selectedList.get(i).getUnionName();
-				
-		//		document.add(ptable);
-//				document.newPage();
-				
-							
+				preUpazilla=selectedList.get(i).getUpazillaId();
 				
 			}
 			
@@ -302,8 +320,11 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 	protected PdfPTable footer;
 	
 	private String header="";
-	 private String DisplayValue=null;
-	 
+	private String DisplayValue=null;
+	
+	Font fontT = FontFactory.getFont("Helvetica", 9, Font.NORMAL,Color.BLACK);			
+	Font fontb = FontFactory.getFont("Helvetica", 10, Font.BOLD,Color.BLACK);
+	
 	public void addheader(String header)
 	{
 		this.header = header;
@@ -437,12 +458,10 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			jpg.scalePercent(100f);
 
 			
-			Paragraph pg =null;
-			
-			
 			PdfPTable ptable = new PdfPTable(2);
-			ptable.setWidthPercentage(90);
-			ptable.setWidths(new float[] {15f,80f });
+			ptable.setWidthPercentage(100);
+			ptable.setWidths(new float[] {15f,85f });
+			ptable.getDefaultCell().setBorder(0);
 			ptable.setHorizontalAlignment(Element.ALIGN_CENTER);
 			
 			
@@ -453,74 +472,227 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			//pcell.setPaddingBottom(-3f);
 			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);		
 			pcell.setBorderColor(Color.WHITE);
-			pcell.setFixedHeight(50f);
+			pcell.setFixedHeight(60f);
 			ptable.addCell(pcell);
 			
 			String dValue=getDisplayValue();
 			String[] valArr=dValue.split("#seperator#");
 			
-			
-			String header1="G2G Project Lottery Result for Upazilla : "+valArr[1]+", Union :"+valArr[0]+"[Total Quota= "+valArr[2]+"]";
-			pcell = new PdfPCell();
-			pg = new Paragraph(header1,new Font(Font.TIMES_ROMAN,13,Font.BOLD));
-			pg.setAlignment(Element.ALIGN_LEFT);
-			pcell.setColspan(4);
-			pcell.addElement(pg);
-			pcell.setPaddingBottom(5f);
-			pcell.setBorderColor(Color.WHITE);
-			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);		
-			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);		
-			ptable.addCell(pcell);
-			
-			ptable.setSpacingBefore(40f);
-			ptable.setSpacingAfter(10f);
-			
-			
-			/*
-			
-			String header1="G2G Project Lottery Result for Upazilla : "+valArr[0]+", Union :"+valArr[1]+"[Total Quota= "+valArr[2]+"]";
-			pcell = new PdfPCell();
-			pg = new Paragraph(header1,new Font(Font.TIMES_ROMAN,13,Font.BOLD));
-			pg.setAlignment(Element.ALIGN_LEFT);
-			pcell.setColspan(4);
-			pcell.addElement(pg);
-			pcell.setPaddingBottom(5f);
-			pcell.setBorderColor(Color.WHITE);
-			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);		
-			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);		
-			ptable.addCell(pcell);
-			
-			ptable.setSpacingBefore(40f);
-			ptable.setSpacingAfter(10f);
-			
-			
-			
-			pcell = new PdfPCell();
-			String header2="Upazilla : "+valArr[1];
-			
-			pg = new Paragraph(header2,new Font(Font.TIMES_ROMAN,9,Font.NORMAL));
-			pg.setAlignment(Element.ALIGN_CENTER);
-			pcell.setColspan(5);
-			pcell.addElement(pg);
-			pcell.setPaddingBottom(-3f);
+			PdfPTable innerTable=new PdfPTable(9);
+			innerTable.setWidthPercentage(100);
+			innerTable.setWidths(new float[]{10,2,18,10,2,18,10,2,18});
+			//innerTable.getDefaultCell().setBorderColor(Color.WHITE);
+			innerTable.getDefaultCell().setBorder(0);
+
+			pcell=new PdfPCell(new Paragraph("Bangladesh-Malaysia G2G Project 1st Phase Lottery Result",fontb));
+			pcell.setColspan(9);
+			pcell.setFixedHeight(30f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			ptable.addCell(pcell);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
 			
-			pcell = new PdfPCell();
-			String header3="Total Quota : "+valArr[2];
-			
-			pg = new Paragraph(header3,new Font(Font.TIMES_ROMAN,9,Font.NORMAL));
-			pg.setAlignment(Element.ALIGN_CENTER);
-			pg.font().setStyle(Font.UNDERLINE);			
-			pcell.setColspan(5);
-			pcell.addElement(pg);
-			pcell.setPaddingBottom(-3f);
+			pcell=new PdfPCell(new Paragraph("Division",fontb));
+			pcell.setFixedHeight(30f);
 			pcell.setBorderColor(Color.WHITE);
-			pcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			ptable.addCell(pcell);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
 			
-			*/
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[1],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph("District",fontb));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[5],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			
+			pcell=new PdfPCell(new Paragraph("Upazilla",fontb));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[9],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			/* Quota Row*/
+			pcell=new PdfPCell(new Paragraph("Quota",fontb));
+			pcell.setFixedHeight(30f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[2],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph("Quota",fontb));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[6],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			
+			pcell=new PdfPCell(new Paragraph("Quota",fontb));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[10],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			/* Selected Row */
+			
+			pcell=new PdfPCell(new Paragraph("Selected",fontb));
+			pcell.setFixedHeight(30f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[3],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph("Selected",fontb));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[7],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			
+			pcell=new PdfPCell(new Paragraph("Selected",fontb));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(":",fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
+			innerTable.addCell(pcell);
+			
+			pcell=new PdfPCell(new Paragraph(valArr[11],fontT));
+			pcell.setFixedHeight(25f);
+			pcell.setBorderColor(Color.WHITE);
+			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			innerTable.addCell(pcell);
+		
+			
+			ptable.addCell(innerTable);
+			
+//			ptable.setSpacingBefore(40f);
+			ptable.setSpacingAfter(10f);
+			
 			
 			document.add(ptable);
 			
