@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import org.table.LotteryDTO;
+import org.table.LotteryStatusDTO;
 
 import oracle.jdbc.driver.OracleCallableStatement;
 
@@ -440,6 +441,62 @@ public class LotteryDAO {
 	 	return response;
 		
 	}
+	
+	public ArrayList<LotteryStatusDTO> getFinalLotteryPhasewiseStatus(int phaseId)
+	{
+		   	
+			ArrayList<LotteryStatusDTO> lotteryStatList=new ArrayList<LotteryStatusDTO>();
+	 	   Connection conn = ConnectionManager.getConnection();
+	 	   
+	 	   String sql=" select DIVISION.DIVISIONID,DIVISION_NAME,STATUS,PHASEID from division left outer join LOTTERY_PHASE_STATUS " +
+	 	   		      " on division.divisionid=LOTTERY_PHASE_STATUS.DIVISIONID " +
+	 	   		      " And PHASEID=? Order by division.divisionid";
+	 	   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   LotteryStatusDTO lStatusDTO=new LotteryStatusDTO();
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, phaseId);
+				r = stmt.executeQuery();
+				while (r.next())
+				{
+					lStatusDTO=new LotteryStatusDTO();
+					lStatusDTO.setDivisionId(r.getString("DIVISIONID"));
+					lStatusDTO.setDivisionName(r.getString("DIVISION_NAME"));
+					lStatusDTO.setStatus(r.getString("STATUS"));
+					lStatusDTO.setPhaseId(r.getString("PHASEID"));
+					
+					lotteryStatList.add(lStatusDTO);
+				}
+			
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	return lotteryStatList;
+
+	}
+	
+	public String getPendingDivisionListString(ArrayList<LotteryStatusDTO> lotteryStatusList)
+	{
+		String response="";
+		
+		for(int i=0;i<lotteryStatusList.size();i++)
+		{
+			if(lotteryStatusList.get(i).getStatus()==null || !lotteryStatusList.get(i).getStatus().equalsIgnoreCase("completed"))
+			{
+				response+=lotteryStatusList.get(i).getDivisionId()+",";
+			}
+		}
+		
+		if(response.length()>0)
+			response=response.substring(0, response.length()-1);
+		return response;
+	}
+	
 
 
 }
