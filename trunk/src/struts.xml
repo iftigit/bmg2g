@@ -97,6 +97,7 @@
 	 <result name="regOperator">/WEB-INF/jsp/RegOperatorHome.jsp</result>
 	 <result name="regViewAdmin">/WEB-INF/jsp/RegViewAdminHome.jsp</result>
 	 <result name="regLotViewAdmin">/WEB-INF/jsp/RegLotViewAdminHome.jsp</result>
+	 <result name="regLotMinistryAdmin">/WEB-INF/jsp/MinistryLotteryAdminHome.jsp</result>
 	</action>
 	
 	<action name="regHomeAction" class="org.controller.registration.RegistrationAction" method="regHomeAction">
@@ -232,6 +233,13 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
+		<action name="divisionResultStat" class="org.controller.registration.RegistrationStatisticsAction" method="divisionResultStat">
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
 		
 		<action name="districtStat" class="org.controller.registration.RegistrationStatisticsAction" method="districtStatistics">
 			<result type="stream">
@@ -240,12 +248,31 @@
 			</result>
 		</action>
 		
+		<action name="districtResultStat" class="org.controller.registration.RegistrationStatisticsAction" method="districtResultStat">
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		
+		
 		<action name="thanaStat" class="org.controller.registration.RegistrationStatisticsAction" method="thanaStatistics">
 			<result type="stream">
 				<param name="contentType">text/xml</param>
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
+		
+		
+		<action name="thanaResultStat" class="org.controller.registration.RegistrationStatisticsAction" method="thanaResultStat">
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		
 		
 		
 
@@ -301,7 +328,7 @@
 			</result>
 	</action>
 	
-	<action name="ministryLotteryResultDownload" class="org.controller.registration.MinistryLotteryResult">
+	<action name="ministryLotteryResultDownload" class="org.controller.registration.MinistryLotteryResult" >
 			<result type="stream">
 				<param name="contentType">application/pdf</param>
 				<param name="inputName">inputStream</param>
@@ -313,6 +340,17 @@
 				/WEB-INF/jsp/TimeOver.jsp
 			</result>
 	</action>
+	
+	<action name="ministryLotteryResultDashboard" class="org.controller.registration.RegistrationStatisticsAction" method="ministryLotteryResultDashboard">			
+			<result name="success">/WEB-INF/jsp/registration/LotteryResultStatistics.jsp</result>
+		<result name="logout" type="redirectAction">
+			logout.action
+		</result>
+		<result name="timeOver">
+			/WEB-INF/jsp/TimeOver.jsp
+		</result>
+			
+		</action>
 	
 		
 	<action name="processLottery" class="org.controller.registration.LotteryHomeAction" method="processLottery">

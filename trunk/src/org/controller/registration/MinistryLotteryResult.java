@@ -386,7 +386,8 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 		
 		Font f10nornal = new Font(Font.TIMES_ROMAN,10,Font.NORMAL);
 		
-		pcell=new PdfPCell(new Paragraph("Prepared by",f10nornal));		
+		//pcell=new PdfPCell(new Paragraph("Prepared by",f10nornal));
+		pcell=new PdfPCell(new Paragraph("",f10nornal));
 		pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		pcell.setMinimumHeight(50f);
 		pcell.setBorderWidth(0);
@@ -401,7 +402,8 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 		footer.addCell(pcell);
 		
 		
-		pcell=new PdfPCell(new Paragraph("Verified by",f10nornal));		
+		//pcell=new PdfPCell(new Paragraph("Verified by",f10nornal));
+		pcell=new PdfPCell(new Paragraph("",f10nornal));	
 		pcell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		pcell.setMinimumHeight(50f);
 		pcell.setBorderWidth(0);
@@ -484,7 +486,7 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			//innerTable.getDefaultCell().setBorderColor(Color.WHITE);
 			innerTable.getDefaultCell().setBorder(0);
 
-			pcell=new PdfPCell(new Paragraph("Bangladesh-Malaysia G2G Project 1st Phase Lottery Result",fontb));
+			pcell=new PdfPCell(new Paragraph("Bangladesh-Malaysia G2G Project Final Lottery Result",fontb));
 			pcell.setColspan(9);
 			pcell.setFixedHeight(30f);
 			pcell.setBorderColor(Color.WHITE);

@@ -64,6 +64,29 @@ public class RegistrationStatisticsAction  extends ActionSupport{
 		
 
 	}
+	
+	public String divisionResultStat()
+	{
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		DashBoardDAO dbdao=new DashBoardDAO();
+		String table=dbdao.divisionWiseResultStat(this.divisionId,this.divisionName);
+		
+
+		try{
+        	response.setContentType("text/xml");
+        	response.setHeader("Cache-Control", "no-cache");
+        	response.getWriter().write(table);
+        	response.flushBuffer();
+          }
+        catch(Exception e) {e.printStackTrace();}
+        
+        
+		return null;
+		
+	}
+	
+	
 	public String districtStatistics()
 	{
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -81,9 +104,27 @@ public class RegistrationStatisticsAction  extends ActionSupport{
         
         
 		return null;
-		
-
 	}
+	
+	public String districtResultStat()
+	{
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		DashBoardDAO dbdao=new DashBoardDAO();
+		String table=dbdao.getDistrictWiseResultStat(this.districtId,this.districtName);
+
+		try{
+        	response.setContentType("text/xml");
+        	response.setHeader("Cache-Control", "no-cache");
+        	response.getWriter().write(table);
+        	response.flushBuffer();
+          }
+        catch(Exception e) {e.printStackTrace();}
+        
+        
+		return null;
+	}
+	
 	public String thanaStatistics()
 	{
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -103,6 +144,52 @@ public class RegistrationStatisticsAction  extends ActionSupport{
 		return null;
 		
 
+	}
+	
+	public String thanaResultStat()
+	{
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		DashBoardDAO dbdao=new DashBoardDAO();
+		String table=dbdao.getThanaWiseResultStat(this.thanaId,this.thanaName);
+
+		try{
+        	response.setContentType("text/xml");
+        	response.setHeader("Cache-Control", "no-cache");
+        	response.getWriter().write(table);
+        	response.flushBuffer();
+          }
+        catch(Exception e) {e.printStackTrace();}
+        
+        
+		return null;
+		
+
+	}
+	
+	
+	public String ministryLotteryResultDashboard()
+	{
+		String localIp=ServletActionContext.getRequest().getHeader("X-Forwarded-For")==null?"":ServletActionContext.getRequest().getHeader("X-Forwarded-For");
+		String via=ServletActionContext.getRequest().getHeader("Via")==null?"":ServletActionContext.getRequest().getHeader("Via");
+		String realIp=ServletActionContext.getRequest().getRemoteAddr()==null?"":ServletActionContext.getRequest().getRemoteAddr();
+		String submittedAuthKey=localIp+via+realIp;
+		
+		UserDTO loggedInUser=(UserDTO) ServletActionContext.getRequest().getSession().getAttribute("loggedInUser");
+		if(!loggedInUser.getAuthenticationKey().equalsIgnoreCase(submittedAuthKey))
+		{
+			return "logout";
+		}
+		else if(!loggedInUser.getUserType().equalsIgnoreCase("LOTTERY_MINISTRY_ADMIN"))
+		{
+			return "logout";
+		}
+		else if(loggedInUser.getAccessRight()==0)
+		{
+			return "timeOver";	
+		}
+		
+		return "success";
 	}
 	
 
