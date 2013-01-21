@@ -21,7 +21,7 @@
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
 	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
-	 	<div style="font-size: 20px;margin-top: 10px;">Registration Statistics for Malaysia G2G Project</div>
+	 	<div style="font-size: 20px;margin-top: 10px;">Lottery Result Statistics for Bangladesh Malaysia G2G Project</div>
 	</div>
 </div>
 </center>
@@ -35,16 +35,14 @@
    
    <font style="color: maroon" >Select Division :</font>&nbsp;&nbsp;
    
-   <a href="#" onclick="updateDivisionStatResult(1,'Dhaka')">Dhaka</a>&nbsp;&nbsp;
-   <a href="#" onclick="updateDivisionStatResult(2,'Chittagong')">Chittagong</a>&nbsp;&nbsp;
-   <a href="#" onclick="updateDivisionStatResult(3,'Khulna')">Khulna</a>&nbsp;&nbsp;
-   <a href="#" onclick="updateDivisionStatResult(4,'Rajshahi')">Rajshahi</a>&nbsp;&nbsp;
-   <a href="#" onclick="updateDivisionStatResult(5,'Barishal')">Barisal</a>&nbsp;&nbsp;
-   <a href="#" onclick="updateDivisionStatResult(6,'Sylhet')">Sylhet</a>&nbsp;&nbsp;
-   <a href="#" onclick="updateDivisionStatResult(7,'Rangpur')">Rangpur</a>&nbsp;&nbsp;
-   
-
-
+	   <a href="#" onclick="updateDivisionStatResult(1,'Dhaka')">Dhaka</a>&nbsp;&nbsp;
+	   <a href="#" onclick="updateDivisionStatResult(2,'Chittagong')">Chittagong</a>&nbsp;&nbsp;
+	   <a href="#" onclick="updateDivisionStatResult(3,'Khulna')">Khulna</a>&nbsp;&nbsp;
+	   <a href="#" onclick="updateDivisionStatResult(4,'Rajshahi')">Rajshahi</a>&nbsp;&nbsp;
+	   <a href="#" onclick="updateDivisionStatResult(5,'Barishal')">Barishal</a>&nbsp;&nbsp;
+	   <a href="#" onclick="updateDivisionStatResult(6,'Sylhet')">Sylhet</a>&nbsp;&nbsp;
+	   <a href="#" onclick="updateDivisionStatResult(7,'Rangpur')">Rangpur</a>&nbsp;&nbsp;
+	   
    </td>
  </tr>
  <tr>
@@ -79,7 +77,7 @@ function updateDivisionStatResult(divisionId,divisionName)
 		divName=divisionName;
 	
 		 //var loadUrl="divisionStat.action?divisionId="+$("#divisionId").val()+"&divisionName="+$("#divisionId").find('option:selected').text();
-		 var loadUrl="divisionStat.action?divisionId="+divisionId+"&divisionName="+divisionName;	
+		 var loadUrl="divisionResultStat.action?divisionId="+divisionId+"&divisionName="+divisionName;	
 	     
 	     clearInterval(divisionTimerId);
     	 divisionTimerId=setInterval(refreshDivision, 300000);
@@ -107,7 +105,7 @@ function updateDivisionStatResult(divisionId,divisionName)
 	{
 
 		 
-		 var loadUrl="districtStat.action";	
+		 var loadUrl="districtResultStat.action";	
 		 
 	     $("#districtTd")  
 					.html(ajax_load)  
@@ -129,7 +127,7 @@ function updateDivisionStatResult(divisionId,divisionName)
 	{
 
 		 
-		 var loadUrl="thanaStat.action";	
+		 var loadUrl="thanaResultStat.action";	
 		 
 	     $("#thanaTd")  
 					.html(ajax_load)  

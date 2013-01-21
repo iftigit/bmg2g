@@ -80,9 +80,15 @@
 	     	<td align="left" style="padding-left: 0px;">
 	     		<input type="submit" value="Login" name="Login" />
 	     	</td>
-	     	<td align="right" style="padding-right: 0px;"><a href="np1">Request Password</a>&nbsp;&nbsp;
-	     	|&nbsp;&nbsp;<a href="lotteryResultStep1.action">First Lottery Result</a>
+	     	<td align="right" style="padding-right: 0px;">
+	     	
 	     	</td>
+	     	</tr>
+	     	<tr>
+	     	 <td align="left" style="text-align: left;padding-left: 0px;">
+	     	  <a href="np1">Request Password</a>&nbsp;&nbsp;
+	     	  |&nbsp;&nbsp;<a href="lotteryResultStep1.action">First Lottery Result</a>
+	     	 </td>
 	     	</tr>
      	</table>
      </td>

@@ -54,7 +54,7 @@
     <s:if test="lotteryStatus!='NOTCOMPLETED'">
     <tr>
      <td style="text-align: center">
-     	<a href="ministryLotteryResultDownload.action">Download Lottery Result</a>
+     	<a href="ministryLotteryResultDashboard.action">Lottery Result Dashboard</a>
      </td>
     </tr>
 
