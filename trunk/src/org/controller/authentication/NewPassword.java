@@ -220,17 +220,20 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
   public String sendFirstPassword()
   {
 	  ArrayList<UserDTO> tmp = new NewPaawordDAO().getAllUser();
+//	  ArrayList<UserDTO> tmp = new NewPaawordDAO().getFirstLottery();
 	  Iterator<UserDTO> it = tmp.iterator();
 	  String pass = "";
+	  int counter=0;
 	  while(it.hasNext())
 	  {
 		  try
 		  {
 			  UserDTO ut = it.next();
+
 			  pass = getPasswordCode().substring(0, 5);
 			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
 			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+" .login korte na parle call korun 09613016364.";
-//			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
+
 			  
 			  
 //			  pass = ut.getPassword();
@@ -259,6 +262,9 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 						inputLine1+=inputLine;
 				}
 				in.close();
+				counter++;
+				if(counter%500==0)
+					System.out.println("yes");
 //				Thread.sleep(100);
 		  }
 		  catch(Exception e)
