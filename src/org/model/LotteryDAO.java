@@ -314,13 +314,14 @@ public class LotteryDAO {
 			ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
 	 	   Connection conn = ConnectionManager.getConnection();
 	 	   
-	 	   String sql=" SELECT   SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername,  " +
-	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,thana.THANA_NAME,unions.cota_t " +
-	 	   		      " FROM SECONDLOTTERY_T1,address,unions,thana,district WHERE DIV = ? " +
-	 	   		      " And SECONDLOTTERY_T1.UNIONS=address.PER_UNION " +
-	 	   		      " And SECONDLOTTERY_T1.DIV=address.PER_DIV " +	
-	 	   		      " And SECONDLOTTERY_T1.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
-	 	   		      " And SECONDLOTTERY_T1.UNIONS=unions.UNIONID and thana.THANAID=SECONDLOTTERY_T1.THANA ORDER BY unions, gserial";
+	 	   String sql=" SELECT SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername," +
+	 	   		      " fathername, mothername,unions.UNIONNAME,unions.unionid,DIVISION.DIVISION_NAME,DISTRICT.DIST_NAME,thana.THANA_NAME,UNIONS.UNIONNAME,unions.cota_f " +
+	 	   		      " FROM SECONDLOTTERY_T1,unions,thana,district,division WHERE SECONDLOTTERY_T1.DIV = ? " +
+	 	   		      " And SECONDLOTTERY_T1.DIV=division.DIVISIONID " +
+	 	   		      " And SECONDLOTTERY_T1.DIST=district.DIST_ID " +
+	 	   		      " And SECONDLOTTERY_T1.THANA=thana.THANAID " +
+	 	   		      " AND SECONDLOTTERY_T1.UNIONS=UNIONS.UNIONID " +
+	 	   		      " Order by division_name,dist_name,thana_name,unions.unionname";
 	 	   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -340,7 +341,7 @@ public class LotteryDAO {
 					lottery.setUnionName(r.getString("UNIONNAME"));
 					lottery.setUnionId(r.getString("unionid"));
 					lottery.setUpazillaName(r.getString("THANA_NAME"));
-					lottery.setTotalQuota(r.getString("cota_t"));
+					lottery.setTotalQuota(r.getString("cota_f"));
 					
 					lotteryList.add(lottery);
 				}
