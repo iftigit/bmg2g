@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.model.AddressDAO;
 import org.model.LotteryDAO;
 import org.table.LotteryDTO;
+import org.table.LotteryStatusDTO;
 import org.table.UserDTO;
 
 
@@ -27,8 +28,9 @@ public class LotteryHomeAction extends ActionSupport{
 	ArrayList<LotteryDTO> lotteryList=new ArrayList<LotteryDTO>();
 	private String jobseekerNumber;
 	LotteryDAO lotteryService=new LotteryDAO();
-	
+	ArrayList<LotteryStatusDTO> lotteryStatusList=new ArrayList<LotteryStatusDTO>();
 	String divisionId;
+	String pendingDivisionListString;
 	
 	public String lotteryHome()
 	{
@@ -93,6 +95,8 @@ public class LotteryHomeAction extends ActionSupport{
 			return "timeOver";	
 		}
 		
+		lotteryStatusList=lottery.getFinalLotteryPhasewiseStatus(1);
+		pendingDivisionListString=lottery.getPendingDivisionListString(lotteryStatusList);
 //		districtName=addressDAO.getDistrictNameFromId(Integer.parseInt(loggedInUser.getDistrictId()));
 //		
 //		if(lotteryStatus.equalsIgnoreCase("completed"))
@@ -289,6 +293,26 @@ public class LotteryHomeAction extends ActionSupport{
 
 	public void setDivisionId(String divisionId) {
 		this.divisionId = divisionId;
+	}
+
+
+	public ArrayList<LotteryStatusDTO> getLotteryStatusList() {
+		return lotteryStatusList;
+	}
+
+
+	public void setLotteryStatusList(ArrayList<LotteryStatusDTO> lotteryStatusList) {
+		this.lotteryStatusList = lotteryStatusList;
+	}
+
+
+	public String getPendingDivisionListString() {
+		return pendingDivisionListString;
+	}
+
+
+	public void setPendingDivisionListString(String pendingDivisionListString) {
+		this.pendingDivisionListString = pendingDivisionListString;
 	}
 	
 	
