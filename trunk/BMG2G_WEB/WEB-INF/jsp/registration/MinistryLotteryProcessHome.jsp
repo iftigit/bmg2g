@@ -306,8 +306,14 @@ var loadUrl="getDivisionWiseLotterySummary.action?divisionId="+selectedDiv;
 	      
 	   	</td >
 	   	
-    	<td width="100px" align="center">
-    		<input type="button" name="selectDivisionBtn" id="selectDivisionBtn" value="Select Division" onclick="selectDivisionForLottery()" style="text-align: center;width: 150px;height: 35px;"  /> 
+    	<td width="100px" align="center" style="text-align: center;">
+    		<input type="button" name="selectDivisionBtn" id="selectDivisionBtn" value="Select Division" onclick="selectDivisionForLottery()" style="text-align: center;width: 150px;height: 35px;"  />
+    		<br/><br/>
+    		<a href="ministryLotteryResultDashboard.action">
+    		<img src="/BMG2G_WEB/resources/images/stat.png" border="0" width="60" height="60" />
+    		<br/>
+    		Result Statistics
+    		</a> 
     	</td>
     	<td width="400px" align="center" style="text-align: center; vertical-align: top;">
     	
@@ -320,35 +326,7 @@ var loadUrl="getDivisionWiseLotterySummary.action?divisionId="+selectedDiv;
     	  </div>	
     	</td>
     </tr>
-    <!-- 
-    <tr>
-    	<td width="50%" style="text-align: center;font-size: 18px;"><b>Total Jobseeker :</b> <s:property value="totalRegJobseeker" /></td>
-    	<td width="50%" style="text-align: center;font-size: 18px;"><b>Total Quota :</b><s:property value="totalCotaNumber" /></td>
-    </tr>
-    <tr><td colspan="2"></td></tr>
-    <tr>
-     <td style="text-align: center" id="lotteryButtonTd">
-       <s:if test="lotteryList.size==0">
-        <input type="button" name="lotteryProcessButton" id="lotteryProcessButton" value="Process Lottery" style="width: 150px; height: 40px;font-weight: bold;" onclick="processLottery()"/>
-       </s:if>
-     	
-     </td>
-     <td style="text-align: center" >
-      
-       <s:if test="lotteryList.size==0">
-     	  <input type="button" name="LotteryResult" id="LotteryResult" value="Download Lottery Result" style="width: 250px; height: 40px;font-weight: bold;" disabled="disabled" onclick="window.location='dcLotteryResultDownload.action'"/>
-       </s:if>
-       
-      <s:if test="lotteryList.size!=0">
-     	<input type="button" name="LotteryResult" id="LotteryResult" value="Download Lottery Result" style="width: 250px; height: 40px;font-weight: bold;" onclick="window.location='dcLotteryResultDownload.action'"/>
-      </s:if>
-      
-     </td>
-    </tr>
-    <tr>
-    <td colspan="2"></td>
-    </tr>
-     -->
+    
     </table>
     <div style="margin-top: 10px;"></div>
     <div>
