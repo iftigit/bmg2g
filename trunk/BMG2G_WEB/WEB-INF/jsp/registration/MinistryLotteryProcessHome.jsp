@@ -149,7 +149,7 @@ $("#division"+globalDivisionId).animate(
 	 <img src="/BMG2G_WEB/resources/images/bagladesh_logo.gif" width="60" height="60" />
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
-	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
+	 		 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
 	 	<div style="font-size: 20px;margin-top: 10px;">G2G Lottery Home</div>
 	</div>
 </div>
@@ -178,6 +178,19 @@ $("#division"+globalDivisionId).animate(
     vertical-align: middle;
     padding-top: 10px;
 }
+.content1 {
+    background-color:#008040;
+    color:white;
+    position:relative;
+    width:200px;
+    height:30px;
+    padding:3px;
+    margin-top:5px;
+    left: 45px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+}
 </STYLE>
  <script type="text/javascript">
  (function($) {
@@ -191,7 +204,7 @@ $("#division"+globalDivisionId).animate(
         }
     };
 })(jQuery);
-var items = [1,2,3,4,5,6,7];
+var items = [<s:property value='pendingDivisionListString' />];
 
 
 //var items = [4];
@@ -278,13 +291,19 @@ var loadUrl="getDivisionWiseLotterySummary.action?divisionId="+selectedDiv;
     <table width="900px" border="0" cellspacing="1" class="infoTable" align="center" style='border:1px solid grey;'>
     <tr>
       	<td width="400px" align="left" style="padding-top: 10px;padding-bottom: 10px;">
-	    	<div id="division1" class="content">Dhaka</div>
-	    	<div id="division2" class="content">Chittagong</div>
-	    	<div id="division3" class="content">Khulna</div>
-	    	<div id="division4" class="content">Rajshahi</div>
-	    	<div id="division5" class="content">Barishal</div>
-	    	<div id="division6" class="content">Sylhet</div>
-	    	<div id="division7" class="content">Rangpur</div>
+      	
+      	  <s:iterator value="lotteryStatusList" status="idx">
+      	    <s:if test="status=='completed'">      	    
+	    		
+	    		<div id="division<s:property value='#idx.count' />" class="content1"><s:property value="divisionName" />
+	    	    &nbsp;&nbsp;&nbsp;<a href='ministryLotteryResultDownload.action?divisionId=<s:property value="divisionId" />'><img src='/BMG2G_WEB/resources/images/pdf.png' border='0' /></a>
+	    	    </div>
+	    	</s:if>
+	    	<s:else>
+	    	    <div id="division<s:property value='#idx.count' />" class="content"><s:property value="divisionName" /> </div>
+	    	</s:else>
+	      </s:iterator>
+	      
 	   	</td >
 	   	
     	<td width="100px" align="center">
