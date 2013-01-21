@@ -59,7 +59,33 @@ public class NewPaawordDAO {
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
 		String sql = " select * from (Select password,userid from MST_USER where password is null) where rownum<201";
-//		String sql = "select fl.jobseeker_number,per_mobile from FIRSTLOTTERY fl,address a where fl.jobseeker_number=A.JOBSEEKER_NUMBER";
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			r = stmt.executeQuery();
+			while (r.next())
+			{
+				user=new UserDTO();
+				user.setPassword(r.getString(1));
+				user.setUserId(r.getString(2));
+				tmp.add(user);
+			}
+		} 
+		catch (Exception e){e.printStackTrace();}
+		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+		{e.printStackTrace();}stmt = null;conn = null;}
+		return tmp;
+	}
+	public ArrayList<UserDTO> getFirstLottery()
+	{
+		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
+		UserDTO user=null;
+		Connection conn = ConnectionManager.getConnection();
+		String sql = "select fl.jobseeker_number,per_mobile from FIRSTLOTTERY fl,address a "+
+					"where fl.jobseeker_number=A.JOBSEEKER_NUMBER "+
+					" and DIV in ('4','6','7')";
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		try
