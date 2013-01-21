@@ -493,42 +493,42 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph("Division",fontb));
-			pcell.setFixedHeight(30f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[1],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph("District",fontb));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[5],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -536,21 +536,21 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			
 			
 			pcell=new PdfPCell(new Paragraph("Upazilla",fontb));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[9],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -558,42 +558,42 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			
 			/* Quota Row*/
 			pcell=new PdfPCell(new Paragraph("Quota",fontb));
-			pcell.setFixedHeight(30f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[2],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph("Quota",fontb));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[6],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -601,21 +601,21 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			
 			
 			pcell=new PdfPCell(new Paragraph("Quota",fontb));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[10],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -624,42 +624,42 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			/* Selected Row */
 			
 			pcell=new PdfPCell(new Paragraph("Selected",fontb));
-			pcell.setFixedHeight(30f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[3],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph("Selected",fontb));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[7],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -667,21 +667,21 @@ class MinistryLotteryReportEvent extends PdfPageEventHelper
 			
 			
 			pcell=new PdfPCell(new Paragraph("Selected",fontb));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(":",fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);			
 			innerTable.addCell(pcell);
 			
 			pcell=new PdfPCell(new Paragraph(valArr[11],fontT));
-			pcell.setFixedHeight(25f);
+			pcell.setFixedHeight(22f);
 			pcell.setBorderColor(Color.WHITE);
 			pcell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			pcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
