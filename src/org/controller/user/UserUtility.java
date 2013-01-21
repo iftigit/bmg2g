@@ -15,6 +15,9 @@ public class UserUtility {
 			 return "regViewAdmin";
 		else if(user.getUserType().equalsIgnoreCase("REG_LOT_VIEW_ADMIN"))						 
 			 return "regLotViewAdmin";
+		else if(user.getUserType().equalsIgnoreCase("LOTTERY_MINISTRY_ADMIN"))						 
+			 return "regLotMinistryAdmin";
+		
 		 else
 			 return null;
 		

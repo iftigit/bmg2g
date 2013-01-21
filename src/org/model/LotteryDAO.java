@@ -491,15 +491,15 @@ public class LotteryDAO {
 	 		
 	 		String response=" <table width='98%' border='0' align='center' style='border:1px solid grey;'> " +
 				   " <tr> " +
-				   " <td width='70%' bgcolor='#DBB7FF' height='30' style='padding-left:20px;'>Total Registered Jobseeker </td> " +
+				   " <td width='70%' bgcolor='#DBB7FF' height='30' style='padding-left:20px;'>Total Registered Job-Seekers</td> " +
 				   " <td width='30%' bgcolor='#C58AFF' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalReg)+"</td> " +
 				   " </tr> " +
 				   " <tr> " +
-				   " <td height='30' bgcolor='#FFFFBB' style='padding-left:20px;'>Total Selected Jobseeker(Priliminary) </td> " +
+				   " <td height='30' bgcolor='#FFFFBB' style='padding-left:20px;'>Preliminary Selected</td> " +
 				   " <td bgcolor='#FFFF6C' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalPriliSelected)+"</td> " +
 				   " </tr> " +
 				   " <tr> " +
-				   " <td bgcolor='#C4D7D7' height='30' style='padding-left:20px;'>Quota Amount: </td> " +
+				   " <td bgcolor='#C4D7D7' height='30' style='padding-left:20px;'>Quota</td> " +
 				   " <td bgcolor='#9DBDBD' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalQuota)+"</td> " +
 				   " </tr> " +
 				   " </table>";
