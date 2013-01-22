@@ -100,6 +100,25 @@
 	 <result name="regLotMinistryAdmin">/WEB-INF/jsp/MinistryLotteryAdminHome.jsp</result>
 	</action>
 	
+	<action name="dataEntryAction" class="org.controller.DataEntryAction" >
+		<result name="success">/WEB-INF/jsp/data/mobileentry.jsp</result>
+	</action>
+	
+	<action name="dataEntryContinue" class="org.controller.DataEntryContinue" >
+		<result name="success">/WEB-INF/jsp/data/dataentry.jsp</result>
+	</action>
+	
+	
+	<action name="GetThanaList" class="org.controller.GetThanaList">
+	
+	</action>
+	
+	<action name="fetchData" class="org.controller.FetchData">
+		<result name="success">/WEB-INF/jsp/data/axdata.jsp</result>
+	</action>
+	
+	
+	
 	<action name="regHomeAction" class="org.controller.registration.RegistrationAction" method="regHomeAction">
 		<result name="REG_HOME">/WEB-INF/jsp/registration/RegistrationHome.jsp</result>
 		<result name="logout" type="redirectAction">
@@ -167,6 +186,30 @@
 		</result>
 	</action>
 	
+  		 
+  
+   	<action name="downloadInterview" class="org.controller.report.InterviewReportAction">
+		<result type="stream">
+			<param name="contentType">application/pdf</param>
+			<param name="inputName">inputStream</param>
+		</result>
+		<result name="inter_home">
+			/WEB-INF/jsp/registration/InterviewCardHome.jsp
+		</result>
+		
+		<interceptor-ref name="defaultStack"/>
+	</action>
+	
+	<action name="interviewCardDownloadHome">
+	 <result name="success">
+			/WEB-INF/jsp/registration/InterviewCardHome.jsp
+		</result>
+		<interceptor-ref name="defaultStack"/>
+	</action>	 
+  		 
+  		 
+  		 
+  		 
   		 
 	<action name="cotaSelection" class="org.controller.cota.CotaSelectionAction">
 		<result name="error">/WEB-INF/jsp/index.jsp</result>
