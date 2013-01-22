@@ -29,7 +29,7 @@ var ajax_load="<br/><br/><br/><center><img src='/BMG2G_WEB/resources/images/ajax
  var allJobseeker;
  var jobSeeker;
 var globalIndex=0;
-
+var refreshIntervalId;
 function processLottery()
 {
  document.getElementById("lotteryProcessButton").disabled=true;
@@ -58,7 +58,7 @@ function showResult(responseText)
  table=document.getElementById("resultTable");
  allJobseeker=responseText.split("NEWJOBSEEKERG2G");
  
- setInterval(arrangeResult, 50);
+ refreshIntervalId=setInterval(arrangeResult, 50);
  //setTimeout( arrangeResult, 2000 );
  
  document.getElementById("lotteryButtonTd").innerHTML="";
@@ -72,6 +72,7 @@ function arrangeResult()
   if(globalIndex==allJobseeker.length)
   {
    document.getElementById("LotteryResult").disabled=false;
+   clearInterval(refreshIntervalId);
   }
   
   if(globalIndex!=allJobseeker.length)

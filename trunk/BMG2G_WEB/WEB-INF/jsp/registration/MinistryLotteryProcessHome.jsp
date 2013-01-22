@@ -67,7 +67,7 @@ function showResult(responseText)
  table=document.getElementById("resultTable");
  allJobseeker=responseText.split("NEWJOBSEEKERG2G");
  
- refreshIntervalId= setInterval(arrangeResult, 2);
+ refreshIntervalId= setInterval(arrangeResult, 50);
 
 /* later */
  //setTimeout( arrangeResult, 2000 );
