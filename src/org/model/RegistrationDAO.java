@@ -17,6 +17,7 @@ import org.table.LanguageDTO;
 import org.table.LogDTO;
 import org.table.NomineeDTO;
 import org.table.PersonalInfoDTO;
+import org.table.SelectPersonDTO;
 import org.table.TrainingDTO;
 import util.connection.ConnectionManager;
 
@@ -154,6 +155,52 @@ public class RegistrationDAO {
 	 		
 	 		return personalDto;
 	 }
+	 
+	 
+	 public SelectPersonDTO getSelectPersonal(String registrationId)
+	 {
+		   Connection conn = ConnectionManager.getConnection();
+		   String sql="SELECT sl.jobseeker_number, " +
+		   		"       (sl.firstname || ' ' || sl.middlename || ' ' || sl.lastname " +
+		   		"       ) fullname, sl.fathername, sl.mothername, ad.per_mobile, " +
+		   		"       TO_CHAR (sl.idate, 'dd-mm-YYYY') idate, mt.ttc_name, mt.address_line1, " +
+		   		"       mt.address_line2, mt.address_line3 " +
+		   		"  FROM secondlottery_t1 sl, address ad, mst_ttc mt " +
+		   		" WHERE sl.jobseeker_number = ad.jobseeker_number " +
+		   		"   AND sl.ttc_id = mt.ttc_id " +
+		   		"   AND sl.jobseeker_number = ? ";
+	   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   SelectPersonDTO personalDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, registrationId);
+				r = stmt.executeQuery();
+				if (r.next())
+				{
+					personalDto=new SelectPersonDTO();
+					personalDto.setEmpFullName(r.getString("FULLNAME"));
+					personalDto.setFatherName(r.getString("FATHERNAME"));
+					personalDto.setMotherName(r.getString("MOTHERNAME"));
+					personalDto.setRegId(r.getString("jobseeker_number"));
+					personalDto.setMobileNo(r.getString("PER_MOBILE"));
+					personalDto.setIDate(r.getString("IDATE"));
+					personalDto.setTtcNmae(r.getString("TTC_NAME"));
+					personalDto.setAddressLine1(r.getString("address_Line1"));
+					personalDto.setAddressLine2(r.getString("address_Line2"));
+					personalDto.setAddressLine3(r.getString("address_Line3"));
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return personalDto;
+	 }
+	 
 	 
 	 public int updateInterviewInforamtion(String registrationId,int ttcId,String interviewDate)
 	 {
