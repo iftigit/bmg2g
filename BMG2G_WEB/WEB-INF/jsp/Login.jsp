@@ -80,10 +80,7 @@
 	     	<td align="left" style="padding-left: 0px;">
 	     		<input type="submit" value="Login" name="Login" />
 	     	</td>
-	     	<td align="right" style="padding-right: 0px;">
 	     	
-	     	|&nbsp;&nbsp;<a href="interviewCardDownloadHome.action">Second Lottery Result</a>
-	     	</td>
 	     	</tr>
 	     	<tr>
 	     	 <td align="left" style="text-align: left;padding-left: 0px;">
@@ -94,7 +91,12 @@
      	</table>
      </td>
     </tr>
-    
+    <tr>
+    <td colspan="2" >
+    	
+	    <a href="interviewCardDownloadHome.action">For Confirmation Card and Final Result (Pdf Viewer Required).</a>
+    </td>
+    </tr>
     </table>
 </form>      
 </div>
