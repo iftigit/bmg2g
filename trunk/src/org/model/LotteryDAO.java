@@ -495,11 +495,11 @@ public class LotteryDAO {
 				   " <td width='30%' bgcolor='#C58AFF' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalReg)+"</td> " +
 				   " </tr> " +
 				   " <tr> " +
-				   " <td height='30' bgcolor='#FFFFBB' style='padding-left:20px;'>Preliminary Selected</td> " +
+				   " <td height='30' bgcolor='#FFFFBB' style='padding-left:20px;'>Preliminary Selected<br>(out of 36,038)</td> " +
 				   " <td bgcolor='#FFFF6C' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalPriliSelected)+"</td> " +
 				   " </tr> " +
 				   " <tr> " +
-				   " <td bgcolor='#C4D7D7' height='30' style='padding-left:20px;'>Quota</td> " +
+				   " <td bgcolor='#C4D7D7' height='30' style='padding-left:20px;'>Quota (out of 11,500)</td> " +
 				   " <td bgcolor='#9DBDBD' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalQuota)+"</td> " +
 				   " </tr> " +
 				   " </table>";
