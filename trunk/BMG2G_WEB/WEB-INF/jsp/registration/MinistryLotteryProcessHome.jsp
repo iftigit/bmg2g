@@ -48,14 +48,14 @@ var tableString=    "<table width='100%' border='0' cellpadding='0' cellspacing=
 function processLottery()
 {
  document.getElementById("processLotteryBtn").disabled=true;
- 
+ document.getElementById("resultDivWait").html("");
  $("#resultDiv").html(tableString);
  
  var loadUrl="processDivisionLottery.action?divisionId="+globalDivisionId;
 			jQuery("#resultDivWait")  
 				.html(ajax_load)  
 				.load(loadUrl, {},function(responseText){  
-					jQuery("#resultDivWait").html("");
+					//jQuery("#resultDivWait").html("");
 					
 					if(responseText!="error" && responseText!="duplicate")
 					{
