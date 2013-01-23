@@ -163,7 +163,7 @@ public class RegistrationDAO {
 		   String sql="SELECT sl.jobseeker_number, " +
 		   		"       (sl.firstname || ' ' || sl.middlename || ' ' || sl.lastname " +
 		   		"       ) fullname, sl.fathername, sl.mothername, ad.per_mobile, " +
-		   		"       TO_CHAR (sl.idate, 'dd-mm-YYYY') idate, mt.ttc_name, mt.address_line1, " +
+		   		"       TO_CHAR (sl.idate, 'dd-mm-YYYY')||'    09:00 AM' idate, mt.ttc_name, mt.address_line1, " +
 		   		"       mt.address_line2, mt.address_line3 " +
 		   		"  FROM secondlottery_t1 sl, address ad, mst_ttc mt " +
 		   		" WHERE sl.jobseeker_number = ad.jobseeker_number " +

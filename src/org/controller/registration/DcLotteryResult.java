@@ -146,7 +146,7 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 				
 				if(i==0)
 				{
-					eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());
+					eEvent.setDisplayValue(selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getTotalQuota());
 					PdfWriter.getInstance(document, baos).setPageEvent(eEvent);
 					document.open();
 				}
@@ -155,7 +155,7 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 				{
 					document.add(ptable);
 					
-					eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());					
+					eEvent.setDisplayValue(selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getTotalQuota());					
 					document.newPage();
 					
 					
@@ -245,7 +245,7 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 				ptable.addCell(pcell);
 				
 //				eEvent.setDisplayValue(selectedList.get(i).getUnionName());	
-				eEvent.setDisplayValue(selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getTotalQuota());
+				eEvent.setDisplayValue(selectedList.get(i).getUpazillaName()+"#seperator#"+selectedList.get(i).getUnionName()+"#seperator#"+selectedList.get(i).getTotalQuota());
 				
 				
 				preUnion=selectedList.get(i).getUnionId();

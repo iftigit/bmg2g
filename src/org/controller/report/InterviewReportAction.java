@@ -96,6 +96,7 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 		ByteArrayOutputStream certificate = null;
 		List<PdfReader> readers = new ArrayList<PdfReader>();
 		String realPath = servlet.getRealPath("/resources/staticpdf/interview.pdf");
+		String realPath1 = servlet.getRealPath("/resources/staticpdf/towhom.pdf");
 		Document document = new Document();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		document.setPageSize(PageSize.A4);
@@ -124,58 +125,71 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 574);
+			over.setTextMatrix(220, 552);
 			over.showText(personalInfoDto.getRegId());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 550);
+			over.setTextMatrix(220, 528);
 			over.showText(personalInfoDto.getEmpFullName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 527);
+			over.setTextMatrix(220, 506);
 			over.showText(personalInfoDto.getFatherName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 506);
+			over.setTextMatrix(220, 482);
 			over.showText(personalInfoDto.getMotherName());
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 482);
+			over.setTextMatrix(220, 460);
 			over.showText(personalInfoDto.getMobileNo());
 			
 					
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(222, 247);
+			over.setTextMatrix(244, 267);
 			over.showText(personalInfoDto.getIDate());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(221, 230);
+			over.setTextMatrix(221, 249);
 			over.showText(personalInfoDto.getTtcNmae());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(216, 208);
+			over.setTextMatrix(221, 228);
 			over.showText(personalInfoDto.getAddressLine1());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(216, 188);
+			over.setTextMatrix(221, 208);
 			over.showText(personalInfoDto.getAddressLine2());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(216, 168);
+			over.setTextMatrix(221, 188);
 			over.showText(personalInfoDto.getAddressLine3());
 			
 			
 			
 			over.endText();
 			stamp.close();
+			
 			readers.add(new PdfReader(certificate.toByteArray()));
+			certificate.close();
+			
+			
+			PdfReader reader1 = new PdfReader(new FileInputStream(realPath1));
+			ByteArrayOutputStream certificate1 = new ByteArrayOutputStream();
+			PdfStamper stamp1 = new PdfStamper(reader1,certificate1);
+			over = stamp1.getOverContent(1);
+			stamp1.close();
+			
+			
+			
+			readers.add(new PdfReader(certificate1.toByteArray()));
 			
 			
 						
