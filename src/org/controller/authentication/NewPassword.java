@@ -239,7 +239,7 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 //			  pass = ut.getPassword();
 //			  String pass1="Ovinondon "+pass+" . Malaysia jabar lottery te apni bijoyi hoyechhen. Bistarito pore janano hobe.";
 
-
+//			  pass2 = "Apni final lotteryte joyi hoyesen. g2g.bmet.gov.bd web thikanay log in kore proshikhhoner sthan o tarikhsoho onyanno bishoy jene nin.";
 			  
 			  URL yahoo;
 				if(ut.getUserId().substring(0,3).equalsIgnoreCase("011"))
