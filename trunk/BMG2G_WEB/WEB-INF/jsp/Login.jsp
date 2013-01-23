@@ -82,6 +82,7 @@
 	     	</td>
 	     	<td align="right" style="padding-right: 0px;">
 	     	
+	     	|&nbsp;&nbsp;<a href="interviewCardDownloadHome.action">Second Lottery Result</a>
 	     	</td>
 	     	</tr>
 	     	<tr>
