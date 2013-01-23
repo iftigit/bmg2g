@@ -35,18 +35,27 @@ var globalIndex=0;
 var globalDivisionId=0;
 var selectedDivTopPosition=0;
 var refreshIntervalId;
-
+var tableString=    "<table width='100%' border='0' cellpadding='0' cellspacing='0' id='resultTable'>"+  
+					"	 <tr>"+
+					"	    <td width='10%'></td>"+
+					"		<td width='20%'></td>"+
+					"		<td width='20%'></td>"+
+					"		<td width='20%'></td>"+
+					"		<td width='20%'></td>"+    		
+					"		<td width='10%'></td>"+
+					"	</tr>"+   	
+					"</table>";
 function processLottery()
 {
  document.getElementById("processLotteryBtn").disabled=true;
  
-
+ $("#resultDiv").html(tableString);
  
  var loadUrl="processDivisionLottery.action?divisionId="+globalDivisionId;
-			jQuery("#resultDiv")  
+			jQuery("#resultDivWait")  
 				.html(ajax_load)  
 				.load(loadUrl, {},function(responseText){  
-					jQuery("#resultDiv").html("");
+					jQuery("#resultDivWait").html("");
 					
 					if(responseText!="error" && responseText!="duplicate")
 					{
@@ -56,7 +65,7 @@ function processLottery()
 					else
 					   {
 					    document.getElementById("processLotteryBtn").disabled=false;
-					    jQuery("#resultDiv").html('<font style="color:red;font-size:18px"><br/><br/><br/>Server is busy now.Try again.</font>');
+					    jQuery("#resultDivWait").html('<font style="color:red;font-size:18px"><br/><br/><br/>Server is busy now.Try again.</font>');
 					   }				   
 				}); 
 				
@@ -67,7 +76,7 @@ function showResult(responseText)
  table=document.getElementById("resultTable");
  allJobseeker=responseText.split("NEWJOBSEEKERG2G");
  
- refreshIntervalId= setInterval(arrangeResult, 50);
+ refreshIntervalId= setInterval(arrangeResult, 40);
 
 /* later */
  //setTimeout( arrangeResult, 2000 );
@@ -226,13 +235,13 @@ function removeA(arr) {
 
 function selectDivisionForLottery()
 {
-  
   if(items.length==0)
   {
     alert("Sorry, lottery for all division are done. So, division selection option is not permitted now.");
   } 
   else
    {
+     $("#resultDiv").html("");
 	 document.getElementById("selectDivisionBtn").disabled=true;
      $("#divPreLotterySummary").html(ajax_load+"<br/><font style='color:blue;font-weight:bold'>Randomly Selecting a Division</font><br/><br/>Please Wait....");
   
@@ -341,20 +350,11 @@ var loadUrl="getDivisionWiseLotterySummary.action?divisionId="+selectedDiv;
     	</tr>   	
     </table>
     </div>
-    <div id="resultDiv">
+    <div id="resultDivWait">
     </div>
     <div style="height: 500px;overflow: auto;clear: both; background: url('/BMG2G_WEB/resources/images/bangladesh.png'); background-repeat: no-repeat;background-position: center;" id="resultDiv">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" id="resultTable">  
-         <s:iterator value="lotteryList" status="idx">
-            <tr >
-    	    <td><s:property value="#idx.count" /></td>
-    		<td align="left" style="padding-left: 3px;"><s:property value="jobseekerNumber" /></td>
-    		<td align="left" style="padding-left: 5px;"><s:property value="jobseekerName" /></td>
-    		<td align="left" style="padding-left: 3px;"><s:property value="fatherName" /></td>
-    		<td align="left" style="padding-left: 3px;"><s:property value="motherName" /></td>    		
-    		<td align="left" style="padding-left: 3px;"><s:property value="unionName" /></td>
-    	</tr>
-         </s:iterator>  	   
+  	   
 		 <tr>
     	    <td width="10%"></td>
     		<td width="20%"></td>
