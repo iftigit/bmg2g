@@ -48,7 +48,7 @@ var tableString=    "<table width='100%' border='0' cellpadding='0' cellspacing=
 function processLottery()
 {
  document.getElementById("processLotteryBtn").disabled=true;
- document.getElementById("resultDivWait").html("");
+ //document.getElementById("resultDivWait").html("");
  $("#resultDiv").html(tableString);
  
  var loadUrl="processDivisionLottery.action?divisionId="+globalDivisionId;
