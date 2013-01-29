@@ -219,8 +219,9 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 	}
   public String sendFirstPassword()
   {
-	  ArrayList<UserDTO> tmp = new NewPaawordDAO().getAllUser();
-//	  ArrayList<UserDTO> tmp = new NewPaawordDAO().getFirstLottery();
+	  ArrayList<UserDTO> tmp = null;
+//	  ArrayList<UserDTO> tmp = new NewPaawordDAO().getAllUser();
+	  tmp = new NewPaawordDAO().getFirstLottery();
 	  Iterator<UserDTO> it = tmp.iterator();
 	  String pass = "";
 	  int counter=0;
@@ -230,14 +231,14 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 		  {
 			  UserDTO ut = it.next();
 
-			  pass = getPasswordCode().substring(0, 5);
-			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
-			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+" .login korte na parle call korun 09613016364.";
+//			  pass = getPasswordCode().substring(0, 5);
+//			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
+//			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+" .login korte na parle call korun 09613016364.";
 
 			  
 			  
-//			  pass = ut.getPassword();
-//			  String pass1="Ovinondon "+pass+" . Malaysia jabar lottery te apni bijoyi hoyechhen. Bistarito pore janano hobe.";
+			  pass = ut.getPassword();
+			  String pass1="Ovinondon "+pass+" . Malaysia jabar lottery te apni bijoyi hoyechhen. Bistarito pore janano hobe.";
 
 //			  pass2 = "Apni final lotteryte joyi hoyesen. g2g.bmet.gov.bd web thikanay log in kore proshikhhoner sthan o tarikhsoho onyanno bishoy jene nin.";
 			  
