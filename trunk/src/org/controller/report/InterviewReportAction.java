@@ -109,7 +109,15 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			certificate = new ByteArrayOutputStream();
 			PdfStamper stamp = new PdfStamper(reader,certificate);
 			PdfContentByte over;
+			String FONT="";
+			
+			System.out.println(System.getProperty("os.name"));
+			if(System.getProperty("os.name").equalsIgnoreCase("Windows XP"))
+				FONT = "c:/windows/fonts/SUTOE___.TTF";
+			else
+				FONT = "/usr/share/fonts/truetype/SUTOE___.TTF";
 			BaseFont bf = BaseFont.createFont(BaseFont.TIMES_ROMAN,BaseFont.WINANSI,BaseFont.EMBEDDED);
+			BaseFont bf1 = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
 			over = stamp.getOverContent(1);
 			
 			Barcode128 code128 = new Barcode128(); 
@@ -153,22 +161,22 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			over.showText(personalInfoDto.getIDate());
 			
 			
-			over.setFontAndSize(bf, 12);
+			over.setFontAndSize(bf1, 12);
 			over.setTextMatrix(221, 249);
 			over.showText(personalInfoDto.getTtcNmae());
 			
 			
-			over.setFontAndSize(bf, 12);
+			over.setFontAndSize(bf1, 12);
 			over.setTextMatrix(221, 228);
 			over.showText(personalInfoDto.getAddressLine1());
 			
 			
-			over.setFontAndSize(bf, 12);
+			over.setFontAndSize(bf1, 12);
 			over.setTextMatrix(221, 208);
 			over.showText(personalInfoDto.getAddressLine2());
 			
 			
-			over.setFontAndSize(bf, 12);
+			over.setFontAndSize(bf1, 12);
 			over.setTextMatrix(221, 188);
 			over.showText(personalInfoDto.getAddressLine3());
 			
