@@ -17,6 +17,7 @@ import org.table.LanguageDTO;
 import org.table.LogDTO;
 import org.table.NomineeDTO;
 import org.table.PersonalInfoDTO;
+import org.table.PoliceDTO;
 import org.table.SelectPersonDTO;
 import org.table.TrainingDTO;
 import util.connection.ConnectionManager;
@@ -163,7 +164,7 @@ public class RegistrationDAO {
 		   String sql="SELECT sl.jobseeker_number, " +
 		   		"       (sl.firstname || ' ' || sl.middlename || ' ' || sl.lastname " +
 		   		"       ) fullname, sl.fathername, sl.mothername, ad.per_mobile, " +
-		   		"       TO_CHAR (sl.idate, 'dd-mm-YYYY')||'    09:00 AM' idate, mt.ttc_name, mt.address_line1, " +
+		   		"       TO_CHAR (sl.idate, 'dd-mm-YYYY') idate, mt.ttc_name, mt.address_line1, " +
 		   		"       mt.address_line2, mt.address_line3 " +
 		   		"  FROM secondlottery_t1 sl, address ad, mst_ttc mt " +
 		   		" WHERE sl.jobseeker_number = ad.jobseeker_number " +
@@ -199,6 +200,111 @@ public class RegistrationDAO {
 				{e.printStackTrace();}stmt = null;conn = null;}
 	 		
 	 		return personalDto;
+	 }
+	 
+	 
+	 public PoliceDTO getPoliceData(String registrationId)
+	 {
+		   Connection conn = ConnectionManager.getConnection();
+		   String sql="SELECT  " +
+		   "	JOBSEEKER_NUMBER, NAME, GENDER,  " +
+		   "   FATHERNAME, PASSPORTNO, RACE,  " +
+		   "   RELIGION, BIRTHDATE, initcap(ADDRESS) ADDRESS,  " +
+		   "   ADDRESS1, ADDRESS2, ADDRESS3,  " +
+		   "   BIRTHPLACE, TTCNAME, TTCDATE " +
+		   "	FROM DB_BMG2G.POLICE_DATA  " +
+		   "	where JOBSEEKER_NUMBER = ? ";
+	   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   PoliceDTO pDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, registrationId);
+				r = stmt.executeQuery();
+				if (r.next())
+				{
+					pDto=new PoliceDTO();
+					pDto.setRegno(r.getString("JOBSEEKER_NUMBER"));
+					pDto.setName(r.getString("NAME"));
+					pDto.setGender(r.getString("GENDER"));
+					pDto.setFathername(r.getString("FATHERNAME"));
+					pDto.setPasportno(r.getString("PASSPORTNO"));
+					pDto.setRace(r.getString("RACE"));
+					pDto.setReligion(r.getString("RELIGION"));
+					pDto.setBirthdate(r.getString("BIRTHDATE"));
+					pDto.setAddress(r.getString("ADDRESS"));
+					pDto.setAddress1(r.getString("ADDRESS1"));
+					pDto.setAddress2(r.getString("ADDRESS2"));
+					pDto.setAddress3(r.getString("BIRTHPLACE"));
+					pDto.setBirthplace(r.getString("BIRTHPLACE"));
+					pDto.setTtcname(r.getString("TTCNAME"));
+					pDto.setTtcdate(r.getString("TTCDATE"));					
+					
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return pDto;
+	 }
+	 
+	 
+	 
+	 public ArrayList<PoliceDTO> getPoliceDataAll(String registrationId)
+	 {
+		   Connection conn = ConnectionManager.getConnection();
+		   ArrayList<PoliceDTO> plist = new ArrayList<PoliceDTO>();
+		   
+		   String sql="SELECT  " +
+		   "	JOBSEEKER_NUMBER, NAME, GENDER,  " +
+		   "   FATHERNAME, PASSPORTNO, RACE,  " +
+		   "   RELIGION, BIRTHDATE, initcap(ADDRESS) ADDRESS,  " +
+		   "   ADDRESS1, ADDRESS2, ADDRESS3,  " +
+		   "   BIRTHPLACE, TTCNAME, TTCDATE " +
+		   "	FROM DB_BMG2G.POLICE_DATA  " +
+		   "	where dist_id = 12 ";
+	   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   PoliceDTO pDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				//stmt.setString(1, registrationId);
+				r = stmt.executeQuery();
+				while (r.next())				
+				{
+					pDto=new PoliceDTO();
+					pDto.setRegno(r.getString("JOBSEEKER_NUMBER"));
+					pDto.setName(r.getString("NAME"));
+					pDto.setGender(r.getString("GENDER"));
+					pDto.setFathername(r.getString("FATHERNAME"));
+					pDto.setPasportno(r.getString("PASSPORTNO"));
+					pDto.setRace(r.getString("RACE"));
+					pDto.setReligion(r.getString("RELIGION"));
+					pDto.setBirthdate(r.getString("BIRTHDATE"));
+					pDto.setAddress(r.getString("ADDRESS"));
+					pDto.setAddress1(r.getString("ADDRESS1"));
+					pDto.setAddress2(r.getString("ADDRESS2"));
+					pDto.setAddress3(r.getString("BIRTHPLACE"));
+					pDto.setBirthplace(r.getString("BIRTHPLACE"));
+					pDto.setTtcname(r.getString("TTCNAME"));
+					pDto.setTtcdate(r.getString("TTCDATE"));
+					
+					plist.add(pDto);
+					
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return plist;
 	 }
 	 
 	 

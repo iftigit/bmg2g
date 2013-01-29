@@ -110,10 +110,10 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			PdfStamper stamp = new PdfStamper(reader,certificate);
 			PdfContentByte over;
 			String FONT="";
-			
+			//Windows Vista
 			System.out.println(System.getProperty("os.name"));
-			if(System.getProperty("os.name").equalsIgnoreCase("Windows XP"))
-				FONT = "c:/windows/fonts/SUTOE___.TTF";
+			if(System.getProperty("os.name").equalsIgnoreCase("Windows XP")|| System.getProperty("os.name").equalsIgnoreCase("Windows Vista"))
+				FONT = "C:/Windows/Fonts/SutonnyMJ.TTF";
 			else
 				FONT = "/usr/share/fonts/truetype/SUTOE___.TTF";
 			BaseFont bf = BaseFont.createFont(BaseFont.TIMES_ROMAN,BaseFont.WINANSI,BaseFont.EMBEDDED);
@@ -124,7 +124,7 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			code128.setCode(sessionRegId); 
 			PdfTemplate tp128= 
 			code128.createTemplateWithBarcode(over, null, null); 
-			over.addTemplate(tp128, 405, 738);
+			over.addTemplate(tp128, 405, 758);
 		
 			//over.addTemplate(tp128, 405, 758);
 			
@@ -133,51 +133,51 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 552);
+			over.setTextMatrix(190, 592);
 			over.showText(personalInfoDto.getRegId());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 528);
+			over.setTextMatrix(190, 573);
 			over.showText(personalInfoDto.getEmpFullName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 506);
+			over.setTextMatrix(190, 553);
 			over.showText(personalInfoDto.getFatherName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 482);
+			over.setTextMatrix(190, 534);
 			over.showText(personalInfoDto.getMotherName());
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(220, 460);
+			over.setTextMatrix(190, 515);
 			over.showText(personalInfoDto.getMobileNo());
 			
 					
-			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(244, 267);
+			over.setFontAndSize(bf1, 12);
+			over.setTextMatrix(208, 228);
 			over.showText(personalInfoDto.getIDate());
 			
 			
 			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(221, 249);
+			over.setTextMatrix(200, 200);
 			over.showText(personalInfoDto.getTtcNmae());
 			
 			
 			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(221, 228);
+			over.setTextMatrix(200, 170);
 			over.showText(personalInfoDto.getAddressLine1());
 			
 			
 			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(221, 208);
+			over.setTextMatrix(200, 144);
 			over.showText(personalInfoDto.getAddressLine2());
 			
 			
 			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(221, 188);
+			over.setTextMatrix(200, 114);
 			over.showText(personalInfoDto.getAddressLine3());
 			
 			
