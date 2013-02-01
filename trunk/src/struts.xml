@@ -84,7 +84,17 @@
 		</result>
 		<result name="ministryLotteryAdmin">
 			/WEB-INF/jsp/MinistryLotteryAdminHome.jsp
-		</result>		
+		</result>
+		<result name="ttcConfirmOperator">
+			/WEB-INF/jsp/TTCConfirmOperatorHome.jsp
+		</result>
+		<result name="ttcCharimanHome">
+			/WEB-INF/jsp/TTCcharimanHome.jsp
+		</result>
+		<result name="ttcMedicalHome">
+			/WEB-INF/jsp/TTCmedicalHome.jsp
+		</result>
+				
 		
 		<result name="showUser">
 			/WEB-INF/jsp/ShowUser.jsp
@@ -98,8 +108,17 @@
 	 <result name="regViewAdmin">/WEB-INF/jsp/RegViewAdminHome.jsp</result>
 	 <result name="regLotViewAdmin">/WEB-INF/jsp/RegLotViewAdminHome.jsp</result>
 	 <result name="regLotMinistryAdmin">/WEB-INF/jsp/MinistryLotteryAdminHome.jsp</result>
+	 
+	 <result name="ttcConfirmOperator">/WEB-INF/jsp/TTCConfirmOperatorHome.jsp</result>
+	 <result name="ttcMedicalHome">/WEB-INF/jsp/TTCmedicalHome.jsp</result>
+	 <result name="ttcCharimanHome">/WEB-INF/jsp/TTCcharimanHome.jsp</result>
 	</action>
+<<<<<<< .mine
+
 <!-- 	
+=======
+<!-- 	
+>>>>>>> .r169
 	<action name="dataEntryAction" class="org.controller.DataEntryAction" >
 		<result name="success">/WEB-INF/jsp/data/mobileentry.jsp</result>
 	</action>
@@ -374,6 +393,51 @@
 		<action name="regOperatorHome">			
 			<result name="success">/WEB-INF/jsp/RegOperatorHome.jsp</result>
 		</action>
+		
+		<action name="selectionConfAction">			
+			<result name="success">/WEB-INF/jsp/interview/SelectionConfHome.jsp</result>
+		</action>
+		
+		<action name="fetchConfirmationAction" class="org.controller.interview.ConfirmationAction">			
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		
+		<action name="medicalReportHome">			
+			<result name="success">/WEB-INF/jsp/medical/MedicalHome.jsp</result>
+		</action>
+		
+		<action name="fetchMedicalData" class="org.controller.medical.MedicalAction">			
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		<action name="submitMedicalData" class="org.controller.medical.MedicalAction" method="submitMedicalData">			
+			<result type="stream">
+				<param name="contentType">text/xml</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		
+		
+		
+		
+		<action name="interviewHome">			
+			<result name="success">/WEB-INF/jsp/interview/InterviewHome.jsp</result>
+		</action>
+		
+		<action name="fetchEmpInfoForInterview" class="org.controller.interview.InterviewAction" method="fetchEmpInfoForInterview">			
+			<result name="success">/WEB-INF/jsp/interview/InterviewHome.jsp</result>
+		</action>
+		
+		
+		
 		
 		
 	<action name="dcLotteryResultDownload" class="org.controller.registration.DcLotteryResult">
