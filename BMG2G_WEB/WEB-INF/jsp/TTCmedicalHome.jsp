@@ -10,7 +10,7 @@
 
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
-<title>G2G Project - Login Page</title>
+<title>G2G Project - User Home</title>
  <link rel="stylesheet" href="/BMG2G_WEB/resources/css/style.css" />	
   <script type="text/javascript" src="/BMG2G_WEB/resources/js/lib/jquery-1.6.4.min.js"></script> 
 <script type="text/javascript" src="/BMG2G_WEB/resources/js/util/util.js"></script>
@@ -20,20 +20,7 @@
  <link type="text/css" rel="Stylesheet" href="/BMG2G_WEB/resources/js/lib/jquery.validity.1.2.0/jquery.validity.css" />
         <script type="text/javascript" src="/BMG2G_WEB/resources/js/lib/jquery.validity.1.2.0/jQuery.validity.js"></script>
  
- <script type="text/javascript">
-   $(function() { 
 
-                $("form").validity(function() {
-                    $("#USERID")                      // The first input:    
-        			.require("Userid required.");                         // Required:
-        			
-        			$("#PASSWORD")                      // The first input:    
-        			.require("Password required.");                         // Required:
-        			
-                });
-            });
- </script>
-  
 </head>
 <body style="margin: 0px;">
 
@@ -45,69 +32,43 @@
 	</div>
 	<div style="float: left;margin-left: 30px;color: black;margin-top: 15px;text-align: left;">
 	 	<div style="font-size: 27px;font-weight: bold;">Bureau of Manpower, Employment & Training (BMET)</div>
-	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project Login Page</div>
+	 	<div style="font-size: 20px;margin-top: 10px;">G2G Project Home</div>
 	</div>
 </div>
 </center>
 </div>
 <center>
 <br/>
-				
-<div class="box" style="margin-top: 120px;width: 500px;">
-    <h3>Login</h3>
+<img src='/BMG2G_WEB/resources/images/doctor.png' border='0' alt="Doctor" />
+<div class="box" style="margin-top: 40px;width: 500px;text-align: center;">
+    <h3>Activities</h3>
     
 <form id="loginForm" name="loginForm" method="post" action="checkValidity.action">    
     <table width="100%" border="0" cellspacing="1" class="infoTable">
     
     <tr>
-     <td align="left" width="20%">Mobile No</td>
-     <td align="left" width="80%"><input type="text" tabindex="6" name="userId" id="USERID" maxlength="15" class="textBox" value="<s:property value='userId' />" />
-      
+     <td style="text-align: center">
+     	<a href="medicalReportHome.action">Medical Report Home</a>
      </td>
     </tr>
-
+     <tr>
+     <td style="text-align: center">
+     	<a href="logout.action">Logout</a>
+     </td>
+    </tr>
     
-    <tr>
-     <td>Password</td>
-     <td><input type="password" tabindex="6" name="password" id="PASSWORD" maxlength="15" class="textBox" value="<s:property value='password' />" /></td>
-    </tr>
-
-    <tr>
-     <td height="30px;"></td>
-     <td style="padding-bottom: 10px;" align="left">
-     	<table width="100%" cellpadding="0" cellspacing="0">
-	     	<tr>
-	     	<td align="left" style="padding-left: 0px;">
-	     		<input type="submit" value="Login" name="Login" />
-	     	</td>
-	     	
-	     	</tr>
-	     	<tr>
-	     	 <td align="left" style="text-align: left;padding-left: 0px;">
-	     	  <a href="np1">Request Password</a>&nbsp;&nbsp;
-	     	  |&nbsp;&nbsp;<a href="lotteryResultStep1.action">First Lottery Result</a>
-	     	 </td>
-	     	</tr>
-     	</table>
+     <tr>
+     <td style="text-align: center" height="20px;">
+     
      </td>
     </tr>
-    <tr>
-    <td colspan="2" >
-    	
-	    <a href="interviewCardDownloadHome.action">For Confirmation Card and Final Result (Pdf Viewer Required).</a>
-    </td>
-    </tr>
+
     </table>
-</form>      
+</form>    
+    
+  
 </div>
-<p style="height: 10px"></p>
-<s:if test="hasActionMessages()">
-				   <div class="errors">				    
-			            	<s:actionmessage />
-			         <!-- notification info -->
-				   </div>
-<br/>
-</s:if>
+<p style="height: 30px"></p>
 </center>
 <script type="text/javascript">
 $('input').attr('autocomplete','off');   
