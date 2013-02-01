@@ -112,12 +112,14 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			String FONT="";
 			//Windows Vista
 			System.out.println(System.getProperty("os.name"));
-			if(System.getProperty("os.name").equalsIgnoreCase("Windows XP")|| System.getProperty("os.name").equalsIgnoreCase("Windows Vista"))
+			if(System.getProperty("os.name").equalsIgnoreCase("Windows XP"))
+				FONT = "C:/Windows/Fonts/sutom.ttf";
+			else if(System.getProperty("os.name").equalsIgnoreCase("Windows Vista"))
 				FONT = "C:/Windows/Fonts/SutonnyMJ.TTF";
 			else
-				FONT = "/usr/share/fonts/truetype/SUTOE___.TTF";
+				FONT = "/usr/share/fonts/truetype/sutom.ttf";
 			BaseFont bf = BaseFont.createFont(BaseFont.TIMES_ROMAN,BaseFont.WINANSI,BaseFont.EMBEDDED);
-			BaseFont bf1 = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.NOT_EMBEDDED);
+			BaseFont bf1 = BaseFont.createFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED);
 			over = stamp.getOverContent(1);
 			
 			Barcode128 code128 = new Barcode128(); 

@@ -238,7 +238,8 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 			  
 			  
 			  pass = ut.getPassword();
-			  String pass1="Ovinondon "+pass+" . Malaysia jabar lottery te apni bijoyi hoyechhen. Bistarito pore janano hobe.";
+//			  String pass1="Interview o training ar tarikh abong sthan poriborton hoyeche. Poribortito confirmation card g2g.bmet.gov.bd theke shongroho korun o onayanno bishoy jene nin.";
+			  String pass1="Interview ar din 3 copy PP size cobir sate 1 copy 3R size color full body picture (white background) nie asben.";			  
 
 //			  pass2 = "Apni final lotteryte joyi hoyesen. g2g.bmet.gov.bd web thikanay log in kore proshikhhoner sthan o tarikhsoho onyanno bishoy jene nin.";
 			  
@@ -246,11 +247,11 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 				if(ut.getUserId().substring(0,3).equalsIgnoreCase("011"))
 					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+ut.getUserId())+
 							"&txt="+URLEncoder.encode(pass1)+
-							"&username="+URLEncoder.encode("bmet2")+"&password="+URLEncoder.encode("bmet231")); 		  
+							"&username="+URLEncoder.encode("bmet2")+"&password="+URLEncoder.encode("bmet1231")); 		  
 				else
 					yahoo = new URL("http://123.49.3.58:8081/web_send_sms.php?ms="+URLEncoder.encode("88"+ut.getUserId())+
 							"&txt="+URLEncoder.encode(pass1)+
-							"&username="+URLEncoder.encode("bmet")+"&password="+URLEncoder.encode("bmet231")); 		  
+							"&username="+URLEncoder.encode("bmet")+"&password="+URLEncoder.encode("bmet1231")); 		  
 					
 				URLConnection yc = yahoo.openConnection();
 				BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
