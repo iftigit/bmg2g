@@ -2,7 +2,6 @@ package org.controller.authentication;
 
 import java.util.ArrayList;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 
 import org.apache.struts2.ServletActionContext;
@@ -46,7 +45,18 @@ public class CheckValidity extends ActionSupport{
 		{
 			return "ministryLotteryAdmin";
 		}
-		
+		else if(user!=null && user.getUserType().equalsIgnoreCase("TTC_CONF_OPERATOR"))
+		{
+			return "ttcConfirmOperator";
+		}
+		else if(user!=null && user.getUserType().equalsIgnoreCase("TTC_CHARIMAN"))
+		{
+			return "ttcCharimanHome";
+		}
+		else if(user!=null && user.getUserType().equalsIgnoreCase("TTC_MEDICAL"))
+		{
+			return "ttcMedicalHome";
+		}
 		
 		
 		
@@ -121,6 +131,19 @@ public class CheckValidity extends ActionSupport{
 				{
 					return "ministryLotteryAdmin";
 				}
+				else if(user!=null && user.getUserType().equalsIgnoreCase("TTC_CONF_OPERATOR"))
+				{
+					return "ttcConfirmOperator";
+				}
+				else if(user!=null && user.getUserType().equalsIgnoreCase("TTC_CHARIMAN"))
+				{
+					return "ttcCharimanHome";
+				}
+				else if(user!=null && user.getUserType().equalsIgnoreCase("TTC_MEDICAL"))
+				{
+					return "ttcMedicalHome";
+				}
+				
 
 				else
 					return INPUT;

@@ -17,6 +17,13 @@ public class UserUtility {
 			 return "regLotViewAdmin";
 		else if(user.getUserType().equalsIgnoreCase("LOTTERY_MINISTRY_ADMIN"))						 
 			 return "regLotMinistryAdmin";
+		else if(user.getUserType().equalsIgnoreCase("TTC_CONF_OPERATOR"))						 
+			 return "ttcConfirmOperator";
+		else if(user.getUserType().equalsIgnoreCase("TTC_MEDICAL"))						 
+			 return "ttcMedicalHome";
+		else if(user.getUserType().equalsIgnoreCase("TTC_CHARIMAN"))						 
+			 return "ttcCharimanHome";
+		
 		
 		 else
 			 return null;
