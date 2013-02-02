@@ -38,6 +38,9 @@ public class DataDAO {
 		return list;
     } 
 	
+	
+	
+	
 	public ArrayList getThanaList(String dist)
     {
         ArrayList list = new ArrayList();
