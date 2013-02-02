@@ -239,7 +239,8 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 			  
 			  pass = ut.getPassword();
 //			  String pass1="Interview o training ar tarikh abong sthan poriborton hoyeche. Poribortito confirmation card g2g.bmet.gov.bd theke shongroho korun o onayanno bishoy jene nin.";
-			  String pass1="Interview ar din 3 copy PP size cobir sate 1 copy 3R size color full body picture (white background) nie asben.";			  
+//			  String pass1="Interview ar din 3 copy PP size cobir sate 1 copy 3R size color full body picture (white background) nie asben.";			  
+			  String pass1="apnar Interview ar sthan change hoiese. apnar confirmation card abar download kore nin.";			  
 
 //			  pass2 = "Apni final lotteryte joyi hoyesen. g2g.bmet.gov.bd web thikanay log in kore proshikhhoner sthan o tarikhsoho onyanno bishoy jene nin.";
 			  

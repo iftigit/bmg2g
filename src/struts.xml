@@ -113,12 +113,7 @@
 	 <result name="ttcMedicalHome">/WEB-INF/jsp/TTCmedicalHome.jsp</result>
 	 <result name="ttcCharimanHome">/WEB-INF/jsp/TTCcharimanHome.jsp</result>
 	</action>
-<<<<<<< .mine
 
-<!-- 	
-=======
-<!-- 	
->>>>>>> .r169
 	<action name="dataEntryAction" class="org.controller.DataEntryAction" >
 		<result name="success">/WEB-INF/jsp/data/mobileentry.jsp</result>
 	</action>
@@ -135,7 +130,7 @@
 	<action name="fetchData" class="org.controller.FetchData">
 		<result name="success">/WEB-INF/jsp/data/axdata.jsp</result>
 	</action>
- -->	
+	
 	
 	
 	<action name="regHomeAction" class="org.controller.registration.RegistrationAction" method="regHomeAction">
