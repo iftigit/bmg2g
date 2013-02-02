@@ -20,6 +20,9 @@ import org.table.PersonalInfoDTO;
 import org.table.PoliceDTO;
 import org.table.SelectPersonDTO;
 import org.table.TrainingDTO;
+
+import com.lowagie.text.Image;
+
 import util.connection.ConnectionManager;
 
 
@@ -203,6 +206,33 @@ public class RegistrationDAO {
 	 }
 	 
 	 
+	 public byte [] getImage(String registrationId)
+	 {
+		 Connection conn = ConnectionManager.getConnection();
+		 byte [] image= null;
+		 String sql ="select IMAGE from  bio_image where JOBSEEKER_NUMBER = ? ";
+		 PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, registrationId);
+				r = stmt.executeQuery();
+				if (r.next())
+				{
+					image=r.getBytes("IMAGE");
+				}
+				
+			}catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+			{e.printStackTrace();}stmt = null;conn = null;}
+		 
+		 return image;
+	 }
+	 
+	 
 	 public PoliceDTO getPoliceData(String registrationId)
 	 {
 		   Connection conn = ConnectionManager.getConnection();
@@ -266,7 +296,7 @@ public class RegistrationDAO {
 		   "   ADDRESS1, ADDRESS2, ADDRESS3,  " +
 		   "   BIRTHPLACE, TTCNAME, TTCDATE " +
 		   "	FROM DB_BMG2G.POLICE_DATA  " +
-		   "	where dist_id = 12 ";
+		   "	where dist_id = ? ";
 	   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -275,7 +305,7 @@ public class RegistrationDAO {
 			try
 			{
 				stmt = conn.prepareStatement(sql);
-				//stmt.setString(1, registrationId);
+				stmt.setString(1, registrationId);
 				r = stmt.executeQuery();
 				while (r.next())				
 				{

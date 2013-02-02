@@ -222,6 +222,7 @@
 	</action>	 
   		 
   		 
+ 
   
   <action name="downloadPolice" class="org.controller.report.PoliceReportAction">
 		<result type="stream">
