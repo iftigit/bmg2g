@@ -97,6 +97,12 @@
 	    <a href="interviewCardDownloadHome.action">For Confirmation Card and Final Result (Pdf Viewer Required).</a>
     </td>
     </tr>
+     <tr>
+    <td colspan="2" >
+    	
+	    <a href="policeCardDownloadHome.action">For Police Card(Pdf Viewer Required).</a>
+    </td>
+    </tr>
     </table>
 </form>      
 </div>
