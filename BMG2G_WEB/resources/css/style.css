@@ -169,3 +169,10 @@ table.divisionStatTable  td.redCell {
 
 .errors li { list-style: none;color: red;}
 
+.actionMessage li
+{
+	font-size: 17px;
+	color: #6600CC;
+	font-weight: bold;
+	list-style: none;
+}
