@@ -57,6 +57,11 @@ public class CheckValidity extends ActionSupport{
 		{
 			return "ttcMedicalHome";
 		}
+		else if(user!=null && user.getUserType().equalsIgnoreCase("EDIT_OPERATOR"))
+		{
+			return "editOperatorHome";
+		}
+		
 		
 		
 		
@@ -142,6 +147,10 @@ public class CheckValidity extends ActionSupport{
 				else if(user!=null && user.getUserType().equalsIgnoreCase("TTC_MEDICAL"))
 				{
 					return "ttcMedicalHome";
+				}
+				else if(user!=null && user.getUserType().equalsIgnoreCase("EDIT_OPERATOR"))
+				{
+					return "editOperatorHome";
 				}
 				
 

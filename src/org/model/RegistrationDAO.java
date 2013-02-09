@@ -6,24 +6,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import oracle.jdbc.driver.OracleCallableStatement;
-import oracle.sql.ARRAY;
-import oracle.sql.ArrayDescriptor;
 
 import org.controller.registration.JobseekerDTO;
 import org.table.AddressDTO;
-import org.table.EducationDTO;
-import org.table.ExperienceDTO;
-import org.table.LanguageDTO;
 import org.table.LogDTO;
 import org.table.NomineeDTO;
 import org.table.PersonalInfoDTO;
 import org.table.PoliceDTO;
 import org.table.SelectPersonDTO;
-import org.table.TrainingDTO;
+
 
 import com.lowagie.text.Image;
 
 import util.connection.ConnectionManager;
+import util.connection.TransactionManager;
 
 
 public class RegistrationDAO {
@@ -123,6 +119,123 @@ public class RegistrationDAO {
 				 		return response;	           
 	    }
 	 
+	 
+	 public String updateEmpRegistrationInfo(PersonalInfoDTO personalDTO,AddressDTO addressDTO) 
+			{	     
+				String response="error";
+				TransactionManager transactionManager=new TransactionManager();
+				Connection conn = transactionManager.getConnection();
+				PreparedStatement stmt = null;
+				
+				String personalInfoSql="Update JOBSEEKER Set FIRSTNAME=?, " +
+					"MIDDLENAME=?, " +
+					"LASTNAME=?, " +
+					"FATHERNAME=?, " +
+					"MOTHERNAME=?, " +
+					"SPOUSNAME=?, " +
+					"NATIONALID=?, " +
+					"BIRTHDATE=to_date(?,'DD-MM-YYYY'), " +
+					"AGE=?, " +
+					"RELIGION=?, " +
+					"MARITALSTATUS=?, " +
+					"SEX=?, " +
+					"WEIGHT=?, " +
+					"PASSPORTNO=?, " +
+					"PASSPORT_ISSUE_DATE=to_date(?,'DD-MM-YYYY'), " +
+					"PASSPORT_EXP_DATE=to_date(?,'DD-MM-YYYY'), " +
+					"NOMINEE_NAME=?, " +
+					"NOMINEE_RELATION=?, " +
+					"NOMINEE_ADDRESS=?, " +
+					"NOMINEE_PHONE=?, " +
+					"CONTACT_NAME=?, " +
+					"CONTACT_PHONE=?, " +
+					"JOB1=?, " +
+					"JOBCAT2=?, " +
+					"JOBSUBCAT2=?, " +
+					"HEIGHT_FEET=?, " +
+					"HEIGHT_INCHES=? " +
+					"Where JOBSEEKER_NUMBER=? ";
+				
+			  String addressInfoSql="Update ADDRESS Set MAIL_DIV=?, " +
+				  "MAIL_DIS=?, " +
+				  "MAIL_THANA=?, " +
+				  "MAIL_UNION=?, " +
+				  "MAIL_POST_OFFICE=?, " +
+				  "MAIL_POST_CODE=?, " +
+				  "MAIL_ADDRESS_LINE1=?, " +
+				  "MAIL_ADDRESS_LINE2=?, " +
+				  "MAIL_EMAIL=?, " +
+				  "MAIL_MOBILE=?  " +
+				  "Where JOBSEEKER_NUMBER=? ";
+				try
+				{
+					stmt = conn.prepareStatement(personalInfoSql);
+
+					stmt.setString(1,personalDTO.getEmpFname());
+					stmt.setString(2,personalDTO.getEmpMname());
+					stmt.setString(3,personalDTO.getEmpLname());					
+					stmt.setString(4,personalDTO.getFatherName());
+					stmt.setString(5,personalDTO.getMotherName());
+					stmt.setString(6,personalDTO.getSpousName());
+					stmt.setString(7,personalDTO.getNationalId());
+					stmt.setString(8,personalDTO.getBirthDate());
+					stmt.setString(9,personalDTO.getAge());
+					stmt.setString(10,personalDTO.getReligion());
+					stmt.setString(11,personalDTO.getMaritalStatus());
+					stmt.setString(12,personalDTO.getSex());
+					stmt.setString(13,personalDTO.getWeight());
+					stmt.setString(14,personalDTO.getPassportNo());
+					stmt.setString(15,personalDTO.getPassportIssueDate());
+					stmt.setString(16,personalDTO.getPassportExpireDate());
+					stmt.setString(17,personalDTO.getNomineeName());
+					stmt.setString(18,personalDTO.getNomineeRelation());
+					stmt.setString(19,personalDTO.getNomineeAddress());
+					stmt.setString(20,personalDTO.getNomineePhone());
+					stmt.setString(21,personalDTO.getContactName());
+					stmt.setString(22,personalDTO.getContactMobile());
+					stmt.setString(23,personalDTO.getJob1());
+					stmt.setString(24,personalDTO.getJobCat2());
+					stmt.setString(25,personalDTO.getJobSubCat2());
+					stmt.setString(26,personalDTO.getHeightFeet());
+					stmt.setString(27,personalDTO.getHeightInches());
+					stmt.setString(28,personalDTO.getJobseekerNumber());
+						
+					stmt.executeUpdate();
+					
+					stmt = conn.prepareStatement(addressInfoSql);
+					
+					stmt.setString(1,addressDTO.getmDivision());
+					stmt.setString(2,addressDTO.getmDistrict());
+					stmt.setString(3,addressDTO.getmThana());
+					stmt.setString(4,addressDTO.getMUnion());
+					stmt.setString(5,addressDTO.getmPost());
+					stmt.setString(6,addressDTO.getmPostCode());
+					stmt.setString(7,addressDTO.getmAddressLine1());
+					stmt.setString(8,addressDTO.getmAddressLine2());
+					stmt.setString(9,addressDTO.getmEmail());
+					stmt.setString(10,addressDTO.getmMobile());
+					stmt.setString(11,personalDTO.getJobseekerNumber());
+					
+					stmt.executeUpdate();
+					
+					transactionManager.commit();
+					response="success";
+				} 
+
+				catch (Exception e){e.printStackTrace();
+				try {
+					transactionManager.rollback();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+		}
+ 		finally{try{stmt.close();transactionManager.close();} catch (Exception e)
+			{e.printStackTrace();}stmt = null;conn = null;}
+ 		
+				
+				return response;	           
+		}
+	 
 	 public PersonalInfoDTO getPersonalInformation(String registrationId)
 	 {
 		 	Connection conn = ConnectionManager.getConnection();
@@ -159,6 +272,69 @@ public class RegistrationDAO {
 	 		
 	 		return personalDto;
 	 }
+	 
+	 public PersonalInfoDTO getAllPersonalInformation(String registrationId)
+	 {
+		 	Connection conn = ConnectionManager.getConnection();
+		   String sql = " select jobseeker.jobseeker_number, jobseeker.firstname, jobseeker.middlename, jobseeker.lastname, " +
+		   		        " jobseeker.fathername, jobseeker.mothername,SPOUSNAME,NATIONALID, " +
+		   		        " TO_CHAR(BIRTHDATE,'DD-MM-YYYY') BDATE,AGE,RELIGION,MARITALSTATUS,SEX,WEIGHT,PASSPORTNO, " +
+		   		        " TO_CHAR(PASSPORT_ISSUE_DATE,'DD-MM-YYYY') PASS_ISSUE_DATE,TO_CHAR(PASSPORT_EXP_DATE,'DD-MM-YYYY') PASS_EXP_DATE, " +
+		   		        " NOMINEE_NAME,NOMINEE_RELATION,NOMINEE_ADDRESS,NOMINEE_PHONE,CONTACT_NAME,CONTACT_PHONE,HEIGHT_FEET,HEIGHT_INCHES,  " +
+		   		        " JOB1,JOBCAT2,JOBSUBCAT2 from JOBSEEKER,SECONDLOTTERY_T1 " +
+		   				" where jobseeker.jobseeker_number=? and jobseeker.jobseeker_number= SECONDLOTTERY_T1.jobseeker_number";
+		   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   PersonalInfoDTO personalDto  = null;
+		   
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, registrationId);
+				r = stmt.executeQuery();
+				if (r.next())
+				{
+					personalDto=new PersonalInfoDTO();
+					personalDto.setJobseekerNumber(r.getString("JOBSEEKER_NUMBER"));
+					personalDto.setEmpFname(r.getString("FIRSTNAME"));
+					personalDto.setEmpMname(r.getString("MIDDLENAME"));
+					personalDto.setEmpLname(r.getString("LASTNAME"));
+					personalDto.setFatherName(r.getString("FATHERNAME"));
+					personalDto.setMotherName(r.getString("MOTHERNAME"));
+					personalDto.setSpousName(r.getString("SPOUSNAME"));
+					personalDto.setNationalId(r.getString("NATIONALID"));
+					personalDto.setBirthDate(r.getString("BDATE"));
+					personalDto.setAge(r.getString("AGE"));
+					personalDto.setReligion(r.getString("RELIGION"));
+					personalDto.setMaritalStatus(r.getString("MARITALSTATUS"));
+					personalDto.setSex(r.getString("SEX"));
+					personalDto.setWeight(r.getString("WEIGHT"));
+					personalDto.setPassportNo(r.getString("PASSPORTNO"));
+					personalDto.setPassportIssueDate(r.getString("PASS_ISSUE_DATE"));
+					personalDto.setPassportExpireDate(r.getString("PASS_EXP_DATE"));
+					personalDto.setNomineeName(r.getString("NOMINEE_NAME"));
+					personalDto.setNomineeRelation(r.getString("NOMINEE_RELATION"));
+					personalDto.setNomineeAddress(r.getString("NOMINEE_ADDRESS"));
+					personalDto.setNomineePhone(r.getString("NOMINEE_PHONE"));
+					personalDto.setContactName(r.getString("CONTACT_NAME"));					
+					personalDto.setContactMobile(r.getString("CONTACT_PHONE"));
+					personalDto.setHeightFeet(r.getString("HEIGHT_FEET"));
+					personalDto.setHeightInches(r.getString("HEIGHT_INCHES"));
+					
+					personalDto.setJob1(r.getString("JOB1"));
+					personalDto.setJobCat2(r.getString("JOBCAT2"));
+					personalDto.setJobSubCat2(r.getString("JOBSUBCAT2"));
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return personalDto;
+	 }
+	 
+	 
 	 
 	 
 	 public SelectPersonDTO getSelectPersonal(String registrationId)

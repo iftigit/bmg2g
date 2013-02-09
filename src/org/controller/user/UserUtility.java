@@ -23,6 +23,8 @@ public class UserUtility {
 			 return "ttcMedicalHome";
 		else if(user.getUserType().equalsIgnoreCase("TTC_CHARIMAN"))						 
 			 return "ttcCharimanHome";
+		else if(user.getUserType().equalsIgnoreCase("EDIT_OPERATOR"))						 
+			 return "editOperatorHome";
 		
 		
 		 else

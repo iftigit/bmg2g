@@ -94,6 +94,9 @@
 		<result name="ttcMedicalHome">
 			/WEB-INF/jsp/TTCmedicalHome.jsp
 		</result>
+		<result name="editOperatorHome">
+			/WEB-INF/jsp/EditOperatorHome.jsp
+		</result>
 				
 		
 		<result name="showUser">
@@ -112,6 +115,7 @@
 	 <result name="ttcConfirmOperator">/WEB-INF/jsp/TTCConfirmOperatorHome.jsp</result>
 	 <result name="ttcMedicalHome">/WEB-INF/jsp/TTCmedicalHome.jsp</result>
 	 <result name="ttcCharimanHome">/WEB-INF/jsp/TTCcharimanHome.jsp</result>
+	 <result name="editOperatorHome">/WEB-INF/jsp/EditOperatorHome.jsp</result>
 	</action>
 
 	<action name="dataEntryAction" class="org.controller.DataEntryAction" >
@@ -433,21 +437,32 @@
 		</action>
 		
 		
+		<action name="editHome">			
+			<result name="success">/WEB-INF/jsp/edit/EditHome.jsp</result>
+		</action>
+		
+		<action name="fetchJobseekerDetail" class="org.controller.registration.EditAction" method="fetchJobseekerDetail">			
+			<result name="success">/WEB-INF/jsp/edit/JobseekerDetail.jsp</result>
+			<result name="input">/WEB-INF/jsp/edit/EditHome.jsp</result>
+		</action>
+		<action name="updateJobseekerDetail" class="org.controller.registration.EditAction" method="updateJobseekerDetail">			
+			<result name="success">/WEB-INF/jsp/edit/EditHome.jsp</result>
+			<result name="input">/WEB-INF/jsp/edit/JobseekerDetail.jsp</result>
+		</action>
 		
 		
-		
-	<action name="dcLotteryResultDownload" class="org.controller.registration.DcLotteryResult">
-			<result type="stream">
-				<param name="contentType">application/pdf</param>
-				<param name="inputName">inputStream</param>
-			</result>
-			<result name="logout" type="redirectAction">
-			logout.action
-			</result>
-			<result name="timeOver">
-				/WEB-INF/jsp/TimeOver.jsp
-			</result>
-	</action>
+		<action name="dcLotteryResultDownload" class="org.controller.registration.DcLotteryResult">
+				<result type="stream">
+					<param name="contentType">application/pdf</param>
+					<param name="inputName">inputStream</param>
+				</result>
+				<result name="logout" type="redirectAction">
+				logout.action
+				</result>
+				<result name="timeOver">
+					/WEB-INF/jsp/TimeOver.jsp
+				</result>
+		</action>
 	
 	<action name="ministryLotteryResultDownload" class="org.controller.registration.MinistryLotteryResult" >
 			<result type="stream">
