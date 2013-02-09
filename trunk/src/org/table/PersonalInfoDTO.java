@@ -41,6 +41,18 @@ public class PersonalInfoDTO {
 	private String quotaUnionName;
 	private String contactMobileNumber;
 	
+	private String nomineeName;
+	private String nomineeRelation;
+	private String nomineeAddress;
+	private String nomineePhone;
+	private String contactName;
+	private String contactMobile;
+	
+	private String jobseekerNumber;
+	
+	private String job1;
+	private String jobCat2;
+	private String jobSubCat2;
 	
 	public String getCaptchaText() {
 		return captchaText;
@@ -240,6 +252,67 @@ public class PersonalInfoDTO {
 	}
 	public void setContactMobileNumber(String contactMobileNumber) {
 		this.contactMobileNumber = contactMobileNumber;
+	}
+	public String getJobseekerNumber() {
+		return jobseekerNumber;
+	}
+	public void setJobseekerNumber(String jobseekerNumber) {
+		this.jobseekerNumber = jobseekerNumber;
+	}
+	public String getNomineeName() {
+		return nomineeName;
+	}
+	public void setNomineeName(String nomineeName) {
+		this.nomineeName = nomineeName;
+	}
+	public String getNomineeRelation() {
+		return nomineeRelation;
+	}
+	public void setNomineeRelation(String nomineeRelation) {
+		this.nomineeRelation = nomineeRelation;
+	}
+	public String getNomineeAddress() {
+		return nomineeAddress;
+	}
+	public void setNomineeAddress(String nomineeAddress) {
+		this.nomineeAddress = nomineeAddress;
+	}
+	public String getNomineePhone() {
+		return nomineePhone;
+	}
+	public void setNomineePhone(String nomineePhone) {
+		this.nomineePhone = nomineePhone;
+	}
+	public String getContactName() {
+		return contactName;
+	}
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+	
+	public String getContactMobile() {
+		return contactMobile;
+	}
+	public void setContactMobile(String contactMobile) {
+		this.contactMobile = contactMobile;
+	}
+	public String getJob1() {
+		return job1;
+	}
+	public void setJob1(String job1) {
+		this.job1 = job1;
+	}
+	public String getJobCat2() {
+		return jobCat2;
+	}
+	public void setJobCat2(String jobCat2) {
+		this.jobCat2 = jobCat2;
+	}
+	public String getJobSubCat2() {
+		return jobSubCat2;
+	}
+	public void setJobSubCat2(String jobSubCat2) {
+		this.jobSubCat2 = jobSubCat2;
 	}
 	
 	
