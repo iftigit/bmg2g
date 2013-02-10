@@ -120,12 +120,13 @@ public class RegistrationDAO {
 	    }
 	 
 	 
-	 public String updateEmpRegistrationInfo(PersonalInfoDTO personalDTO,AddressDTO addressDTO) 
+	 public String updateEmpRegistrationInfo(PersonalInfoDTO personalDTO,AddressDTO addressDTO,String userId) 
 			{	     
 				String response="error";
 				TransactionManager transactionManager=new TransactionManager();
 				Connection conn = transactionManager.getConnection();
 				PreparedStatement stmt = null;
+				int totalUpdate=0;
 				
 				String personalInfoSql="Update JOBSEEKER Set FIRSTNAME=?, " +
 					"MIDDLENAME=?, " +
@@ -165,8 +166,19 @@ public class RegistrationDAO {
 				  "MAIL_ADDRESS_LINE1=?, " +
 				  "MAIL_ADDRESS_LINE2=?, " +
 				  "MAIL_EMAIL=?, " +
-				  "MAIL_MOBILE=?  " +
+				  "MAIL_MOBILE=?,  " +
+				  
+				  "PER_POST_OFFICE=?, " +
+				  "PER_POST_CODE=?, " +
+				  "PER_ADDRESS_LINE1=?, " +
+				  "PER_ADDRESS_LINE2=?, " +
+				  "PER_EMAIL=?, " +
+				  "PER_MOBILE=?  " +
+				  
 				  "Where JOBSEEKER_NUMBER=? ";
+			  
+			  String sqlEdit = " Insert Into EDIT_LOG(JOBSEEKER_NUMBER,USERID,UPDATE_DATE) VALUES(?,?,SYSDATE)";
+			  
 				try
 				{
 					stmt = conn.prepareStatement(personalInfoSql);
@@ -200,7 +212,7 @@ public class RegistrationDAO {
 					stmt.setString(27,personalDTO.getHeightInches());
 					stmt.setString(28,personalDTO.getJobseekerNumber());
 						
-					stmt.executeUpdate();
+					totalUpdate+=stmt.executeUpdate();
 					
 					stmt = conn.prepareStatement(addressInfoSql);
 					
@@ -213,13 +225,34 @@ public class RegistrationDAO {
 					stmt.setString(7,addressDTO.getmAddressLine1());
 					stmt.setString(8,addressDTO.getmAddressLine2());
 					stmt.setString(9,addressDTO.getmEmail());
-					stmt.setString(10,addressDTO.getmMobile());
-					stmt.setString(11,personalDTO.getJobseekerNumber());
+					stmt.setString(10,addressDTO.getpMobile());
 					
-					stmt.executeUpdate();
+					stmt.setString(11,addressDTO.getpPost());
+					stmt.setString(12,addressDTO.getpPostCode());
+					stmt.setString(13,addressDTO.getpAddressLine1());
+					stmt.setString(14,addressDTO.getpAddressLine2());
+					stmt.setString(15,addressDTO.getpEmail());
+					stmt.setString(16,addressDTO.getpMobile());
+					
+					stmt.setString(17,personalDTO.getJobseekerNumber());
+					
+					totalUpdate+=stmt.executeUpdate();
+					
+					
+					stmt = conn.prepareStatement(sqlEdit);
+					stmt.setString(1, personalDTO.getJobseekerNumber());
+					stmt.setString(2, userId);
+					totalUpdate+=stmt.executeUpdate();
+					
 					
 					transactionManager.commit();
-					response="success";
+					
+					
+					
+					if(totalUpdate==3)
+						response="success";
+					else
+						response="noupdate";
 				} 
 
 				catch (Exception e){e.printStackTrace();
@@ -579,8 +612,7 @@ public class RegistrationDAO {
 	 		
 	 		return jobSeekerList;
 	 }
-	 
-	
+
 	 
 
 }
