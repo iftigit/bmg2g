@@ -48,8 +48,8 @@ public class EditAction extends ActionSupport implements ServletContextAware{
 			return "timeOver";	
 		}
 		
-		this.personalDTO=regDao.getAllPersonalInformation(jobSeekerNumber);
-		this.addressDTO=addressDao.getAllAddressInformation(jobSeekerNumber);
+		this.personalDTO=regDao.getAllPersonalInformation(jobSeekerNumber.toUpperCase());
+		this.addressDTO=addressDao.getAllAddressInformation(jobSeekerNumber.toUpperCase());
         
 		if(this.personalDTO==null)
 		{
@@ -184,13 +184,18 @@ public class EditAction extends ActionSupport implements ServletContextAware{
 	    }
 		
 
-		
-		if(regDAO.updateEmpRegistrationInfo(personalDTO, addressDTO).equalsIgnoreCase("success"))
+		String status=regDAO.updateEmpRegistrationInfo(personalDTO, addressDTO,loggedInUser.getUserId());
+		if(status.equalsIgnoreCase("success"))
 		{
 			addActionMessage("Information Successfully Updated for Job-Seeker Number :"+personalDTO.getJobseekerNumber());
 			return SUCCESS;
 		}
-		else
+		else if(status.equalsIgnoreCase("noupdate"))
+		{
+			addActionMessage("Problem in Update Operation for Job-Seeker Number :"+personalDTO.getJobseekerNumber()+" , Please contact with System Admin.");
+			return INPUT;
+		}
+		else			
 			return INPUT;
 		
 	}
