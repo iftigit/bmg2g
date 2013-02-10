@@ -84,7 +84,7 @@ public class NewPaawordDAO {
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
 		String sql = "select fl.jobseeker_number,per_mobile from SECONDLOTTERY_T1 fl,address a "+
-					"where fl.jobseeker_number=A.JOBSEEKER_NUMBER and dist in (36,38)";
+					"where fl.jobseeker_number=A.JOBSEEKER_NUMBER";
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		try
