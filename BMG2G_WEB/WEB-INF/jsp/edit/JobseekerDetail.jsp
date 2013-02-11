@@ -271,7 +271,7 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <td>
      <input type="text" tabindex="10" name="personalDTO.heightFeet" id="HEIGHT_FEET" maxlength="1" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightFeet" />" class="textBox" style="width: 50px;text-align: center;"/>
       Feet&nbsp;&nbsp;&nbsp;
-     <input type="text" tabindex="11" name="personalDTO.heightInches" id="HEIGHT_INCHES" maxlength="2" onkeypress="return numericOnly(event)" value="<s:property value="personalDTO.heightInches" />" class="textBox" style="width: 50px;text-align: center;"/>
+     <input type="text" tabindex="11" name="personalDTO.heightInches" id="HEIGHT_INCHES" maxlength="2" onkeypress="return numericOnlyWithDot(event)" value="<s:property value="personalDTO.heightInches" />" class="textBox" style="width: 50px;text-align: center;"/>
       Inches
      </td>
     </tr>
