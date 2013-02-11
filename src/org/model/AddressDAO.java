@@ -505,8 +505,8 @@ public class AddressDAO {
 					
 					addressDTO.setpDivisionName(r.getString("pDivisionName"));
 					addressDTO.setpDistrictName(r.getString("pDistrictName"));
-					addressDTO.setpThanaName(r.getString("pUnionName"));
-					addressDTO.setPUnionName(r.getString("pThanaName"));
+					addressDTO.setpThanaName(r.getString("pThanaName"));
+					addressDTO.setPUnionName(r.getString("pUnionName"));
 					
 					
 					addressDTO.setpPost(r.getString("PER_POST_OFFICE"));
