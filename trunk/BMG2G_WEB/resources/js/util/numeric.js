@@ -48,7 +48,23 @@ if((code >= 48 && code <= 57) || code==8  || code==0)
   }
 
 }
+function numericOnlyWithDot(event)
+{
 
+var code =  getCode(event);
+
+//var dotCount = checkDot(event,event.target.id);
+
+if((code >= 48 && code <= 57) || code==8  || code==0 || code==190 || code==110)
+ {
+  return true;
+ }
+ else
+  {
+   return false;
+  }
+
+}
 
 function numericOnlyWithTab(event)
 {
