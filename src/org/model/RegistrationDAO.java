@@ -205,11 +205,11 @@ public class RegistrationDAO {
 					stmt.setString(20,personalDTO.getNomineePhone());
 					stmt.setString(21,personalDTO.getContactName());
 					stmt.setString(22,personalDTO.getContactMobile());
-					stmt.setString(23,personalDTO.getJob1());
-					stmt.setString(24,personalDTO.getJobCat2());
-					stmt.setString(25,personalDTO.getJobSubCat2());
+					stmt.setString(23,personalDTO.getDesiredJob1());
+					stmt.setString(24,personalDTO.getDesiredJobCat1());
+					stmt.setString(25,personalDTO.getDesiredJobSubcategory1());
 					stmt.setString(26,personalDTO.getHeightFeet());
-					stmt.setString(27,personalDTO.getHeightInches());
+					stmt.setString(27,personalDTO.getHeightInches());					
 					stmt.setString(28,personalDTO.getJobseekerNumber());
 						
 					totalUpdate+=stmt.executeUpdate();
@@ -355,9 +355,9 @@ public class RegistrationDAO {
 					personalDto.setHeightFeet(r.getString("HEIGHT_FEET"));
 					personalDto.setHeightInches(r.getString("HEIGHT_INCHES"));
 					
-					personalDto.setJob1(r.getString("JOB1"));
-					personalDto.setJobCat2(r.getString("JOBCAT2"));
-					personalDto.setJobSubCat2(r.getString("JOBSUBCAT2"));
+					personalDto.setDesiredJob1(r.getString("JOB1"));
+					personalDto.setDesiredJobCat1(r.getString("JOBCAT2"));
+					personalDto.setDesiredJobSubcategory1(r.getString("JOBSUBCAT2"));
 				}
 			} 
 			catch (Exception e){e.printStackTrace();}
