@@ -58,7 +58,7 @@ public class NewPaawordDAO {
 		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
-		String sql = " select * from (Select password,userid from MST_USER where password is null) where rownum<201";
+		String sql = "select password,userid from mst_user where password is null";
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		try

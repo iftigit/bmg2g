@@ -220,8 +220,8 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
   public String sendFirstPassword()
   {
 	  ArrayList<UserDTO> tmp = null;
-//	  ArrayList<UserDTO> tmp = new NewPaawordDAO().getAllUser();
-	  tmp = new NewPaawordDAO().getFirstLottery();
+	  tmp = new NewPaawordDAO().getAllUser();
+//	  tmp = new NewPaawordDAO().getFirstLottery();
 	  Iterator<UserDTO> it = tmp.iterator();
 	  String pass = "";
 	  int counter=0;
@@ -231,17 +231,17 @@ System.out.println("SMS code :"+(String) ServletActionContext.getRequest().getPa
 		  {
 			  UserDTO ut = it.next();
 
-//			  pass = getPasswordCode().substring(0, 5);
-//			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
-//			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+" .login korte na parle call korun 09613016364.";
+			  pass = getPasswordCode().substring(0, 5);
+			  NewPaawordDAO.setNewPassword(ut.getUserId(), pass);
+			  String pass1="pls login: g2g.bmet.gov.bd ID:type your mobile no abong Password:"+pass+" .login korte na parle call korun 09613016364.";
 
 			  
 			  
-			  pass = ut.getPassword();
+//			  pass = ut.getPassword();
 //			  String pass1="Interview o training ar tarikh abong sthan poriborton hoyeche. Poribortito confirmation card g2g.bmet.gov.bd theke shongroho korun o onayanno bishoy jene nin.";
 //			  String pass1="Interview ar din 3 copy PP size cobir sate 1 copy 3R size color full body picture (white background) nie asben.";			  
 //			  String pass1="apnar Interview ar sthan change hoiese. apnar confirmation card abar download kore nin.";			  
-			  String pass1="Apni druto Malaysia jete chaile drutoi passport (MRP) korun. Passport office shohojogita korbe.";			  
+//			  String pass1="Apni druto Malaysia jete chaile drutoi passport (MRP) korun. Passport office shohojogita korbe.";			  
 
 			  
 //			  pass2 = "Apni final lotteryte joyi hoyesen. g2g.bmet.gov.bd web thikanay log in kore proshikhhoner sthan o tarikhsoho onyanno bishoy jene nin.";
