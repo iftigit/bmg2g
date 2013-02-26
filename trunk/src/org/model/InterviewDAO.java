@@ -139,10 +139,10 @@ public class InterviewDAO {
 	public InterviewInfoDTO getGeneralInfoForInterview(String jobSeekerNumber)
 	{
 		   Connection conn = ConnectionManager.getConnection();
-		   String sql = "Select lt.*,lti.*,J.*,adr.*,div.*,dist.*,thana.*,un.*,TO_CHAR(BIRTHDATE,'DD-MM-YYYY') bdate,VIVA_STATUS from SECONDLOTTERY_T1 lt,SECONDLOTTERY_T1_INTERVIEW lti,JOBSEEKER j,ADDRESS adr,DIVISION div,DISTRICT dist,THANA thana,UNIONS un " +
+		   String sql = "Select lt.*,J.*,adr.*,div.*,dist.*,thana.*,un.*,TO_CHAR(BIRTHDATE,'DD-MM-YYYY') bdate,VIVA_STATUS from " +
+		   "SECONDLOTTERY_T1 lt,JOBSEEKER j,ADDRESS adr,DIVISION div,DISTRICT dist,THANA thana,UNIONS un " +
 		   "Where j.JOBSEEKER_NUMBER=adr.JOBSEEKER_NUMBER " +
 		   "And   j.JOBSEEKER_NUMBER=lt.JOBSEEKER_NUMBER " +
-		   "And   j.JOBSEEKER_NUMBER=lti.JOBSEEKER_NUMBER " +
 		   "And   j.JOBSEEKER_NUMBER=? " +
 		   "And   lt.DIV=div.DIVISIONID " +
 		   "And   lt.DIST=dist.DIST_ID " +
@@ -182,6 +182,7 @@ public class InterviewDAO {
 					interviewDTO.setPerPostCode(r.getString("PER_POST_CODE"));
 					interviewDTO.setPerPostOffice(r.getString("PER_POST_OFFICE"));
 					
+					/*
 					interviewDTO.setNationality(r.getString("ISNATIONALITYOK"));
 					interviewDTO.setWillingness(r.getString("WILLINGNESS"));
 					interviewDTO.setAgeOk(r.getString("ISAGEOK"));
@@ -191,6 +192,7 @@ public class InterviewDAO {
 					interviewDTO.setIsWeightOk(r.getString("ISWEIGHTOK"));
 					interviewDTO.setSelected(r.getString("SELECTED"));
 					interviewDTO.setCommets(r.getString("COMMENTS"));
+					*/
 					
 					interviewDTO.setVivaStatus(r.getString("VIVA_STATUS")==null?"":r.getString("VIVA_STATUS"));
 					
