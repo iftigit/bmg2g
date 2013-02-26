@@ -55,6 +55,8 @@
     </tr>
    
     </table>
+    <br/><br/>
+    <center><b><s:property value="message"/></b></center>
 </form>    
     
     <table width="100%" border="0" cellspacing="1" class="infoTable">
@@ -68,13 +70,16 @@
      <tr>
      <td style="text-align: center;height: 400px;" valign="top">
        <s:if test="{interviewInfo.jobSeekerNumber==null}">
+          <form id="vivaStatusForm" name="vivaStatusForm" method="post" action="saveVivaStatus.action">
      		<table border="0" width="98%" align="center" style="border: 1px solid gray;" cellpadding="0" cellspacing="0">
      		<tr>
      		 	<td colspan="4" style="background-color: #CCCCCC;color: blue;font-weight: bold;">Personal Information</td>
      		 </tr>
      		 <tr>
      		 	<td width="20%" align="left" style="font-weight: bold;">Job-Seeker Number</td>
-     		 	<td width="30%" align="left"><s:property value='interviewInfo.jobSeekerNumber'/></td>
+     		 	<td width="30%" align="left"><s:property value='interviewInfo.jobSeekerNumber'/>
+     		 	<input type="hidden" value="<s:property value='interviewInfo.jobSeekerNumber'/>" name="interviewInfo.jobSeekerNumber" />
+     		 	</td>
      		 	<td width="20%" align="left" style="font-weight: bold;">Job-Seeker Name</td>
      		 	<td width="30%" align="left"><s:property value='interviewInfo.jobSeekerName'/></td>
      		 	
@@ -136,9 +141,10 @@
      		 </tr>
      		 
      		 <tr>
-     		 	<td colspan="4" style="background-color: #CCCCCC;color: blue;font-weight: bold;">Interview Information</td>
+     		 	<td colspan="4" style="background-color: #CCCCCC;color: blue;font-weight: bold;">Viva Status</td>
      		 </tr>
      		 
+     		 <!-- 
      		 <tr>
      		 	<td align="left" style="font-weight: bold;">Nationality</td>
      		 	<td align="left">
@@ -260,20 +266,37 @@
      		 <textarea rows="5" cols="70" style="border: 1px solid grey;"></textarea>
      		 </td>
      		 </tr>
-     		 
+     		  -->
+     		 <s:if test="interviewInfo.vivaStatus==null || interviewInfo.vivaStatus==''">
      		 <tr>
-     		 <td></td>
-     		 <td align="left">
-     		 	<input type="button" name="Select" value="Select" style="width: 150px;height: 40px;color: green;font-weight: bold;"/>
+     		 <td style="font-weight: bold;font-size: 20px;"><input type="radio" name="interviewInfo.vivaStatus" value="Absent"  checked="checked"/> Absent  </td>
+     		 <td style="font-weight: bold;font-size: 20px;"><input type="radio" name="interviewInfo.vivaStatus" value="Rejected" /> Rejected</td>
+     		 </tr> 
+     		 <tr>
+     		 <td style="padding-top: 20px;">
+     		 <input type="submit" name="Submit" value="Submit" style="width: 150px;height: 40px;color: green;font-weight: bold;"/>
      		 </td>
-     		 <td></td>
+     		 <td align="center" colspan="2">
+     		 	
+     		 </td>
      		  <td align="left">
-     		 	<input type="button" name="Reject" value="Reject	" style="width: 150px;height: 40px;color: red;font-weight: bold;"/>
+     		 	
      		 </td>
      		 
      		 </tr>
+     		 </s:if>
+     		 <s:else>
+     		 <tr>
+     		 <td style="font-weight: bold;font-size: 20px;">
+     		 <s:property value="interviewInfo.vivaStatus"/>
+     		 </td>
+     		 <td style="font-weight: bold;font-size: 20px;"></td>
+     		 </tr> 
+     		 <tr>
+     		 </s:else>
      		 
      		</table>
+     		</form>
      </s:if>
      </td>
     </tr>
