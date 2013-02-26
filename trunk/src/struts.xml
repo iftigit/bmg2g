@@ -435,6 +435,10 @@
 		<action name="fetchEmpInfoForInterview" class="org.controller.interview.InterviewAction" method="fetchEmpInfoForInterview">			
 			<result name="success">/WEB-INF/jsp/interview/InterviewHome.jsp</result>
 		</action>
+		<action name="saveVivaStatus" class="org.controller.interview.InterviewAction" method="saveVivaStatus">			
+			<result name="success">/WEB-INF/jsp/interview/InterviewHome.jsp</result>
+		</action>
+		
 		
 		
 		<action name="editHome">			

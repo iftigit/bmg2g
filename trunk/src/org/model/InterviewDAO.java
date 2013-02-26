@@ -139,7 +139,7 @@ public class InterviewDAO {
 	public InterviewInfoDTO getGeneralInfoForInterview(String jobSeekerNumber)
 	{
 		   Connection conn = ConnectionManager.getConnection();
-		   String sql = "Select lt.*,lti.*,J.*,adr.*,div.*,dist.*,thana.*,un.*,TO_CHAR(BIRTHDATE,'DD-MM-YYYY') bdate from SECONDLOTTERY_T1 lt,SECONDLOTTERY_T1_INTERVIEW lti,JOBSEEKER j,ADDRESS adr,DIVISION div,DISTRICT dist,THANA thana,UNIONS un " +
+		   String sql = "Select lt.*,lti.*,J.*,adr.*,div.*,dist.*,thana.*,un.*,TO_CHAR(BIRTHDATE,'DD-MM-YYYY') bdate,VIVA_STATUS from SECONDLOTTERY_T1 lt,SECONDLOTTERY_T1_INTERVIEW lti,JOBSEEKER j,ADDRESS adr,DIVISION div,DISTRICT dist,THANA thana,UNIONS un " +
 		   "Where j.JOBSEEKER_NUMBER=adr.JOBSEEKER_NUMBER " +
 		   "And   j.JOBSEEKER_NUMBER=lt.JOBSEEKER_NUMBER " +
 		   "And   j.JOBSEEKER_NUMBER=lti.JOBSEEKER_NUMBER " +
@@ -192,6 +192,8 @@ public class InterviewDAO {
 					interviewDTO.setSelected(r.getString("SELECTED"));
 					interviewDTO.setCommets(r.getString("COMMENTS"));
 					
+					interviewDTO.setVivaStatus(r.getString("VIVA_STATUS")==null?"":r.getString("VIVA_STATUS"));
+					
 					}
 			} 
 			catch (Exception e){e.printStackTrace();}
@@ -199,5 +201,32 @@ public class InterviewDAO {
 				{e.printStackTrace();}stmt = null;conn = null;}
 	 		
 	 		return interviewDTO;
+	 }
+	
+	public boolean saveVivaStatus(InterviewInfoDTO interviewDTO)
+	{
+		  Connection conn = ConnectionManager.getConnection();
+		   String sql = "Update SECONDLOTTERY_T1 Set VIVA_STATUS=? WHERE JOBSEEKER_NUMBER=?";
+		   
+
+
+		   PreparedStatement stmt = null;
+		   int r=0;
+			try
+			{
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, interviewDTO.getVivaStatus());
+				stmt.setString(2, interviewDTO.getJobSeekerNumber());
+				r = stmt.executeUpdate();
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 	if(r==1)
+	 		return true;
+	 	else
+	 		return false;
+	 	
 	 }
 }
