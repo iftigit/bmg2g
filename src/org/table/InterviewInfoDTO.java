@@ -29,6 +29,8 @@ public class InterviewInfoDTO {
 	private String selected;
 	private String commets;
 	
+	private String vivaStatus;
+	
 	public String getJobSeekerName() {
 		return jobSeekerName;
 	}
@@ -178,6 +180,12 @@ public class InterviewInfoDTO {
 	}
 	public void setCommets(String commets) {
 		this.commets = commets;
+	}
+	public String getVivaStatus() {
+		return vivaStatus;
+	}
+	public void setVivaStatus(String vivaStatus) {
+		this.vivaStatus = vivaStatus;
 	}
 	
 	

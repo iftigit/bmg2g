@@ -14,14 +14,32 @@ public class InterviewAction extends ActionSupport implements ServletContextAwar
 	private static final long serialVersionUID = 1245190563723783190L;
 	private String jobSeekerNumber;
 	private InterviewInfoDTO interviewInfo;
+	String message;
 	
 	public String fetchEmpInfoForInterview()
 	{
 		InterviewDAO interviewDao=new InterviewDAO();
-		 interviewInfo=interviewDao.getGeneralInfoForInterview(jobSeekerNumber);
+		interviewInfo=interviewDao.getGeneralInfoForInterview(jobSeekerNumber);
+		message="";
 		return SUCCESS;
 	}
 	
+	public String saveVivaStatus()
+	{
+		InterviewDAO interviewDao=new InterviewDAO();
+		boolean res=interviewDao.saveVivaStatus(interviewInfo);
+		if(res==true)
+		{
+			interviewInfo=null;
+			message="Information Successfully Updated";
+		}
+		else
+		{
+			interviewInfo=interviewDao.getGeneralInfoForInterview(interviewInfo.getJobSeekerNumber());
+			message="Error in Update Operation.";
+		}
+		return SUCCESS;
+	}
 	
 	public String getJobSeekerNumber() {
 		return jobSeekerNumber;
@@ -44,5 +62,14 @@ public class InterviewAction extends ActionSupport implements ServletContextAwar
 		// TODO Auto-generated method stub
 		
 	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
 	
 }

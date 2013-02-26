@@ -2,16 +2,10 @@ package org.controller.registration;
 
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -23,10 +17,7 @@ import org.model.LotteryDAO;
 import org.table.LotteryDTO;
 import org.table.UserDTO;
 
-import com.lowagie.text.Cell;
-import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.ExceptionConverter;
 import com.lowagie.text.Font;
@@ -34,9 +25,7 @@ import com.lowagie.text.FontFactory;
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
 import com.lowagie.text.Rectangle;
-import com.lowagie.text.Table;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPCell;
@@ -51,8 +40,6 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 	private static final long serialVersionUID = 9203852155056386824L;
 	private InputStream inputStream;
 	AddressDAO addressDAO=new AddressDAO();
-
-	
 	
 	public String execute() throws Exception
 	{	
