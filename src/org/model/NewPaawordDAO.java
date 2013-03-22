@@ -83,8 +83,9 @@ public class NewPaawordDAO {
 		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
-		String sql = "select fl.jobseeker_number,per_mobile from SECONDLOTTERY_T1 fl,address a "+
-					"where fl.jobseeker_number=A.JOBSEEKER_NUMBER";
+		String sql = "SELECT   fl.jobseeker_number, per_mobile" +
+				"  FROM   FIRSTLOTTERY fl, address a" +
+				" WHERE   THANA='107' and fl.jobseeker_number = A.JOBSEEKER_NUMBER";
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		try
