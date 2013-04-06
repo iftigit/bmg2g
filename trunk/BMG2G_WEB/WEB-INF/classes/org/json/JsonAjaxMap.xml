@@ -18,11 +18,17 @@
 
 		<action name="JSONfindThana" class="org.json.Json" method="getThana">
 		<result type="json" name="input">
-                            
 			</result>
-			
 			<result type="json">
 				<param name="root">thanaList</param>
+			</result>
+		</action>
+
+		<action name="JSONfindUnion" class="org.json.Json" method="getUnion">
+		<result type="json" name="input">
+			</result>
+			<result type="json">
+				<param name="root">unionList</param>
 			</result>
 		</action>
 
