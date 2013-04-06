@@ -254,13 +254,13 @@ http://validity.thatscaptaintoyou.com/Demos/index.htm
      <tr>
      <td>Marital Status</td>
      <td>
-     <input type="radio" name="personalDTO.maritalStatus" value="Married" /> Married
-     	<input type="radio" name="personalDTO.maritalStatus" value="Unmarried" checked="checked"  /> Unmarried
+     <input type="radio" name="personalDTO.maritalStatus" value="Married"  id="Married"/> Married
+     	<input type="radio" name="personalDTO.maritalStatus" value="Unmarried" id="Unmarried" /> Unmarried
      </td>
      <td>Gender</td>
      <td>
-     	<input type="radio" id="SEX" name="personalDTO.sex" value="Male" checked="checked" /> Male
-     	<input type="radio" id="SEX" name="personalDTO.sex" value="Female"  /> Female
+     	<input type="radio" id="SEXMale" name="personalDTO.sex" value="Male"  /> Male
+     	<input type="radio" id="SEXFemale" name="personalDTO.sex" value="Female"  /> Female
      </td>
     </tr>
     

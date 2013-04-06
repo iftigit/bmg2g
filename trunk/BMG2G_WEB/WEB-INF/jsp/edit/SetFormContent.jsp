@@ -98,7 +98,33 @@ document.getElementById("bid").style.display = "block";
 <%
 	String reset_subCategory=((PersonalInfoDTO) (request.getAttribute("personalDTO"))).getDesiredJobSubcategory1();
 %>
+<%
+System.out.println(reset_Sex);
+System.out.println(reset_MaritalStatus);
+ %>
+<%  if(reset_Sex.equalsIgnoreCase("Male")) { %>
+<script type="text/javascript">
+ document.getElementById("SEXMale").checked=true;
+ document.getElementById("SEXFemale").checked=false;
+</script>    
+<%}else { %>
+<script type="text/javascript">
+ document.getElementById("SEXMale").checked=false;
+ document.getElementById("SEXFemale").checked=true;
+</script>
+<% } %>
 
+<%  if(reset_MaritalStatus.equalsIgnoreCase("Married")) { %>
+<script type="text/javascript">
+ document.getElementById("Married").checked=true;
+ document.getElementById("Unmarried").checked=false;
+</script>    
+<%}else { %>
+<script type="text/javascript">
+ document.getElementById("Married").checked=false;
+ document.getElementById("Unmarried").checked=true;
+</script>
+<% } %>
 
 
 <script type="text/javascript">
