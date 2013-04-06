@@ -154,8 +154,7 @@ public class RegistrationDAO {
 					"JOBCAT2=?, " +
 					"JOBSUBCAT2=?, " +
 					"HEIGHT_FEET=?, " +
-					"HEIGHT_INCHES=?, " +
-					"MARITALSTATUS=? "+
+					"HEIGHT_INCHES=? " +
 					"Where JOBSEEKER_NUMBER=? ";
 				
 			  String addressInfoSql="Update ADDRESS Set MAIL_DIV=?, " +
@@ -211,8 +210,7 @@ public class RegistrationDAO {
 					stmt.setString(25,personalDTO.getDesiredJobSubcategory1());
 					stmt.setString(26,personalDTO.getHeightFeet());
 					stmt.setString(27,personalDTO.getHeightInches());
-					stmt.setString(28,personalDTO.getMaritalStatus());
-					stmt.setString(29,personalDTO.getJobseekerNumber());
+					stmt.setString(28,personalDTO.getJobseekerNumber());
 						
 					totalUpdate+=stmt.executeUpdate();
 					
