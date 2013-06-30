@@ -3,7 +3,9 @@ package org.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import oracle.jdbc.driver.OracleCallableStatement;
 
@@ -445,15 +447,45 @@ public class RegistrationDAO {
 	 public PoliceDTO getPoliceData(String registrationId)
 	 {
 		   Connection conn = ConnectionManager.getConnection();
-		   String sql="SELECT  " +
-		   "	JOBSEEKER_NUMBER, NAME, GENDER,  " +
-		   "   FATHERNAME, PASSPORTNO, RACE,  " +
-		   "   RELIGION, BIRTHDATE, initcap(ADDRESS) ADDRESS,  " +
-		   "   ADDRESS1, ADDRESS2, ADDRESS3,  " +
-		   "   BIRTHPLACE, TTCNAME, TTCDATE " +
-		   "	FROM DB_BMG2G.POLICE_DATA  " +
-		   "	where JOBSEEKER_NUMBER = ? ";
+//		   String sql="SELECT  " +
+//		   "	JOBSEEKER_NUMBER, NAME, GENDER,  " +
+//		   "   FATHERNAME, PASSPORTNO, RACE,  " +
+//		   "   RELIGION, BIRTHDATE, initcap(ADDRESS) ADDRESS,  " +
+//		   "   ADDRESS1, ADDRESS2, ADDRESS3,  " +
+//		   "   BIRTHPLACE, TTCNAME, TTCDATE " +
+//		   "	FROM DB_BMG2G.POLICE_DATA  " +
+//		   "	where JOBSEEKER_NUMBER = ? ";
 	   
+		   
+		   String sql="SELECT se.jobseeker_number, " +
+		   "                 trim(UPPER (trim(firstname)) " +
+		   "              || ' ' " +
+		   "              || UPPER (trim(middlename)) " +
+		   "              || ' ' " +
+		   "              || UPPER (trim(lastname))) NAME, 'Male' GENDER,   " +
+		   "              UPPER (fathername) fathername,se.PASSPORTNO,'Bangladeshi' race,se.RELIGION,to_char(se.BIRTHDATE,'dd/mm/yyyy') BIRTHDATE, " +
+		   "              initcap(replace(trim(NVL (aa.PER_ADDRESS_LINE1, 'NULL')),chr(10),' ') || ' ' || replace(trim(NVL (aa.PER_ADDRESS_LINE1, 'NULL')),chr(10),' ')) address, " +
+		   "              un.unionname || ', ' || tn.thana_name address1, " +
+		   "              ds.dist_name || decode(aa.per_post_code,null,'','-'||aa.per_post_code)       address2,'Bangladesh' birthplace, " +
+		   "               'BMET' ttcname, to_char(sysdate,'dd/mm/yyyy') ttcdate " +
+		   "         FROM jobseeker se, " +
+		   "              division de, " +
+		   "              district ds, " +
+		   "              thana tn, " +
+		   "              unions un, " +
+		   "              address aa " +
+		   "        WHERE aa.PER_DIV = de.divisionid " +
+		   "          AND aa.PER_DIS = ds.dist_id " +
+		   "          AND aa.PER_THANA = tn.thanaid " +
+		   "          AND aa.PER_UNION  = un.unionid           " +
+		   "          AND aa.jobseeker_number = se.jobseeker_number " +
+		   "          and aa.JOBSEEKER_NUMBER = ? ";
+
+
+		   
+		   
+		   
+		   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
 		   PoliceDTO pDto  = null;
@@ -498,23 +530,30 @@ public class RegistrationDAO {
 		   Connection conn = ConnectionManager.getConnection();
 		   ArrayList<PoliceDTO> plist = new ArrayList<PoliceDTO>();
 		   
-		   String sql="SELECT  " +
-		   "	JOBSEEKER_NUMBER, NAME, GENDER,  " +
-		   "   FATHERNAME, PASSPORTNO, RACE,  " +
-		   "   RELIGION, BIRTHDATE, initcap(ADDRESS) ADDRESS,  " +
-		   "   ADDRESS1, ADDRESS2, ADDRESS3,  " +
-		   "   BIRTHPLACE, TTCNAME, TTCDATE " +
-		   "	FROM DB_BMG2G.POLICE_DATA  " +
-		   "	where dist_id = ? ";
+		   String sql="SELECT    " +
+		   "    pp.JOBSEEKER_NUMBER, NAME, GENDER,    " +
+		   "   FATHERNAME, PASSPORTNO, RACE,    " +
+		   "   RELIGION, BIRTHDATE, initcap(ADDRESS) ADDRESS,    " +
+		   "   ADDRESS1, ADDRESS2, ADDRESS3,    " +
+		   "   BIRTHPLACE, TTCNAME, TTCDATE   " +
+		   "    FROM DB_G2G_NEW.POLICE_DATA pp, DB_G2G_NEW.ALLDATA_5840 aa  " +
+		   "    where pp.JOBSEEKER_NUMBER=aa.JOBSEEKER_NUMBER " +
+		   "     AND pp.JOBSEEKER_NUMBER IN ('GGM130127054GG')" +
+		  
+//		   "    and aa.SLNO>1350  " +
+//		   "    and aa.SLNO<1601 " +
+		   "    order by aa.SLNO  ";
 	   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
 		   PoliceDTO pDto  = null;
+		   Date date = new Date();
+		   SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy");
 		   
 			try
 			{
 				stmt = conn.prepareStatement(sql);
-				stmt.setString(1, registrationId);
+				//stmt.setString(1, registrationId);
 				r = stmt.executeQuery();
 				while (r.next())				
 				{
@@ -532,8 +571,14 @@ public class RegistrationDAO {
 					pDto.setAddress2(r.getString("ADDRESS2"));
 					pDto.setAddress3(r.getString("BIRTHPLACE"));
 					pDto.setBirthplace(r.getString("BIRTHPLACE"));
-					pDto.setTtcname(r.getString("TTCNAME"));
-					pDto.setTtcdate(r.getString("TTCDATE"));
+//					pDto.setTtcname(r.getString("TTCNAME"));
+//					pDto.setTtcdate(r.getString("TTCDATE"));
+					pDto.setTtcname("BMET");
+					//pDto.setTtcdate("30/06/2013");
+					pDto.setTtcdate(ft.format(date));
+					
+					
+					
 					
 					plist.add(pDto);
 					
