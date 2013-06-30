@@ -15,6 +15,7 @@ import org.apache.struts2.util.ServletContextAware;
 import org.model.AddressDAO;
 import org.model.RegistrationDAO;
 import org.table.AddressDTO;
+import org.table.FingerDTO;
 import org.table.PersonalInfoDTO;
 import org.table.PoliceDTO;
 import org.table.SelectPersonDTO;
@@ -58,16 +59,14 @@ public class PoliceReportAction extends ActionSupport implements ServletContextA
 	public String execute() throws Exception
 	{	
 		
-		
-		
 		String sessionRegId=(String)ServletActionContext.getRequest().getParameter("registrationId");
-		//String distID=(String)ServletActionContext.getRequest().getParameter("distID");
-		//ArrayList dlist=AddressDAO.getAllDistrict();
-		//ServletActionContext.getRequest().getSession().setAttribute("dlist",dlist);
-		if(sessionRegId==null )
-		{
-			return "police_home";
-		}
+		String distID=(String)ServletActionContext.getRequest().getParameter("distID");
+		ArrayList dlist=AddressDAO.getAllDistrict();
+		ServletActionContext.getRequest().getSession().setAttribute("dlist",dlist);
+//		if(sessionRegId==null )
+//		{
+//			return "police_home";
+//		}
 		
 		
 		ServletActionContext.getRequest().getSession().setAttribute("sessionObj_regId",null);
@@ -77,23 +76,81 @@ public class PoliceReportAction extends ActionSupport implements ServletContextA
 		
 		PoliceDTO pDTO = regDAO.getPoliceData(sessionRegId);
 		
-		//ArrayList<PoliceDTO> plist = new ArrayList<PoliceDTO>();
-		//PoliceDTO pDTO = null;
-		//plist = regDAO.getPoliceDataAll(distID);
+//		ArrayList<PoliceDTO> plist = new ArrayList<PoliceDTO>();
+//		PoliceDTO pDTO = null;
+//		plist = regDAO.getPoliceDataAll(distID);
 		
-		//Image
+		
+//		
+//		//Image
 //		String ImagePath = servlet.getRealPath("resources/images/");
 //		RandomAccessFile raf = new RandomAccessFile(ImagePath+"/P"+pDTO.getRegno()+".jpg", "rw");
 //		byte [] image = regDAO.getImage(pDTO.getRegno());
 //		int length = (int) image.length;
 //		raf.write(image,0,length);
-		//image
+//		//image
+//		
+//		FingerDTO fDTO = regDAO.getFingerData(sessionRegId);
+//		//Finger Print
+//		RandomAccessFile rafLT = new RandomAccessFile(ImagePath+"/LT"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenLT = (int)fDTO.getLT().length;
+//		rafLT.write(fDTO.getLT(),0,lenLT);
+//		
+//		
+//		RandomAccessFile rafLI = new RandomAccessFile(ImagePath+"/LI"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenLI = (int)fDTO.getLI().length;
+//		rafLI.write(fDTO.getLI(),0,lenLI);
+//		
+//		
+//		RandomAccessFile rafLM = new RandomAccessFile(ImagePath+"/LM"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenLM = (int)fDTO.getLM().length;
+//		rafLM.write(fDTO.getLM(),0,lenLM);
+//		
+//		
+//		RandomAccessFile rafLR = new RandomAccessFile(ImagePath+"/LR"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenLR = (int)fDTO.getLR().length;
+//		rafLR.write(fDTO.getLR(),0,lenLR);
+//		
+//		
+//		RandomAccessFile rafLL = new RandomAccessFile(ImagePath+"/LL"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenLL = (int)fDTO.getLL().length;
+//		rafLL.write(fDTO.getLL(),0,lenLL);
+//		
+//		
+//		
+//		
+//		
+//		RandomAccessFile rafRT = new RandomAccessFile(ImagePath+"/RT"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenRT = (int)fDTO.getRT().length;
+//		rafRT.write(fDTO.getRT(),0,lenRT);
+//		
+//		
+//		RandomAccessFile rafRI = new RandomAccessFile(ImagePath+"/RI"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenRI = (int)fDTO.getRI().length;
+//		rafRI.write(fDTO.getRI(),0,lenRI);
+//		
+//		
+//		RandomAccessFile rafRM = new RandomAccessFile(ImagePath+"/RM"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenRM = (int)fDTO.getRM().length;
+//		rafRM.write(fDTO.getRM(),0,lenRM);
+//		
+//		
+//		RandomAccessFile rafRR = new RandomAccessFile(ImagePath+"/RR"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenRR = (int)fDTO.getRR().length;
+//		rafRR.write(fDTO.getRR(),0,lenRR);
+//		
+//		
+//		RandomAccessFile rafRL = new RandomAccessFile(ImagePath+"/RL"+pDTO.getRegno()+".jpg", "rw"); 
+//		int lenRL = (int)fDTO.getRL().length;
+//		rafRL.write(fDTO.getRL(),0,lenRL);
+//		
+//		//Finger	
 		
-		if(pDTO==null)
-		{
-			addFieldError( "Err_regId", " Invalid Registration Id" );
-			return "police_home";
-		}
+//		if(pDTO==null)
+//		{
+//			addFieldError( "Err_regId", " Invalid Registration Id" );
+//			return "police_home";
+//		}
 
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -137,13 +194,142 @@ public class PoliceReportAction extends ActionSupport implements ServletContextA
 			//over.addTemplate(tp128, 405, 758);
 			
 			
-			//Image
-//			Image ima= Image.getInstance(ImagePath+"/P"+pDTO.getRegno()+".jpg");
+//			//Image
+//			Image ima= Image.getInstance(ImagePath+"/"+pDTO.getRegno()+".jpg");
 //			ima.scalePercent(73);
 //			PdfContentByte content = stamp.getUnderContent(1);
 //			ima.setAbsolutePosition(467f, 635f);
 //			content.addImage(ima);
-			//image
+//			//image
+//			
+//			
+//			//Finger 
+//			
+//			Image iRT= Image.getInstance(ImagePath+"/RT"+pDTO.getRegno()+".jpg");
+//			iRT.scalePercent(25);
+//			PdfContentByte conRT = stamp.getUnderContent(1);
+//			iRT.setAbsolutePosition(47f, 418f);
+//			conRT.addImage(iRT);
+//			
+//			Image iRI= Image.getInstance(ImagePath+"/RI"+pDTO.getRegno()+".jpg");
+//			iRI.scalePercent(25);
+//			PdfContentByte conRI = stamp.getUnderContent(1);
+//			iRI.setAbsolutePosition(150f, 418f);
+//			conRI.addImage(iRI);
+//			
+//			
+//			Image iRM= Image.getInstance(ImagePath+"/RM"+pDTO.getRegno()+".jpg");
+//			iRM.scalePercent(25);
+//			PdfContentByte conRM = stamp.getUnderContent(1);
+//			iRM.setAbsolutePosition(252f, 418f);
+//			conRM.addImage(iRM);
+//			
+//			
+//			Image iRR= Image.getInstance(ImagePath+"/RR"+pDTO.getRegno()+".jpg");
+//			iRR.scalePercent(25);
+//			PdfContentByte conRR = stamp.getUnderContent(1);
+//			iRR.setAbsolutePosition(360f, 418f);
+//			conRR.addImage(iRR);
+//			
+//			Image iRL= Image.getInstance(ImagePath+"/RL"+pDTO.getRegno()+".jpg");
+//			iRL.scalePercent(25);
+//			PdfContentByte conRL = stamp.getUnderContent(1);
+//			iRL.setAbsolutePosition(475f, 418f);
+//			conRL.addImage(iRL);
+//			
+//			
+//			
+//			
+//			
+//			Image iLT= Image.getInstance(ImagePath+"/LT"+pDTO.getRegno()+".jpg");
+//			iLT.scalePercent(25);
+//			PdfContentByte conLT = stamp.getUnderContent(1);
+//			iLT.setAbsolutePosition(47f, 308f);
+//			conLT.addImage(iLT);
+//			
+//			Image iLI= Image.getInstance(ImagePath+"/LI"+pDTO.getRegno()+".jpg");
+//			iLI.scalePercent(25);
+//			PdfContentByte conLI = stamp.getUnderContent(1);
+//			iLI.setAbsolutePosition(150f, 308f);
+//			conLI.addImage(iLI);
+//			
+//			
+//			Image iLM= Image.getInstance(ImagePath+"/LM"+pDTO.getRegno()+".jpg");
+//			iLM.scalePercent(25);
+//			PdfContentByte conLM = stamp.getUnderContent(1);
+//			iLM.setAbsolutePosition(252f, 308f);
+//			conLM.addImage(iLM);
+//			
+//			
+//			Image iLR= Image.getInstance(ImagePath+"/LR"+pDTO.getRegno()+".jpg");
+//			iLR.scalePercent(25);
+//			PdfContentByte conLR = stamp.getUnderContent(1);
+//			iLR.setAbsolutePosition(360f, 308f);
+//			conLR.addImage(iLR);
+//			
+//			Image iLL= Image.getInstance(ImagePath+"/LL"+pDTO.getRegno()+".jpg");
+//			iLL.scalePercent(25);
+//			PdfContentByte conLL = stamp.getUnderContent(1);
+//			iLL.setAbsolutePosition(475f, 308f);
+//			conLL.addImage(iLL);
+//			
+//			
+//			
+//			
+//			iLT.scalePercent(18);
+//			PdfContentByte conLTe = stamp.getUnderContent(1);
+//			iLT.setAbsolutePosition(222f, 40f);
+//			conLTe.addImage(iLT);
+//			
+//			iLI.scalePercent(15);
+//			PdfContentByte conLIe = stamp.getUnderContent(1);
+//			iLI.setAbsolutePosition(160f, 70f);
+//			conLIe.addImage(iLI);
+//			
+//			iLM.scalePercent(15);
+//			PdfContentByte conLMe = stamp.getUnderContent(1);
+//			iLM.setAbsolutePosition(110f, 90f);
+//			conLMe.addImage(iLM);
+//			
+//			iLR.scalePercent(15);
+//			PdfContentByte conLRe = stamp.getUnderContent(1);
+//			iLR.setAbsolutePosition(60f, 80f);
+//			conLRe.addImage(iLR);
+//			
+//			
+//			iLL.scalePercent(15);
+//			PdfContentByte conLLe = stamp.getUnderContent(1);
+//			iLL.setAbsolutePosition(10f, 40f);
+//			conLLe.addImage(iLL);
+//			
+//			
+//			iRT.scalePercent(18);
+//			PdfContentByte conRTe = stamp.getUnderContent(1);
+//			iRT.setAbsolutePosition(300f, 40f);
+//			conRTe.addImage(iRT);
+//			
+//			
+//			iRI.scalePercent(15);
+//			PdfContentByte conRIe = stamp.getUnderContent(1);
+//			iRI.setAbsolutePosition(380f, 70f);
+//			conRIe.addImage(iRI);
+//			
+//			iRM.scalePercent(15);
+//			PdfContentByte conRMe = stamp.getUnderContent(1);
+//			iRM.setAbsolutePosition(430f, 90f);
+//			conRMe.addImage(iRM);
+//			
+//			
+//			iRR.scalePercent(15);
+//			PdfContentByte conRRe = stamp.getUnderContent(1);
+//			iRR.setAbsolutePosition(480f, 80f);
+//			conRRe.addImage(iRR);
+//			
+//			
+//			iRL.scalePercent(15);
+//			PdfContentByte conRLe = stamp.getUnderContent(1);
+//			iRL.setAbsolutePosition(530f, 40f);
+//			conRLe.addImage(iRL);
 			
 			
 			
@@ -215,7 +401,7 @@ public class PoliceReportAction extends ActionSupport implements ServletContextA
 			over.showText(pDTO.getTtcdate());
 			
 			over.setFontAndSize(bf, 10);
-			over.setTextMatrix(445, 552);
+			over.setTextMatrix(460, 552);
 			over.showText(pDTO.getTtcname());
 			
 			
@@ -223,7 +409,7 @@ public class PoliceReportAction extends ActionSupport implements ServletContextA
 			
 			stamp.close();
 			readers.add(new PdfReader(certificate.toByteArray()));
-//			}
+			//}
 				
 		}catch(Exception ex)
 		{
