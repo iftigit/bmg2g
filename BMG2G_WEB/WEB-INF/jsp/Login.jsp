@@ -7,7 +7,7 @@
 <%@ page import="java.util.ArrayList" %>
 <head>
 
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 <title>G2G Project - Login Page</title>
@@ -84,23 +84,31 @@
 	     	</tr>
 	     	<tr>
 	     	 <td align="left" style="text-align: left;padding-left: 0px;">
+	     	 <!--  
 	     	  <a href="np1">Request Password</a>&nbsp;&nbsp;
-	     	  |&nbsp;&nbsp;<a href="lotteryResultStep1.action">First Lottery Result</a>
+	     	  |&nbsp;&nbsp;
+	     	 
+	     	  <br>
+	     	  <a href="lotteryResultStep1.action">Lottery Result</a>
+	     	   -->
 	     	 </td>
 	     	</tr>
      	</table>
      </td>
     </tr>
+    
     <tr>
     <td colspan="2" >
     	
-	    <a href="interviewCardDownloadHome.action">For Confirmation Card and Final Result (Pdf Viewer Required).</a>
+	    <a href="interviewCardDownloadHome.action">&#x0995;&#x09A8;&#x09AB;&#x09BE;&#x09B0;&#x09AE;&#x09C7;&#x09B6;&#x09A8; &#x0995;&#x09BE;&#x09B0;&#x09CD;&#x09A1;&#x09C7;&#x09B0; &#x099C;&#x09A8;&#x09CD;&#x09AF; &#x098F;&#x0996;&#x09BE;&#x09A8;&#x09C7; &#x0995;&#x09CD;&#x09B2;&#x09BF;&#x0995; &#x0995;&#x09B0;&#x09C1;&#x09A8; </a>
     </td>
     </tr>
      <tr>
     <td colspan="2" >
-    	
-	    <a href="policeCardDownloadHome.action">For Police Card(Pdf Viewer Required).</a>
+    	 <!--  
+	    <a href="policeCardDownloadHome.action">For Finger Print Card(Pdf Viewer Required).</a>
+	    
+	     <!--  
     </td>
     </tr>
     </table>

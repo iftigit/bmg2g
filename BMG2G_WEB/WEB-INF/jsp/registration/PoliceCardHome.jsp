@@ -1,7 +1,10 @@
 
 <%@page import="org.apache.struts2.ServletActionContext"%>
 <%@page import="java.util.List"%>
-<%@page import="org.table.AddressDTO"%><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+<%@page import="org.table.AddressDTO"%>
+<%@page import="org.model.AddressDAO"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
@@ -17,7 +20,10 @@
 </head>
 
 
+<% //java.util.ArrayList dlist=(java.util.ArrayList)request.getSession().getAttribute("dlist"); 
 
+	java.util.ArrayList dlist=AddressDAO.getAllDistrict();
+%>
 <body style="margin: 0px;">
 <div style="width: 100%;height: 100px;border-bottom: 1px solid #006219;">
 <center>
@@ -42,10 +48,10 @@
   Registration Id:
   </td>
   <td align="left" width="60%" style="padding-left: 10px;">
-   <input type="text" style="width: 300px;height: 30px;border: 1px solid grey;font-size: 20px;text-align: center;" name="registrationId" id="registrationId"/>
-   
- 
-   <br/>
+  
+  	<input type="text" style="width: 300px;height: 30px;border: 1px solid grey;font-size: 20px;text-align: center;" name="registrationId" id="registrationId"/>
+  
+  
    <div style="color: red"><s:label name="Err_regId" ></s:label></div>
   </td>
 </tr>
