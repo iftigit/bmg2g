@@ -157,7 +157,10 @@ System.out.println(reset_MaritalStatus);
 /*!!!!!!!  Resetting Address Information of JobSeeker  !!!!!!!!!*/
 
 
-<% String sub_MDiv=((AddressDTO) (request.getAttribute("addressDTO"))).getmDivision();%>
+<% String sub_MDiv=((AddressDTO) (request.getAttribute("addressDTO"))).getmDivision();
+
+System.out.print(sub_MDiv);
+%>
  
  if("<%=sub_MDiv%>"!="select")
   {

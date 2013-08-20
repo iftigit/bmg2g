@@ -66,9 +66,9 @@ function getLotteryResult()
 				document.getElementById("Search").disabled = false;	
 			}
 			if(xmlhttp.responseText == 'yes')
-				document.getElementById("result").innerHTML='<center><font size="4" color="green">Congratulations!<br/>You are selected in the 1st lottery.</font></center>';
+				document.getElementById("result").innerHTML='<center><font size="4" color="green">Congratulations!<br/>You are selected in the lottery.</font></center>';
 			else
-				document.getElementById("result").innerHTML='<center><font size="4" color="red">Sorry!<br/>You are not selected in the 1st lottery.</font></center>';
+				document.getElementById("result").innerHTML='<center><font size="4" color="red">Sorry!<br/>You are not selected in the lottery.</font></center>';
 			
 
 		}
