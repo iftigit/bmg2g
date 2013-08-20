@@ -57,10 +57,10 @@ public class DcLotteryResult extends ActionSupport implements ServletContextAwar
 		{
 			return "logout";
 		}
-		else if(loggedInUser.getAccessRight()==0)
-		{
-			return "timeOver";	
-		}
+//		else if(loggedInUser.getAccessRight()==0)
+//		{
+//			return "timeOver";	
+//		}
 		
 		
 		String fileName="Lottery_G2G_"+districtName+".pdf";

@@ -9,6 +9,7 @@ import java.util.Date;
 
 import oracle.jdbc.driver.OracleCallableStatement;
 
+import org.apache.taglibs.standard.tag.common.core.SetSupport;
 import org.controller.registration.JobseekerDTO;
 import org.table.AddressDTO;
 import org.table.LogDTO;
@@ -16,6 +17,7 @@ import org.table.NomineeDTO;
 import org.table.PersonalInfoDTO;
 import org.table.PoliceDTO;
 import org.table.SelectPersonDTO;
+import org.table.VisaDTO;
 
 
 import com.lowagie.text.Image;
@@ -316,8 +318,8 @@ public class RegistrationDAO {
 		   		        " TO_CHAR(BIRTHDATE,'DD-MM-YYYY') BDATE,AGE,RELIGION,MARITALSTATUS,SEX,WEIGHT,PASSPORTNO, " +
 		   		        " TO_CHAR(PASSPORT_ISSUE_DATE,'DD-MM-YYYY') PASS_ISSUE_DATE,TO_CHAR(PASSPORT_EXP_DATE,'DD-MM-YYYY') PASS_EXP_DATE, " +
 		   		        " NOMINEE_NAME,NOMINEE_RELATION,NOMINEE_ADDRESS,NOMINEE_PHONE,CONTACT_NAME,CONTACT_PHONE,HEIGHT_FEET,HEIGHT_INCHES,  " +
-		   		        " JOB1,JOBCAT2,JOBSUBCAT2 from JOBSEEKER,SECONDLOTTERY_T1 " +
-		   				" where jobseeker.jobseeker_number=? and jobseeker.jobseeker_number= SECONDLOTTERY_T1.jobseeker_number";
+		   		        " JOB1,JOBCAT2,JOBSUBCAT2 from JOBSEEKER " +
+		   				" where jobseeker.jobseeker_number=? ";
 		   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -364,7 +366,9 @@ public class RegistrationDAO {
 			} 
 			catch (Exception e){e.printStackTrace();}
 	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
-				{e.printStackTrace();}stmt = null;conn = null;}
+				{e.printStackTrace();
+				 System.out.println("problem in jobseeker");
+				}stmt = null;conn = null;}
 	 		
 	 		return personalDto;
 	 }
@@ -380,7 +384,7 @@ public class RegistrationDAO {
 		   		"       ) fullname, sl.fathername, sl.mothername, ad.per_mobile, " +
 		   		"       TO_CHAR (sl.idate, 'dd-mm-YYYY') idate, mt.ttc_name, mt.address_line1, " +
 		   		"       mt.address_line2, mt.address_line3 " +
-		   		"  FROM secondlottery_t1 sl, address ad, mst_ttc mt " +
+		   		"  FROM secondlottery_t2 sl, address ad, mst_ttc mt " +
 		   		" WHERE sl.jobseeker_number = ad.jobseeker_number " +
 		   		"   AND sl.ttc_id = mt.ttc_id " +
 		   		"   AND sl.jobseeker_number = ? ";
@@ -536,13 +540,14 @@ public class RegistrationDAO {
 		   "   RELIGION, BIRTHDATE, initcap(ADDRESS) ADDRESS,    " +
 		   "   ADDRESS1, ADDRESS2, ADDRESS3,    " +
 		   "   BIRTHPLACE, TTCNAME, TTCDATE   " +
-		   "    FROM DB_G2G_NEW.POLICE_DATA pp, DB_G2G_NEW.ALLDATA_5840 aa  " +
+		   "    FROM DB_G2G_NEW.POLICE_DATA pp, DB_G2G_NEW.ALLDATA_9106 aa  " +
 		   "    where pp.JOBSEEKER_NUMBER=aa.JOBSEEKER_NUMBER " +
-		   "     AND pp.JOBSEEKER_NUMBER IN ('GGM130127054GG')" +
+		   //"     AND pp.JOBSEEKER_NUMBER IN ('BBM131162142GG','NAM130615587GG')" +
 		  
-//		   "    and aa.SLNO>1350  " +
+		   "    and aa.SLNO between 9086 and 9271   " +
 //		   "    and aa.SLNO<1601 " +
-		   "    order by aa.SLNO  ";
+		  // "    order by aa.SLNO  ";
+		   "    order by pp.JOBSEEKER_NUMBER  ";
 	   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -574,8 +579,8 @@ public class RegistrationDAO {
 //					pDto.setTtcname(r.getString("TTCNAME"));
 //					pDto.setTtcdate(r.getString("TTCDATE"));
 					pDto.setTtcname("BMET");
-					//pDto.setTtcdate("30/06/2013");
-					pDto.setTtcdate(ft.format(date));
+					pDto.setTtcdate("14/07/2013");
+					//pDto.setTtcdate(ft.format(date));
 					
 					
 					
@@ -591,6 +596,53 @@ public class RegistrationDAO {
 	 		return plist;
 	 }
 	 
+	 public ArrayList<VisaDTO> getVisaDataAll()
+	 {
+		   Connection conn = ConnectionManager.getConnection();
+		   ArrayList<VisaDTO> plist = new ArrayList<VisaDTO>();
+		   
+		   String sql="SELECT aa.jobseeker_number, NAME, to_char(birthdate,'dd') bday,to_char(birthdate,'mm')bmon,to_char(birthdate,'yyyy') byear," +
+		   		" 	passport, to_char(expdate,'dd')eday,to_char(expdate,'mm') emon,to_char(expdate,'yyyy')eyear," +
+		   		"       address1, address2, address3, mobile, maritalstatus" +
+		   		"  FROM db_g2g_new.application_visa aa,db_g2g_new.VISA_174_170813 vv " +
+		   		"  where aa.jobseeker_number=vv.jobseeker_number  order by vv.BIL";
+	   
+		   PreparedStatement stmt = null;
+		   ResultSet r = null;
+		   VisaDTO pDto  = null;
+		  
+			try
+			{
+				stmt = conn.prepareStatement(sql);				
+				r = stmt.executeQuery();
+				while (r.next())				
+				{
+					pDto=new VisaDTO();
+					pDto.setJobseeker(r.getString("JOBSEEKER_NUMBER"));
+					pDto.setName(r.getString("NAME"));
+					pDto.setBday(r.getString("bday"));
+					pDto.setBmon(r.getString("bmon"));
+					pDto.setByear(r.getString("byear"));					
+					pDto.setPassport(r.getString("PASSPORT"));
+					pDto.setEday(r.getString("eday"));
+					pDto.setEmon(r.getString("emon"));
+					pDto.setEyear(r.getString("eyear"));
+					pDto.setAddress1(r.getString("address1"));
+					pDto.setAddress2(r.getString("address2"));
+					pDto.setAddress3(r.getString("address3"));
+					pDto.setMobile(r.getString("mobile"));
+					pDto.setMaritalstatus(r.getString("maritalstatus"));
+						
+					plist.add(pDto);
+					
+				}
+			} 
+			catch (Exception e){e.printStackTrace();}
+	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
+				{e.printStackTrace();}stmt = null;conn = null;}
+	 		
+	 		return plist;
+	 }
 	 
 	 public int updateInterviewInforamtion(String registrationId,int ttcId,String interviewDate)
 	 {

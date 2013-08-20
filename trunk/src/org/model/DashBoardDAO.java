@@ -69,7 +69,7 @@ public class DashBoardDAO {
 	{		
 		Connection conn = ConnectionManager.getConnection();
 		String sql = "Select dist_name,dist_id,divisionid,total From DISTRICT Left Outer Join (  " +
-		"Select DIST,count(*) total from SECONDLOTTERY_T1 Where DIV=? Group by DIST)tmp1 On District.DIST_ID=tmp1.DIST " +
+		"Select DIST,count(*) total from SECONDLOTTERY_T2 Where DIV=? Group by DIST)tmp1 On District.DIST_ID=tmp1.DIST " +
 		"Where divisionid=? Order by Dist_Name ";
 
 		System.out.println("Stat by District (sql) :" + sql);
@@ -173,7 +173,7 @@ public class DashBoardDAO {
 		Connection conn = ConnectionManager.getConnection();
 		String sql = "  Select THANA_name,THANAID,DISTRICTID,total From THANA  " +
 					" Left Outer Join (  " +
-					" Select thana,count(*) total from  SECONDLOTTERY_T1 Where dist=? " +
+					" Select thana,count(*) total from  SECONDLOTTERY_T2 Where dist=? " +
 					" Group by thana)tmp1 On THANA.THANAID=tmp1.thana  " +
 					" Where DISTRICTID=? ";
 
@@ -275,7 +275,7 @@ public class DashBoardDAO {
 		Connection conn = ConnectionManager.getConnection();
 		String sql = "Select UNIONNAME,UNIONID,THANAID,total From UNIONS  " +
 		"Left Outer Join (  " +
-		"Select unions,count(*) total from SECONDLOTTERY_T1 Where thana=? " +
+		"Select unions,count(*) total from SECONDLOTTERY_T2 Where thana=? " +
 		"Group by unions)tmp1   On UNIONS.UNIONID =tmp1.unions  " +
 		"Where THANAID=? ";
 
@@ -373,7 +373,7 @@ public class DashBoardDAO {
 	public double getTotalSelectedCount()
 	{		
 		Connection conn = ConnectionManager.getConnection();
-		String sql = " Select count(*) total from SECONDLOTTERY_T1 ";
+		String sql = " Select count(*) total from SECONDLOTTERY_T2 ";
 
 		System.out.println("Stat by Total (sql) :" + sql);
 		PreparedStatement stmt = null;

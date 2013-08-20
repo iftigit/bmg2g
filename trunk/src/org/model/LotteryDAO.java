@@ -189,12 +189,12 @@ public class LotteryDAO {
 		   	
 		   
 	 	   Connection conn = ConnectionManager.getConnection();
-	 	   String sql = " SELECT   SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
+	 	   String sql = " SELECT   SECONDLOTTERY_T2.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
 	 	  		       " fathername, mothername,unions.UNIONNAME " +
-	 	  		       " FROM SECONDLOTTERY_T1,address,unions WHERE div=? " +
-	 	  		       " And SECONDLOTTERY_T1.UNIONS=address.PER_UNION " +
-	 	  		       " And SECONDLOTTERY_T1.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
-	 	  		       " And SECONDLOTTERY_T1.UNIONS=unions.UNIONID ORDER BY unionname ";
+	 	  		       " FROM SECONDLOTTERY_T2,address,unions WHERE div=? " +
+	 	  		       " And SECONDLOTTERY_T2.UNIONS=address.PER_UNION " +
+	 	  		       " And SECONDLOTTERY_T2.JOBSEEKER_NUMBER=address.JOBSEEKER_NUMBER " +
+	 	  		       " And SECONDLOTTERY_T2.UNIONS=unions.UNIONID ORDER BY unionname ";
 	 	  
 	 	   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -324,16 +324,16 @@ public class LotteryDAO {
 	 	   		      " Order by division_name,dist_name,thana_name,unions.unionname";
 	 	   */
 	 String sql="SELECT * FROM  " +
-	 	 "(SELECT SECONDLOTTERY_T1.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
+	 	 "(SELECT SECONDLOTTERY_T2.jobseeker_number, (firstname || ' ' || middlename || ' ' || lastname) jobseekername, " +
 	 	 "fathername, mothername,unions.unionid, " +
 	 	 "DIVISION.DIVISION_NAME,DISTRICT.DIST_NAME,thana.THANA_NAME, " +
 	 	 "DIVISION.DIVISIONID,DISTRICT.DIST_ID,thana.THANAID, " +
 	 	 "UNIONS.UNIONNAME,unions.cota_f  " +
-	 	 "FROM SECONDLOTTERY_T1,unions,thana,district,division WHERE SECONDLOTTERY_T1.DIV = ? " +
-	 	 "And SECONDLOTTERY_T1.DIV=division.DIVISIONID " +
-	 	 "And SECONDLOTTERY_T1.DIST=district.DIST_ID  " +
-	 	 "And SECONDLOTTERY_T1.THANA=thana.THANAID  " +
-	 	 "AND SECONDLOTTERY_T1.UNIONS=UNIONS.UNIONID  " +
+	 	 "FROM SECONDLOTTERY_T2,unions,thana,district,division WHERE SECONDLOTTERY_T2.DIV = ? " +
+	 	 "And SECONDLOTTERY_T2.DIV=division.DIVISIONID " +
+	 	 "And SECONDLOTTERY_T2.DIST=district.DIST_ID  " +
+	 	 "And SECONDLOTTERY_T2.THANA=thana.THANAID  " +
+	 	 "AND SECONDLOTTERY_T2.UNIONS=UNIONS.UNIONID  " +
 	 	 "Order by division_name,dist_name,thana_name,unions.unionname " +
 	 	 ")MAIN_TBL " +
 	 	 "left outer join  " +
@@ -359,13 +359,13 @@ public class LotteryDAO {
 	 	 "(SELECT   thanaid, SUM (cota_f) thana_cota FROM unions GROUP BY thanaid) thana_cota_tbl " +
 	 	 "on MAIN_TBL.thanaid=thana_cota_tbl.thanaid " +
 	 	 "Left OUTER JOIN " +
-	 	 "(select div,count(*) selected_div from secondlottery_t1 group by div) div_selected_tbl " +
+	 	 "(select div,count(*) selected_div from secondlottery_t2 group by div) div_selected_tbl " +
 	 	 "on MAIN_TBL.DIVISIONID= div_selected_tbl.div " +
 	 	 "LEFT OUTER JOIN " +
-	 	 "(select dist,count(*) selected_dist from secondlottery_t1 group by dist) dist_selected_tbl " +
+	 	 "(select dist,count(*) selected_dist from secondlottery_t2 group by dist) dist_selected_tbl " +
 	 	 "on MAIN_TBL.dist_id= dist_selected_tbl.dist " +
 	 	 "LEFT OUTER JOIN " +
-	 	 "(select thana,count(*) selected_thana from secondlottery_t1 group by thana) thana_selected_tbl " +
+	 	 "(select thana,count(*) selected_thana from secondlottery_t2 group by thana) thana_selected_tbl " +
 	 	 "on MAIN_TBL.thanaid= thana_selected_tbl.thana order by div,dist,thana,unionid";
 
 	 	   
@@ -452,16 +452,33 @@ public class LotteryDAO {
 		
 		DecimalFormat df = new DecimalFormat("#,##,##,###.##");
 		Connection conn = ConnectionManager.getConnection();
-		   String sql = " Select firstLotTbl.totalSelection,totalRegTbl.totalRegistration,totalCotaTbl.totalQuota from  " +
-		   		        " (Select count(*) totalSelection from FirstLottery Where Div=?)firstLotTbl, " +
-		   		        " (Select count(*) totalRegistration from Address Where per_div=?)totalRegTbl, " +
-		   		        " (select sum(cota_f) totalQuota from unions Where thanaid in " +
-		   		        " ( " +
-		   		        " select thanaid from thana Where districtid in " +
-		   		        " ( " +
-		   		        " Select dist_id from district  where divisionid=? " +
-		   		        " ) " +
-		   		        " ))totalCotaTbl";
+//		   String sql = " Select firstLotTbl.totalSelection,totalRegTbl.totalRegistration,totalCotaTbl.totalQuota from  " +
+//		   		        " (Select count(*) totalSelection from SECONDLOTTERY_T1 Where Div=?)firstLotTbl, " +
+//		   		        " (Select count(*) totalRegistration from FirstLottery Where div=?)totalRegTbl, " +
+//		   		        " (select sum(cota_f) totalQuota from unions Where thanaid in " +
+//		   		        " ( " +
+//		   		        " select thanaid from thana Where districtid in " +
+//		   		        " ( " +
+//		   		        " Select dist_id from district  where divisionid=? " +
+//		   		        " ) " +
+//		   		        " ))totalCotaTbl";
+		   
+		   
+		   
+		   String sql ="Select firstLotTbl.totalSelection,totalRegTbl.totalRegistration,totalCotaTbl.totalQuota,divn.divname from   " +
+		   " (select DIVISION_NAME divname from DIVISION where DIVISIONID = ?) divn, " +
+		   " (Select count(*) totalSelection from SECONDLOTTERY_T1 Where Div=?)firstLotTbl,  " +
+		   " (Select count(*) totalRegistration from FirstLottery Where div=?)totalRegTbl,  " +
+		   " (select sum(cota_f) totalQuota from unions Where thanaid in  " +
+		   " (  " +
+		   " select thanaid from thana Where districtid in  " +
+		   " (  " +
+		   " Select dist_id from district  where divisionid=?  " +
+		   " )  " +
+		   " ))totalCotaTbl ";
+
+		   
+		   
 		   
 		   PreparedStatement stmt = null;
 		   ResultSet r = null;
@@ -469,6 +486,7 @@ public class LotteryDAO {
 		   double totalReg=0;
 		   double totalPriliSelected=0;
 		   double totalQuota=0;
+		   String divname="";
 
 		   try
 			{
@@ -476,6 +494,7 @@ public class LotteryDAO {
 				stmt.setString(1, divisionId);
 				stmt.setString(2, divisionId);
 				stmt.setString(3, divisionId);
+				stmt.setString(4, divisionId);
 				r = stmt.executeQuery();
 				if (r.next())
 				{
@@ -483,6 +502,7 @@ public class LotteryDAO {
 					totalReg=r.getDouble("totalRegistration");
 					totalPriliSelected=r.getDouble("totalSelection");
 					totalQuota=r.getDouble("totalQuota");
+					divname=r.getString("divname");
 				}
 			} 
 			catch (Exception e){e.printStackTrace();}
@@ -491,11 +511,11 @@ public class LotteryDAO {
 	 		
 	 		String response=" <table width='98%' border='0' align='center' style='border:1px solid grey;'> " +
 				   " <tr> " +
-				   " <td width='70%' bgcolor='#DBB7FF' height='30' style='padding-left:20px;'>Total Registered Job-Seekers</td> " +
+				   " <td width='70%' bgcolor='#DBB7FF' height='30' style='padding-left:20px;'>1st Lottery "+divname+" Total</td> " +
 				   " <td width='30%' bgcolor='#C58AFF' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalReg)+"</td> " +
 				   " </tr> " +
 				   " <tr> " +
-				   " <td height='30' bgcolor='#FFFFBB' style='padding-left:20px;'>Preliminary Selected<br>(out of 36,038)</td> " +
+				   " <td height='30' bgcolor='#FFFFBB' style='padding-left:20px;'>2nd Lottery "+divname+" Total</td> " +
 				   " <td bgcolor='#FFFF6C' style='text-align:right; padding-right:10px;font-weight:bold;'>"+df.format(totalPriliSelected)+"</td> " +
 				   " </tr> " +
 				   " <tr> " +

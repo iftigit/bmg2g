@@ -76,9 +76,9 @@ public class PoliceReportAction extends ActionSupport implements ServletContextA
 		
 		PoliceDTO pDTO = regDAO.getPoliceData(sessionRegId);
 		
-//		ArrayList<PoliceDTO> plist = new ArrayList<PoliceDTO>();
-//		PoliceDTO pDTO = null;
-//		plist = regDAO.getPoliceDataAll(distID);
+		//ArrayList<PoliceDTO> plist = new ArrayList<PoliceDTO>();
+		//PoliceDTO pDTO = null;
+		//plist = regDAO.getPoliceDataAll(distID);
 		
 		
 //		
@@ -176,9 +176,9 @@ public class PoliceReportAction extends ActionSupport implements ServletContextA
 			
 			
 			
-//			for(int i=0;i<plist.size();i++)
-//			{
-//				pDTO=plist.get(i);
+			//for(int i=0;i<plist.size();i++)
+			//{
+				//pDTO=plist.get(i);
 				
 				reader = new PdfReader(new FileInputStream(realPath));
 				certificate = new ByteArrayOutputStream();
