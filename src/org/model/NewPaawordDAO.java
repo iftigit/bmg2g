@@ -58,7 +58,10 @@ public class NewPaawordDAO {
 		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
-		String sql = "select password,userid from mst_user where password is null";
+		//String sql = "select password,userid from mst_user where password is null";
+		
+		String sql = "select password,userid from mst_user where userid in ('01759893928','01677780116','01197228980')";
+		
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		try
@@ -83,9 +86,38 @@ public class NewPaawordDAO {
 		ArrayList<UserDTO> tmp=new ArrayList<UserDTO>();
 		UserDTO user=null;
 		Connection conn = ConnectionManager.getConnection();
-		String sql = "SELECT   fl.jobseeker_number, per_mobile" +
-				"  FROM   FIRSTLOTTERY fl, address a" +
-				" WHERE   THANA='107' and fl.jobseeker_number = A.JOBSEEKER_NUMBER";
+//		String sql = "SELECT   fl.jobseeker_number, per_mobile" +
+//				"  FROM   FIRSTLOTTERY fl, address a" +
+//				" WHERE   THANA='107' and fl.jobseeker_number = A.JOBSEEKER_NUMBER";
+		
+//		String sql = " select ttc_ename||' TTC', per_mobile from SEND_SMS6457";
+//		String sql = "select '01819262175','01819262175' from dual";
+		
+		//String sql ="select jobseeker_number,per_mobile from VISA_200_110413 where jobseeker_number in(select jobseeker_number from aa)";
+		
+		//String sql ="select jobseeker_number,PER_MOBILE from DB_G2G.address_all where jobseeker_number in(select jobseeker_number from DB_G2G_NEW.ALLDATA_5840 where slno>1600 and slno<1851 )";
+		
+//		String sql ="select jobseeker_number,PER_MOBILE from DB_G2G_NEW.sms408 where jobseeker_number  in( "+
+//		" select jobseeker_number from  DB_G2G_NEW.btest where jobseeker_number not in( select jobseeker_number from DB_G2G_NEW.atest ))";
+		
+//		String sql ="select st.JOBSEEKER_NUMBER,ad.PER_MOBILE  from SECONDLOTTERY_T2 st,address ad where st.JOBSEEKER_NUMBER=ad.JOBSEEKER_NUMBER and length(ad.PER_MOBILE)=11 order by st.JOBSEEKER_NUMBER";
+	
+//		String sql ="select trim(j.FIRSTNAME||' '||j.MIDDLENAME||' '||j.LASTNAME) ,j.NOMINEE_PHONE " +
+//				" from jobseeker_t2 j, mobile mm " +
+//				" where j.JOBSEEKER_NUMBER=mm.JOBSEEKER_NUMBER ";
+		
+		
+//		String sql="select ad.jobseeker_number , ad.PER_MOBILE from address ad, DB_G2G_NEW.sms205 s where ad.JOBSEEKER_NUMBER= s.JOBSEEKER_NUMBER";
+		
+//		String sql =" select trim(j.FIRSTNAME||' '||j.MIDDLENAME||' '||j.LASTNAME) ||' Pitar nam: '||j.FATHERNAME ,j.OP_USERID" +
+//				"			 from jobseeker_t2 j, mobile mm" +
+//				"			 where j.JOBSEEKER_NUMBER=mm.JOBSEEKER_NUMBER";
+		
+		String sql ="select ad.JOBSEEKER_NUMBER,ad.PER_MOBILE from ADDRESS_T2 ad, AllSec2nd se where se.JOBSEEKER_NUMBER=ad.JOBSEEKER_NUMBER and slno between 751 and 900";
+		
+		
+//		String sql ="select JOBSEEKER_NUMBER,PER_MOBILE from DB_G2G_NEW.VISA_174_170813";
+		
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		try
@@ -108,7 +140,8 @@ public class NewPaawordDAO {
 	public String getLottery1(String regid)
 	{
 		Connection conn = ConnectionManager.getConnection();
-		String sql = " Select count(*) from firstlottery where JOBSEEKER_NUMBER=?";
+		//String sql = " Select count(*) from firstlottery where JOBSEEKER_NUMBER=?";
+		String sql = " Select count(*) from SECONDLOTTERY_T2 where JOBSEEKER_NUMBER=?";
 		PreparedStatement stmt = null;
 		ResultSet r = null;
 		String tmp = "no";

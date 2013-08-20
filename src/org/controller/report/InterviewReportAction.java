@@ -135,52 +135,52 @@ public class InterviewReportAction extends ActionSupport implements ServletConte
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(190, 592);
+			over.setTextMatrix(160, 600);
 			over.showText(personalInfoDto.getRegId());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(190, 573);
+			over.setTextMatrix(160, 577);
 			over.showText(personalInfoDto.getEmpFullName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(190, 553);
+			over.setTextMatrix(160, 552);
 			over.showText(personalInfoDto.getFatherName());
 			
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(190, 534);
+			over.setTextMatrix(160, 528);
 			over.showText(personalInfoDto.getMotherName());
 			
 			over.setFontAndSize(bf, 12);
-			over.setTextMatrix(190, 515);
+			over.setTextMatrix(160, 502);
 			over.showText(personalInfoDto.getMobileNo());
 			
 					
 			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(208, 228);
+			over.setTextMatrix(160, 235);
 			over.showText(personalInfoDto.getIDate());
 			
 			
 			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(200, 200);
+			over.setTextMatrix(160, 211);
 			over.showText(personalInfoDto.getTtcNmae());
 			
 			
-			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(200, 170);
-			over.showText(personalInfoDto.getAddressLine1());
-			
-			
-			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(200, 144);
-			over.showText(personalInfoDto.getAddressLine2());
-			
-			
-			over.setFontAndSize(bf1, 12);
-			over.setTextMatrix(200, 114);
-			over.showText(personalInfoDto.getAddressLine3());
+//			over.setFontAndSize(bf1, 12);
+//			over.setTextMatrix(200, 170);
+//			over.showText(personalInfoDto.getAddressLine1());
+//			
+//			
+//			over.setFontAndSize(bf1, 12);
+//			over.setTextMatrix(200, 144);
+//			over.showText(personalInfoDto.getAddressLine2());
+//			
+//			
+//			over.setFontAndSize(bf1, 12);
+//			over.setTextMatrix(200, 114);
+//			over.showText(personalInfoDto.getAddressLine3());
 			
 			
 			

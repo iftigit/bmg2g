@@ -478,9 +478,9 @@ public class AddressDAO {
 		   Connection conn = ConnectionManager.getConnection();
 		   
 		   String sql = "Select Address.*,DIVISION.DIVISION_NAME pDivisionName,DISTRICT.DIST_NAME pDistrictName, " +
-		   "UNIONS.UNIONNAME pUnionName, THANA.THANA_NAME pThanaName from Address,SECONDLOTTERY_T1,DIVISION,DISTRICT,UNIONS,THANA " +
-		   "Where Address.JOBSEEKER_NUMBER=SECONDLOTTERY_T1.JOBSEEKER_NUMBER  " +
-		   "And SECONDLOTTERY_T1.JOBSEEKER_NUMBER=? " +
+		   "UNIONS.UNIONNAME pUnionName, THANA.THANA_NAME pThanaName from Address,DIVISION,DISTRICT,UNIONS,THANA " +
+		   "Where " +
+		   " Address.JOBSEEKER_NUMBER=? " +
 		   "And Address.PER_DIV=DIVISION.DIVISIONID " +
 		   "And Address.PER_DIS=DISTRICT.DIST_ID " +
 		   "And Address.PER_THANA=THANA.THANAID " +
@@ -531,7 +531,9 @@ public class AddressDAO {
 			} 
 			catch (Exception e){e.printStackTrace();}
 	 		finally{try{stmt.close();ConnectionManager.closeConnection(conn);} catch (Exception e)
-				{e.printStackTrace();}stmt = null;conn = null;}
+				{e.printStackTrace();
+				System.out.println("problem in Address");
+				}stmt = null;conn = null;}
 	 		
 	 		return addressDTO;
 	 }
