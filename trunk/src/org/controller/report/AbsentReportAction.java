@@ -15,7 +15,6 @@ import org.apache.struts2.util.ServletContextAware;
 import org.model.AddressDAO;
 import org.model.RegistrationDAO;
 import org.table.AddressDTO;
-import org.table.FingerDTO;
 import org.table.PersonalInfoDTO;
 import org.table.PoliceDTO;
 import org.table.SelectPersonDTO;

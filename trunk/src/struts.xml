@@ -458,7 +458,12 @@
 		<action name="fetchJobseekerDetail" class="org.controller.registration.EditAction" method="fetchJobseekerDetail">			
 			<result name="success">/WEB-INF/jsp/edit/JobseekerDetail.jsp</result>
 			<result name="input">/WEB-INF/jsp/edit/EditHome.jsp</result>
+			<result name="timeOver">
+			/WEB-INF/jsp/TimeOver.jsp
+			</result>
+		
 		</action>
+		
 		<action name="updateJobseekerDetail" class="org.controller.registration.EditAction" method="updateJobseekerDetail">			
 			<result name="success">/WEB-INF/jsp/edit/EditHome.jsp</result>
 			<result name="input">/WEB-INF/jsp/edit/JobseekerDetail.jsp</result>
